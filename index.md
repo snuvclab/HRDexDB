@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title: HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Grasps
+title: HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Graspssaf
 authors:
     A. M. Turing
 affiliations:
