@@ -15,7 +15,7 @@ data: https://huggingface.co/docs/datasets
 
 <div class="columns is-centered">
     <div class="column is-full">
-        <img class="teaser-image" src="{{ '/static/image/teaser.png' | relative_url }}" alt="HRDexDB teaser image">
+        <img class="teaser-image" src="static/image/teaser.png" alt="HRDexDB teaser image">
     </div>
 </div>
 
@@ -58,7 +58,7 @@ Turing's main objective in this paper was to investigate the notion of computabi
 4. He proved the existence of non-computable numbers, which cannot be computed by any Turing machine.
 5. Turing showed that the Entscheidungsproblem is undecidable, meaning there is no algorithm that can determine, for any given mathematical statement, whether it is provable or not.
 
-![Turing Machine]({{ '/static/image/Turing_machine.png' | relative_url }})
+![Turing Machine](static/image/Turing_machine.png)
 
 *Figure 1: A representation of a Turing Machine. Source: [Wiki](https://en.wikipedia.org/wiki/Turing_machine).*
 
