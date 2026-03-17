@@ -14,8 +14,8 @@ data: https://huggingface.co/docs/datasets
 ---
 
 <div class="columns is-centered">
-    <div class="column is-four-fifths">
-        <img src="{{ '/static/image/teaser.png' | relative_url }}" alt="HRDexDB teaser image">
+    <div class="column is-full">
+        <img class="teaser-image" src="{{ '/static/image/teaser.png' | relative_url }}" alt="HRDexDB teaser image">
     </div>
 </div>
 
