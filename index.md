@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title: On Computable Numbers, with an Application to the Entscheidungsproblem
+title: HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Grasps
 authors:
     A. M. Turing
 affiliations:
