@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title: "HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Grasps"
+title: "🤖 HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Grasps"
 authors:
     A. M. Turing
 affiliations:
@@ -12,6 +12,12 @@ video: https://www.youtube.com/results?search_query=turing+machine
 code: https://github.com/topics/turing-machines
 data: https://huggingface.co/docs/datasets
 ---
+
+<div class="columns is-centered">
+    <div class="column is-four-fifths">
+        <img src="/static/image/teaser.png" alt="HRDexDB teaser image">
+    </div>
+</div>
 
 <!-- Using HTML to center the abstract -->
 <div class="columns is-centered has-text-centered">
