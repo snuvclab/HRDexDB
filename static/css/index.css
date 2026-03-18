@@ -158,6 +158,8 @@ body {
 
 .teaser-image {
   display: block;
-  width: 100%;
+  width: min(1400px, 96vw);
+  max-width: none;
   height: auto;
+  margin: 0 auto;
 }
