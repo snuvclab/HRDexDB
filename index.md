@@ -13,6 +13,14 @@ code: https://github.com/topics/turing-machines
 data: https://huggingface.co/docs/datasets
 ---
 
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <h2 class="subtitle has-text-centered">
+            <b>TL;DR:</b> A large scale, multi-modal dataset of high-fidelity <br>dexterous grasping sequences featuring both human and robotic hands
+        </h2>
+    </div>
+</section>
+
 <div class="columns is-centered">
     <div class="column is-full">
         <img class="teaser-image" src="static/image/teaser.png" alt="HRDexDB teaser image">
