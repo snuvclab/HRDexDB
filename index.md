@@ -30,10 +30,10 @@ authors:
 affiliations:
   - Seoul National University
   - RLWRLD
-paper: https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf
-video: https://www.youtube.com/results?search_query=turing+machine
-code: https://github.com/topics/turing-machines
-data: https://huggingface.co/docs/datasets
+paper: https://arxiv.org/abs/2604.14944
+video: https://snuvclab.github.io/HRDexDB/
+code: https://github.com/snuvclab/HRDexDB
+data: https://snuvclab.github.io/HRDexDB/
 ---
 
 <section class="hero teaser">
