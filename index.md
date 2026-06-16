@@ -40,14 +40,14 @@ data: https://snuvclab.github.io/HRDexDB/
     <div class="container is-max-desktop">
         <h2 class="subtitle has-text-centered">
             <span class="tldr-label">TL;DR:</span>
-            <span class="tldr-text">A large scale, multi-modal dataset of high-fidelity <br>dexterous grasping sequences featuring both human and robotic hands</span>
+            <span class="tldr-text">A paired cross-embodiment dataset of high-fidelity <br>dexterous grasping sequences featuring both human and robotic hands</span>
         </h2>
     </div>
 </section>
 
 <div class="columns is-centered">
     <div class="column is-full">
-        <img class="teaser-image" src="static/image/teaser.png" alt="HRDexDB teaser image">
+        <img class="teaser-image" src="static/image/teaser_corl.png" alt="HRDexDB teaser image">
     </div>
 </div>
 
@@ -56,17 +56,7 @@ data: https://snuvclab.github.io/HRDexDB/
     <div class="column is-full">
         <h2>Abstract</h2>
         <div class="content has-text-justified">
-We present HRDexDB, a large scale, multi-modal dataset of high-fidelity dexterous grasping sequences 
-featuring both human and robotic hands. Unlike existing datasets, HRDexDB provides a comprehensive mapping 
-between human and robotic domains across 100 diverse objects. Our pipeline integrates state-of-the-art vision methods, 
-including HaMeR-based 3D human hand reconstruction and FoundationPose-based robust 6D object estimation, ensuring 
-high-precision spatial ground truth for both the agent and the manipulated object. To facilitate the study of physical 
-interaction, we capture paired robotic sequences via teleoperation, supplemented by high-resolution tactile feedback 
-and synchronized multi-view video. Furthermore, we address the common issue of kinematic model inaccuracies 
-by utilizing a calibrated multi-camera array to refine the robot's 3D pose in world coordinates. 
-HRDexDB comprises thousands of successful and failed grasping trials, each rich with visual, kinematic, 
-and tactile modalities. By providing dense correspondences between human dexterity and robotic perception, 
-HRDexDB serves as a primary benchmark for multi-modal policy learning, 6D object tracking, and cross-domain dexterous manipulation.
+We present <b>HRDexDB</b>, a paired cross-embodiment dexterous grasping dataset of high-fidelity dexterous grasping sequences featuring both human and diverse robotic hands. Unlike existing datasets, HRDexDB provides a comprehensive collection of grasping trajectories across human hands and multiple robot hand embodiments, spanning 100 diverse objects. Leveraging state-of-the-art vision methods and a dedicated multi-camera system, HRDexDB offers high-precision spatiotemporal 3D ground-truth motion for both the agent and the manipulated object. The dataset comprises 2.1K grasping trials, each enriched with synchronized visual and kinematic modalities, with contact-force signals available for tactile-enabled robotic hands. By providing closely aligned captures of human dexterity and robotic execution on the same target objects under comparable grasping motions, HRDexDB serves as a foundational benchmark for cross-embodiment dexterous manipulation.
         </div>
     </div>
 </div>
@@ -138,8 +128,7 @@ To construct HRDexDB, we developed **OMNIDEX**, a unified multi-modal capture pl
     <div class="column is-full">
         <figure style="margin: 0;">
             <video controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg" style="width: 100%; border-radius: 8px;">
-                <source src="./static/videos/HRDexDB.mp4" type="video/mp4">
-                <source src="./static/videos/HRDexDB.webm" type="video/webm">
+                <source src="./static/videos/HRDexDB_video_CoRL_reduced_h264.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
