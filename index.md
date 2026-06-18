@@ -146,48 +146,41 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
     </section>
 </div>
 
-<h3 class="dataset-media-title">Tactile Signals</h3>
-
-Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** for the Inspire & Allegro robotic hand series. 
-
-<div class="columns is-centered">
-    <div class="column is-full">
-        <figure style="margin: 1.5rem 0 0 0;">
-            <video class="dataset-video" controls autoplay muted loop playsinline preload="auto">
-                <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="dataset-video-caption">
-                <p>Tactile sensing stream synchronized with the grasping sequence.</p>
-            </div>
-        </figure>
+<section class="dataset-media-block">
+    <h3 class="dataset-media-title">Tactile Signals</h3>
+    <p class="dataset-media-description">Unlike other existing robot datasets, HRDexDB provides rich <strong>tactile signals</strong> for the Inspire & Allegro robotic hand series.</p>
+    <video class="dataset-video" controls autoplay muted loop playsinline preload="auto">
+        <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="dataset-video-caption">
+        <p>Tactile sensing stream synchronized with the grasping sequence.</p>
     </div>
-</div>
+</section>
 
 
 
 ## A Unified Multi-Modal Data Capture System
 {: #capture-system}
-![HRDexDB capture system](./static/image/capture_system.png)
+<figure class="dataset-media-block">
+    <img class="dataset-media-image" src="./static/image/capture_system.png" alt="HRDexDB capture system">
+</figure>
+
 To construct HRDexDB, we developed a unified multi-modal capture platform. It features a dense rig of 23 synchronized cameras, integrated with real-time robot proprioception. This setup is specifically engineered to overcome severe occlusions during interaction with objects.
 
 
 ## Full Video
 {: #full-video}
 
-<div class="columns is-centered">
-    <div class="column is-full">
-        <figure style="margin: 0;">
-            <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg">
-                <source src="./static/videos/HRDexDB_video_CoRL_reduced_h264.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <figcaption class="dataset-video-caption">
-                <p>Full HRDexDB overview video.</p>
-            </figcaption>
-        </figure>
-    </div>
-</div>
+<figure class="dataset-media-block">
+    <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg">
+        <source src="./static/videos/HRDexDB_video_CoRL_reduced_h264.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <figcaption class="dataset-video-caption">
+        <p>Full HRDexDB overview video.</p>
+    </figcaption>
+</figure>
 
 
 ## Contact
