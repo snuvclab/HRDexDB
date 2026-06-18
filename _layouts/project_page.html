@@ -49,6 +49,7 @@
       <a class="site-nav-link" href="#abstract">Abstract</a>
       <a class="site-nav-link" href="#dataset">Overview</a>
       <a class="site-nav-link" href="#full-video">Video</a>
+      <a class="site-nav-link" href="#contact">Contact</a>
       <a class="site-nav-link" href="#bibtex">BibTeX</a>
       {% if page.paper %}
       <a class="site-nav-link site-nav-paper" href="{{ page.paper }}" target="_blank">
@@ -72,7 +73,7 @@
           <div class="is-size-5 publication-authors">
             {% for author in page.authors %}
               <span class="author-block">
-                {% if author.homepage %}<a href="{{ author.homepage }}" target="_blank">{% endif %}{{ author.name }}{% if author.homepage %}</a>{% endif %}{% if author.affiliation %}<sup>{% if author.affiliation.size %}{% for aff in author.affiliation %}{{ aff }}{% unless forloop.last %},{% endunless %}{% endfor %}{% else %}{{ author.affiliation }}{% endif %}</sup>{% endif %}{% if author.equal_contributor %}*{% endif %}{% unless forloop.last %}, {% endunless %}
+                {% if author.homepage %}<a href="{{ author.homepage }}" target="_blank">{% endif %}{{ author.name }}{% if author.homepage %}</a>{% endif %}{% if author.affiliation %}<sup>{% if author.affiliation.size %}{% for aff in author.affiliation %}{{ aff }}{% unless forloop.last %},{% endunless %}{% endfor %}{% else %}{{ author.affiliation }}{% endif %}</sup>{% endif %}{% if author.equal_contributor %}*{% endif %}{% if author.corresponding_author %}&dagger;{% endif %}{% unless forloop.last %}, {% endunless %}
               </span>
             {% endfor %}
           </div>
@@ -86,6 +87,7 @@
               </span>
             {% endfor %}
           </div>
+          <div class="publication-contribution-note">* Equal contribution &nbsp; &dagger; Corresponding author</div>
           {% endif %}
 
           <div class="column has-text-centered">

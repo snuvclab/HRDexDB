@@ -26,6 +26,7 @@ authors:
     homepage: https://sites.google.com/yonsei.ac.kr/subinjeon/home
   - name: Hanbyul Joo
     affiliation: [1, 2]
+    corresponding_author: true
     homepage: https://jhugestar.github.io/
 affiliations:
   - Seoul National University
@@ -124,12 +125,35 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
     </div>
 </div>
 
-Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** for the Inspire / Allegro robotic hand series. 
+<div class="dataset-extra-media">
+    <section class="dataset-media-block">
+        <h3 class="dataset-media-title">3D Annotations</h3>
+        <video class="dataset-video" controls playsinline preload="metadata">
+            <source src="./static/videos/paired_annotations.mp4?v=web-h264-20260618" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="dataset-video-caption">
+            <p>Paired human and robot annotations visualized across synchronized views.</p>
+        </div>
+    </section>
+
+    <section class="dataset-media-block">
+        <h3 class="dataset-media-title">Contact Visualization</h3>
+        <img class="dataset-media-image" src="./static/image/contact_visualization.png" alt="Contact visualization for paired dexterous grasping">
+        <div class="dataset-video-caption">
+            <p>Contact visualization highlighting interaction regions during grasping.</p>
+        </div>
+    </section>
+</div>
+
+<h3 class="dataset-media-title">Tactile Signals</h3>
+
+Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** for the Inspire & Allegro robotic hand series. 
 
 <div class="columns is-centered">
     <div class="column is-full">
         <figure style="margin: 1.5rem 0 0 0;">
-            <video controls playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
+            <video class="dataset-video" controls playsinline preload="metadata">
                 <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -144,7 +168,7 @@ Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** 
 
 ## A Unified Multi-Modal Data Capture System
 {: #capture-system}
-![OMNIDEX](./static/image/omnidex_overview.png)
+![HRDexDB capture system](./static/image/capture_system.png)
 To construct HRDexDB, we developed a unified multi-modal capture platform. It features a dense rig of 23 synchronized cameras, integrated with real-time robot proprioception. This setup is specifically engineered to overcome severe occlusions during interaction with objects.
 
 
@@ -154,16 +178,22 @@ To construct HRDexDB, we developed a unified multi-modal capture platform. It fe
 <div class="columns is-centered">
     <div class="column is-full">
         <figure style="margin: 0;">
-            <video controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg" style="width: 100%; border-radius: 8px;">
+            <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg">
                 <source src="./static/videos/HRDexDB_video_CoRL_reduced_h264.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
-                Full HRDexDB overview video.
+            <figcaption class="dataset-video-caption">
+                <p>Full HRDexDB overview video.</p>
             </figcaption>
         </figure>
     </div>
 </div>
+
+
+## Contact
+{: #contact}
+
+Send any comments or questions to [Jongbin Lim](https://jongbinlim.github.io/): [whdqls0534@snu.ac.kr](mailto:whdqls0534@snu.ac.kr) or [Taeyun Ha](https://hahahataeyun.github.io/): [taeyun012@snu.ac.kr](mailto:taeyun012@snu.ac.kr).
 
 
 ## Citation

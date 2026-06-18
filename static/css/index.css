@@ -214,6 +214,14 @@ html {
   color: #555;
 }
 
+.publication-contribution-note {
+  font-family: 'Google Sans', sans-serif;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 0.1rem;
+}
+
 .affiliation-block {
   display: inline-block;
   margin: 0 0.3em;
@@ -407,6 +415,36 @@ html {
 .dataset-video {
   display: block;
   width: 100%;
+  border-radius: 8px;
+}
+
+.dataset-extra-media {
+  margin: 2.75rem auto 2.5rem;
+}
+
+.dataset-media-block {
+  margin: 0 auto 2.75rem;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+}
+
+.dataset-media-block:last-child {
+  margin-bottom: 0;
+}
+
+.dataset-media-title {
+  margin: 0 0 1rem;
+  color: #20242c;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.dataset-media-image {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: 8px;
 }
 
