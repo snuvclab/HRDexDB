@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title: "🤖 HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Grasps"
+title: "🤖 HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping"
 authors:
   - name: Jongbin Lim
     affiliation: [1]
@@ -30,8 +30,8 @@ authors:
 affiliations:
   - Seoul National University
   - RLWRLD
-paper: https://arxiv.org/abs/2604.14944
-video: https://snuvclab.github.io/HRDexDB/
+paper: ./static/pdf/hrdexdb.pdf
+arxiv: https://arxiv.org/abs/2604.14944
 code: https://github.com/snuvclab/HRDexDB
 data: https://snuvclab.github.io/HRDexDB/
 ---
@@ -69,7 +69,7 @@ We present <b>HRDexDB</b>, a paired cross-embodiment dexterous grasping dataset 
 ## Dataset Overview
 
 **HRDexDB** is the first large-scale dataset featuring paired human and dexterous robotic hand manipulation.
-It provides over 1.4K sequences across 100 diverse objects and 4 distinct embodiments, all captured by a fully synchronized 23-camera system.
+It provides over 2.1K sequences across 100 diverse objects and 5 distinct embodiments, all captured by a fully synchronized 23-camera system.
 We provide detailed 3D annotations for every sequence. You can see a sample visualization of our dataset below.
 
 <div class="columns is-centered">
@@ -141,5 +141,13 @@ To construct HRDexDB, we developed **OMNIDEX**, a unified multi-modal capture pl
 
 ## Citation
 ```
-Coming soon!
+@misc{lim2026hrdexdblargescaledatasetdexterous,
+      title={HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Hand Grasps}, 
+      author={Jongbin Lim and Taeyun Ha and Mingi Choi and Jisoo Kim and Byungjun Kim and Subin Jeon and Hanbyul Joo},
+      year={2026},
+      eprint={2604.14944},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2604.14944}, 
+}
 ```
