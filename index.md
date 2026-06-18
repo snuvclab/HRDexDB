@@ -99,7 +99,7 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
     <div class="dataset-video-panels">
         <figure class="dataset-video-panel dataset-video-panel-human">
             <div class="dataset-video-stage">
-                <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/human_grasping_poster.jpg">
+                <video class="dataset-video" controls autoplay muted loop playsinline preload="auto" poster="./static/videos/human_grasping_poster.jpg">
                     <source src="./static/videos/human_grasping.mp4" type="video/mp4">
                     <source src="./static/videos/human_grasping.webm" type="video/webm">
                     Your browser does not support the video tag.
@@ -112,7 +112,7 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
 
         <figure class="dataset-video-panel dataset-video-panel-robot">
             <div class="dataset-video-stage">
-                <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/robot_grasping_poster.jpg">
+                <video class="dataset-video" controls autoplay muted loop playsinline preload="auto" poster="./static/videos/robot_grasping_poster.jpg">
                     <source src="./static/videos/robot_grasping.mp4" type="video/mp4">
                     <source src="./static/videos/robot_grasping.webm" type="video/webm">
                     Your browser does not support the video tag.
@@ -128,7 +128,7 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
 <div class="dataset-extra-media">
     <section class="dataset-media-block">
         <h3 class="dataset-media-title">3D Annotations</h3>
-        <video class="dataset-video" controls playsinline preload="metadata">
+        <video class="dataset-video" controls autoplay muted loop playsinline preload="auto">
             <source src="./static/videos/paired_annotations.mp4?v=web-h264-20260618" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -153,7 +153,7 @@ Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** 
 <div class="columns is-centered">
     <div class="column is-full">
         <figure style="margin: 1.5rem 0 0 0;">
-            <video class="dataset-video" controls playsinline preload="metadata">
+            <video class="dataset-video" controls autoplay muted loop playsinline preload="auto">
                 <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>

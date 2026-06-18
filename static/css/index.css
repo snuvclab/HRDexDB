@@ -392,9 +392,20 @@ html {
   color: #1f2937;
 }
 
+.dataset-video-panels {
+  position: relative;
+}
+
 .dataset-video-panel {
-  display: none;
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 0;
 }
 
 #dataset-video-human:checked ~ .dataset-video-tab-list label[for="dataset-video-human"],
@@ -405,7 +416,11 @@ html {
 
 #dataset-video-human:checked ~ .dataset-video-panels .dataset-video-panel-human,
 #dataset-video-robot:checked ~ .dataset-video-panels .dataset-video-panel-robot {
-  display: block;
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  z-index: 1;
 }
 
 .dataset-video-stage {

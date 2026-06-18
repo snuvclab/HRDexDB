@@ -7,12 +7,44 @@ $(document).ready(function() {
 
     });
 
-    $(".dataset-video-tab-input").on("change", function() {
-      var $tabs = $(this).closest(".dataset-video-tabs");
-      $tabs.find(".dataset-video-panel").not(":visible").find("video").each(function() {
-        this.pause();
+    function startVideo(video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      var playRequest = video.play();
+      if (playRequest && typeof playRequest.catch === "function") {
+        playRequest.catch(function() {
+          video.addEventListener("canplay", function() {
+            video.play().catch(function() {});
+          }, { once: true });
+          video.load();
+        });
+      }
+    }
+
+    function playAutoplayVideos($scope) {
+      var $videos = $scope.is("video[autoplay]") ? $scope : $scope.find("video[autoplay]");
+      $videos.each(function() {
+        startVideo(this);
       });
+    }
+
+    function keepDatasetVideosPlaying($tabs) {
+      window.setTimeout(function() {
+        playAutoplayVideos($tabs);
+      }, 0);
+    }
+
+    $(".dataset-video-tab, .dataset-video-tab-input").on("click change", function() {
+      keepDatasetVideosPlaying($(this).closest(".dataset-video-tabs"));
     });
+
+    playAutoplayVideos($(document));
 
     var options = {
 			slidesToScroll: 1,
