@@ -7,18 +7,19 @@
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title }}</title>
-  <link rel="icon" type="image/x-icon" href="./static/image/favicon.ico">
+  {% assign asset_version = site.time | date: '%s' %}
+  <link rel="icon" type="image/x-icon" href="{{ '/static/image/favicon.ico' | relative_url }}">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="{{ '/static/css/bulma.min.css' | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="{{ '/static/css/index.css' | relative_url }}?v={{ asset_version }}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script defer src="{{ '/static/js/fontawesome.all.min.js' | relative_url }}"></script>
+  <script src="{{ '/static/js/index.js' | relative_url }}?v={{ asset_version }}"></script>
 
   <!-- MathJax -->
   <script>
