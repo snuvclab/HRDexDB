@@ -104,7 +104,6 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
                     Your browser does not support the video tag.
                 </video>
                 <div class="dataset-video-caption">
-                    <h3>Human grasping</h3>
                     <p>High-fidelity human dexterous grasping sequences captured across diverse objects.</p>
                 </div>
             </div>
@@ -118,8 +117,7 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
                     Your browser does not support the video tag.
                 </video>
                 <div class="dataset-video-caption">
-                    <h3>Robot grasping</h3>
-                    <p>Paired robotic hand executions recorded with synchronized visual and kinematic modalities.</p>
+                    <p>Paired robot hand executions recorded with synchronized visual and kinematic modalities.</p>
                 </div>
             </div>
         </figure>
@@ -131,14 +129,13 @@ Unlike other existing robot datasets, HRDexDB provides rich **tactile signals** 
 <div class="columns is-centered">
     <div class="column is-full">
         <figure style="margin: 1.5rem 0 0 0;">
-            <video controls playsinline preload="metadata" poster="./static/videos/tactile_poster.jpg" style="width: 100%; border-radius: 8px;">
-                <source src="./static/videos/tactile.mp4" type="video/mp4">
-                <source src="./static/videos/tactile.webm" type="video/webm">
+            <video controls playsinline preload="metadata" style="width: 100%; border-radius: 8px;">
+                <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
-                Tactile sensing stream synchronized with the grasping sequence.
-            </figcaption>
+            <div class="dataset-video-caption">
+                <p>Tactile sensing stream synchronized with the grasping sequence.</p>
+            </div>
         </figure>
     </div>
 </div>

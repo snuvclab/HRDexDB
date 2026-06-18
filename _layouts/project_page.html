@@ -102,6 +102,18 @@
                 </a>
               </span>
               {% endif %}
+              <!-- arXiv Link. -->
+              {% if page.arxiv %}
+              <span class="link-block">
+                <a href="{{ page.arxiv }}"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-alt"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              {% endif %}
               <!-- Video Link. -->
               {% if page.video %}
               <span class="link-block">
