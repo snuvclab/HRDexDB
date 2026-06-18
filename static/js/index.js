@@ -7,6 +7,13 @@ $(document).ready(function() {
 
     });
 
+    $(".dataset-video-tab-input").on("change", function() {
+      var $tabs = $(this).closest(".dataset-video-tabs");
+      $tabs.find(".dataset-video-panel").not(":visible").find("video").each(function() {
+        this.pause();
+      });
+    });
+
     var options = {
 			slidesToScroll: 1,
 			slidesToShow: 3,

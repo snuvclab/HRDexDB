@@ -72,28 +72,57 @@ We present <b>HRDexDB</b>, a paired cross-embodiment dexterous grasping dataset 
 It provides over 2.1K sequences across 100 diverse objects and 5 distinct embodiments, all captured by a fully synchronized 23-camera system.
 We provide detailed 3D annotations for every sequence. You can see a sample visualization of our dataset below.
 
-<div class="columns is-centered">
-    <div class="column is-full">
-        <figure style="margin: 0 0 1.5rem 0;">
-            <video controls playsinline preload="metadata" poster="./static/videos/human_grasping_poster.jpg" style="width: 100%; border-radius: 8px;">
-                <source src="./static/videos/human_grasping.mp4" type="video/mp4">
-                <source src="./static/videos/human_grasping.webm" type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
-                Human dexterous grasping sequence from HRDexDB.
-            </figcaption>
+<div class="dataset-stats" aria-label="HRDexDB dataset statistics">
+    <div class="dataset-stat">
+        <div class="dataset-stat-number">2.1K</div>
+        <div class="dataset-stat-label">sequences</div>
+    </div>
+    <div class="dataset-stat">
+        <div class="dataset-stat-number">100+</div>
+        <div class="dataset-stat-label">objects</div>
+    </div>
+    <div class="dataset-stat">
+        <div class="dataset-stat-number">5</div>
+        <div class="dataset-stat-label">embodiments</div>
+    </div>
+</div>
+
+<div class="dataset-video-tabs">
+    <input class="dataset-video-tab-input" type="radio" name="dataset-video-tab" id="dataset-video-human" checked>
+    <input class="dataset-video-tab-input" type="radio" name="dataset-video-tab" id="dataset-video-robot">
+
+    <div class="dataset-video-tab-list" aria-label="Dataset overview videos">
+        <label class="dataset-video-tab" for="dataset-video-human">Human</label>
+        <label class="dataset-video-tab" for="dataset-video-robot">Robot</label>
+    </div>
+
+    <div class="dataset-video-panels">
+        <figure class="dataset-video-panel dataset-video-panel-human">
+            <div class="dataset-video-stage">
+                <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/human_grasping_poster.jpg">
+                    <source src="./static/videos/human_grasping.mp4" type="video/mp4">
+                    <source src="./static/videos/human_grasping.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="dataset-video-caption">
+                    <h3>Human grasping</h3>
+                    <p>High-fidelity human dexterous grasping sequences captured across diverse objects.</p>
+                </div>
+            </div>
         </figure>
 
-        <figure style="margin: 0;">
-            <video controls playsinline preload="metadata" poster="./static/videos/robot_grasping_poster.jpg" style="width: 100%; border-radius: 8px;">
-                <source src="./static/videos/robot_grasping.mp4" type="video/mp4">
-                <source src="./static/videos/robot_grasping.webm" type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
-                Robot dexterous grasping sequence from HRDexDB.
-            </figcaption>
+        <figure class="dataset-video-panel dataset-video-panel-robot">
+            <div class="dataset-video-stage">
+                <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/robot_grasping_poster.jpg">
+                    <source src="./static/videos/robot_grasping.mp4" type="video/mp4">
+                    <source src="./static/videos/robot_grasping.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="dataset-video-caption">
+                    <h3>Robot grasping</h3>
+                    <p>Paired robotic hand executions recorded with synchronized visual and kinematic modalities.</p>
+                </div>
+            </div>
         </figure>
     </div>
 </div>
@@ -141,8 +170,8 @@ To construct HRDexDB, we developed **OMNIDEX**, a unified multi-modal capture pl
 
 ## Citation
 ```
-@misc{lim2026hrdexdblargescaledatasetdexterous,
-      title={HRDexDB: A Large-Scale Dataset of Dexterous Human and Robotic Hand Grasps}, 
+@misc{lim2026hrdexdb,
+      title={HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping}, 
       author={Jongbin Lim and Taeyun Ha and Mingi Choi and Jisoo Kim and Byungjun Kim and Subin Jeon and Hanbyul Joo},
       year={2026},
       eprint={2604.14944},
