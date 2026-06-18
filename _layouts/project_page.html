@@ -42,6 +42,25 @@
 </head>
 <body>
 
+<nav class="site-nav" aria-label="Page navigation">
+  <div class="site-nav-inner">
+    <a class="site-nav-brand" href="{{ '/' | relative_url }}">HRDexDB</a>
+    <div class="site-nav-links">
+      <a class="site-nav-link" href="#abstract">Abstract</a>
+      <a class="site-nav-link" href="#dataset">Overview</a>
+      <a class="site-nav-link" href="#full-video">Video</a>
+      <a class="site-nav-link" href="#bibtex">BibTeX</a>
+      {% if page.paper %}
+      <a class="site-nav-link site-nav-paper" href="{{ page.paper }}" target="_blank">
+        <span class="icon">
+          <i class="fas fa-file-pdf"></i>
+        </span>
+        <span>Paper</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-body">

@@ -2,6 +2,78 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #e6e9ef;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 1032px);
+  margin: 0 auto;
+  padding: 0.8rem 1.25rem;
+  gap: 1.5rem;
+}
+
+.site-nav-brand {
+  flex: 0 0 auto;
+  color: #111827;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.site-nav-brand:hover {
+  color: #111827;
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.35rem;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #5f6878;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.site-nav-link:hover {
+  color: #111827;
+}
+
+.site-nav-paper {
+  color: #1f4ed8;
+}
+
+.site-nav-paper .icon {
+  width: auto;
+  height: auto;
+  margin-right: 0.05rem;
+}
+
+#abstract,
+.content > h2 {
+  scroll-margin-top: 5rem;
+}
 
 .footer .icon-link {
     font-size: 25px;
@@ -11,6 +83,14 @@ body {
 .link-block a {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.hero > .hero-body {
+  padding-bottom: 1.25rem;
+}
+
+.hero + .section {
+  padding-top: 1.25rem;
 }
 
 .dnerf {
@@ -43,6 +123,18 @@ body {
   font-weight: 400;
 }
 
+.content > h2 {
+  margin-top: 3rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid #e1e6ef;
+  font-family: 'Google Sans', 'Noto Sans', sans-serif;
+  text-align: center;
+}
+
+.content > h2 + p,
+.content > h2 + p + p {
+  margin-top: 1rem;
+}
 
 .publication-title {
 }
@@ -309,10 +401,7 @@ body {
 }
 
 .dataset-video-stage {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.55fr);
-  align-items: center;
-  gap: 2rem;
+  display: block;
 }
 
 .dataset-video {
@@ -322,11 +411,13 @@ body {
 }
 
 .dataset-video-caption {
+  margin: 1rem auto 0;
   color: #303846;
+  text-align: center;
 }
 
 .dataset-video-caption h3 {
-  margin: 0 0 1rem;
+  margin: 0 0 0.6rem;
   color: #171717;
   font-size: 1.35rem;
   font-weight: 700;
@@ -341,6 +432,23 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .site-nav-inner {
+    align-items: flex-start;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .site-nav-links {
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .site-nav-link {
+    font-size: 0.9rem;
+  }
+
   .teaser-image {
     width: 100%;
     margin-left: 0;
@@ -381,8 +489,7 @@ body {
   }
 
   .dataset-video-stage {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: block;
   }
 
   .dataset-video-caption h3 {
