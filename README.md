@@ -94,8 +94,8 @@ Visualize an Inspire F1 robot scene:
 ```bash
 python visualize_trajectory.py \
   --hand inspire_f1 \
-  --object apple \
-  --scene 0
+  --object banana \
+  --scene 2
 ```
 
 Visualize a human hand scene:
