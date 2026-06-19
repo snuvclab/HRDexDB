@@ -1,0 +1,7 @@
+numpy>=1.24
+scipy>=1.10
+opencv-python>=4.8
+trimesh>=4.0
+yourdfpy>=0.0.56
+viser>=0.2.0
+pyglet<2
