@@ -103,8 +103,8 @@ Visualize a human hand scene:
 ```bash
 python visualize_trajectory.py \
   --hand human \
-  --object apple \
-  --scene 0
+  --object banana \
+  --scene 2
 ```
 
 Use a dataset stored outside the repository:
@@ -113,8 +113,8 @@ Use a dataset stored outside the repository:
 python visualize_trajectory.py \
   --dataset-root /path/to/v0 \
   --hand inspire_f1 \
-  --object apple \
-  --scene 0
+  --object french_mustard \
+  --scene 2
 ```
 
 ## Expected Scene Layout
