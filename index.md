@@ -34,7 +34,7 @@ affiliations:
 paper: ./static/pdf/hrdexdb.pdf
 arxiv: https://arxiv.org/abs/2604.14944
 code: https://github.com/snuvclab/HRDexDB
-data: https://snuvclab.github.io/HRDexDB/
+data: https://huggingface.co/datasets/HRDexDB/HRDexDB
 ---
 
 <section class="hero teaser">
