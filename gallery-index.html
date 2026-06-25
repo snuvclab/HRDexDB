@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRDexDB</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-2: #1c222b;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --radius: 8px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      min-height: 53px;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      color: var(--text);
+      font-size: 1.2em;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 0.95em;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .landing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 53px);
+      padding: 48px 24px;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .landing h1 {
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .landing > p {
+      max-width: 680px;
+      margin-bottom: 18px;
+      color: var(--text-muted);
+      font-size: 1.05em;
+    }
+
+    .landing-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 320px));
+      grid-auto-rows: 1fr;
+      gap: 24px;
+      width: min(100%, 680px);
+    }
+
+    .landing-card {
+      display: flex;
+      min-height: 184px;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 28px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(88, 166, 255, 0.12), rgba(63, 185, 80, 0.06)),
+        var(--surface);
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .landing-card[href]:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .landing-card.disabled {
+      cursor: default;
+    }
+
+    .card-count {
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 2em;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .landing-card h2 {
+      margin-bottom: 8px;
+      font-size: 1.45em;
+      line-height: 1.2;
+    }
+
+    .landing-card p {
+      color: var(--text-muted);
+      font-size: 0.95em;
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        gap: 16px;
+        padding: 12px 16px;
+      }
+
+      .landing {
+        justify-content: flex-start;
+        padding-top: 64px;
+      }
+
+      .landing-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="gallery-index.html">HRDexDB</a>
+    <a class="nav-link" href="gallery.html">Objects</a>
+  </nav>
+
+  <main class="landing">
+    <h1>HRDexDB</h1>
+    <p>Paired human and robot dexterous grasping sequences across diverse everyday objects.</p>
+    <div class="landing-cards">
+      <a class="landing-card" href="gallery.html">
+        <div class="card-count">98</div>
+        <h2>Objects</h2>
+        <p>Browse objects and paired grasp previews</p>
+      </a>
+      <div class="landing-card disabled" aria-disabled="true">
+        <div class="card-count">1477</div>
+        <h2>Sequences</h2>
+        <p>All human and robot sequences</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
