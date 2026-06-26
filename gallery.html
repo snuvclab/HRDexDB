@@ -555,8 +555,21 @@
     }
 
     .viewer-video-shell video {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
+    }
+
+    .viewer-video-thumb {
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.16s ease;
+    }
+
+    .viewer-video-shell.ready .viewer-video-thumb {
+      opacity: 0;
+      visibility: hidden;
     }
 
     .loading,
@@ -1149,7 +1162,7 @@
       if (previewVideoShells.size <= PREVIEW_VIDEO_CACHE_LIMIT) return;
       for (const [src, shell] of previewVideoShells) {
         if (src === activeSrc) continue;
-        shell.querySelector("video")?.pause();
+        previewPlayerFor(shell)?.pause();
         shell.remove();
         previewVideoShells.delete(src);
         if (previewVideoShells.size <= PREVIEW_VIDEO_CACHE_LIMIT) return;
@@ -1158,11 +1171,19 @@
 
     function clearPreviewVideoCache() {
       for (const shell of previewVideoShells.values()) {
-        shell.querySelector("video")?.pause();
+        previewPlayerFor(shell)?.pause();
         shell.remove();
       }
       previewVideoShells.clear();
       activePreviewShell = null;
+    }
+
+    function previewPlayerFor(shell) {
+      return shell?.querySelector(".viewer-video-player") || null;
+    }
+
+    function setPreviewShellReady(shell) {
+      shell.classList.add("ready");
     }
 
     function previewShellFor(preview) {
@@ -1171,7 +1192,8 @@
       const cachedShell = previewVideoShells.get(src);
 
       if (cachedShell) {
-        cachedShell.querySelector("video")?.removeAttribute("poster");
+        previewPlayerFor(cachedShell)?.removeAttribute("poster");
+        cachedShell.classList.toggle("ready", (previewPlayerFor(cachedShell)?.readyState || 0) >= 2);
         previewVideoShells.delete(src);
         previewVideoShells.set(src, cachedShell);
         return cachedShell;
@@ -1182,6 +1204,7 @@
       shell.dataset.previewSrc = src;
 
       const video = document.createElement("video");
+      video.className = "viewer-video-player";
       video.src = preview.video;
       video.controls = true;
       video.preload = "auto";
@@ -1189,27 +1212,46 @@
       video.muted = true;
       video.playsInline = true;
       video.autoplay = true;
+      video.addEventListener("loadeddata", () => setPreviewShellReady(shell));
+      video.addEventListener("playing", () => setPreviewShellReady(shell));
+
+      const thumb = document.createElement("video");
+      thumb.className = "viewer-video-thumb";
+      thumb.src = previewThumbnailSrc(preview);
+      thumb.preload = "metadata";
+      thumb.muted = true;
+      thumb.playsInline = true;
+      thumb.disablePictureInPicture = true;
 
       shell.appendChild(video);
+      shell.appendChild(thumb);
       layer.appendChild(shell);
       previewVideoShells.set(src, shell);
       trimPreviewVideoCache(src);
       return shell;
     }
 
-    function showInstantPreview(embodiment, objectId, episode) {
+    function showInstantPreview(embodiment, objectId, episode, options = {}) {
+      const restart = options.restart !== false;
       const layer = ensurePreviewLayer();
       const preview = previewFor(embodiment, objectId, episode);
       const shell = previewShellFor(preview);
-      const video = shell.querySelector("video");
+      const video = previewPlayerFor(shell);
 
       if (activePreviewShell && activePreviewShell !== shell) {
         activePreviewShell.classList.remove("active");
-        activePreviewShell.querySelector("video")?.pause();
+        previewPlayerFor(activePreviewShell)?.pause();
       }
 
       activePreviewShell = shell;
       shell.classList.add("active");
+      if (restart && Number.isFinite(video?.duration)) {
+        try {
+          video.currentTime = 0;
+        } catch (error) {
+          console.warn(error);
+        }
+      }
       const playPromise = video?.play?.();
       if (playPromise) playPromise.catch(() => {});
       el.viewerStatus.textContent = "Preview playing";
@@ -1219,7 +1261,7 @@
     }
 
     function pausePreviewVideo() {
-      activePreviewShell?.querySelector("video")?.pause();
+      previewPlayerFor(activePreviewShell)?.pause();
     }
 
     function hideInstantPreview() {
@@ -1230,7 +1272,7 @@
     }
 
     function currentPreviewTime() {
-      const video = activePreviewShell?.querySelector("video");
+      const video = previewPlayerFor(activePreviewShell);
       return Number.isFinite(video?.currentTime) ? video.currentTime : 0;
     }
 
@@ -1632,7 +1674,7 @@
       const token = ++loadToken;
       const object = objectData(objectId);
       el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
-      showInstantPreview(embodiment, objectId, episode);
+      showInstantPreview(embodiment, objectId, episode, { restart: false });
       setLoadGlbButtonState("loading");
 
       const asset = glbAssetFor(embodiment, objectId, episode);
