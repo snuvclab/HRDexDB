@@ -346,17 +346,6 @@
       font-size: 0.9em;
     }
 
-    .back-link {
-      flex: 0 0 auto;
-      padding: 4px 0;
-      border: 0;
-      background: none;
-      color: var(--text-muted);
-      font-size: 0.9em;
-    }
-
-    .back-link:hover { color: var(--accent-hover); }
-
     .tabs {
       display: flex;
       gap: 0;
@@ -596,7 +585,6 @@
       .container { padding: 18px 14px; }
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .object-header { display: block; }
-      .back-link { margin-top: 8px; }
       #viewer {
         height: 62vh;
         min-height: 360px;
@@ -630,7 +618,6 @@
               <h1 id="object-title"></h1>
               <p class="object-subtitle" id="object-subtitle"></p>
             </div>
-            <button class="back-link" id="back-button" type="button">Back to objects</button>
           </div>
 
           <div class="tabs" id="embodiment-tabs"></div>
@@ -732,6 +719,7 @@
       human: "human",
       inspire_f1: "inspire"
     };
+    const embodimentOrder = ["human", "allegro_v5", "inspire_f1"];
     const robotEmbodiments = new Set(["allegro_v5", "inspire_f1"]);
 
     const el = {
@@ -743,7 +731,6 @@
       grid: document.getElementById("grid"),
       objectTitle: document.getElementById("object-title"),
       objectSubtitle: document.getElementById("object-subtitle"),
-      backButton: document.getElementById("back-button"),
       embodimentTabs: document.getElementById("embodiment-tabs"),
       objectMenuSearch: document.getElementById("object-menu-search"),
       objectMenu: document.getElementById("object-menu"),
@@ -853,10 +840,17 @@
       return objects.find(object => object.id === objectId) || null;
     }
 
+    function orderedEmbodiments(keys) {
+      const rank = new Map(embodimentOrder.map((embodiment, index) => [embodiment, index]));
+      return [...keys].sort((a, b) => (rank.get(a) ?? 99) - (rank.get(b) ?? 99) || a.localeCompare(b));
+    }
+
     function embodimentKeys(objectId) {
       const object = objectData(objectId);
       if (!object) return [];
-      return Object.keys(object.embodiments).filter(embodiment => catalog[embodiment]?.[objectId]?.length);
+      return orderedEmbodiments(
+        Object.keys(object.embodiments).filter(embodiment => catalog[embodiment]?.[objectId]?.length)
+      );
     }
 
     function episodesFor(objectId, embodiment) {
@@ -865,7 +859,7 @@
 
     function updateStats(items) {
       const parts = [`${items.length} objects`];
-      for (const embodiment of Object.keys(catalog)) {
+      for (const embodiment of orderedEmbodiments(Object.keys(catalog))) {
         const count = items.filter(object => object.embodiments[embodiment]).length;
         parts.push(`${count} with ${labels[embodiment] || titleize(embodiment)}`);
       }
@@ -881,8 +875,8 @@
       }
 
       el.grid.innerHTML = filteredObjects.map(object => {
-        const hands = Object.entries(object.embodiments)
-          .map(([embodiment]) => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
+        const hands = orderedEmbodiments(Object.keys(object.embodiments))
+          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
           .join(", ");
 
         return `
@@ -916,8 +910,8 @@
       }
 
       el.objectMenu.innerHTML = menuObjects.map(object => {
-        const hands = Object.entries(object.embodiments)
-          .map(([embodiment]) => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
+        const hands = orderedEmbodiments(Object.keys(object.embodiments))
+          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
           .join(", ");
 
         return `
@@ -1646,7 +1640,6 @@
       renderObjectMenu();
     });
 
-    el.backButton.addEventListener("click", openGallery);
     el.galleryNav.addEventListener("click", openGallery);
     el.loadGlbButton.addEventListener("click", () => {
       if (!currentObject || !currentEmbodiment || !currentEpisode) return;
