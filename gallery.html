@@ -737,6 +737,7 @@
     let loadToken = 0;
     let previewWarmTimer = null;
     let previewWarmToken = 0;
+    let sequencePreviewMediaReady = false;
     const inflightGlbBlobs = new Map();
     const previewVideoShells = new Map();
 
@@ -983,6 +984,7 @@
 
       const objectChanged = currentObject !== objectId;
       currentObject = objectId;
+      sequencePreviewMediaReady = false;
       if (objectChanged) {
         detailObjectQuery = "";
         clearPreviewVideoCache();
@@ -1145,8 +1147,10 @@
 
     function episodePreviewHtml(embodiment, objectId, episode) {
       const preview = previewFor(embodiment, objectId, episode);
+      const thumbnailSrc = previewThumbnailSrc(preview);
+      const srcAttribute = sequencePreviewMediaReady ? ` src="${thumbnailSrc}"` : "";
       return `
-        <video src="${previewThumbnailSrc(preview)}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
+        <video${srcAttribute} data-preview-src="${thumbnailSrc}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
         <span class="episode-num">#${episode}</span>
       `;
     }
@@ -1196,8 +1200,20 @@
     function setPreviewShellReady(shell) {
       shell.classList.add("ready");
       if (shell === activePreviewShell) {
+        enableSequencePreviewMedia();
         schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
       }
+    }
+
+    function enableSequencePreviewMedia() {
+      if (sequencePreviewMediaReady) return;
+      sequencePreviewMediaReady = true;
+      el.episodeGrid.querySelectorAll("video[data-preview-src]:not([src])").forEach(video => {
+        video.src = video.dataset.previewSrc;
+      });
+      previewLayer?.querySelectorAll(".viewer-video-thumb[data-preview-src]:not([src])").forEach(video => {
+        video.src = video.dataset.previewSrc;
+      });
     }
 
     function previewShellFor(preview) {
@@ -1230,7 +1246,8 @@
 
       const thumb = document.createElement("video");
       thumb.className = "viewer-video-thumb";
-      thumb.src = previewThumbnailSrc(preview);
+      thumb.dataset.previewSrc = previewThumbnailSrc(preview);
+      if (sequencePreviewMediaReady) thumb.src = thumb.dataset.previewSrc;
       thumb.preload = "metadata";
       thumb.muted = true;
       thumb.playsInline = true;
@@ -1245,6 +1262,7 @@
     }
 
     function warmPreviewVideo(embodiment, objectId, episode) {
+      if (!sequencePreviewMediaReady) return;
       if (!embodiment || !objectId || episode == null) return;
       const preview = previewFor(embodiment, objectId, episode);
       const shell = previewShellFor(preview);
