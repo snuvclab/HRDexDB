@@ -565,6 +565,7 @@
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
     const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
+    const OBJECT_DEFAULT_BEIGE_COLOR = 0xd9c7aa;
     const CAMERA_PRESETS = {
       default: {
         focus: [0.07, -0.10, 0.02],
@@ -1343,25 +1344,45 @@
       });
     }
 
-    function isRobotWhiteMaterial(material) {
-      if (!material) return false;
-      const materialName = (material.name || "").toLowerCase();
-      if (materialName.includes("robot_white")) return true;
-      if (!materialName.includes("robot") || !material.color) return false;
-      return material.color.r > 0.94 && material.color.g > 0.94 && material.color.b > 0.94;
+    function materialList(node) {
+      if (!node.material) return [];
+      return Array.isArray(node.material) ? node.material : [node.material];
     }
 
-    function applyRobotMaterialTone(loadedModel) {
+    function isDefaultObjectMaterial(material) {
+      if (!material?.color) return false;
+      const materialName = (material.name || "").toLowerCase();
+      const looksDefault = materialName.includes("default") || materialName.includes("object");
+      return looksDefault
+        && !material.vertexColors
+        && material.color.r > 0.94
+        && material.color.g > 0.94
+        && material.color.b > 0.94;
+    }
+
+    function applyViewerMaterialTone(loadedModel) {
       const robotSpaceGray = new THREE.Color(ROBOT_SPACE_GRAY_COLOR);
+      const objectDefaultBeige = new THREE.Color(OBJECT_DEFAULT_BEIGE_COLOR);
       loadedModel.traverse(node => {
-        if (!node.isMesh || !node.name?.toLowerCase().includes("robot")) return;
-        const materials = Array.isArray(node.material) ? node.material : [node.material];
-        materials.forEach(material => {
-          if (!isRobotWhiteMaterial(material)) return;
-          material.color.copy(robotSpaceGray);
-          if ("metalness" in material) material.metalness = Math.max(material.metalness || 0, 0.08);
-          if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.72);
-          material.needsUpdate = true;
+        if (!node.isMesh) return;
+        const nodeName = (node.name || "").toLowerCase();
+        const isRobotMesh = nodeName.includes("robot");
+        const isObjectMesh = nodeName.startsWith("object_") || nodeName.includes("object");
+
+        materialList(node).forEach(material => {
+          if (isRobotMesh && material?.color) {
+            material.color.copy(robotSpaceGray);
+            if ("metalness" in material) material.metalness = Math.max(material.metalness || 0, 0.08);
+            if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.72);
+            material.needsUpdate = true;
+            return;
+          }
+
+          if (isObjectMesh && isDefaultObjectMaterial(material)) {
+            material.color.copy(objectDefaultBeige);
+            if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.74);
+            material.needsUpdate = true;
+          }
         });
       });
     }
@@ -1405,7 +1426,7 @@
         const gltf = await parseGltf(arrayBuffer, asset.originalUrl);
         if (token !== loadToken) return;
         const loadedModel = gltf.scene;
-        applyRobotMaterialTone(loadedModel);
+        applyViewerMaterialTone(loadedModel);
         loadedModel.rotation.set(-Math.PI / 2, 0, 0);
         loadedModel.updateMatrixWorld(true);
         scene.add(loadedModel);
