@@ -513,6 +513,10 @@
       touch-action: none;
     }
 
+    #viewer.preview-active canvas {
+      visibility: hidden;
+    }
+
     .viewer-preview {
       position: absolute;
       inset: 0;
@@ -1004,10 +1008,16 @@
       el.episodeGrid.querySelectorAll(".episode-card").forEach(card => {
         card.addEventListener("click", () => {
           currentEpisode = card.dataset.episode;
-          renderDetail();
+          setActiveEpisodeCard(currentEpisode);
           writeHash();
           loadCurrentEpisode();
         });
+      });
+    }
+
+    function setActiveEpisodeCard(episode) {
+      el.episodeGrid.querySelectorAll(".episode-card").forEach(card => {
+        card.classList.toggle("active", card.dataset.episode === episode);
       });
     }
 
@@ -1128,24 +1138,32 @@
     function showInstantPreview(embodiment, objectId, episode) {
       const layer = ensurePreviewLayer();
       const preview = previewFor(embodiment, objectId, episode);
-      pausePreviewVideo();
+      const currentVideo = layer.querySelector("video");
+      const currentSrc = currentVideo?.currentSrc || currentVideo?.src || "";
+      const nextSrc = new URL(preview.video, window.location.href).href;
 
-      if (preview) {
-        const posterAttribute = preview.poster ? ` poster="${preview.poster}"` : "";
-        layer.innerHTML = `
-          <div class="viewer-video-shell">
-            <video src="${preview.video}"${posterAttribute} controls preload="metadata" loop muted playsinline autoplay></video>
-          </div>
-        `;
-        const playPromise = layer.querySelector("video")?.play?.();
+      if (currentVideo && currentSrc === nextSrc) {
+        layer.classList.add("active");
+        el.viewer.classList.add("preview-active");
+        const playPromise = currentVideo.play?.();
         if (playPromise) playPromise.catch(() => {});
         el.viewerStatus.textContent = "Preview playing";
-      } else {
-        layer.innerHTML = `<img src="${objectThumbUrl(objectId)}" alt="" onerror="this.remove()">`;
-        el.viewerStatus.textContent = "Thumbnail shown";
+        return;
       }
 
+      pausePreviewVideo();
+      const posterAttribute = preview.poster ? ` poster="${preview.poster}"` : "";
+      layer.innerHTML = `
+        <div class="viewer-video-shell">
+          <video src="${preview.video}"${posterAttribute} controls preload="metadata" loop muted playsinline autoplay></video>
+        </div>
+      `;
+      const playPromise = layer.querySelector("video")?.play?.();
+      if (playPromise) playPromise.catch(() => {});
+      el.viewerStatus.textContent = "Preview playing";
+
       layer.classList.add("active");
+      el.viewer.classList.add("preview-active");
     }
 
     function pausePreviewVideo() {
@@ -1156,11 +1174,16 @@
       if (!previewLayer) return;
       pausePreviewVideo();
       previewLayer.classList.remove("active");
+      el.viewer.classList.remove("preview-active");
     }
 
     function currentPreviewTime() {
       const video = previewLayer?.querySelector("video");
       return Number.isFinite(video?.currentTime) ? video.currentTime : 0;
+    }
+
+    function nextFrame() {
+      return new Promise(resolve => requestAnimationFrame(resolve));
     }
 
     function setLoadGlbButtonState(state) {
@@ -1561,7 +1584,7 @@
       setLoadGlbButtonState("loading");
 
       const asset = glbAssetFor(embodiment, objectId, episode);
-      const glbPromise = glbBlob(asset.url, "high");
+      const glbPromise = glbBlob(asset.url, "low");
 
       try {
         await initViewer();
@@ -1586,9 +1609,11 @@
         const { blob, source } = await glbPromise;
         if (token !== loadToken) return;
         el.viewerStatus.textContent = source === "cache" ? "Parsing cached GLB" : "Parsing GLB";
+        await nextFrame();
         const arrayBuffer = await blob.arrayBuffer();
         if (token !== loadToken) return;
         el.viewerStatus.textContent = "Parsing GLB";
+        await nextFrame();
         const gltf = await parseGltf(arrayBuffer, asset.originalUrl);
         if (token !== loadToken) return;
         const loadedModel = gltf.scene;
