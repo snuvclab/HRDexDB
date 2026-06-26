@@ -1171,6 +1171,7 @@
       const cachedShell = previewVideoShells.get(src);
 
       if (cachedShell) {
+        cachedShell.querySelector("video")?.removeAttribute("poster");
         previewVideoShells.delete(src);
         previewVideoShells.set(src, cachedShell);
         return cachedShell;
@@ -1182,7 +1183,6 @@
 
       const video = document.createElement("video");
       video.src = preview.video;
-      if (preview.poster) video.poster = preview.poster;
       video.controls = true;
       video.preload = "auto";
       video.loop = true;
