@@ -708,6 +708,7 @@
     let objects = [];
     let filteredObjects = [];
     let detailObjectQuery = "";
+    let objectMenuRenderKey = "";
     let previewAssets = PREVIEW_ASSETS;
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
@@ -932,9 +933,16 @@
       }
 
       const query = detailObjectQuery.trim().toLowerCase();
+      const renderKey = `query:${query}`;
+      if (objectMenuRenderKey === renderKey && el.objectMenu.children.length) {
+        syncObjectMenuActive();
+        return;
+      }
+
       const menuObjects = query
         ? objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query))
         : objects;
+      objectMenuRenderKey = renderKey;
 
       if (!menuObjects.length) {
         el.objectMenu.innerHTML = '<div class="empty-state">No objects found.</div>';
@@ -958,6 +966,14 @@
 
       el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
         card.addEventListener("click", () => openDetail(card.dataset.object, currentEmbodiment));
+      });
+
+      syncObjectMenuActive();
+    }
+
+    function syncObjectMenuActive() {
+      el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
+        card.classList.toggle("active", card.dataset.object === currentObject);
       });
 
       el.objectMenu.querySelector(".object-menu-card.active")?.scrollIntoView({
