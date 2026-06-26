@@ -656,6 +656,8 @@
   <script>
     const CATALOG_URL = "https://huggingface.co/spaces/HRDexDB/HRDexDB-Visualizer/raw/main/assets/glb_catalog.json";
     const GLB_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-glb/resolve/main";
+    const PREVIEW_VIDEO_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-preview-video/resolve/main";
+    const PREVIEW_CAMERA_ID = "23263780";
     const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const PREVIEW_MANIFEST_URL = "static/gallery-previews/manifest.json";
@@ -1050,8 +1052,19 @@
       };
     }
 
+    function previewVideoUrl(embodiment, objectId, episode) {
+      const path = [embodiment, objectId, episode, "vid", `${PREVIEW_CAMERA_ID}.mp4`]
+        .map(part => encodeURIComponent(part))
+        .join("/");
+      return `${PREVIEW_VIDEO_BASE}/${path}`;
+    }
+
     function previewFor(embodiment, objectId, episode) {
-      return previewAssets[`${embodiment}/${objectId}/${episode}`] || null;
+      const key = `${embodiment}/${objectId}/${episode}`;
+      return {
+        ...(previewAssets[key] || {}),
+        video: previewVideoUrl(embodiment, objectId, episode)
+      };
     }
 
     function animationTrimFor(embodiment, objectId, episode) {
@@ -1087,7 +1100,7 @@
 
     function episodePreviewHtml(embodiment, objectId, episode) {
       const preview = previewFor(embodiment, objectId, episode);
-      if (!preview) return `<span class="episode-num">#${episode}</span>`;
+      if (!preview.poster) return `<span class="episode-num">#${episode}</span>`;
       return `
         <img src="${preview.poster}" alt="" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing'); this.remove()">
         <span class="episode-num">#${episode}</span>
@@ -1113,9 +1126,10 @@
       pausePreviewVideo();
 
       if (preview) {
+        const posterAttribute = preview.poster ? ` poster="${preview.poster}"` : "";
         layer.innerHTML = `
           <div class="viewer-video-shell">
-            <video src="${preview.video}" poster="${preview.poster}" controls preload="metadata" loop muted playsinline autoplay></video>
+            <video src="${preview.video}"${posterAttribute} controls preload="metadata" loop muted playsinline autoplay></video>
           </div>
         `;
         const playPromise = layer.querySelector("video")?.play?.();
