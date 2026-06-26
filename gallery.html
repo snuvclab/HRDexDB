@@ -74,7 +74,7 @@
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1480px;
       margin: 0 auto;
       padding: 24px;
     }
@@ -82,8 +82,7 @@
     .view { display: none; }
     .view.active { display: block; }
 
-    .search-bar,
-    .obj-select {
+    .search-bar {
       width: 100%;
       min-height: 42px;
       padding: 10px 16px;
@@ -96,8 +95,7 @@
     }
 
     .search-bar { margin-bottom: 16px; }
-    .search-bar:focus,
-    .obj-select:focus { border-color: var(--accent); }
+    .search-bar:focus { border-color: var(--accent); }
     .search-bar::placeholder { color: var(--text-muted); }
 
     .stats-bar {
@@ -231,6 +229,73 @@
       white-space: nowrap;
     }
 
+    .detail-shell {
+      display: grid;
+      grid-template-columns: minmax(190px, 240px) minmax(0, 1fr);
+      align-items: start;
+      gap: 24px;
+    }
+
+    .object-menu {
+      position: sticky;
+      top: 73px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      max-height: calc(100vh - 96px);
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .object-menu-card {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+      text-align: left;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .object-menu-card:hover,
+    .object-menu-card.active {
+      border-color: var(--accent);
+    }
+
+    .object-menu-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .object-menu-card .thumb-slot {
+      aspect-ratio: 1;
+    }
+
+    .object-menu-label {
+      padding: 6px 7px 0;
+      overflow: hidden;
+      font-size: 0.68em;
+      font-weight: 700;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .object-menu-hands {
+      padding: 0 7px 6px;
+      overflow: hidden;
+      color: var(--text-muted);
+      font-size: 0.56em;
+      line-height: 1.3;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .detail-main {
+      min-width: 0;
+    }
+
     .object-header {
       display: flex;
       align-items: flex-start;
@@ -286,11 +351,9 @@
       color: var(--text);
     }
 
-    .controls {
-      display: grid;
-      grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
-      align-items: center;
-      gap: 12px;
+    .sequence-toolbar {
+      display: flex;
+      justify-content: flex-end;
       margin-bottom: 16px;
     }
 
@@ -302,14 +365,14 @@
 
     .detail-layout {
       display: grid;
-      grid-template-columns: minmax(270px, 0.9fr) minmax(420px, 1.35fr);
+      grid-template-columns: minmax(260px, 360px) minmax(420px, 1fr);
       align-items: start;
       gap: 16px;
     }
 
     .episode-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -350,6 +413,7 @@
     .viewer-panel {
       position: sticky;
       top: 73px;
+      min-width: 0;
       min-height: 520px;
     }
 
@@ -473,12 +537,18 @@
     }
 
     @media (max-width: 900px) {
-      .controls,
+      .detail-shell,
       .detail-layout {
         grid-template-columns: 1fr;
       }
 
       .episode-count { text-align: left; }
+      .sequence-toolbar { justify-content: flex-start; }
+      .object-menu {
+        position: static;
+        max-height: 330px;
+        padding-right: 0;
+      }
       .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .viewer-panel { position: static; }
     }
@@ -514,33 +584,38 @@
     </section>
 
     <section class="view" id="detail-view">
-      <div class="object-header">
-        <div>
-          <h1 id="object-title"></h1>
-          <p class="object-subtitle" id="object-subtitle"></p>
-        </div>
-        <button class="back-link" id="back-button" type="button">Back to objects</button>
-      </div>
+      <div class="detail-shell">
+        <aside class="object-menu" id="object-menu"></aside>
 
-      <div class="tabs" id="embodiment-tabs"></div>
-
-      <div class="controls">
-        <select class="obj-select" id="object-select"></select>
-        <div class="episode-count" id="episode-count"></div>
-      </div>
-
-      <div class="detail-layout">
-        <div class="episode-grid" id="episode-grid"></div>
-        <aside class="viewer-panel">
-          <div class="viewer-meta">
-            <div class="viewer-title" id="viewer-title">Select a sequence</div>
-            <div class="viewer-actions">
-              <div class="viewer-status" id="viewer-status">Idle</div>
-              <button class="load-glb-button" id="load-glb-button" type="button" disabled>Open interactive 3D</button>
+        <div class="detail-main">
+          <div class="object-header">
+            <div>
+              <h1 id="object-title"></h1>
+              <p class="object-subtitle" id="object-subtitle"></p>
             </div>
+            <button class="back-link" id="back-button" type="button">Back to objects</button>
           </div>
-          <div id="viewer"></div>
-        </aside>
+
+          <div class="tabs" id="embodiment-tabs"></div>
+
+          <div class="sequence-toolbar">
+            <div class="episode-count" id="episode-count"></div>
+          </div>
+
+          <div class="detail-layout">
+            <div class="episode-grid" id="episode-grid"></div>
+            <aside class="viewer-panel">
+              <div class="viewer-meta">
+                <div class="viewer-title" id="viewer-title">Select a sequence</div>
+                <div class="viewer-actions">
+                  <div class="viewer-status" id="viewer-status">Idle</div>
+                  <button class="load-glb-button" id="load-glb-button" type="button" disabled>Open interactive 3D</button>
+                </div>
+              </div>
+              <div id="viewer"></div>
+            </aside>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -632,7 +707,7 @@
       objectSubtitle: document.getElementById("object-subtitle"),
       backButton: document.getElementById("back-button"),
       embodimentTabs: document.getElementById("embodiment-tabs"),
-      objectSelect: document.getElementById("object-select"),
+      objectMenu: document.getElementById("object-menu"),
       episodeCount: document.getElementById("episode-count"),
       episodeGrid: document.getElementById("episode-grid"),
       viewer: document.getElementById("viewer"),
@@ -786,6 +861,32 @@
       });
     }
 
+    function renderObjectMenu() {
+      el.objectMenu.innerHTML = objects.map(object => {
+        const hands = Object.entries(object.embodiments)
+          .map(([embodiment]) => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
+          .join(", ");
+
+        return `
+          <button class="object-menu-card ${object.id === currentObject ? "active" : ""}" type="button" data-object="${object.id}">
+            <div class="thumb-slot">
+              <img src="${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">
+            </div>
+            <div class="object-menu-label">${object.name}</div>
+            <div class="object-menu-hands">${hands}</div>
+          </button>`;
+      }).join("");
+
+      el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
+        card.addEventListener("click", () => openDetail(card.dataset.object, currentEmbodiment));
+      });
+
+      el.objectMenu.querySelector(".object-menu-card.active")?.scrollIntoView({
+        block: "nearest",
+        inline: "nearest"
+      });
+    }
+
     function setActiveView(view) {
       const isDetail = view === "detail";
       el.galleryView.classList.toggle("active", !isDetail);
@@ -824,10 +925,7 @@
 
       el.objectTitle.textContent = object.name;
       el.objectSubtitle.textContent = `${keys.length} embodiments, ${object.totalEpisodes} sequences`;
-
-      el.objectSelect.innerHTML = objects.map(item => `
-        <option value="${item.id}" ${item.id === object.id ? "selected" : ""}>${item.name}</option>
-      `).join("");
+      renderObjectMenu();
 
       el.embodimentTabs.innerHTML = keys.map(embodiment => `
         <button class="tab ${embodiment === currentEmbodiment ? "active" : ""}" type="button" data-embodiment="${embodiment}">
@@ -1494,9 +1592,6 @@
     el.loadGlbButton.addEventListener("click", () => {
       if (!currentObject || !currentEmbodiment || !currentEpisode) return;
       loadViewer(currentEmbodiment, currentObject, currentEpisode);
-    });
-    el.objectSelect.addEventListener("change", event => {
-      openDetail(event.target.value);
     });
 
     window.addEventListener("error", event => {
