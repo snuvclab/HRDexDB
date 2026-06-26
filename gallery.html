@@ -159,7 +159,8 @@
       aspect-ratio: 16 / 9;
     }
 
-    .episode-thumb img {
+    .episode-thumb img,
+    .episode-thumb video {
       position: absolute;
       inset: 0;
       z-index: 1;
@@ -204,7 +205,8 @@
 
     .episode-num { font-size: 1.35rem; }
 
-    .episode-thumb img + .episode-num {
+    .episode-thumb img + .episode-num,
+    .episode-thumb video + .episode-num {
       display: none;
     }
 
@@ -1067,6 +1069,10 @@
       };
     }
 
+    function previewThumbnailSrc(preview) {
+      return `${preview.video}#t=0.001`;
+    }
+
     function animationTrimFor(embodiment, objectId, episode) {
       return animationTrims[`${embodiment}/${objectId}/${episode}`] || null;
     }
@@ -1100,9 +1106,8 @@
 
     function episodePreviewHtml(embodiment, objectId, episode) {
       const preview = previewFor(embodiment, objectId, episode);
-      if (!preview.poster) return `<span class="episode-num">#${episode}</span>`;
       return `
-        <img src="${preview.poster}" alt="" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing'); this.remove()">
+        <video src="${previewThumbnailSrc(preview)}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
         <span class="episode-num">#${episode}</span>
       `;
     }
@@ -1595,7 +1600,10 @@
         frameObject(loadedModel, embodiment);
         playAnimations(gltf, loadedModel, animationTrimFor(embodiment, objectId, episode));
         syncAnimationToPreview();
-        hideInstantPreview();
+        renderer.render(scene, camera);
+        requestAnimationFrame(() => {
+          if (token === loadToken) hideInstantPreview();
+        });
         setLoadGlbButtonState("loaded");
       } catch (error) {
         if (token === loadToken) {
