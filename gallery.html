@@ -994,9 +994,9 @@
       currentEpisode = episodes.includes(episode) ? episode : episodes[0] || null;
 
       setActiveView("detail");
-      renderDetail();
       writeHash();
-      loadCurrentEpisode();
+      if (currentEpisode) showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
+      requestAnimationFrame(renderDetail);
     }
 
     function renderDetail() {
@@ -1053,7 +1053,6 @@
     function loadCurrentEpisode() {
       if (!currentEpisode) return;
       showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
-      schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
     }
 
     function writeHash() {
@@ -1196,6 +1195,9 @@
 
     function setPreviewShellReady(shell) {
       shell.classList.add("ready");
+      if (shell === activePreviewShell) {
+        schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
+      }
     }
 
     function previewShellFor(preview) {
@@ -1306,6 +1308,9 @@
       }
       const playPromise = video?.play?.();
       if (playPromise) playPromise.catch(() => {});
+      if ((video?.readyState || 0) >= 2) {
+        schedulePreviewWarmup(embodiment, objectId, episode);
+      }
       el.viewerStatus.textContent = "Preview playing";
 
       layer.classList.add("active");
