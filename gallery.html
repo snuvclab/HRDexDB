@@ -682,6 +682,7 @@
     const PREVIEW_VIDEO_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-preview-video/resolve/main";
     const PREVIEW_CAMERA_ID = "23263780";
     const PREVIEW_VIDEO_CACHE_LIMIT = 24;
+    const PREVIEW_WARM_COUNT = 6;
     const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const PREVIEW_MANIFEST_URL = "static/gallery-previews/manifest.json";
@@ -734,6 +735,8 @@
     let animationTrackData = [];
     let viewerReady = false;
     let loadToken = 0;
+    let previewWarmTimer = null;
+    let previewWarmToken = 0;
     const inflightGlbBlobs = new Map();
     const previewVideoShells = new Map();
 
@@ -1029,6 +1032,9 @@
       `).join("");
 
       el.episodeGrid.querySelectorAll(".episode-card").forEach(card => {
+        card.addEventListener("pointerenter", () => {
+          warmPreviewVideo(currentEmbodiment, object.id, card.dataset.episode);
+        });
         card.addEventListener("click", () => {
           currentEpisode = card.dataset.episode;
           setActiveEpisodeCard(currentEpisode);
@@ -1047,6 +1053,7 @@
     function loadCurrentEpisode() {
       if (!currentEpisode) return;
       showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
+      schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
     }
 
     function writeHash() {
@@ -1170,6 +1177,11 @@
     }
 
     function clearPreviewVideoCache() {
+      previewWarmToken += 1;
+      if (previewWarmTimer) {
+        clearTimeout(previewWarmTimer);
+        previewWarmTimer = null;
+      }
       for (const shell of previewVideoShells.values()) {
         previewPlayerFor(shell)?.pause();
         shell.remove();
@@ -1211,7 +1223,6 @@
       video.loop = true;
       video.muted = true;
       video.playsInline = true;
-      video.autoplay = true;
       video.addEventListener("loadeddata", () => setPreviewShellReady(shell));
       video.addEventListener("playing", () => setPreviewShellReady(shell));
 
@@ -1229,6 +1240,47 @@
       previewVideoShells.set(src, shell);
       trimPreviewVideoCache(src);
       return shell;
+    }
+
+    function warmPreviewVideo(embodiment, objectId, episode) {
+      if (!embodiment || !objectId || episode == null) return;
+      const preview = previewFor(embodiment, objectId, episode);
+      const shell = previewShellFor(preview);
+      if (shell === activePreviewShell) return;
+      const video = previewPlayerFor(shell);
+      const thumb = shell.querySelector(".viewer-video-thumb");
+      if ((video?.readyState || 0) < 2) video?.load?.();
+      if ((thumb?.readyState || 0) < 1) thumb?.load?.();
+    }
+
+    function warmEpisodeOrder(episodes, activeEpisode) {
+      const activeIndex = Math.max(0, episodes.indexOf(activeEpisode));
+      const ordered = [];
+      for (let offset = 0; ordered.length < Math.min(PREVIEW_WARM_COUNT, episodes.length); offset += 1) {
+        const forward = activeIndex + offset;
+        const backward = activeIndex - offset;
+        if (forward < episodes.length) ordered.push(episodes[forward]);
+        if (offset && backward >= 0 && ordered.length < PREVIEW_WARM_COUNT) ordered.push(episodes[backward]);
+        if (forward >= episodes.length && backward < 0) break;
+      }
+      return ordered;
+    }
+
+    function schedulePreviewWarmup(embodiment, objectId, activeEpisode) {
+      previewWarmToken += 1;
+      const token = previewWarmToken;
+      if (previewWarmTimer) clearTimeout(previewWarmTimer);
+
+      const episodes = warmEpisodeOrder(episodesFor(objectId, embodiment), activeEpisode);
+      let index = 0;
+      const warmNext = () => {
+        if (token !== previewWarmToken || currentObject !== objectId || currentEmbodiment !== embodiment) return;
+        const episode = episodes[index];
+        if (episode != null) warmPreviewVideo(embodiment, objectId, episode);
+        index += 1;
+        if (index < episodes.length) previewWarmTimer = setTimeout(warmNext, 160);
+      };
+      previewWarmTimer = setTimeout(warmNext, 120);
     }
 
     function showInstantPreview(embodiment, objectId, episode, options = {}) {
