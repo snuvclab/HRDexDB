@@ -7,8 +7,6 @@
   "stillCutFraction": 0.9,
   "assets": {
     "allegro_v5/apple/3": {
-      "poster": "static/gallery-previews/allegro_v5/apple/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/apple/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.100361
@@ -52,8 +50,6 @@
       "generatedAt": "2026-06-25T10:44:45.391Z"
     },
     "allegro_v5/apple/4": {
-      "poster": "static/gallery-previews/allegro_v5/apple/4/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/apple/4/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.00632
@@ -97,8 +93,6 @@
       "generatedAt": "2026-06-25T10:45:01.268Z"
     },
     "allegro_v5/apple/5": {
-      "poster": "static/gallery-previews/allegro_v5/apple/5/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/apple/5/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.417582
@@ -142,8 +136,6 @@
       "generatedAt": "2026-06-25T10:45:17.576Z"
     },
     "allegro_v5/apple/6": {
-      "poster": "static/gallery-previews/allegro_v5/apple/6/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/apple/6/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 9.591456
@@ -187,8 +179,6 @@
       "generatedAt": "2026-06-25T10:45:32.816Z"
     },
     "allegro_v5/apple/7": {
-      "poster": "static/gallery-previews/allegro_v5/apple/7/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/apple/7/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.190663
@@ -232,8 +222,6 @@
       "generatedAt": "2026-06-25T10:45:48.898Z"
     },
     "human/apple/0": {
-      "poster": "static/gallery-previews/human/apple/0/thumb.png",
-      "video": "static/gallery-previews/human/apple/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.533334
@@ -277,8 +265,6 @@
       "generatedAt": "2026-06-25T10:46:00.787Z"
     },
     "human/apple/1": {
-      "poster": "static/gallery-previews/human/apple/1/thumb.png",
-      "video": "static/gallery-previews/human/apple/1/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.5
@@ -322,8 +308,6 @@
       "generatedAt": "2026-06-25T10:46:12.632Z"
     },
     "human/apple/2": {
-      "poster": "static/gallery-previews/human/apple/2/thumb.png",
-      "video": "static/gallery-previews/human/apple/2/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 9.1
@@ -367,8 +351,6 @@
       "generatedAt": "2026-06-25T10:46:25.366Z"
     },
     "human/apple/3": {
-      "poster": "static/gallery-previews/human/apple/3/thumb.png",
-      "video": "static/gallery-previews/human/apple/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.733333
@@ -412,8 +394,6 @@
       "generatedAt": "2026-06-25T10:46:36.196Z"
     },
     "human/apple/4": {
-      "poster": "static/gallery-previews/human/apple/4/thumb.png",
-      "video": "static/gallery-previews/human/apple/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 9.366667
@@ -457,8 +437,6 @@
       "generatedAt": "2026-06-25T10:46:49.500Z"
     },
     "inspire_f1/apple/0": {
-      "poster": "static/gallery-previews/inspire_f1/apple/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 15.081197
@@ -502,8 +480,6 @@
       "generatedAt": "2026-06-25T10:47:14.138Z"
     },
     "inspire_f1/apple/1": {
-      "poster": "static/gallery-previews/inspire_f1/apple/1/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.514161
@@ -547,8 +523,6 @@
       "generatedAt": "2026-06-25T10:47:32.715Z"
     },
     "inspire_f1/apple/2": {
-      "poster": "static/gallery-previews/inspire_f1/apple/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/2/turntable.mp4",
       "trim": {
         "start": 2.1,
         "end": 12.801216
@@ -592,8 +566,6 @@
       "generatedAt": "2026-06-25T10:47:52.992Z"
     },
     "inspire_f1/apple/3": {
-      "poster": "static/gallery-previews/inspire_f1/apple/3/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 13.161201
@@ -637,8 +609,6 @@
       "generatedAt": "2026-06-25T10:48:14.433Z"
     },
     "inspire_f1/apple/4": {
-      "poster": "static/gallery-previews/inspire_f1/apple/4/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/4/turntable.mp4",
       "trim": {
         "start": 2.1,
         "end": 17.79617
@@ -682,8 +652,6 @@
       "generatedAt": "2026-06-25T10:48:43.708Z"
     },
     "inspire_f1/apple/5": {
-      "poster": "static/gallery-previews/inspire_f1/apple/5/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/apple/5/turntable.mp4",
       "trim": {
         "start": 2.1,
         "end": 11.298328
@@ -727,8 +695,6 @@
       "generatedAt": "2026-06-25T10:49:01.697Z"
     },
     "allegro_v5/attached_container/0": {
-      "poster": "static/gallery-previews/allegro_v5/attached_container/0/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/attached_container/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 14.048898
@@ -772,8 +738,6 @@
       "generatedAt": "2026-06-25T10:49:24.777Z"
     },
     "allegro_v5/attached_container/1": {
-      "poster": "static/gallery-previews/allegro_v5/attached_container/1/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/attached_container/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.66483
@@ -817,8 +781,6 @@
       "generatedAt": "2026-06-25T10:49:43.616Z"
     },
     "allegro_v5/attached_container/2": {
-      "poster": "static/gallery-previews/allegro_v5/attached_container/2/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/attached_container/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.611091
@@ -862,8 +824,6 @@
       "generatedAt": "2026-06-25T10:50:00.454Z"
     },
     "allegro_v5/attached_container/3": {
-      "poster": "static/gallery-previews/allegro_v5/attached_container/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/attached_container/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 12.950467
@@ -907,8 +867,6 @@
       "generatedAt": "2026-06-25T10:50:21.931Z"
     },
     "allegro_v5/attached_container/4": {
-      "poster": "static/gallery-previews/allegro_v5/attached_container/4/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/attached_container/4/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.79623
@@ -952,8 +910,6 @@
       "generatedAt": "2026-06-25T10:50:41.141Z"
     },
     "human/attached_container/0": {
-      "poster": "static/gallery-previews/human/attached_container/0/thumb.png",
-      "video": "static/gallery-previews/human/attached_container/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.433333
@@ -997,8 +953,6 @@
       "generatedAt": "2026-06-25T10:50:51.742Z"
     },
     "human/attached_container/2": {
-      "poster": "static/gallery-previews/human/attached_container/2/thumb.png",
-      "video": "static/gallery-previews/human/attached_container/2/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.7
@@ -1042,8 +996,6 @@
       "generatedAt": "2026-06-25T10:51:02.723Z"
     },
     "human/attached_container/3": {
-      "poster": "static/gallery-previews/human/attached_container/3/thumb.png",
-      "video": "static/gallery-previews/human/attached_container/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.133333
@@ -1087,8 +1039,6 @@
       "generatedAt": "2026-06-25T10:51:13.351Z"
     },
     "human/attached_container/4": {
-      "poster": "static/gallery-previews/human/attached_container/4/thumb.png",
-      "video": "static/gallery-previews/human/attached_container/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.766667
@@ -1132,8 +1082,6 @@
       "generatedAt": "2026-06-25T10:51:25.925Z"
     },
     "human/attached_container/5": {
-      "poster": "static/gallery-previews/human/attached_container/5/thumb.png",
-      "video": "static/gallery-previews/human/attached_container/5/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 10.233334
@@ -1177,8 +1125,6 @@
       "generatedAt": "2026-06-25T10:51:43.132Z"
     },
     "inspire_f1/attached_container/0": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/0/turntable.mp4",
       "trim": {
         "start": 2.1,
         "end": 14.358404
@@ -1222,8 +1168,6 @@
       "generatedAt": "2026-06-25T10:52:05.774Z"
     },
     "inspire_f1/attached_container/2": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 14.703204
@@ -1267,8 +1211,6 @@
       "generatedAt": "2026-06-25T10:52:27.076Z"
     },
     "inspire_f1/attached_container/3": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/3/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/3/turntable.mp4",
       "trim": {
         "start": 2.25,
         "end": 15.54621
@@ -1312,8 +1254,6 @@
       "generatedAt": "2026-06-25T10:52:49.460Z"
     },
     "inspire_f1/attached_container/4": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/4/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/4/turntable.mp4",
       "trim": {
         "start": 2.7,
         "end": 13.929121
@@ -1357,8 +1297,6 @@
       "generatedAt": "2026-06-25T10:53:10.362Z"
     },
     "inspire_f1/attached_container/5": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/5/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/5/turntable.mp4",
       "trim": {
         "start": 3.675,
         "end": 6.282085
@@ -1402,8 +1340,6 @@
       "generatedAt": "2026-06-25T10:53:15.712Z"
     },
     "inspire_f1/attached_container/6": {
-      "poster": "static/gallery-previews/inspire_f1/attached_container/6/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/attached_container/6/turntable.mp4",
       "trim": {
         "start": 2.025,
         "end": 16.803236
@@ -1447,8 +1383,6 @@
       "generatedAt": "2026-06-25T10:53:46.684Z"
     },
     "allegro_v5/baby_beaker/0": {
-      "poster": "static/gallery-previews/allegro_v5/baby_beaker/0/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/baby_beaker/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.33005
@@ -1492,8 +1426,6 @@
       "generatedAt": "2026-06-25T10:54:03.202Z"
     },
     "allegro_v5/baby_beaker/1": {
-      "poster": "static/gallery-previews/allegro_v5/baby_beaker/1/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/baby_beaker/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 13.581351
@@ -1537,8 +1469,6 @@
       "generatedAt": "2026-06-25T10:54:25.398Z"
     },
     "allegro_v5/baby_beaker/2": {
-      "poster": "static/gallery-previews/allegro_v5/baby_beaker/2/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/baby_beaker/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.721065
@@ -1582,8 +1512,6 @@
       "generatedAt": "2026-06-25T10:54:43.983Z"
     },
     "allegro_v5/baby_beaker/3": {
-      "poster": "static/gallery-previews/allegro_v5/baby_beaker/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/baby_beaker/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 9.434796
@@ -1627,8 +1555,6 @@
       "generatedAt": "2026-06-25T10:54:58.642Z"
     },
     "allegro_v5/baby_beaker/4": {
-      "poster": "static/gallery-previews/allegro_v5/baby_beaker/4/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/baby_beaker/4/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 12.490327
@@ -1672,8 +1598,6 @@
       "generatedAt": "2026-06-25T10:55:18.193Z"
     },
     "human/baby_beaker/0": {
-      "poster": "static/gallery-previews/human/baby_beaker/0/thumb.png",
-      "video": "static/gallery-previews/human/baby_beaker/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 10.666667
@@ -1717,8 +1641,6 @@
       "generatedAt": "2026-06-25T10:55:33.137Z"
     },
     "human/baby_beaker/1": {
-      "poster": "static/gallery-previews/human/baby_beaker/1/thumb.png",
-      "video": "static/gallery-previews/human/baby_beaker/1/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 10.066667
@@ -1762,8 +1684,6 @@
       "generatedAt": "2026-06-25T10:55:51.541Z"
     },
     "human/baby_beaker/2": {
-      "poster": "static/gallery-previews/human/baby_beaker/2/thumb.png",
-      "video": "static/gallery-previews/human/baby_beaker/2/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 10.8
@@ -1807,8 +1727,6 @@
       "generatedAt": "2026-06-25T10:56:06.479Z"
     },
     "human/baby_beaker/3": {
-      "poster": "static/gallery-previews/human/baby_beaker/3/thumb.png",
-      "video": "static/gallery-previews/human/baby_beaker/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.133333
@@ -1852,8 +1770,6 @@
       "generatedAt": "2026-06-25T10:56:17.785Z"
     },
     "human/baby_beaker/4": {
-      "poster": "static/gallery-previews/human/baby_beaker/4/thumb.png",
-      "video": "static/gallery-previews/human/baby_beaker/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 11.966666
@@ -1897,8 +1813,6 @@
       "generatedAt": "2026-06-25T10:56:31.838Z"
     },
     "inspire_f1/baby_beaker/0": {
-      "poster": "static/gallery-previews/inspire_f1/baby_beaker/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/baby_beaker/0/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 18.027139
@@ -1942,8 +1856,6 @@
       "generatedAt": "2026-06-25T10:56:58.015Z"
     },
     "inspire_f1/baby_beaker/1": {
-      "poster": "static/gallery-previews/inspire_f1/baby_beaker/1/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/baby_beaker/1/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 19.974343
@@ -1987,8 +1899,6 @@
       "generatedAt": "2026-06-25T10:57:26.076Z"
     },
     "inspire_f1/baby_beaker/2": {
-      "poster": "static/gallery-previews/inspire_f1/baby_beaker/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/baby_beaker/2/turntable.mp4",
       "trim": {
         "start": 4.2,
         "end": 20.709099
@@ -2032,8 +1942,6 @@
       "generatedAt": "2026-06-25T10:57:53.670Z"
     },
     "inspire_f1/baby_beaker/4": {
-      "poster": "static/gallery-previews/inspire_f1/baby_beaker/4/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/baby_beaker/4/turntable.mp4",
       "trim": {
         "start": 0.45,
         "end": 19.887359
@@ -2077,8 +1985,6 @@
       "generatedAt": "2026-06-25T10:58:26.987Z"
     },
     "inspire_f1/baby_beaker/7": {
-      "poster": "static/gallery-previews/inspire_f1/baby_beaker/7/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/baby_beaker/7/turntable.mp4",
       "trim": {
         "start": 4.95,
         "end": 21.762196
@@ -2122,8 +2028,6 @@
       "generatedAt": "2026-06-25T10:58:57.680Z"
     },
     "allegro_v5/balloon_whisk/0": {
-      "poster": "static/gallery-previews/allegro_v5/balloon_whisk/0/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/balloon_whisk/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 28.879312
@@ -2167,8 +2071,6 @@
       "generatedAt": "2026-06-25T10:59:47.816Z"
     },
     "allegro_v5/balloon_whisk/1": {
-      "poster": "static/gallery-previews/allegro_v5/balloon_whisk/1/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/balloon_whisk/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 31.793061
@@ -2212,8 +2114,6 @@
       "generatedAt": "2026-06-25T11:00:43.204Z"
     },
     "allegro_v5/balloon_whisk/2": {
-      "poster": "static/gallery-previews/allegro_v5/balloon_whisk/2/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/balloon_whisk/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 33.666058
@@ -2257,8 +2157,6 @@
       "generatedAt": "2026-06-25T11:01:40.277Z"
     },
     "allegro_v5/balloon_whisk/3": {
-      "poster": "static/gallery-previews/allegro_v5/balloon_whisk/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/balloon_whisk/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.771918
@@ -2302,8 +2200,6 @@
       "generatedAt": "2026-06-25T11:01:57.644Z"
     },
     "allegro_v5/balloon_whisk/6": {
-      "poster": "static/gallery-previews/allegro_v5/balloon_whisk/6/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/balloon_whisk/6/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 27.95297
@@ -2347,8 +2243,6 @@
       "generatedAt": "2026-06-25T11:02:45.139Z"
     },
     "human/balloon_whisk/0": {
-      "poster": "static/gallery-previews/human/balloon_whisk/0/thumb.png",
-      "video": "static/gallery-previews/human/balloon_whisk/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.2
@@ -2392,8 +2286,6 @@
       "generatedAt": "2026-06-25T11:02:57.173Z"
     },
     "human/balloon_whisk/2": {
-      "poster": "static/gallery-previews/human/balloon_whisk/2/thumb.png",
-      "video": "static/gallery-previews/human/balloon_whisk/2/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.366667
@@ -2437,8 +2329,6 @@
       "generatedAt": "2026-06-25T11:03:09.204Z"
     },
     "human/balloon_whisk/3": {
-      "poster": "static/gallery-previews/human/balloon_whisk/3/thumb.png",
-      "video": "static/gallery-previews/human/balloon_whisk/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 9.766666
@@ -2482,8 +2372,6 @@
       "generatedAt": "2026-06-25T11:03:23.233Z"
     },
     "human/balloon_whisk/4": {
-      "poster": "static/gallery-previews/human/balloon_whisk/4/thumb.png",
-      "video": "static/gallery-previews/human/balloon_whisk/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 9.166667
@@ -2527,8 +2415,6 @@
       "generatedAt": "2026-06-25T11:03:36.501Z"
     },
     "inspire_f1/balloon_whisk/0": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/0/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 23.217152
@@ -2572,8 +2458,6 @@
       "generatedAt": "2026-06-25T11:04:09.273Z"
     },
     "inspire_f1/balloon_whisk/1": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/1/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/1/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 18.79514
@@ -2617,8 +2501,6 @@
       "generatedAt": "2026-06-25T11:04:30.127Z"
     },
     "inspire_f1/balloon_whisk/2": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/2/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 17.87111
@@ -2662,8 +2544,6 @@
       "generatedAt": "2026-06-25T11:04:53.312Z"
     },
     "inspire_f1/balloon_whisk/3": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/3/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/3/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 19.533397
@@ -2707,8 +2587,6 @@
       "generatedAt": "2026-06-25T11:05:20.216Z"
     },
     "inspire_f1/balloon_whisk/5": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/5/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/5/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 20.094345
@@ -2752,8 +2630,6 @@
       "generatedAt": "2026-06-25T11:05:52.076Z"
     },
     "inspire_f1/balloon_whisk/6": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/6/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/6/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 19.653121
@@ -2797,8 +2673,6 @@
       "generatedAt": "2026-06-25T11:06:19.780Z"
     },
     "inspire_f1/balloon_whisk/7": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/7/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/7/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 19.194122
@@ -2842,8 +2716,6 @@
       "generatedAt": "2026-06-25T11:06:44.662Z"
     },
     "inspire_f1/balloon_whisk/8": {
-      "poster": "static/gallery-previews/inspire_f1/balloon_whisk/8/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/balloon_whisk/8/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 18.441388
@@ -2887,8 +2759,6 @@
       "generatedAt": "2026-06-25T11:07:08.953Z"
     },
     "allegro_v5/bamboo_basket/0": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_basket/0/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_basket/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.510254
@@ -2932,8 +2802,6 @@
       "generatedAt": "2026-06-25T11:07:25.210Z"
     },
     "allegro_v5/bamboo_basket/1": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_basket/1/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_basket/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.197276
@@ -2977,8 +2845,6 @@
       "generatedAt": "2026-06-25T11:07:41.623Z"
     },
     "allegro_v5/bamboo_basket/2": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_basket/2/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_basket/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 11.348341
@@ -3022,8 +2888,6 @@
       "generatedAt": "2026-06-25T11:08:00.295Z"
     },
     "allegro_v5/bamboo_basket/3": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_basket/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_basket/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.306512
@@ -3067,8 +2931,6 @@
       "generatedAt": "2026-06-25T11:08:16.943Z"
     },
     "allegro_v5/bamboo_basket/4": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_basket/4/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_basket/4/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 12.96076
@@ -3112,8 +2974,6 @@
       "generatedAt": "2026-06-25T11:08:38.618Z"
     },
     "human/bamboo_basket/0": {
-      "poster": "static/gallery-previews/human/bamboo_basket/0/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_basket/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.5
@@ -3157,8 +3017,6 @@
       "generatedAt": "2026-06-25T11:08:49.430Z"
     },
     "human/bamboo_basket/1": {
-      "poster": "static/gallery-previews/human/bamboo_basket/1/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_basket/1/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 8.2
@@ -3202,8 +3060,6 @@
       "generatedAt": "2026-06-25T11:09:01.157Z"
     },
     "human/bamboo_basket/3": {
-      "poster": "static/gallery-previews/human/bamboo_basket/3/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_basket/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.666667
@@ -3247,8 +3103,6 @@
       "generatedAt": "2026-06-25T11:09:12.441Z"
     },
     "human/bamboo_basket/4": {
-      "poster": "static/gallery-previews/human/bamboo_basket/4/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_basket/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.9
@@ -3292,8 +3146,6 @@
       "generatedAt": "2026-06-25T11:09:23.657Z"
     },
     "human/bamboo_basket/5": {
-      "poster": "static/gallery-previews/human/bamboo_basket/5/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_basket/5/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 11.133333
@@ -3337,8 +3189,6 @@
       "generatedAt": "2026-06-25T11:09:40.107Z"
     },
     "inspire_f1/bamboo_basket/0": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/0/turntable.mp4",
       "trim": {
         "start": 3.375,
         "end": 13.704207
@@ -3382,8 +3232,6 @@
       "generatedAt": "2026-06-25T11:09:59.678Z"
     },
     "inspire_f1/bamboo_basket/1": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/1/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 16.554326
@@ -3427,8 +3275,6 @@
       "generatedAt": "2026-06-25T11:10:27.246Z"
     },
     "inspire_f1/bamboo_basket/2": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/2/turntable.mp4",
       "trim": {
         "start": 1.875,
         "end": 18.822325
@@ -3472,8 +3318,6 @@
       "generatedAt": "2026-06-25T11:10:58.940Z"
     },
     "inspire_f1/bamboo_basket/3": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/3/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/3/turntable.mp4",
       "trim": {
         "start": 2.1,
         "end": 15.873332
@@ -3517,8 +3361,6 @@
       "generatedAt": "2026-06-25T11:11:24.469Z"
     },
     "inspire_f1/bamboo_basket/4": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/4/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/4/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 13.776295
@@ -3562,8 +3404,6 @@
       "generatedAt": "2026-06-25T11:11:46.998Z"
     },
     "inspire_f1/bamboo_basket/5": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_basket/5/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_basket/5/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 19.065086
@@ -3607,8 +3447,6 @@
       "generatedAt": "2026-06-25T11:12:19.327Z"
     },
     "allegro_v5/bamboo_box/0": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_box/0/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_box/0/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 12.946093
@@ -3652,8 +3490,6 @@
       "generatedAt": "2026-06-25T11:12:37.188Z"
     },
     "allegro_v5/bamboo_box/1": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_box/1/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_box/1/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.6379
@@ -3697,8 +3533,6 @@
       "generatedAt": "2026-06-25T11:12:51.248Z"
     },
     "allegro_v5/bamboo_box/2": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_box/2/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_box/2/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 8.797644
@@ -3742,8 +3576,6 @@
       "generatedAt": "2026-06-25T11:13:03.199Z"
     },
     "allegro_v5/bamboo_box/3": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_box/3/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_box/3/turntable.mp4",
       "trim": {
         "start": 1.95,
         "end": 10.17927
@@ -3787,8 +3619,6 @@
       "generatedAt": "2026-06-25T11:13:17.884Z"
     },
     "allegro_v5/bamboo_box/4": {
-      "poster": "static/gallery-previews/allegro_v5/bamboo_box/4/thumb.png",
-      "video": "static/gallery-previews/allegro_v5/bamboo_box/4/turntable.mp4",
       "trim": {
         "start": 4.2,
         "end": 12.122518
@@ -3832,8 +3662,6 @@
       "generatedAt": "2026-06-25T11:13:31.554Z"
     },
     "human/bamboo_box/0": {
-      "poster": "static/gallery-previews/human/bamboo_box/0/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_box/0/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.633333
@@ -3877,8 +3705,6 @@
       "generatedAt": "2026-06-25T11:13:42.510Z"
     },
     "human/bamboo_box/1": {
-      "poster": "static/gallery-previews/human/bamboo_box/1/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_box/1/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.3
@@ -3922,8 +3748,6 @@
       "generatedAt": "2026-06-25T11:13:53.268Z"
     },
     "human/bamboo_box/2": {
-      "poster": "static/gallery-previews/human/bamboo_box/2/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_box/2/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 6.733333
@@ -3967,8 +3791,6 @@
       "generatedAt": "2026-06-25T11:14:02.889Z"
     },
     "human/bamboo_box/3": {
-      "poster": "static/gallery-previews/human/bamboo_box/3/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_box/3/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 6.833333
@@ -4012,8 +3834,6 @@
       "generatedAt": "2026-06-25T11:14:12.896Z"
     },
     "human/bamboo_box/4": {
-      "poster": "static/gallery-previews/human/bamboo_box/4/thumb.png",
-      "video": "static/gallery-previews/human/bamboo_box/4/turntable.mp4",
       "trim": {
         "start": 0,
         "end": 7.833333
@@ -4057,8 +3877,6 @@
       "generatedAt": "2026-06-25T11:14:24.363Z"
     },
     "inspire_f1/bamboo_box/0": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_box/0/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_box/0/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 21.009204
@@ -4102,8 +3920,6 @@
       "generatedAt": "2026-06-25T11:14:51.940Z"
     },
     "inspire_f1/bamboo_box/1": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_box/1/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_box/1/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 19.62333
@@ -4147,8 +3963,6 @@
       "generatedAt": "2026-06-25T11:15:17.484Z"
     },
     "inspire_f1/bamboo_box/2": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_box/2/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_box/2/turntable.mp4",
       "trim": {
         "start": 4.05,
         "end": 21.561187
@@ -4192,8 +4006,6 @@
       "generatedAt": "2026-06-25T11:15:47.030Z"
     },
     "inspire_f1/bamboo_box/3": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_box/3/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_box/3/turntable.mp4",
       "trim": {
         "start": 3.825,
         "end": 18.72312
@@ -4237,8 +4049,6 @@
       "generatedAt": "2026-06-25T11:16:10.888Z"
     },
     "inspire_f1/bamboo_box/4": {
-      "poster": "static/gallery-previews/inspire_f1/bamboo_box/4/thumb.png",
-      "video": "static/gallery-previews/inspire_f1/bamboo_box/4/turntable.mp4",
       "trim": {
         "start": 3.9,
         "end": 15.969237
