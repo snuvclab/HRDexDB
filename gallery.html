@@ -949,7 +949,7 @@
         return `
           <button class="object-menu-card ${object.id === currentObject ? "active" : ""}" type="button" data-object="${object.id}">
             <div class="thumb-slot">
-              <img src="${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">
+              ${objectMenuThumbHtml(object)}
             </div>
             <div class="object-menu-label">${object.name}</div>
             <div class="object-menu-hands">${hands}</div>
@@ -1155,6 +1155,12 @@
       `;
     }
 
+    function objectMenuThumbHtml(object) {
+      const thumbSrc = `${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png`;
+      const srcAttribute = sequencePreviewMediaReady ? ` src="${thumbSrc}"` : "";
+      return `<img${srcAttribute} data-thumb-src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
+    }
+
     function objectThumbUrl(objectId) {
       return `${THUMB_BASE}/${encodeURIComponent(objectId)}/thumb.png`;
     }
@@ -1211,6 +1217,9 @@
       el.episodeGrid.querySelectorAll("video[data-preview-src]:not([src])").forEach(video => {
         video.src = video.dataset.previewSrc;
       });
+      el.objectMenu.querySelectorAll("img[data-thumb-src]:not([src])").forEach(img => {
+        img.src = img.dataset.thumbSrc;
+      });
       previewLayer?.querySelectorAll(".viewer-video-thumb[data-preview-src]:not([src])").forEach(video => {
         video.src = video.dataset.previewSrc;
       });
@@ -1235,12 +1244,14 @@
 
       const video = document.createElement("video");
       video.className = "viewer-video-player";
-      video.src = preview.video;
       video.controls = true;
       video.preload = "auto";
       video.loop = true;
       video.muted = true;
       video.playsInline = true;
+      video.fetchPriority = "high";
+      video.setAttribute("fetchpriority", "high");
+      video.src = preview.video;
       video.addEventListener("loadeddata", () => setPreviewShellReady(shell));
       video.addEventListener("playing", () => setPreviewShellReady(shell));
 
@@ -1324,9 +1335,11 @@
           console.warn(error);
         }
       }
+      if ((video?.readyState || 0) < 2) video?.load?.();
       const playPromise = video?.play?.();
       if (playPromise) playPromise.catch(() => {});
       if ((video?.readyState || 0) >= 2) {
+        enableSequencePreviewMedia();
         schedulePreviewWarmup(embodiment, objectId, episode);
       }
       el.viewerStatus.textContent = "Preview playing";
