@@ -161,8 +161,7 @@
       aspect-ratio: 16 / 9;
     }
 
-    .episode-thumb img,
-    .episode-thumb video {
+    .episode-thumb img {
       position: absolute;
       inset: 0;
       z-index: 1;
@@ -206,6 +205,14 @@
     }
 
     .episode-num { font-size: 1.35rem; }
+
+    .episode-thumb img + .episode-num {
+      display: none;
+    }
+
+    .episode-thumb.thumb-missing .episode-num {
+      display: block;
+    }
 
     .grid-item .label {
       padding: 8px 10px 0;
@@ -434,12 +441,28 @@
       display: flex;
     }
 
-    .viewer-preview img,
-    .viewer-preview video {
+    .viewer-preview > img,
+    .viewer-video-shell {
       width: 100%;
       height: 100%;
+    }
+
+    .viewer-preview > img,
+    .viewer-video-shell video {
       object-fit: contain;
       background: #0f141b;
+    }
+
+    .viewer-video-shell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viewer-video-shell video {
+      width: 100%;
+      height: 100%;
     }
 
     .loading,
@@ -917,7 +940,8 @@
       const preview = previewFor(embodiment, objectId, episode);
       if (!preview) return `<span class="episode-num">#${episode}</span>`;
       return `
-        <video src="${preview.video}" poster="${preview.poster}" preload="metadata" muted loop playsinline autoplay></video>
+        <img src="${preview.poster}" alt="" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing'); this.remove()">
+        <span class="episode-num">#${episode}</span>
       `;
     }
 
@@ -937,10 +961,13 @@
     function showInstantPreview(embodiment, objectId, episode) {
       const layer = ensurePreviewLayer();
       const preview = previewFor(embodiment, objectId, episode);
+      pausePreviewVideo();
 
       if (preview) {
         layer.innerHTML = `
-          <video src="${preview.video}" poster="${preview.poster}" preload="auto" muted loop playsinline autoplay></video>
+          <div class="viewer-video-shell">
+            <video src="${preview.video}" poster="${preview.poster}" controls preload="metadata" loop muted playsinline autoplay></video>
+          </div>
         `;
         const playPromise = layer.querySelector("video")?.play?.();
         if (playPromise) playPromise.catch(() => {});
@@ -953,8 +980,13 @@
       layer.classList.add("active");
     }
 
+    function pausePreviewVideo() {
+      previewLayer?.querySelector("video")?.pause();
+    }
+
     function hideInstantPreview() {
       if (!previewLayer) return;
+      pausePreviewVideo();
       previewLayer.classList.remove("active");
     }
 
