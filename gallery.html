@@ -236,16 +236,47 @@
       gap: 24px;
     }
 
-    .object-menu {
+    .object-sidebar {
       position: sticky;
       top: 73px;
+      max-height: calc(100vh - 96px);
+      overflow: hidden;
+    }
+
+    .object-menu-search {
+      width: 100%;
+      min-height: 38px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85em;
+    }
+
+    .object-menu-search:focus {
+      border-color: var(--accent);
+    }
+
+    .object-menu-search::placeholder {
+      color: var(--text-muted);
+    }
+
+    .object-menu {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
-      max-height: calc(100vh - 96px);
+      max-height: calc(100vh - 144px);
       overflow-y: auto;
       padding-right: 4px;
       scrollbar-color: var(--border) transparent;
+    }
+
+    .object-menu .empty-state {
+      grid-column: 1 / -1;
+      padding: 24px 8px;
     }
 
     .object-menu-card {
@@ -544,9 +575,12 @@
 
       .episode-count { text-align: left; }
       .sequence-toolbar { justify-content: flex-start; }
-      .object-menu {
+      .object-sidebar {
         position: static;
         max-height: 330px;
+      }
+      .object-menu {
+        max-height: 282px;
         padding-right: 0;
       }
       .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -585,7 +619,10 @@
 
     <section class="view" id="detail-view">
       <div class="detail-shell">
-        <aside class="object-menu" id="object-menu"></aside>
+        <aside class="object-sidebar">
+          <input type="search" class="object-menu-search" id="object-menu-search" placeholder="Search objects" autocomplete="off">
+          <div class="object-menu" id="object-menu"></div>
+        </aside>
 
         <div class="detail-main">
           <div class="object-header">
@@ -656,6 +693,7 @@
     let catalog = {};
     let objects = [];
     let filteredObjects = [];
+    let detailObjectQuery = "";
     let previewAssets = PREVIEW_ASSETS;
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
@@ -707,6 +745,7 @@
       objectSubtitle: document.getElementById("object-subtitle"),
       backButton: document.getElementById("back-button"),
       embodimentTabs: document.getElementById("embodiment-tabs"),
+      objectMenuSearch: document.getElementById("object-menu-search"),
       objectMenu: document.getElementById("object-menu"),
       episodeCount: document.getElementById("episode-count"),
       episodeGrid: document.getElementById("episode-grid"),
@@ -862,7 +901,21 @@
     }
 
     function renderObjectMenu() {
-      el.objectMenu.innerHTML = objects.map(object => {
+      if (el.objectMenuSearch.value !== detailObjectQuery) {
+        el.objectMenuSearch.value = detailObjectQuery;
+      }
+
+      const query = detailObjectQuery.trim().toLowerCase();
+      const menuObjects = query
+        ? objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query))
+        : objects;
+
+      if (!menuObjects.length) {
+        el.objectMenu.innerHTML = '<div class="empty-state">No objects found.</div>';
+        return;
+      }
+
+      el.objectMenu.innerHTML = menuObjects.map(object => {
         const hands = Object.entries(object.embodiments)
           .map(([embodiment]) => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
           .join(", ");
@@ -903,7 +956,9 @@
       const object = objectData(objectId);
       if (!object) return;
 
+      const objectChanged = currentObject !== objectId;
       currentObject = objectId;
+      if (objectChanged) detailObjectQuery = "";
       const keys = embodimentKeys(objectId);
       currentEmbodiment = keys.includes(embodiment) ? embodiment : keys[0] || null;
 
@@ -1585,6 +1640,10 @@
       const query = event.target.value.trim().toLowerCase();
       filteredObjects = objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query));
       renderGallery();
+    });
+    el.objectMenuSearch.addEventListener("input", event => {
+      detailObjectQuery = event.target.value;
+      renderObjectMenu();
     });
 
     el.backButton.addEventListener("click", openGallery);
