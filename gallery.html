@@ -465,33 +465,6 @@
       height: 100%;
     }
 
-    .viewer-camera-bar {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 3;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border: 1px solid rgba(230, 237, 243, 0.16);
-      border-radius: var(--radius);
-      background: rgba(13, 17, 23, 0.84);
-      color: var(--text-muted);
-      font-size: 0.78em;
-      backdrop-filter: blur(10px);
-    }
-
-    .camera-select {
-      min-width: 112px;
-      padding: 4px 8px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--surface);
-      color: var(--text);
-      font-size: 1em;
-    }
-
     .loading,
     .empty-state {
       padding: 48px 24px;
@@ -587,10 +560,8 @@
     const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const PREVIEW_MANIFEST_URL = "static/gallery-previews/manifest.json";
-    const CAMERA_VIDEO_MANIFEST_URL = "static/gallery-camera-videos/manifest.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
     const PREVIEW_ASSETS = {};
-    const CAMERA_VIDEO_ASSETS = {};
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
     const CAMERA_PRESETS = {
@@ -609,13 +580,11 @@
     let objects = [];
     let filteredObjects = [];
     let previewAssets = PREVIEW_ASSETS;
-    let cameraVideoAssets = CAMERA_VIDEO_ASSETS;
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
     let currentObject = null;
     let currentEmbodiment = null;
     let currentEpisode = null;
-    const selectedCameras = {};
 
     let THREE;
     let OrbitControls;
@@ -674,16 +643,14 @@
 
     async function init() {
       try {
-        const [response, previewManifest, cameraVideoManifest, graspResultManifest] = await Promise.all([
+        const [response, previewManifest, graspResultManifest] = await Promise.all([
           fetch(CATALOG_URL),
           loadPreviewManifest(),
-          loadCameraVideoManifest(),
           loadGraspResultManifest()
         ]);
         if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
         catalog = await response.json();
         applyPreviewManifest(previewManifest);
-        applyCameraVideoManifest(cameraVideoManifest);
         applyGraspResultManifest(graspResultManifest);
         objects = buildObjects(catalog);
         filteredObjects = objects;
@@ -712,17 +679,6 @@
       }
     }
 
-    async function loadCameraVideoManifest() {
-      try {
-        const response = await fetch(CAMERA_VIDEO_MANIFEST_URL, { cache: "no-cache" });
-        if (!response.ok) return null;
-        return response.json();
-      } catch (error) {
-        console.warn(error);
-        return null;
-      }
-    }
-
     async function loadGraspResultManifest() {
       try {
         const response = await fetch(GRASP_RESULT_MANIFEST_URL, { cache: "no-cache" });
@@ -741,10 +697,6 @@
       for (const [key, asset] of Object.entries(assets)) {
         if (asset?.trim) animationTrims[key] = asset.trim;
       }
-    }
-
-    function applyCameraVideoManifest(manifest) {
-      cameraVideoAssets = { ...CAMERA_VIDEO_ASSETS, ...(manifest?.assets || {}) };
     }
 
     function applyGraspResultManifest(manifest) {
@@ -953,25 +905,6 @@
       return previewAssets[`${embodiment}/${objectId}/${episode}`] || null;
     }
 
-    function cameraVideosFor(embodiment, objectId, episode) {
-      return cameraVideoAssets[`${embodiment}/${objectId}/${episode}`] || null;
-    }
-
-    function cameraAssetKey(embodiment, objectId, episode) {
-      return `${embodiment}/${objectId}/${episode}`;
-    }
-
-    function selectedCameraFor(embodiment, objectId, episode, asset = null) {
-      const key = cameraAssetKey(embodiment, objectId, episode);
-      const cameraAsset = asset || cameraVideosFor(embodiment, objectId, episode);
-      const cameras = cameraAsset?.cameras || [];
-      if (!cameras.length) return null;
-      const stored = selectedCameras[key];
-      return cameras.find(camera => camera.id === stored)
-        || cameras.find(camera => camera.id === cameraAsset.defaultCamera)
-        || cameras[0];
-    }
-
     function animationTrimFor(embodiment, objectId, episode) {
       return animationTrims[`${embodiment}/${objectId}/${episode}`] || null;
     }
@@ -1004,10 +937,10 @@
     }
 
     function episodePreviewHtml(embodiment, objectId, episode) {
-      const cameraAsset = cameraVideosFor(embodiment, objectId, episode);
-      if (!cameraAsset?.poster) return `<span class="episode-num">#${episode}</span>`;
+      const preview = previewFor(embodiment, objectId, episode);
+      if (!preview) return `<span class="episode-num">#${episode}</span>`;
       return `
-        <img src="${cameraAsset.poster}" alt="" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing'); this.remove()">
+        <img src="${preview.poster}" alt="" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing'); this.remove()">
         <span class="episode-num">#${episode}</span>
       `;
     }
@@ -1027,36 +960,21 @@
 
     function showInstantPreview(embodiment, objectId, episode) {
       const layer = ensurePreviewLayer();
-      const cameraAsset = cameraVideosFor(embodiment, objectId, episode);
-      const cameras = cameraAsset?.cameras || [];
+      const preview = previewFor(embodiment, objectId, episode);
       pausePreviewVideo();
 
-      if (cameras.length) {
-        const selectedCamera = selectedCameraFor(embodiment, objectId, episode, cameraAsset);
+      if (preview) {
         layer.innerHTML = `
           <div class="viewer-video-shell">
-            <div class="viewer-camera-bar">
-              <span>Camera</span>
-              <select class="camera-select" aria-label="Camera view">
-                ${cameras.map(camera => `
-                  <option value="${camera.id}" ${camera.id === selectedCamera.id ? "selected" : ""}>${camera.label || camera.id}</option>
-                `).join("")}
-              </select>
-            </div>
-            <video src="${selectedCamera.url}" poster="${cameraAsset.poster || ""}" controls preload="metadata" loop muted playsinline autoplay></video>
+            <video src="${preview.video}" poster="${preview.poster}" controls preload="metadata" loop muted playsinline autoplay></video>
           </div>
         `;
-        const select = layer.querySelector(".camera-select");
-        select?.addEventListener("change", event => {
-          selectedCameras[cameraAssetKey(embodiment, objectId, episode)] = event.target.value;
-          showInstantPreview(embodiment, objectId, episode);
-        });
         const playPromise = layer.querySelector("video")?.play?.();
         if (playPromise) playPromise.catch(() => {});
-        el.viewerStatus.textContent = `Camera ${selectedCamera.label || selectedCamera.id}`;
+        el.viewerStatus.textContent = "Preview playing";
       } else {
-        layer.innerHTML = `<div class="empty-state">No camera video found.</div>`;
-        el.viewerStatus.textContent = "No camera video";
+        layer.innerHTML = `<img src="${objectThumbUrl(objectId)}" alt="" onerror="this.remove()">`;
+        el.viewerStatus.textContent = "Thumbnail shown";
       }
 
       layer.classList.add("active");
