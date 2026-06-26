@@ -564,6 +564,7 @@
     const PREVIEW_ASSETS = {};
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
+    const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
     const CAMERA_PRESETS = {
       default: {
         focus: [0.07, -0.10, 0.02],
@@ -1342,6 +1343,29 @@
       });
     }
 
+    function isRobotWhiteMaterial(material) {
+      if (!material) return false;
+      const materialName = (material.name || "").toLowerCase();
+      if (materialName.includes("robot_white")) return true;
+      if (!materialName.includes("robot") || !material.color) return false;
+      return material.color.r > 0.94 && material.color.g > 0.94 && material.color.b > 0.94;
+    }
+
+    function applyRobotMaterialTone(loadedModel) {
+      const robotSpaceGray = new THREE.Color(ROBOT_SPACE_GRAY_COLOR);
+      loadedModel.traverse(node => {
+        if (!node.isMesh || !node.name?.toLowerCase().includes("robot")) return;
+        const materials = Array.isArray(node.material) ? node.material : [node.material];
+        materials.forEach(material => {
+          if (!isRobotWhiteMaterial(material)) return;
+          material.color.copy(robotSpaceGray);
+          if ("metalness" in material) material.metalness = Math.max(material.metalness || 0, 0.08);
+          if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.72);
+          material.needsUpdate = true;
+        });
+      });
+    }
+
     async function loadViewer(embodiment, objectId, episode) {
       const token = ++loadToken;
       const object = objectData(objectId);
@@ -1381,6 +1405,7 @@
         const gltf = await parseGltf(arrayBuffer, asset.originalUrl);
         if (token !== loadToken) return;
         const loadedModel = gltf.scene;
+        applyRobotMaterialTone(loadedModel);
         loadedModel.rotation.set(-Math.PI / 2, 0, 0);
         loadedModel.updateMatrixWorld(true);
         scene.add(loadedModel);
