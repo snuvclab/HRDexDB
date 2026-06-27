@@ -1348,9 +1348,11 @@
       el.viewer.classList.remove("preview-active");
     }
 
-    function currentPreviewTime() {
+    function currentPreviewAnimationOffset() {
       const video = previewPlayerFor(activePreviewShell);
-      return Number.isFinite(video?.currentTime) ? video.currentTime : 0;
+      const time = Number.isFinite(video?.currentTime) ? video.currentTime : 0;
+      const duration = Number.isFinite(video?.duration) && video.duration > 0 ? video.duration : null;
+      return duration && animationDuration ? (time / duration) * animationDuration : time;
     }
 
     function nextFrame() {
@@ -1666,7 +1668,8 @@
 
     function syncAnimationToPreview() {
       if (!mixer || !animationDuration) return;
-      mixer.setTime(sourceAnimationTime(currentPreviewTime()));
+      mixer.setTime(sourceAnimationTime(currentPreviewAnimationOffset()));
+      clock?.getDelta();
       controls?.update();
       renderer?.render(scene, camera);
     }
