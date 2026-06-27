@@ -596,7 +596,10 @@
         padding-right: 0;
       }
       .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .viewer-panel { position: static; }
+      .viewer-panel {
+        position: static;
+        order: -1;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1265,6 +1268,9 @@
       video.loop = true;
       video.muted = true;
       video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
       video.fetchPriority = "high";
       video.setAttribute("fetchpriority", "high");
       video.src = preview.video;
@@ -1278,6 +1284,9 @@
       thumb.preload = "metadata";
       thumb.muted = true;
       thumb.playsInline = true;
+      thumb.setAttribute("muted", "");
+      thumb.setAttribute("playsinline", "");
+      thumb.setAttribute("webkit-playsinline", "");
       thumb.disablePictureInPicture = true;
 
       shell.appendChild(video);
