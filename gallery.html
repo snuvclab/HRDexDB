@@ -1,5 +1,1875 @@
----
-layout: gallery
-title: HRDexDB Objects
-permalink: /gallery.html
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRDexDB Objects</title>
+  <link rel="preconnect" href="https://huggingface.co" crossorigin>
+  <link rel="preconnect" href="https://cdn-lfs.huggingface.co" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="dns-prefetch" href="//huggingface.co">
+  <link rel="dns-prefetch" href="//cdn-lfs.huggingface.co">
+  <link rel="dns-prefetch" href="//unpkg.com">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-2: #1c222b;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --green: #3fb950;
+      --red: #f85149;
+      --radius: 8px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      min-height: 53px;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      color: var(--text);
+      font-size: 1.2em;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.95em;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .search-bar {
+      width: 100%;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1em;
+    }
+
+    .search-bar { margin-bottom: 16px; }
+    .search-bar:focus { border-color: var(--accent); }
+    .search-bar::placeholder { color: var(--text-muted); }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-item,
+    .episode-card,
+    .viewer-panel {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .grid-item,
+    .episode-card {
+      width: 100%;
+      color: var(--text);
+      text-align: left;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .grid-item:hover,
+    .episode-card:hover,
+    .episode-card.active {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .thumb-slot,
+    .episode-thumb {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(88, 166, 255, 0.16), rgba(63, 185, 80, 0.08)),
+        radial-gradient(circle at 30% 20%, rgba(121, 192, 255, 0.18), transparent 34%),
+        var(--surface-2);
+    }
+
+    .thumb-slot {
+      aspect-ratio: 1;
+    }
+
+    .episode-thumb {
+      aspect-ratio: 16 / 9;
+    }
+
+    .episode-thumb img,
+    .episode-thumb video {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+
+    .thumb-slot::after,
+    .episode-thumb::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: 0.55;
+      background-image:
+        linear-gradient(135deg, rgba(230, 237, 243, 0.05) 25%, transparent 25%, transparent 50%, rgba(230, 237, 243, 0.05) 50%, rgba(230, 237, 243, 0.05) 75%, transparent 75%, transparent);
+      background-size: 18px 18px;
+    }
+
+    .thumb-slot img {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+
+    .thumb-slot.thumb-missing img {
+      display: none;
+    }
+
+    .episode-num {
+      position: relative;
+      z-index: 1;
+      color: rgba(230, 237, 243, 0.88);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .episode-num { font-size: 1.35rem; }
+
+    .episode-thumb img + .episode-num,
+    .episode-thumb video + .episode-num {
+      display: none;
+    }
+
+    .episode-thumb.thumb-missing .episode-num {
+      display: block;
+    }
+
+    .grid-item .label {
+      padding: 8px 10px 0;
+      overflow: hidden;
+      font-size: 0.9em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .hands-info {
+      padding: 0 10px 8px;
+      overflow: hidden;
+      color: var(--text-muted);
+      font-size: 0.75em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .detail-shell {
+      display: grid;
+      grid-template-columns: minmax(190px, 240px) minmax(0, 1fr);
+      align-items: start;
+      gap: 24px;
+    }
+
+    .object-sidebar {
+      position: sticky;
+      top: 73px;
+      max-height: calc(100vh - 96px);
+      overflow: hidden;
+    }
+
+    .object-menu-search {
+      width: 100%;
+      min-height: 38px;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.85em;
+    }
+
+    .object-menu-search:focus {
+      border-color: var(--accent);
+    }
+
+    .object-menu-search::placeholder {
+      color: var(--text-muted);
+    }
+
+    .object-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      max-height: calc(100vh - 144px);
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .object-menu .empty-state {
+      grid-column: 1 / -1;
+      padding: 24px 8px;
+    }
+
+    .object-menu-card {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+      text-align: left;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .object-menu-card:hover,
+    .object-menu-card.active {
+      border-color: var(--accent);
+    }
+
+    .object-menu-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .object-menu-card .thumb-slot {
+      aspect-ratio: 1;
+    }
+
+    .object-menu-label {
+      padding: 6px 7px 0;
+      overflow: hidden;
+      font-size: 0.68em;
+      font-weight: 700;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .object-menu-hands {
+      padding: 0 7px 6px;
+      overflow: hidden;
+      color: var(--text-muted);
+      font-size: 0.56em;
+      line-height: 1.3;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .detail-main {
+      min-width: 0;
+    }
+
+    .object-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .object-header h1 {
+      font-size: 1.8em;
+      line-height: 1.2;
+    }
+
+    .object-subtitle {
+      margin-top: 4px;
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab {
+      flex: 0 0 auto;
+      padding: 10px 18px;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.95em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      border-bottom-color: var(--accent);
+      color: var(--text);
+    }
+
+    .sequence-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .episode-count {
+      color: var(--text-muted);
+      font-size: 0.9em;
+      text-align: right;
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 360px) minmax(420px, 1fr);
+      align-items: start;
+      gap: 16px;
+    }
+
+    .episode-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .episode-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .badge-rank {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .badge-result {
+      color: var(--bg);
+      text-transform: lowercase;
+    }
+
+    .badge-success {
+      background: var(--green);
+    }
+
+    .badge-fail {
+      background: var(--red);
+    }
+
+    .viewer-panel {
+      position: sticky;
+      top: 73px;
+      min-width: 0;
+      min-height: 520px;
+    }
+
+    .viewer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 46px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .viewer-title {
+      min-width: 0;
+      overflow: hidden;
+      font-size: 0.92em;
+      font-weight: 600;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-status {
+      overflow: hidden;
+      color: var(--text-muted);
+      font-size: 0.78em;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-actions {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .load-glb-button {
+      flex: 0 0 auto;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 0.78em;
+      font-weight: 700;
+    }
+
+    .load-glb-button:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    .load-glb-button:disabled {
+      cursor: default;
+      opacity: 0.62;
+    }
+
+    #viewer {
+      position: relative;
+      height: min(68vh, 720px);
+      min-height: 474px;
+      background: #0f141b;
+    }
+
+    #viewer canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #viewer.preview-active canvas {
+      visibility: hidden;
+    }
+
+    .viewer-preview {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #0f141b;
+    }
+
+    .viewer-preview.active {
+      display: flex;
+    }
+
+    .viewer-preview > img,
+    .viewer-video-shell {
+      width: 100%;
+      height: 100%;
+    }
+
+    .viewer-preview > img,
+    .viewer-video-shell video {
+      object-fit: contain;
+      background: #0f141b;
+    }
+
+    .viewer-video-shell {
+      position: relative;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viewer-video-shell.active {
+      display: flex;
+    }
+
+    .viewer-video-shell video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .viewer-video-thumb {
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.16s ease;
+    }
+
+    .viewer-video-shell.ready .viewer-video-thumb {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading,
+    .empty-state {
+      padding: 48px 24px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .detail-shell,
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .episode-count { text-align: left; }
+      .sequence-toolbar { justify-content: flex-start; }
+      .object-sidebar {
+        position: static;
+        max-height: 330px;
+      }
+      .object-menu {
+        max-height: 282px;
+        padding-right: 0;
+      }
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .viewer-panel {
+        position: static;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        gap: 16px;
+        padding: 12px 16px;
+      }
+
+      .container { padding: 18px 14px; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .object-header { display: block; }
+      #viewer {
+        height: 62vh;
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="gallery-index.html">HRDexDB</a>
+    <button class="nav-link active" id="gallery-nav" type="button">Objects</button>
+  </nav>
+
+  <main class="container">
+    <section class="view active" id="gallery-view">
+      <input type="search" class="search-bar" id="search" placeholder="Search objects" autocomplete="off">
+      <div class="stats-bar" id="stats">Loading catalog...</div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="view" id="detail-view">
+      <div class="detail-shell">
+        <aside class="object-sidebar">
+          <input type="search" class="object-menu-search" id="object-menu-search" placeholder="Search objects" autocomplete="off">
+          <div class="object-menu" id="object-menu"></div>
+        </aside>
+
+        <div class="detail-main">
+          <div class="object-header">
+            <div>
+              <h1 id="object-title"></h1>
+              <p class="object-subtitle" id="object-subtitle"></p>
+            </div>
+          </div>
+
+          <div class="tabs" id="embodiment-tabs"></div>
+
+          <div class="sequence-toolbar">
+            <div class="episode-count" id="episode-count"></div>
+          </div>
+
+          <div class="detail-layout">
+            <div class="episode-grid" id="episode-grid"></div>
+            <aside class="viewer-panel">
+              <div class="viewer-meta">
+                <div class="viewer-title" id="viewer-title">Select a sequence</div>
+                <div class="viewer-actions">
+                  <div class="viewer-status" id="viewer-status">Idle</div>
+                  <button class="load-glb-button" id="load-glb-button" type="button" disabled>Open interactive 3D</button>
+                </div>
+              </div>
+              <div id="viewer"></div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script>
+    const CATALOG_URL = "https://huggingface.co/spaces/HRDexDB/HRDexDB-Visualizer/raw/main/assets/glb_catalog.json";
+    const GLB_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-glb/resolve/main";
+    const PREVIEW_VIDEO_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-preview-video/resolve/main";
+    const PREVIEW_CAMERA_ID = "23263780";
+    const PREVIEW_VIDEO_CACHE_LIMIT = 24;
+    const PREVIEW_WARM_COUNT = 6;
+    const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
+    const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
+    const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
+    const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
+    const ANIMATION_TRIMS = {};
+    const GRASP_RESULTS = {};
+    const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
+    const OBJECT_DEFAULT_BEIGE_COLOR = 0xd9c7aa;
+    const CAMERA_PRESETS = {
+      default: {
+        focus: [0.07, -0.10, 0.02],
+        distanceScale: 0.48
+      },
+      human: {
+        focus: [0.10, 0.08, 0.10],
+        distanceScale: 0.48
+      }
+    };
+    const CAMERA_VIEW_DIRECTION = [0.95, 0.36, 1.04];
+
+    let catalog = {};
+    let objects = [];
+    let filteredObjects = [];
+    let detailObjectQuery = "";
+    let objectMenuRenderKey = "";
+    let animationTrims = ANIMATION_TRIMS;
+    let graspResults = GRASP_RESULTS;
+    let currentObject = null;
+    let currentEmbodiment = null;
+    let currentEpisode = null;
+
+    let THREE;
+    let OrbitControls;
+    let GLTFLoader;
+    let MeshoptDecoder;
+    let threeRuntimePromise;
+    let scene;
+    let camera;
+    let renderer;
+    let controls;
+    let clock;
+    let mixer = null;
+    let model = null;
+    let previewLayer = null;
+    let activePreviewShell = null;
+    let animationDuration = 0;
+    let animationClipDuration = 0;
+    let animationTrim = null;
+    let animationTrackData = [];
+    let viewerReady = false;
+    let loadToken = 0;
+    let previewWarmTimer = null;
+    let previewWarmToken = 0;
+    const inflightGlbBlobs = new Map();
+    const previewVideoShells = new Map();
+
+    const labels = {
+      allegro_v5: "Allegro V5",
+      human: "Human",
+      inspire_f1: "Inspire F1"
+    };
+    const cardLabels = {
+      allegro_v5: "allegro",
+      human: "human",
+      inspire_f1: "inspire"
+    };
+    const embodimentOrder = ["human", "allegro_v5", "inspire_f1"];
+    const robotEmbodiments = new Set(["allegro_v5", "inspire_f1"]);
+
+    const el = {
+      galleryView: document.getElementById("gallery-view"),
+      detailView: document.getElementById("detail-view"),
+      galleryNav: document.getElementById("gallery-nav"),
+      search: document.getElementById("search"),
+      stats: document.getElementById("stats"),
+      grid: document.getElementById("grid"),
+      objectTitle: document.getElementById("object-title"),
+      objectSubtitle: document.getElementById("object-subtitle"),
+      embodimentTabs: document.getElementById("embodiment-tabs"),
+      objectMenuSearch: document.getElementById("object-menu-search"),
+      objectMenu: document.getElementById("object-menu"),
+      episodeCount: document.getElementById("episode-count"),
+      episodeGrid: document.getElementById("episode-grid"),
+      viewer: document.getElementById("viewer"),
+      viewerTitle: document.getElementById("viewer-title"),
+      viewerStatus: document.getElementById("viewer-status"),
+      loadGlbButton: document.getElementById("load-glb-button")
+    };
+
+    init();
+
+    async function init() {
+      try {
+        const [response, animationTrimManifest, graspResultManifest] = await Promise.all([
+          fetch(CATALOG_URL),
+          loadAnimationTrimManifest(),
+          loadGraspResultManifest()
+        ]);
+        if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
+        catalog = await response.json();
+        applyAnimationTrimManifest(animationTrimManifest);
+        applyGraspResultManifest(graspResultManifest);
+        objects = buildObjects(catalog);
+        filteredObjects = objects;
+        currentObject = objects[0]?.id || null;
+        renderGallery();
+        loadHashState();
+      } catch (error) {
+        el.stats.textContent = "Could not load the catalog.";
+        el.grid.innerHTML = `
+          <div class="empty-state">
+            Could not load the HRDexDB GLB catalog.<br>
+            <a href="${CATALOG_URL}" target="_blank" rel="noreferrer">Open catalog source</a>
+          </div>`;
+        console.error(error);
+      }
+    }
+
+    async function loadAnimationTrimManifest() {
+      try {
+        const response = await fetch(ANIMATION_TRIMS_URL, { cache: "no-cache" });
+        if (!response.ok) return null;
+        return response.json();
+      } catch (error) {
+        console.warn(error);
+        return null;
+      }
+    }
+
+    async function loadGraspResultManifest() {
+      try {
+        const response = await fetch(GRASP_RESULT_MANIFEST_URL, { cache: "no-cache" });
+        if (!response.ok) return null;
+        return response.json();
+      } catch (error) {
+        console.warn(error);
+        return null;
+      }
+    }
+
+    function applyAnimationTrimManifest(manifest) {
+      animationTrims = { ...ANIMATION_TRIMS, ...(manifest?.trims || {}) };
+    }
+
+    function applyGraspResultManifest(manifest) {
+      graspResults = { ...GRASP_RESULTS, ...(manifest?.results || {}) };
+    }
+
+    function buildObjects(source) {
+      const objectIds = Array.from(
+        new Set(Object.values(source).flatMap(objectsByEmbodiment => Object.keys(objectsByEmbodiment)))
+      ).sort();
+
+      return objectIds.map(id => {
+        const embodiments = {};
+        let totalEpisodes = 0;
+        for (const [embodiment, objectsByEmbodiment] of Object.entries(source)) {
+          const episodes = objectsByEmbodiment[id] || [];
+          if (episodes.length) {
+            embodiments[embodiment] = episodes.length;
+            totalEpisodes += episodes.length;
+          }
+        }
+        return {
+          id,
+          name: titleize(id),
+          embodiments,
+          totalEpisodes
+        };
+      });
+    }
+
+    function titleize(value) {
+      return value
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+
+    function objectData(objectId) {
+      return objects.find(object => object.id === objectId) || null;
+    }
+
+    function orderedEmbodiments(keys) {
+      const rank = new Map(embodimentOrder.map((embodiment, index) => [embodiment, index]));
+      return [...keys].sort((a, b) => (rank.get(a) ?? 99) - (rank.get(b) ?? 99) || a.localeCompare(b));
+    }
+
+    function embodimentKeys(objectId) {
+      const object = objectData(objectId);
+      if (!object) return [];
+      return orderedEmbodiments(
+        Object.keys(object.embodiments).filter(embodiment => catalog[embodiment]?.[objectId]?.length)
+      );
+    }
+
+    function episodesFor(objectId, embodiment) {
+      return catalog[embodiment]?.[objectId] || [];
+    }
+
+    function updateStats(items) {
+      const parts = [`${items.length} objects`];
+      for (const embodiment of orderedEmbodiments(Object.keys(catalog))) {
+        const count = items.filter(object => object.embodiments[embodiment]).length;
+        parts.push(`${count} with ${labels[embodiment] || titleize(embodiment)}`);
+      }
+      el.stats.textContent = parts.join(" | ");
+    }
+
+    function renderGallery() {
+      updateStats(filteredObjects);
+
+      if (!filteredObjects.length) {
+        el.grid.innerHTML = '<div class="empty-state">No objects found.</div>';
+        return;
+      }
+
+      el.grid.innerHTML = filteredObjects.map(object => {
+        const hands = orderedEmbodiments(Object.keys(object.embodiments))
+          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
+          .join(", ");
+
+        return `
+          <button class="grid-item" type="button" data-object="${object.id}">
+            <div class="thumb-slot">
+              <img src="${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">
+            </div>
+            <div class="label">${object.name}</div>
+            <div class="hands-info">${hands}</div>
+          </button>`;
+      }).join("");
+
+      el.grid.querySelectorAll(".grid-item").forEach(card => {
+        card.addEventListener("click", () => openDetail(card.dataset.object));
+      });
+    }
+
+    function renderObjectMenu() {
+      if (el.objectMenuSearch.value !== detailObjectQuery) {
+        el.objectMenuSearch.value = detailObjectQuery;
+      }
+
+      const query = detailObjectQuery.trim().toLowerCase();
+      const renderKey = `query:${query}`;
+      if (objectMenuRenderKey === renderKey && el.objectMenu.children.length) {
+        syncObjectMenuActive();
+        return;
+      }
+
+      const menuObjects = query
+        ? objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query))
+        : objects;
+      objectMenuRenderKey = renderKey;
+
+      if (!menuObjects.length) {
+        el.objectMenu.innerHTML = '<div class="empty-state">No objects found.</div>';
+        return;
+      }
+
+      el.objectMenu.innerHTML = menuObjects.map(object => {
+        const hands = orderedEmbodiments(Object.keys(object.embodiments))
+          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
+          .join(", ");
+
+        return `
+          <button class="object-menu-card ${object.id === currentObject ? "active" : ""}" type="button" data-object="${object.id}">
+            <div class="thumb-slot">
+              ${objectMenuThumbHtml(object)}
+            </div>
+            <div class="object-menu-label">${object.name}</div>
+            <div class="object-menu-hands">${hands}</div>
+          </button>`;
+      }).join("");
+
+      el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
+        card.addEventListener("click", () => openDetail(card.dataset.object, currentEmbodiment));
+      });
+
+      syncObjectMenuActive();
+    }
+
+    function syncObjectMenuActive() {
+      el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
+        card.classList.toggle("active", card.dataset.object === currentObject);
+      });
+
+      el.objectMenu.querySelector(".object-menu-card.active")?.scrollIntoView({
+        block: "nearest",
+        inline: "nearest"
+      });
+    }
+
+    function setActiveView(view) {
+      const isDetail = view === "detail";
+      el.galleryView.classList.toggle("active", !isDetail);
+      el.detailView.classList.toggle("active", isDetail);
+      el.galleryNav.classList.toggle("active", !isDetail);
+    }
+
+    function openGallery() {
+      setActiveView("gallery");
+      history.replaceState(null, "", "#gallery");
+    }
+
+    function openDetail(objectId, embodiment = null, episode = null) {
+      const object = objectData(objectId);
+      if (!object) return;
+
+      const objectChanged = currentObject !== objectId;
+      currentObject = objectId;
+      if (objectChanged) {
+        detailObjectQuery = "";
+        clearPreviewVideoCache();
+      }
+      const keys = embodimentKeys(objectId);
+      currentEmbodiment = keys.includes(embodiment) ? embodiment : keys[0] || null;
+
+      const episodes = episodesFor(currentObject, currentEmbodiment);
+      currentEpisode = episodes.includes(episode) ? episode : episodes[0] || null;
+
+      setActiveView("detail");
+      writeHash();
+      if (currentEpisode) showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
+      requestAnimationFrame(renderDetail);
+    }
+
+    function renderDetail() {
+      const object = objectData(currentObject);
+      if (!object) return;
+
+      const keys = embodimentKeys(object.id);
+      const episodes = episodesFor(object.id, currentEmbodiment);
+
+      el.objectTitle.textContent = object.name;
+      el.objectSubtitle.textContent = `${keys.length} embodiments, ${object.totalEpisodes} sequences`;
+      renderObjectMenu();
+
+      el.embodimentTabs.innerHTML = keys.map(embodiment => `
+        <button class="tab ${embodiment === currentEmbodiment ? "active" : ""}" type="button" data-embodiment="${embodiment}">
+          ${labels[embodiment] || titleize(embodiment)} (${object.embodiments[embodiment]})
+        </button>
+      `).join("");
+
+      el.embodimentTabs.querySelectorAll(".tab").forEach(tab => {
+        tab.addEventListener("click", () => openDetail(object.id, tab.dataset.embodiment));
+      });
+
+      el.episodeCount.textContent = `${episodes.length} sequences`;
+      el.episodeGrid.innerHTML = episodes.map((episode, index) => `
+        <button class="episode-card ${episode === currentEpisode ? "active" : ""}" type="button" data-episode="${episode}">
+          <div class="episode-thumb">${episodePreviewHtml(currentEmbodiment, object.id, episode)}</div>
+          <div class="episode-footer">
+            <span class="badge badge-rank">${episodeDisplayLabel(currentEmbodiment, object.id, episode, index)}</span>
+            ${episodeResultBadgeHtml(currentEmbodiment, object.id, episode)}
+          </div>
+        </button>
+      `).join("");
+
+      el.episodeGrid.querySelectorAll(".episode-card").forEach(card => {
+        card.addEventListener("pointerenter", () => {
+          warmPreviewVideo(currentEmbodiment, object.id, card.dataset.episode);
+        });
+        card.addEventListener("click", () => {
+          currentEpisode = card.dataset.episode;
+          setActiveEpisodeCard(currentEpisode);
+          writeHash();
+          loadCurrentEpisode();
+        });
+      });
+    }
+
+    function setActiveEpisodeCard(episode) {
+      el.episodeGrid.querySelectorAll(".episode-card").forEach(card => {
+        card.classList.toggle("active", card.dataset.episode === episode);
+      });
+    }
+
+    function loadCurrentEpisode() {
+      if (!currentEpisode) return;
+      showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
+    }
+
+    function writeHash() {
+      history.replaceState(
+        null,
+        "",
+        `#object=${encodeURIComponent(currentObject || "")}&embodiment=${encodeURIComponent(currentEmbodiment || "")}&episode=${encodeURIComponent(currentEpisode || "")}`
+      );
+    }
+
+    function loadHashState() {
+      const state = hashEpisodeState();
+      if (state?.objectId && objectData(state.objectId)) {
+        openDetail(state.objectId, state.embodiment, state.episode);
+      }
+    }
+
+    function hashEpisodeState() {
+      const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+      const objectId = params.get("object");
+      const embodiment = params.get("embodiment");
+      const episode = params.get("episode");
+      if (!objectId || !embodiment || !episode) return null;
+      return { objectId, embodiment, episode };
+    }
+
+    function glbUrl(embodiment, objectId, episode) {
+      const path = [embodiment, objectId, `${episode}.glb`]
+        .map(part => encodeURIComponent(part))
+        .join("/");
+      return `${GLB_BASE}/${path}`;
+    }
+
+    function glbAssetFor(embodiment, objectId, episode) {
+      return {
+        url: glbUrl(embodiment, objectId, episode),
+        originalUrl: glbUrl(embodiment, objectId, episode)
+      };
+    }
+
+    function previewVideoUrl(embodiment, objectId, episode) {
+      const path = [embodiment, objectId, episode, "vid", `${PREVIEW_CAMERA_ID}.mp4`]
+        .map(part => encodeURIComponent(part))
+        .join("/");
+      return `${PREVIEW_VIDEO_BASE}/${path}`;
+    }
+
+    function previewFor(embodiment, objectId, episode) {
+      return {
+        video: previewVideoUrl(embodiment, objectId, episode)
+      };
+    }
+
+    function previewThumbnailSrc(preview) {
+      return `${preview.video}#t=0.001`;
+    }
+
+    function animationTrimFor(embodiment, objectId, episode) {
+      return animationTrims[`${embodiment}/${objectId}/${episode}`] || null;
+    }
+
+    function graspResultFor(embodiment, objectId, episode) {
+      return graspResults[`${embodiment}/${objectId}/${episode}`] || null;
+    }
+
+    function episodeDisplayLabel(embodiment, objectId, episode, index = 0) {
+      const result = graspResultFor(embodiment, objectId, episode);
+      const displayEpisode = robotEmbodiments.has(embodiment) && result?.humanPairedEpisode != null
+        ? result.humanPairedEpisode
+        : episode;
+      return `#${String(displayEpisode).padStart(2, "0")}`;
+    }
+
+    function episodeTitleLabel(embodiment, objectId, episode) {
+      const result = graspResultFor(embodiment, objectId, episode);
+      return robotEmbodiments.has(embodiment) && result?.humanPairedEpisode != null
+        ? result.humanPairedEpisode
+        : episode;
+    }
+
+    function episodeResultBadgeHtml(embodiment, objectId, episode) {
+      if (!robotEmbodiments.has(embodiment)) return "";
+      const result = graspResultFor(embodiment, objectId, episode);
+      if (!result || typeof result.graspSuccess !== "boolean") return "";
+      const state = result.graspSuccess ? "success" : "fail";
+      return `<span class="badge badge-result badge-${state}">${state}</span>`;
+    }
+
+    function episodePreviewHtml(embodiment, objectId, episode) {
+      const preview = previewFor(embodiment, objectId, episode);
+      const thumbnailSrc = previewThumbnailSrc(preview);
+      return `
+        <video src="${thumbnailSrc}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
+        <span class="episode-num">#${episode}</span>
+      `;
+    }
+
+    function objectMenuThumbHtml(object) {
+      const thumbSrc = `${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png`;
+      return `<img src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
+    }
+
+    function ensurePreviewLayer() {
+      if (!previewLayer) {
+        previewLayer = document.createElement("div");
+        previewLayer.className = "viewer-preview";
+        el.viewer.appendChild(previewLayer);
+      }
+      return previewLayer;
+    }
+
+    function trimPreviewVideoCache(activeSrc) {
+      if (previewVideoShells.size <= PREVIEW_VIDEO_CACHE_LIMIT) return;
+      for (const [src, shell] of previewVideoShells) {
+        if (src === activeSrc) continue;
+        previewPlayerFor(shell)?.pause();
+        shell.remove();
+        previewVideoShells.delete(src);
+        if (previewVideoShells.size <= PREVIEW_VIDEO_CACHE_LIMIT) return;
+      }
+    }
+
+    function clearPreviewVideoCache() {
+      previewWarmToken += 1;
+      if (previewWarmTimer) {
+        clearTimeout(previewWarmTimer);
+        previewWarmTimer = null;
+      }
+      for (const shell of previewVideoShells.values()) {
+        previewPlayerFor(shell)?.pause();
+        shell.remove();
+      }
+      previewVideoShells.clear();
+      activePreviewShell = null;
+    }
+
+    function previewPlayerFor(shell) {
+      return shell?.querySelector(".viewer-video-player") || null;
+    }
+
+    function setPreviewShellReady(shell) {
+      shell.classList.add("ready");
+      if (shell === activePreviewShell) {
+        schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
+      }
+    }
+
+    function previewShellFor(preview) {
+      const layer = ensurePreviewLayer();
+      const src = new URL(preview.video, window.location.href).href;
+      const cachedShell = previewVideoShells.get(src);
+
+      if (cachedShell) {
+        previewPlayerFor(cachedShell)?.removeAttribute("poster");
+        cachedShell.classList.toggle("ready", (previewPlayerFor(cachedShell)?.readyState || 0) >= 2);
+        previewVideoShells.delete(src);
+        previewVideoShells.set(src, cachedShell);
+        return cachedShell;
+      }
+
+      const shell = document.createElement("div");
+      shell.className = "viewer-video-shell";
+      shell.dataset.previewSrc = src;
+
+      const video = document.createElement("video");
+      video.className = "viewer-video-player";
+      video.controls = true;
+      video.preload = "auto";
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.fetchPriority = "high";
+      video.setAttribute("fetchpriority", "high");
+      video.src = preview.video;
+      video.addEventListener("loadeddata", () => setPreviewShellReady(shell));
+      video.addEventListener("playing", () => setPreviewShellReady(shell));
+
+      const thumb = document.createElement("video");
+      thumb.className = "viewer-video-thumb";
+      thumb.src = previewThumbnailSrc(preview);
+      thumb.preload = "metadata";
+      thumb.muted = true;
+      thumb.playsInline = true;
+      thumb.setAttribute("muted", "");
+      thumb.setAttribute("playsinline", "");
+      thumb.setAttribute("webkit-playsinline", "");
+      thumb.disablePictureInPicture = true;
+
+      shell.appendChild(video);
+      shell.appendChild(thumb);
+      layer.appendChild(shell);
+      previewVideoShells.set(src, shell);
+      trimPreviewVideoCache(src);
+      return shell;
+    }
+
+    function warmPreviewVideo(embodiment, objectId, episode) {
+      if (!embodiment || !objectId || episode == null) return;
+      const preview = previewFor(embodiment, objectId, episode);
+      const shell = previewShellFor(preview);
+      if (shell === activePreviewShell) return;
+      const video = previewPlayerFor(shell);
+      const thumb = shell.querySelector(".viewer-video-thumb");
+      if ((video?.readyState || 0) < 2) video?.load?.();
+      if ((thumb?.readyState || 0) < 1) thumb?.load?.();
+    }
+
+    function warmEpisodeOrder(episodes, activeEpisode) {
+      const activeIndex = Math.max(0, episodes.indexOf(activeEpisode));
+      const ordered = [];
+      for (let offset = 0; ordered.length < Math.min(PREVIEW_WARM_COUNT, episodes.length); offset += 1) {
+        const forward = activeIndex + offset;
+        const backward = activeIndex - offset;
+        if (forward < episodes.length) ordered.push(episodes[forward]);
+        if (offset && backward >= 0 && ordered.length < PREVIEW_WARM_COUNT) ordered.push(episodes[backward]);
+        if (forward >= episodes.length && backward < 0) break;
+      }
+      return ordered;
+    }
+
+    function schedulePreviewWarmup(embodiment, objectId, activeEpisode) {
+      previewWarmToken += 1;
+      const token = previewWarmToken;
+      if (previewWarmTimer) clearTimeout(previewWarmTimer);
+
+      const episodes = warmEpisodeOrder(episodesFor(objectId, embodiment), activeEpisode);
+      let index = 0;
+      const warmNext = () => {
+        if (token !== previewWarmToken || currentObject !== objectId || currentEmbodiment !== embodiment) return;
+        const episode = episodes[index];
+        if (episode != null) warmPreviewVideo(embodiment, objectId, episode);
+        index += 1;
+        if (index < episodes.length) previewWarmTimer = setTimeout(warmNext, 160);
+      };
+      previewWarmTimer = setTimeout(warmNext, 120);
+    }
+
+    function showInstantPreview(embodiment, objectId, episode, options = {}) {
+      const restart = options.restart !== false;
+      const layer = ensurePreviewLayer();
+      const preview = previewFor(embodiment, objectId, episode);
+      const shell = previewShellFor(preview);
+      const video = previewPlayerFor(shell);
+
+      if (activePreviewShell && activePreviewShell !== shell) {
+        activePreviewShell.classList.remove("active");
+        previewPlayerFor(activePreviewShell)?.pause();
+      }
+
+      activePreviewShell = shell;
+      shell.classList.add("active");
+      layer.classList.add("active");
+      el.viewer.classList.add("preview-active");
+      if (restart && Number.isFinite(video?.duration)) {
+        try {
+          video.currentTime = 0;
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+      if ((video?.readyState || 0) < 2) video?.load?.();
+      const playPromise = video?.play?.();
+      if (playPromise) playPromise.catch(() => {});
+      if ((video?.readyState || 0) >= 2) {
+        schedulePreviewWarmup(embodiment, objectId, episode);
+      }
+      el.viewerStatus.textContent = "Preview playing";
+    }
+
+    function pausePreviewVideo() {
+      previewPlayerFor(activePreviewShell)?.pause();
+    }
+
+    function hideInstantPreview() {
+      if (!previewLayer) return;
+      pausePreviewVideo();
+      previewLayer.classList.remove("active");
+      el.viewer.classList.remove("preview-active");
+    }
+
+    function currentPreviewTime() {
+      const video = previewPlayerFor(activePreviewShell);
+      return Number.isFinite(video?.currentTime) ? video.currentTime : 0;
+    }
+
+    function nextFrame() {
+      return new Promise(resolve => requestAnimationFrame(resolve));
+    }
+
+    function setLoadGlbButtonState(state) {
+      if (state === "ready") {
+        el.loadGlbButton.disabled = false;
+        el.loadGlbButton.textContent = "Open interactive 3D";
+      } else if (state === "loading") {
+        el.loadGlbButton.disabled = true;
+        el.loadGlbButton.textContent = "Loading";
+      } else if (state === "loaded") {
+        el.loadGlbButton.disabled = true;
+        el.loadGlbButton.textContent = "Interactive 3D";
+      } else {
+        el.loadGlbButton.disabled = true;
+        el.loadGlbButton.textContent = "Open interactive 3D";
+      }
+    }
+
+    function showPreviewOnly(embodiment, objectId, episode) {
+      loadToken += 1;
+      const object = objectData(objectId);
+      el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
+      if (viewerReady) clearModel();
+      showInstantPreview(embodiment, objectId, episode);
+      setLoadGlbButtonState("ready");
+    }
+
+    async function ensureThreeRuntime() {
+      if (!threeRuntimePromise) {
+        threeRuntimePromise = Promise.all([
+          import("three"),
+          import("three/addons/controls/OrbitControls.js"),
+          import("three/addons/loaders/GLTFLoader.js"),
+          import("three/addons/libs/meshopt_decoder.module.js")
+        ]).then(([threeModule, controlsModule, loaderModule, meshoptModule]) => {
+          THREE = threeModule;
+          OrbitControls = controlsModule.OrbitControls;
+          GLTFLoader = loaderModule.GLTFLoader;
+          MeshoptDecoder = meshoptModule.MeshoptDecoder;
+        });
+      }
+      return threeRuntimePromise;
+    }
+
+    async function initViewer() {
+      if (viewerReady) return;
+      await ensureThreeRuntime();
+      if (viewerReady) return;
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0f141b);
+      clock = new THREE.Clock();
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.tabIndex = 0;
+      renderer.domElement.addEventListener("pointerdown", () => {
+        renderer.domElement.focus();
+        renderer.domElement.style.cursor = "grabbing";
+      });
+      window.addEventListener("pointerup", () => {
+        renderer.domElement.style.cursor = "grab";
+      });
+      renderer.domElement.addEventListener("contextmenu", event => event.preventDefault());
+      el.viewer.appendChild(renderer.domElement);
+
+      camera = new THREE.PerspectiveCamera(45, 1, 0.001, 1000);
+      camera.position.set(1.4, 0.9, 1.4);
+
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.enablePan = true;
+      controls.enableRotate = true;
+      controls.enableZoom = true;
+      controls.screenSpacePanning = true;
+      controls.target.set(0, 0, 0);
+      controls.mouseButtons = {
+        LEFT: THREE.MOUSE.ROTATE,
+        MIDDLE: THREE.MOUSE.DOLLY,
+        RIGHT: THREE.MOUSE.PAN
+      };
+      controls.touches = {
+        ONE: THREE.TOUCH.ROTATE,
+        TWO: THREE.TOUCH.DOLLY_PAN
+      };
+      controls.addEventListener("start", () => {
+        el.viewerStatus.textContent = "Interacting";
+      });
+      controls.addEventListener("end", () => {
+        el.viewerStatus.textContent = "Ready";
+      });
+
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x7b8492, 2.4));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+      keyLight.position.set(3, 5, 4);
+      scene.add(keyLight);
+
+      new ResizeObserver(resizeViewer).observe(el.viewer);
+      window.addEventListener("resize", resizeViewer);
+      resizeViewer();
+      viewerReady = true;
+      animate();
+    }
+
+    function resizeViewer() {
+      if (!renderer || !camera) return;
+      const rect = el.viewer.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    }
+
+    function clearModel() {
+      if (!model) return;
+      scene.remove(model);
+      model.traverse(node => {
+        if (node.geometry) node.geometry.dispose();
+        if (node.material) {
+          const materials = Array.isArray(node.material) ? node.material : [node.material];
+          materials.forEach(material => material.dispose?.());
+        }
+      });
+      model = null;
+      mixer = null;
+      animationDuration = 0;
+      animationClipDuration = 0;
+      animationTrim = null;
+      animationTrackData = [];
+    }
+
+    async function openGlbCache() {
+      if (!("caches" in window)) return null;
+      try {
+        return await caches.open(GLB_CACHE_NAME);
+      } catch (error) {
+        console.warn(error);
+        return null;
+      }
+    }
+
+    async function cachedGlbBlob(url) {
+      const cache = await openGlbCache();
+      if (!cache) return null;
+      const cached = await cache.match(url);
+      return cached ? cached.blob() : null;
+    }
+
+    async function storeGlbBlob(url, blob, headers = new Headers()) {
+      const cache = await openGlbCache();
+      if (!cache) return;
+      const responseHeaders = new Headers(headers);
+      if (!responseHeaders.has("content-type")) {
+        responseHeaders.set("content-type", blob.type || "model/gltf-binary");
+      }
+      await cache.put(
+        url,
+        new Response(blob.slice(0, blob.size, blob.type), {
+          status: 200,
+          statusText: "OK",
+          headers: responseHeaders
+        })
+      );
+    }
+
+    async function downloadGlbBlob(url, priority = "high") {
+      const response = await fetch(url, { mode: "cors", priority });
+      if (!response.ok) throw new Error(`GLB request failed: ${response.status}`);
+      const headers = response.headers;
+      const blob = await response.blob();
+      storeGlbBlob(url, blob, headers).catch(error => console.warn(error));
+      return blob;
+    }
+
+    async function glbBlob(url, priority = "high") {
+      const cached = await cachedGlbBlob(url);
+      if (cached) return { blob: cached, source: "cache" };
+
+      if (!inflightGlbBlobs.has(url)) {
+        inflightGlbBlobs.set(
+          url,
+          downloadGlbBlob(url, priority).finally(() => {
+            inflightGlbBlobs.delete(url);
+          })
+        );
+      }
+
+      return {
+        blob: await inflightGlbBlobs.get(url),
+        source: "network"
+      };
+    }
+
+    function cameraPresetFor(embodiment) {
+      return CAMERA_PRESETS[embodiment] || CAMERA_PRESETS.default;
+    }
+
+    function frameObject(object, embodiment) {
+      const box = new THREE.Box3().setFromObject(object);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z) || 1;
+      const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
+      const viewDirection = new THREE.Vector3(...CAMERA_VIEW_DIRECTION).normalize();
+      const preset = cameraPresetFor(embodiment);
+      const focus = new THREE.Vector3(
+        maxDim * preset.focus[0],
+        maxDim * preset.focus[1],
+        maxDim * preset.focus[2]
+      );
+
+      object.position.sub(center);
+      controls.target.copy(focus);
+      camera.near = Math.max(maxDim / 1000, 0.001);
+      camera.far = Math.max(maxDim * 100, 100);
+      camera.position.copy(focus).addScaledVector(viewDirection, distance * preset.distanceScale);
+      camera.updateProjectionMatrix();
+      controls.update();
+      resizeViewer();
+    }
+
+    function normalizeAnimationTrim(trim, clipDuration) {
+      if (!trim || !clipDuration) return null;
+      const start = Math.max(0, Math.min(trim.start || 0, clipDuration));
+      const end = Math.max(start, Math.min(trim.end || clipDuration, clipDuration));
+      return end - start > 0.001 ? { start, end } : null;
+    }
+
+    function wrapTime(value, duration) {
+      if (!duration) return value;
+      return ((value % duration) + duration) % duration;
+    }
+
+    function sourceAnimationTime(trimmedTime) {
+      const start = animationTrim?.start || 0;
+      return start + wrapTime(trimmedTime, animationDuration);
+    }
+
+    function trackTargetNodeName(trackName) {
+      const dotIndex = trackName.lastIndexOf(".");
+      return (dotIndex === -1 ? trackName : trackName.slice(0, dotIndex)).replace(/^\//, "");
+    }
+
+    function boundsForNode(node) {
+      if (!node) return null;
+      const box = new THREE.Box3().setFromObject(node);
+      if (box.isEmpty()) return null;
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      return {
+        min: box.min.toArray(),
+        max: box.max.toArray(),
+        center: center.toArray(),
+        size: size.toArray()
+      };
+    }
+
+    function motionRoleForNode(nodeName) {
+      const lowerName = (nodeName || "").toLowerCase();
+      if (!lowerName || lowerName.includes("floor")) return "ignore";
+      if (lowerName.startsWith("object_") || lowerName.includes("object")) return "object";
+      if (lowerName.includes("human") || lowerName.includes("mano") || lowerName.includes("hand")) return "hand";
+      if (lowerName.includes("robot")) return "robot";
+      return "unknown";
+    }
+
+    function enforceAnimationTrim() {
+      if (!mixer || !animationTrim || !animationDuration) return;
+      if (mixer.time < animationTrim.start || mixer.time >= animationTrim.end) {
+        mixer.setTime(animationTrim.start + wrapTime(mixer.time - animationTrim.start, animationDuration));
+      }
+    }
+
+    function playAnimations(gltf, loadedModel, trim = null) {
+      const clips = gltf.animations || [];
+      animationTrackData = clips.flatMap(clip => clip.tracks.map(track => ({
+        name: track.name,
+        nodeName: trackTargetNodeName(track.name),
+        role: motionRoleForNode(trackTargetNodeName(track.name)),
+        bounds: boundsForNode(loadedModel.getObjectByName(trackTargetNodeName(track.name))),
+        valueSize: track.getValueSize(),
+        times: Array.from(track.times),
+        values: Array.from(track.values)
+      })));
+      if (!clips.length) {
+        el.viewerStatus.textContent = "Ready";
+        animationDuration = 0;
+        animationClipDuration = 0;
+        animationTrim = null;
+        return;
+      }
+
+      mixer = new THREE.AnimationMixer(loadedModel);
+      animationClipDuration = Math.max(...clips.map(clip => clip.duration || 0));
+      animationTrim = normalizeAnimationTrim(trim, animationClipDuration);
+      animationDuration = animationTrim ? animationTrim.end - animationTrim.start : animationClipDuration;
+      for (const clip of clips) {
+        const action = mixer.clipAction(clip);
+        action.reset();
+        action.setLoop(THREE.LoopRepeat, Infinity);
+        action.play();
+      }
+      mixer.setTime(sourceAnimationTime(0));
+      el.viewerStatus.textContent = `${clips.length} animation${clips.length === 1 ? "" : "s"}`;
+    }
+
+    function syncAnimationToPreview() {
+      if (!mixer || !animationDuration) return;
+      mixer.setTime(sourceAnimationTime(currentPreviewTime()));
+      controls?.update();
+      renderer?.render(scene, camera);
+    }
+
+    function setAnimationTime(time) {
+      if (!mixer || !renderer || !scene || !camera) return false;
+      mixer.timeScale = 1;
+      mixer.setTime(animationDuration ? sourceAnimationTime(time) : time);
+      mixer.timeScale = 0;
+      controls?.update();
+      renderer.render(scene, camera);
+      return true;
+    }
+
+    function setSourceAnimationTime(time) {
+      if (!mixer || !renderer || !scene || !camera) return false;
+      mixer.timeScale = 1;
+      mixer.setTime(Math.max(0, Math.min(time, animationClipDuration || time)));
+      mixer.timeScale = 0;
+      controls?.update();
+      renderer.render(scene, camera);
+      return true;
+    }
+
+    function createGltfLoader() {
+      const loader = new GLTFLoader();
+      if (MeshoptDecoder) loader.setMeshoptDecoder(MeshoptDecoder);
+      return loader;
+    }
+
+    function parseGltf(arrayBuffer, url) {
+      return new Promise((resolve, reject) => {
+        const resourcePath = url.slice(0, url.lastIndexOf("/") + 1);
+        createGltfLoader().parse(arrayBuffer, resourcePath, resolve, reject);
+      });
+    }
+
+    function materialList(node) {
+      if (!node.material) return [];
+      return Array.isArray(node.material) ? node.material : [node.material];
+    }
+
+    function isDefaultObjectMaterial(material) {
+      if (!material?.color) return false;
+      const materialName = (material.name || "").toLowerCase();
+      const looksDefault = materialName.includes("default") || materialName.includes("object");
+      return looksDefault
+        && !material.vertexColors
+        && material.color.r > 0.94
+        && material.color.g > 0.94
+        && material.color.b > 0.94;
+    }
+
+    function applyViewerMaterialTone(loadedModel) {
+      const robotSpaceGray = new THREE.Color(ROBOT_SPACE_GRAY_COLOR);
+      const objectDefaultBeige = new THREE.Color(OBJECT_DEFAULT_BEIGE_COLOR);
+      loadedModel.traverse(node => {
+        if (!node.isMesh) return;
+        const nodeName = (node.name || "").toLowerCase();
+        const isRobotMesh = nodeName.includes("robot");
+        const isObjectMesh = nodeName.startsWith("object_") || nodeName.includes("object");
+
+        materialList(node).forEach(material => {
+          if (isRobotMesh && material?.color) {
+            material.color.copy(robotSpaceGray);
+            if ("metalness" in material) material.metalness = Math.max(material.metalness || 0, 0.08);
+            if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.72);
+            material.needsUpdate = true;
+            return;
+          }
+
+          if (isObjectMesh && isDefaultObjectMaterial(material)) {
+            material.color.copy(objectDefaultBeige);
+            if ("roughness" in material) material.roughness = Math.min(material.roughness ?? 0.78, 0.74);
+            material.needsUpdate = true;
+          }
+        });
+      });
+    }
+
+    async function loadViewer(embodiment, objectId, episode) {
+      const token = ++loadToken;
+      const object = objectData(objectId);
+      el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
+      showInstantPreview(embodiment, objectId, episode, { restart: false });
+      setLoadGlbButtonState("loading");
+
+      const asset = glbAssetFor(embodiment, objectId, episode);
+      const glbPromise = glbBlob(asset.url, "low");
+
+      try {
+        await initViewer();
+      } catch (error) {
+        glbPromise.catch(() => {});
+        if (token === loadToken) {
+          el.viewerStatus.textContent = "Viewer failed to load";
+          setLoadGlbButtonState("ready");
+        }
+        console.error(error);
+        return;
+      }
+
+      if (token !== loadToken) {
+        glbPromise.catch(() => {});
+        return;
+      }
+      clearModel();
+      el.viewerStatus.textContent = "Fetching GLB";
+
+      try {
+        const { blob, source } = await glbPromise;
+        if (token !== loadToken) return;
+        el.viewerStatus.textContent = source === "cache" ? "Parsing cached GLB" : "Parsing GLB";
+        await nextFrame();
+        const arrayBuffer = await blob.arrayBuffer();
+        if (token !== loadToken) return;
+        el.viewerStatus.textContent = "Parsing GLB";
+        await nextFrame();
+        const gltf = await parseGltf(arrayBuffer, asset.originalUrl);
+        if (token !== loadToken) return;
+        const loadedModel = gltf.scene;
+        applyViewerMaterialTone(loadedModel);
+        loadedModel.rotation.set(-Math.PI / 2, 0, 0);
+        loadedModel.updateMatrixWorld(true);
+        scene.add(loadedModel);
+        model = loadedModel;
+        frameObject(loadedModel, embodiment);
+        playAnimations(gltf, loadedModel, animationTrimFor(embodiment, objectId, episode));
+        syncAnimationToPreview();
+        renderer.render(scene, camera);
+        requestAnimationFrame(() => {
+          if (token === loadToken) hideInstantPreview();
+        });
+        setLoadGlbButtonState("loaded");
+      } catch (error) {
+        if (token === loadToken) {
+          el.viewerStatus.textContent = "Load failed";
+          setLoadGlbButtonState("ready");
+        }
+        console.error(error);
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      if (mixer) {
+        mixer.update(delta);
+        enforceAnimationTrim();
+      }
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    window.__hrdexdbPreviewCapture = {
+      setTime: setAnimationTime,
+      setSourceTime: setSourceAnimationTime,
+      tracks() {
+        return animationTrackData;
+      },
+      state() {
+        return {
+          loaded: !!model,
+          duration: animationDuration,
+          clipDuration: animationClipDuration,
+          time: mixer?.time || 0,
+          trim: animationTrim,
+          viewerReady
+        };
+      },
+      viewerBox() {
+        const rect = el.viewer.getBoundingClientRect();
+        return {
+          x: Math.round(rect.x),
+          y: Math.round(rect.y),
+          width: Math.round(rect.width),
+          height: Math.round(rect.height)
+        };
+      }
+    };
+
+    el.search.addEventListener("input", event => {
+      const query = event.target.value.trim().toLowerCase();
+      filteredObjects = objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query));
+      renderGallery();
+    });
+    el.objectMenuSearch.addEventListener("input", event => {
+      detailObjectQuery = event.target.value;
+      renderObjectMenu();
+    });
+
+    el.galleryNav.addEventListener("click", openGallery);
+    el.loadGlbButton.addEventListener("click", () => {
+      if (!currentObject || !currentEmbodiment || !currentEpisode) return;
+      loadViewer(currentEmbodiment, currentObject, currentEpisode);
+    });
+
+    window.addEventListener("error", event => {
+      if (viewerReady) el.viewerStatus.textContent = event.message ? "Viewer error" : "Viewer error";
+    });
+    window.addEventListener("unhandledrejection", () => {
+      if (viewerReady) el.viewerStatus.textContent = "Viewer error";
+    });
+  </script>
+</body>
+</html>
