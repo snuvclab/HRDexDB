@@ -697,14 +697,19 @@
     const CAMERA_PRESETS = {
       default: {
         focus: [-0.07, -0.10, -0.02],
-        distanceScale: 0.48
+        viewDirection: [-0.95, 0.36, -1.04]
       },
       human: {
-        focus: [-0.10, 0.08, -0.10],
-        distanceScale: 0.48
+        focus: [0, 0.08, -0.17],
+        viewDirection: [0.19, 0.52, -1.51]
+      },
+      allegro_v5: {
+        focus: [0.04, -0.15, -0.01],
+        viewDirection: [-0.03, 0.56, -1.37]
       }
     };
-    const CAMERA_VIEW_DIRECTION = [-0.95, 0.36, -1.04];
+    const CAMERA_DISTANCE_SCALE = 0.3;
+    const CAMERA_FOV = 43;
 
     let catalog = {};
     let objects = [];
@@ -1562,9 +1567,10 @@
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
-      const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
-      const viewDirection = new THREE.Vector3(...CAMERA_VIEW_DIRECTION).normalize();
       const preset = cameraPresetFor(embodiment);
+      camera.fov = CAMERA_FOV;
+      const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
+      const viewDirection = new THREE.Vector3(...preset.viewDirection).normalize();
       const focus = new THREE.Vector3(
         maxDim * preset.focus[0],
         maxDim * preset.focus[1],
@@ -1575,7 +1581,7 @@
       controls.target.copy(focus);
       camera.near = Math.max(maxDim / 1000, 0.001);
       camera.far = Math.max(maxDim * 100, 100);
-      camera.position.copy(focus).addScaledVector(viewDirection, distance * preset.distanceScale);
+      camera.position.copy(focus).addScaledVector(viewDirection, distance * CAMERA_DISTANCE_SCALE);
       camera.updateProjectionMatrix();
       controls.update();
       resizeViewer();
