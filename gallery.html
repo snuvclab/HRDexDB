@@ -741,7 +741,6 @@
     let loadToken = 0;
     let previewWarmTimer = null;
     let previewWarmToken = 0;
-    let sequencePreviewMediaReady = false;
     const inflightGlbBlobs = new Map();
     const previewVideoShells = new Map();
 
@@ -1003,7 +1002,6 @@
 
       const objectChanged = currentObject !== objectId;
       currentObject = objectId;
-      sequencePreviewMediaReady = false;
       if (objectChanged) {
         detailObjectQuery = "";
         clearPreviewVideoCache();
@@ -1167,17 +1165,15 @@
     function episodePreviewHtml(embodiment, objectId, episode) {
       const preview = previewFor(embodiment, objectId, episode);
       const thumbnailSrc = previewThumbnailSrc(preview);
-      const srcAttribute = sequencePreviewMediaReady ? ` src="${thumbnailSrc}"` : "";
       return `
-        <video${srcAttribute} data-preview-src="${thumbnailSrc}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
+        <video src="${thumbnailSrc}" preload="metadata" muted playsinline onerror="this.parentElement.classList.add('thumb-missing'); this.remove()"></video>
         <span class="episode-num">#${episode}</span>
       `;
     }
 
     function objectMenuThumbHtml(object) {
       const thumbSrc = `${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png`;
-      const srcAttribute = sequencePreviewMediaReady ? ` src="${thumbSrc}"` : "";
-      return `<img${srcAttribute} data-thumb-src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
+      return `<img src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
     }
 
     function objectThumbUrl(objectId) {
@@ -1225,23 +1221,8 @@
     function setPreviewShellReady(shell) {
       shell.classList.add("ready");
       if (shell === activePreviewShell) {
-        enableSequencePreviewMedia();
         schedulePreviewWarmup(currentEmbodiment, currentObject, currentEpisode);
       }
-    }
-
-    function enableSequencePreviewMedia() {
-      if (sequencePreviewMediaReady) return;
-      sequencePreviewMediaReady = true;
-      el.episodeGrid.querySelectorAll("video[data-preview-src]:not([src])").forEach(video => {
-        video.src = video.dataset.previewSrc;
-      });
-      el.objectMenu.querySelectorAll("img[data-thumb-src]:not([src])").forEach(img => {
-        img.src = img.dataset.thumbSrc;
-      });
-      previewLayer?.querySelectorAll(".viewer-video-thumb[data-preview-src]:not([src])").forEach(video => {
-        video.src = video.dataset.previewSrc;
-      });
     }
 
     function previewShellFor(preview) {
@@ -1279,8 +1260,7 @@
 
       const thumb = document.createElement("video");
       thumb.className = "viewer-video-thumb";
-      thumb.dataset.previewSrc = previewThumbnailSrc(preview);
-      if (sequencePreviewMediaReady) thumb.src = thumb.dataset.previewSrc;
+      thumb.src = previewThumbnailSrc(preview);
       thumb.preload = "metadata";
       thumb.muted = true;
       thumb.playsInline = true;
@@ -1298,7 +1278,6 @@
     }
 
     function warmPreviewVideo(embodiment, objectId, episode) {
-      if (!sequencePreviewMediaReady) return;
       if (!embodiment || !objectId || episode == null) return;
       const preview = previewFor(embodiment, objectId, episode);
       const shell = previewShellFor(preview);
@@ -1353,6 +1332,8 @@
 
       activePreviewShell = shell;
       shell.classList.add("active");
+      layer.classList.add("active");
+      el.viewer.classList.add("preview-active");
       if (restart && Number.isFinite(video?.duration)) {
         try {
           video.currentTime = 0;
@@ -1364,13 +1345,9 @@
       const playPromise = video?.play?.();
       if (playPromise) playPromise.catch(() => {});
       if ((video?.readyState || 0) >= 2) {
-        enableSequencePreviewMedia();
         schedulePreviewWarmup(embodiment, objectId, episode);
       }
       el.viewerStatus.textContent = "Preview playing";
-
-      layer.classList.add("active");
-      el.viewer.classList.add("preview-active");
     }
 
     function pausePreviewVideo() {
