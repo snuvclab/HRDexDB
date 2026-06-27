@@ -1,0 +1,384 @@
+{
+  "trims": {
+    "allegro_v5/apple/3": {
+      "start": 1.95,
+      "end": 11.100361
+    },
+    "allegro_v5/apple/4": {
+      "start": 1.95,
+      "end": 10.00632
+    },
+    "allegro_v5/apple/5": {
+      "start": 1.95,
+      "end": 10.417582
+    },
+    "allegro_v5/apple/6": {
+      "start": 1.95,
+      "end": 9.591456
+    },
+    "allegro_v5/apple/7": {
+      "start": 1.95,
+      "end": 10.190663
+    },
+    "human/apple/0": {
+      "start": 0,
+      "end": 8.533334
+    },
+    "human/apple/1": {
+      "start": 0,
+      "end": 8.5
+    },
+    "human/apple/2": {
+      "start": 0,
+      "end": 9.1
+    },
+    "human/apple/3": {
+      "start": 0,
+      "end": 7.733333
+    },
+    "human/apple/4": {
+      "start": 0,
+      "end": 9.366667
+    },
+    "inspire_f1/apple/0": {
+      "start": 1.95,
+      "end": 15.081197
+    },
+    "inspire_f1/apple/1": {
+      "start": 1.95,
+      "end": 11.514161
+    },
+    "inspire_f1/apple/2": {
+      "start": 2.1,
+      "end": 12.801216
+    },
+    "inspire_f1/apple/3": {
+      "start": 1.95,
+      "end": 13.161201
+    },
+    "inspire_f1/apple/4": {
+      "start": 2.1,
+      "end": 17.79617
+    },
+    "inspire_f1/apple/5": {
+      "start": 2.1,
+      "end": 11.298328
+    },
+    "allegro_v5/attached_container/0": {
+      "start": 1.95,
+      "end": 14.048898
+    },
+    "allegro_v5/attached_container/1": {
+      "start": 1.95,
+      "end": 11.66483
+    },
+    "allegro_v5/attached_container/2": {
+      "start": 1.95,
+      "end": 10.611091
+    },
+    "allegro_v5/attached_container/3": {
+      "start": 1.95,
+      "end": 12.950467
+    },
+    "allegro_v5/attached_container/4": {
+      "start": 1.95,
+      "end": 11.79623
+    },
+    "human/attached_container/0": {
+      "start": 0,
+      "end": 7.433333
+    },
+    "human/attached_container/2": {
+      "start": 0,
+      "end": 7.7
+    },
+    "human/attached_container/3": {
+      "start": 0,
+      "end": 7.133333
+    },
+    "human/attached_container/4": {
+      "start": 0,
+      "end": 7.766667
+    },
+    "human/attached_container/5": {
+      "start": 0,
+      "end": 10.233334
+    },
+    "inspire_f1/attached_container/0": {
+      "start": 2.1,
+      "end": 14.358404
+    },
+    "inspire_f1/attached_container/2": {
+      "start": 1.95,
+      "end": 14.703204
+    },
+    "inspire_f1/attached_container/3": {
+      "start": 2.25,
+      "end": 15.54621
+    },
+    "inspire_f1/attached_container/4": {
+      "start": 2.7,
+      "end": 13.929121
+    },
+    "inspire_f1/attached_container/5": {
+      "start": 3.675,
+      "end": 6.282085
+    },
+    "inspire_f1/attached_container/6": {
+      "start": 2.025,
+      "end": 16.803236
+    },
+    "allegro_v5/baby_beaker/0": {
+      "start": 1.95,
+      "end": 10.33005
+    },
+    "allegro_v5/baby_beaker/1": {
+      "start": 1.95,
+      "end": 13.581351
+    },
+    "allegro_v5/baby_beaker/2": {
+      "start": 1.95,
+      "end": 11.721065
+    },
+    "allegro_v5/baby_beaker/3": {
+      "start": 1.95,
+      "end": 9.434796
+    },
+    "allegro_v5/baby_beaker/4": {
+      "start": 1.95,
+      "end": 12.490327
+    },
+    "human/baby_beaker/0": {
+      "start": 0,
+      "end": 10.666667
+    },
+    "human/baby_beaker/1": {
+      "start": 0,
+      "end": 10.066667
+    },
+    "human/baby_beaker/2": {
+      "start": 0,
+      "end": 10.8
+    },
+    "human/baby_beaker/3": {
+      "start": 0,
+      "end": 8.133333
+    },
+    "human/baby_beaker/4": {
+      "start": 0,
+      "end": 11.966666
+    },
+    "inspire_f1/baby_beaker/0": {
+      "start": 4.05,
+      "end": 18.027139
+    },
+    "inspire_f1/baby_beaker/1": {
+      "start": 4.05,
+      "end": 19.974343
+    },
+    "inspire_f1/baby_beaker/2": {
+      "start": 4.2,
+      "end": 20.709099
+    },
+    "inspire_f1/baby_beaker/4": {
+      "start": 0.45,
+      "end": 19.887359
+    },
+    "inspire_f1/baby_beaker/7": {
+      "start": 4.95,
+      "end": 21.762196
+    },
+    "allegro_v5/balloon_whisk/0": {
+      "start": 1.95,
+      "end": 28.879312
+    },
+    "allegro_v5/balloon_whisk/1": {
+      "start": 1.95,
+      "end": 31.793061
+    },
+    "allegro_v5/balloon_whisk/2": {
+      "start": 1.95,
+      "end": 33.666058
+    },
+    "allegro_v5/balloon_whisk/3": {
+      "start": 1.95,
+      "end": 10.771918
+    },
+    "allegro_v5/balloon_whisk/6": {
+      "start": 1.95,
+      "end": 27.95297
+    },
+    "human/balloon_whisk/0": {
+      "start": 0,
+      "end": 8.2
+    },
+    "human/balloon_whisk/2": {
+      "start": 0,
+      "end": 8.366667
+    },
+    "human/balloon_whisk/3": {
+      "start": 0,
+      "end": 9.766666
+    },
+    "human/balloon_whisk/4": {
+      "start": 0,
+      "end": 9.166667
+    },
+    "inspire_f1/balloon_whisk/0": {
+      "start": 3.9,
+      "end": 23.217152
+    },
+    "inspire_f1/balloon_whisk/1": {
+      "start": 4.05,
+      "end": 18.79514
+    },
+    "inspire_f1/balloon_whisk/2": {
+      "start": 4.05,
+      "end": 17.87111
+    },
+    "inspire_f1/balloon_whisk/3": {
+      "start": 4.05,
+      "end": 19.533397
+    },
+    "inspire_f1/balloon_whisk/5": {
+      "start": 3.9,
+      "end": 20.094345
+    },
+    "inspire_f1/balloon_whisk/6": {
+      "start": 3.9,
+      "end": 19.653121
+    },
+    "inspire_f1/balloon_whisk/7": {
+      "start": 3.9,
+      "end": 19.194122
+    },
+    "inspire_f1/balloon_whisk/8": {
+      "start": 4.05,
+      "end": 18.441388
+    },
+    "allegro_v5/bamboo_basket/0": {
+      "start": 1.95,
+      "end": 10.510254
+    },
+    "allegro_v5/bamboo_basket/1": {
+      "start": 1.95,
+      "end": 10.197276
+    },
+    "allegro_v5/bamboo_basket/2": {
+      "start": 1.95,
+      "end": 11.348341
+    },
+    "allegro_v5/bamboo_basket/3": {
+      "start": 1.95,
+      "end": 10.306512
+    },
+    "allegro_v5/bamboo_basket/4": {
+      "start": 1.95,
+      "end": 12.96076
+    },
+    "human/bamboo_basket/0": {
+      "start": 0,
+      "end": 7.5
+    },
+    "human/bamboo_basket/1": {
+      "start": 0,
+      "end": 8.2
+    },
+    "human/bamboo_basket/3": {
+      "start": 0,
+      "end": 7.666667
+    },
+    "human/bamboo_basket/4": {
+      "start": 0,
+      "end": 7.9
+    },
+    "human/bamboo_basket/5": {
+      "start": 0,
+      "end": 11.133333
+    },
+    "inspire_f1/bamboo_basket/0": {
+      "start": 3.375,
+      "end": 13.704207
+    },
+    "inspire_f1/bamboo_basket/1": {
+      "start": 1.95,
+      "end": 16.554326
+    },
+    "inspire_f1/bamboo_basket/2": {
+      "start": 1.875,
+      "end": 18.822325
+    },
+    "inspire_f1/bamboo_basket/3": {
+      "start": 2.1,
+      "end": 15.873332
+    },
+    "inspire_f1/bamboo_basket/4": {
+      "start": 1.95,
+      "end": 13.776295
+    },
+    "inspire_f1/bamboo_basket/5": {
+      "start": 1.95,
+      "end": 19.065086
+    },
+    "allegro_v5/bamboo_box/0": {
+      "start": 1.95,
+      "end": 12.946093
+    },
+    "allegro_v5/bamboo_box/1": {
+      "start": 1.95,
+      "end": 10.6379
+    },
+    "allegro_v5/bamboo_box/2": {
+      "start": 1.95,
+      "end": 8.797644
+    },
+    "allegro_v5/bamboo_box/3": {
+      "start": 1.95,
+      "end": 10.17927
+    },
+    "allegro_v5/bamboo_box/4": {
+      "start": 4.2,
+      "end": 12.122518
+    },
+    "human/bamboo_box/0": {
+      "start": 0,
+      "end": 7.633333
+    },
+    "human/bamboo_box/1": {
+      "start": 0,
+      "end": 7.3
+    },
+    "human/bamboo_box/2": {
+      "start": 0,
+      "end": 6.733333
+    },
+    "human/bamboo_box/3": {
+      "start": 0,
+      "end": 6.833333
+    },
+    "human/bamboo_box/4": {
+      "start": 0,
+      "end": 7.833333
+    },
+    "inspire_f1/bamboo_box/0": {
+      "start": 3.9,
+      "end": 21.009204
+    },
+    "inspire_f1/bamboo_box/1": {
+      "start": 3.9,
+      "end": 19.62333
+    },
+    "inspire_f1/bamboo_box/2": {
+      "start": 4.05,
+      "end": 21.561187
+    },
+    "inspire_f1/bamboo_box/3": {
+      "start": 3.825,
+      "end": 18.72312
+    },
+    "inspire_f1/bamboo_box/4": {
+      "start": 3.9,
+      "end": 15.969237
+    }
+  }
+}

@@ -688,9 +688,8 @@
     const PREVIEW_WARM_COUNT = 6;
     const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
-    const PREVIEW_MANIFEST_URL = "static/gallery-previews/manifest.json";
+    const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
-    const PREVIEW_ASSETS = {};
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
     const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
@@ -712,7 +711,6 @@
     let filteredObjects = [];
     let detailObjectQuery = "";
     let objectMenuRenderKey = "";
-    let previewAssets = PREVIEW_ASSETS;
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
     let currentObject = null;
@@ -781,14 +779,14 @@
 
     async function init() {
       try {
-        const [response, previewManifest, graspResultManifest] = await Promise.all([
+        const [response, animationTrimManifest, graspResultManifest] = await Promise.all([
           fetch(CATALOG_URL),
-          loadPreviewManifest(),
+          loadAnimationTrimManifest(),
           loadGraspResultManifest()
         ]);
         if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
         catalog = await response.json();
-        applyPreviewManifest(previewManifest);
+        applyAnimationTrimManifest(animationTrimManifest);
         applyGraspResultManifest(graspResultManifest);
         objects = buildObjects(catalog);
         filteredObjects = objects;
@@ -806,9 +804,9 @@
       }
     }
 
-    async function loadPreviewManifest() {
+    async function loadAnimationTrimManifest() {
       try {
-        const response = await fetch(PREVIEW_MANIFEST_URL, { cache: "no-cache" });
+        const response = await fetch(ANIMATION_TRIMS_URL, { cache: "no-cache" });
         if (!response.ok) return null;
         return response.json();
       } catch (error) {
@@ -828,13 +826,8 @@
       }
     }
 
-    function applyPreviewManifest(manifest) {
-      const assets = manifest?.assets || {};
-      previewAssets = { ...PREVIEW_ASSETS, ...assets };
-      animationTrims = { ...ANIMATION_TRIMS };
-      for (const [key, asset] of Object.entries(assets)) {
-        if (asset?.trim) animationTrims[key] = asset.trim;
-      }
+    function applyAnimationTrimManifest(manifest) {
+      animationTrims = { ...ANIMATION_TRIMS, ...(manifest?.trims || {}) };
     }
 
     function applyGraspResultManifest(manifest) {
@@ -1120,9 +1113,7 @@
     }
 
     function previewFor(embodiment, objectId, episode) {
-      const key = `${embodiment}/${objectId}/${episode}`;
       return {
-        ...(previewAssets[key] || {}),
         video: previewVideoUrl(embodiment, objectId, episode)
       };
     }
@@ -1174,10 +1165,6 @@
     function objectMenuThumbHtml(object) {
       const thumbSrc = `${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png`;
       return `<img src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
-    }
-
-    function objectThumbUrl(objectId) {
-      return `${THUMB_BASE}/${encodeURIComponent(objectId)}/thumb.png`;
     }
 
     function ensurePreviewLayer() {
