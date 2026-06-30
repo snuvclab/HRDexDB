@@ -17,6 +17,7 @@
       --bg: #161b22;
       --surface: #21262d;
       --surface-2: #2b313a;
+      --object-panel: #d7e6e1;
       --border: #3d444d;
       --text: #e6edf3;
       --text-muted: #b1bac4;
@@ -54,10 +55,18 @@
     }
 
     .nav-logo {
-      color: var(--text);
-      font-size: 1.2em;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
       white-space: nowrap;
+    }
+
+    .nav-logo img {
+      display: block;
+      width: auto;
+      height: 30px;
+      max-width: min(42vw, 184px);
+      object-fit: contain;
     }
 
     .nav-link {
@@ -145,6 +154,13 @@
       justify-content: center;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
+    }
+
+    .thumb-slot {
+      background: var(--object-panel);
+    }
+
+    .episode-thumb {
       background:
         linear-gradient(135deg, rgba(88, 166, 255, 0.16), rgba(63, 185, 80, 0.08)),
         radial-gradient(circle at 30% 20%, rgba(121, 192, 255, 0.18), transparent 34%),
@@ -170,7 +186,6 @@
       background: var(--surface-2);
     }
 
-    .thumb-slot::after,
     .episode-thumb::after {
       position: absolute;
       inset: 0;
@@ -188,7 +203,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: var(--surface-2);
+      background: var(--object-panel);
     }
 
     .thumb-slot.thumb-missing img {
@@ -620,7 +635,9 @@
 </head>
 <body>
   <nav class="nav">
-    <a class="nav-logo" href="gallery-index.html">HRDexDB</a>
+    <a class="nav-logo" href="gallery-index.html" aria-label="HRDexDB home">
+      <img src="static/image/hrdexdb_logo.png" alt="HRDexDB">
+    </a>
     <button class="nav-link active" id="gallery-nav" type="button">Objects</button>
   </nav>
 
