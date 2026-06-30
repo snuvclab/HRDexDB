@@ -70,10 +70,12 @@
       text-align: center;
     }
 
-    .landing h1 {
-      font-size: clamp(2.1rem, 4vw, 3rem);
-      line-height: 1.1;
-      letter-spacing: 0;
+    .landing-logo {
+      display: block;
+      width: min(82vw, 520px);
+      height: auto;
+      max-height: 162px;
+      object-fit: contain;
     }
 
     .landing > p {
@@ -161,7 +163,9 @@
   </nav>
 
   <main class="landing">
-    <h1>HRDexDB</h1>
+    <h1>
+      <img class="landing-logo" src="static/image/hrdexdb_logo.png" alt="HRDexDB">
+    </h1>
     <p>Paired human and robot dexterous grasping sequences across diverse everyday objects.</p>
     <div class="landing-cards">
       <a class="landing-card" href="gallery.html">
