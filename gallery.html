@@ -1586,20 +1586,58 @@
       return CAMERA_PRESETS[embodiment] || CAMERA_PRESETS.default;
     }
 
+    function isObjectMeshNode(node) {
+      if (!node?.isMesh) return false;
+      let current = node;
+      while (current) {
+        const nodeName = (current.name || "").toLowerCase();
+        if (nodeName.startsWith("object_") || nodeName.includes("object")) return true;
+        current = current.parent;
+      }
+      return false;
+    }
+
+    function objectMeshMeanCenter(object) {
+      const center = new THREE.Vector3();
+      const vertex = new THREE.Vector3();
+      let count = 0;
+
+      object.updateMatrixWorld(true);
+      object.traverse(node => {
+        if (!isObjectMeshNode(node) || !node.geometry) return;
+        const position = node.geometry.getAttribute("position");
+        if (!position) return;
+
+        for (let i = 0; i < position.count; i += 1) {
+          vertex.fromBufferAttribute(position, i);
+          if (node.isSkinnedMesh && typeof node.boneTransform === "function") {
+            node.boneTransform(i, vertex);
+          }
+          vertex.applyMatrix4(node.matrixWorld);
+          center.add(vertex);
+          count += 1;
+        }
+      });
+
+      return count ? center.multiplyScalar(1 / count) : null;
+    }
+
     function frameObject(object, embodiment) {
       const box = new THREE.Box3().setFromObject(object);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
+      const objectCenter = objectMeshMeanCenter(object);
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       const preset = cameraPresetFor(embodiment);
       camera.fov = CAMERA_FOV;
       const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
       const viewDirection = new THREE.Vector3(...preset.viewDirection).normalize();
-      const focus = new THREE.Vector3(
+      const presetFocus = new THREE.Vector3(
         maxDim * preset.focus[0],
         maxDim * preset.focus[1],
         maxDim * preset.focus[2]
       );
+      const focus = objectCenter ? objectCenter.sub(center) : presetFocus;
 
       object.position.sub(center);
       controls.target.copy(focus);
@@ -1663,6 +1701,12 @@
       }
     }
 
+    function setAnimationSourceFrame(loadedModel, time) {
+      if (!mixer || !animationClipDuration) return;
+      mixer.setTime(Math.max(0, Math.min(time, animationClipDuration)));
+      loadedModel.updateMatrixWorld(true);
+    }
+
     function playAnimations(gltf, loadedModel, trim = null) {
       const clips = gltf.animations || [];
       animationTrackData = clips.flatMap(clip => clip.tracks.map(track => ({
@@ -1692,7 +1736,7 @@
         action.setLoop(THREE.LoopRepeat, Infinity);
         action.play();
       }
-      mixer.setTime(sourceAnimationTime(0));
+      setAnimationSourceFrame(loadedModel, sourceAnimationTime(0));
       el.viewerStatus.textContent = `${clips.length} animation${clips.length === 1 ? "" : "s"}`;
     }
 
@@ -1760,7 +1804,7 @@
         if (!node.isMesh) return;
         const nodeName = (node.name || "").toLowerCase();
         const isRobotMesh = nodeName.includes("robot");
-        const isObjectMesh = nodeName.startsWith("object_") || nodeName.includes("object");
+        const isObjectMesh = isObjectMeshNode(node);
 
         materialList(node).forEach(material => {
           if (isRobotMesh && material?.color) {
@@ -1826,8 +1870,10 @@
         loadedModel.updateMatrixWorld(true);
         scene.add(loadedModel);
         model = loadedModel;
-        frameObject(loadedModel, embodiment);
         playAnimations(gltf, loadedModel, animationTrimFor(embodiment, objectId, episode));
+        setAnimationSourceFrame(loadedModel, 0);
+        frameObject(loadedModel, embodiment);
+        setAnimationSourceFrame(loadedModel, sourceAnimationTime(0));
         syncAnimationToPreview();
         renderer.render(scene, camera);
         requestAnimationFrame(() => {
