@@ -1,0 +1,1633 @@
+{
+  "catalog_url": "https://huggingface.co/spaces/HRDexDB/HRDexDB-Visualizer/raw/main/assets/glb_catalog.json",
+  "mesh_root": "/home/capture15/shared_data/mesh_blender",
+  "output_root": "static/gallery-object-thumbs",
+  "resolution": 768,
+  "up_axis": "+x",
+  "total_objects": 98,
+  "rendered": [
+    {
+      "object": "apple",
+      "output": "static/gallery-object-thumbs/apple/thumb.png",
+      "returncode": 0,
+      "seconds": 2.068,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.558  render           | Saved: 'static/gallery-object-thumbs/apple/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'apple_viser.obj' took 7.04 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "attached_container",
+      "output": "static/gallery-object-thumbs/attached_container/thumb.png",
+      "returncode": 0,
+      "seconds": 2.268,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.723  render           | Saved: 'static/gallery-object-thumbs/attached_container/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'attached_container_viser.obj' took 92.60 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "baby_beaker",
+      "output": "static/gallery-object-thumbs/baby_beaker/thumb.png",
+      "returncode": 0,
+      "seconds": 2.068,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.555  render           | Saved: 'static/gallery-object-thumbs/baby_beaker/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'baby_beaker_viser.obj' took 24.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "balloon_whisk",
+      "output": "static/gallery-object-thumbs/balloon_whisk/thumb.png",
+      "returncode": 0,
+      "seconds": 2.097,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.599  render           | Saved: 'static/gallery-object-thumbs/balloon_whisk/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'balloon_whisk_viser.obj' took 87.29 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "bamboo_basket",
+      "output": "static/gallery-object-thumbs/bamboo_basket/thumb.png",
+      "returncode": 0,
+      "seconds": 2.469,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.923  render           | Saved: 'static/gallery-object-thumbs/bamboo_basket/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'bamboo_basket_viser.obj' took 118.95 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "bamboo_box",
+      "output": "static/gallery-object-thumbs/bamboo_box/thumb.png",
+      "returncode": 0,
+      "seconds": 2.128,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.576  render           | Saved: 'static/gallery-object-thumbs/bamboo_box/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'bamboo_box_viser.obj' took 77.86 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "banana",
+      "output": "static/gallery-object-thumbs/banana/thumb.png",
+      "returncode": 0,
+      "seconds": 2.149,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.635  render           | Saved: 'static/gallery-object-thumbs/banana/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'banana_viser.obj' took 58.15 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "baseball",
+      "output": "static/gallery-object-thumbs/baseball/thumb.png",
+      "returncode": 0,
+      "seconds": 1.984,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.458  render           | Saved: 'static/gallery-object-thumbs/baseball/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'baseball_viser.obj' took 38.65 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "beige_brush",
+      "output": "static/gallery-object-thumbs/beige_brush/thumb.png",
+      "returncode": 0,
+      "seconds": 2.144,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.611  render           | Saved: 'static/gallery-object-thumbs/beige_brush/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'beige_brush_viser.obj' took 111.94 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "black_holder_with_handle",
+      "output": "static/gallery-object-thumbs/black_holder_with_handle/thumb.png",
+      "returncode": 0,
+      "seconds": 2.005,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.498  render           | Saved: 'static/gallery-object-thumbs/black_holder_with_handle/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'black_holder_with_handle_viser.obj' took 59.44 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "black_kitchen_roll_holder",
+      "output": "static/gallery-object-thumbs/black_kitchen_roll_holder/thumb.png",
+      "returncode": 0,
+      "seconds": 1.968,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.486  render           | Saved: 'static/gallery-object-thumbs/black_kitchen_roll_holder/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'black_kitchen_roll_holder_viser.obj' took 72.38 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "blue_alarm",
+      "output": "static/gallery-object-thumbs/blue_alarm/thumb.png",
+      "returncode": 0,
+      "seconds": 2.085,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.564  render           | Saved: 'static/gallery-object-thumbs/blue_alarm/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'blue_alarm_viser.obj' took 100.46 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "blue_plastic_box",
+      "output": "static/gallery-object-thumbs/blue_plastic_box/thumb.png",
+      "returncode": 0,
+      "seconds": 2.081,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.559  render           | Saved: 'static/gallery-object-thumbs/blue_plastic_box/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'blue_plastic_box_viser.obj' took 99.86 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "blue_vase",
+      "output": "static/gallery-object-thumbs/blue_vase/thumb.png",
+      "returncode": 0,
+      "seconds": 2.018,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.478  render           | Saved: 'static/gallery-object-thumbs/blue_vase/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'blue_vase_viser.obj' took 64.96 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "book",
+      "output": "static/gallery-object-thumbs/book/thumb.png",
+      "returncode": 0,
+      "seconds": 2.019,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.481  render           | Saved: 'static/gallery-object-thumbs/book/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'book_viser.obj' took 38.87 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "box_pink",
+      "output": "static/gallery-object-thumbs/box_pink/thumb.png",
+      "returncode": 0,
+      "seconds": 2.312,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.782  render           | Saved: 'static/gallery-object-thumbs/box_pink/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'box_pink_viser.obj' took 95.88 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "brass_pot",
+      "output": "static/gallery-object-thumbs/brass_pot/thumb.png",
+      "returncode": 0,
+      "seconds": 2.084,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.545  render           | Saved: 'static/gallery-object-thumbs/brass_pot/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'brass_pot_viser.obj' took 57.82 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "brown_ramen",
+      "output": "static/gallery-object-thumbs/brown_ramen/thumb.png",
+      "returncode": 0,
+      "seconds": 2.296,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.758  render           | Saved: 'static/gallery-object-thumbs/brown_ramen/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'brown_ramen_viser.obj' took 288.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "cactus",
+      "output": "static/gallery-object-thumbs/cactus/thumb.png",
+      "returncode": 0,
+      "seconds": 2.099,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.577  render           | Saved: 'static/gallery-object-thumbs/cactus/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'cactus_viser.obj' took 78.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "cactus2",
+      "output": "static/gallery-object-thumbs/cactus2/thumb.png",
+      "returncode": 0,
+      "seconds": 2.098,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.584  render           | Saved: 'static/gallery-object-thumbs/cactus2/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'cactus2_viser.obj' took 109.47 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "cactus3",
+      "output": "static/gallery-object-thumbs/cactus3/thumb.png",
+      "returncode": 0,
+      "seconds": 2.129,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.589  render           | Saved: 'static/gallery-object-thumbs/cactus3/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'cactus3_viser.obj' took 114.67 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "ceramic_elephant_jug",
+      "output": "static/gallery-object-thumbs/ceramic_elephant_jug/thumb.png",
+      "returncode": 0,
+      "seconds": 2.323,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.777  render           | Saved: 'static/gallery-object-thumbs/ceramic_elephant_jug/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'ceramic_elephant_jug_viser.obj' took 29.25 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "circular_frying_pan",
+      "output": "static/gallery-object-thumbs/circular_frying_pan/thumb.png",
+      "returncode": 0,
+      "seconds": 2.285,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.740  render           | Saved: 'static/gallery-object-thumbs/circular_frying_pan/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'circular_frying_pan_viser.obj' took 47.42 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "clock",
+      "output": "static/gallery-object-thumbs/clock/thumb.png",
+      "returncode": 0,
+      "seconds": 2.335,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.793  render           | Saved: 'static/gallery-object-thumbs/clock/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'clock_viser.obj' took 88.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "clothes_hanger",
+      "output": "static/gallery-object-thumbs/clothes_hanger/thumb.png",
+      "returncode": 0,
+      "seconds": 2.449,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.943  render           | Saved: 'static/gallery-object-thumbs/clothes_hanger/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'clothes_hanger_viser.obj' took 57.07 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "coffee_tin",
+      "output": "static/gallery-object-thumbs/coffee_tin/thumb.png",
+      "returncode": 0,
+      "seconds": 2.435,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.873  render           | Saved: 'static/gallery-object-thumbs/coffee_tin/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'coffee_tin_viser.obj' took 112.31 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "colander_green",
+      "output": "static/gallery-object-thumbs/colander_green/thumb.png",
+      "returncode": 0,
+      "seconds": 2.447,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.905  render           | Saved: 'static/gallery-object-thumbs/colander_green/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'colander_green_viser.obj' took 108.31 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "container_pink",
+      "output": "static/gallery-object-thumbs/container_pink/thumb.png",
+      "returncode": 0,
+      "seconds": 2.071,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.528  render           | Saved: 'static/gallery-object-thumbs/container_pink/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'container_pink_viser.obj' took 65.79 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "donut",
+      "output": "static/gallery-object-thumbs/donut/thumb.png",
+      "returncode": 0,
+      "seconds": 2.052,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.534  render           | Saved: 'static/gallery-object-thumbs/donut/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'donut_viser.obj' took 66.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "frame_oak",
+      "output": "static/gallery-object-thumbs/frame_oak/thumb.png",
+      "returncode": 0,
+      "seconds": 2.095,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.562  render           | Saved: 'static/gallery-object-thumbs/frame_oak/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'frame_oak_viser.obj' took 126.89 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "frame_red",
+      "output": "static/gallery-object-thumbs/frame_red/thumb.png",
+      "returncode": 0,
+      "seconds": 2.103,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.557  render           | Saved: 'static/gallery-object-thumbs/frame_red/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'frame_red_viser.obj' took 70.95 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "french_mustard",
+      "output": "static/gallery-object-thumbs/french_mustard/thumb.png",
+      "returncode": 0,
+      "seconds": 2.431,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.902  render           | Saved: 'static/gallery-object-thumbs/french_mustard/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'french_mustard_viser.obj' took 257.83 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "frog_bowl",
+      "output": "static/gallery-object-thumbs/frog_bowl/thumb.png",
+      "returncode": 0,
+      "seconds": 2.107,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.570  render           | Saved: 'static/gallery-object-thumbs/frog_bowl/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'frog_bowl_viser.obj' took 143.63 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "frog_cup",
+      "output": "static/gallery-object-thumbs/frog_cup/thumb.png",
+      "returncode": 0,
+      "seconds": 2.145,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.615  render           | Saved: 'static/gallery-object-thumbs/frog_cup/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'frog_cup_viser.obj' took 141.27 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "fruit_cutter_base",
+      "output": "static/gallery-object-thumbs/fruit_cutter_base/thumb.png",
+      "returncode": 0,
+      "seconds": 2.066,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.549  render           | Saved: 'static/gallery-object-thumbs/fruit_cutter_base/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'fruit_cutter_base_viser.obj' took 135.18 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "fruit_cutter_green",
+      "output": "static/gallery-object-thumbs/fruit_cutter_green/thumb.png",
+      "returncode": 0,
+      "seconds": 1.997,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.474  render           | Saved: 'static/gallery-object-thumbs/fruit_cutter_green/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'fruit_cutter_green_viser.obj' took 52.31 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "green_attached_container",
+      "output": "static/gallery-object-thumbs/green_attached_container/thumb.png",
+      "returncode": 0,
+      "seconds": 2.108,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.581  render           | Saved: 'static/gallery-object-thumbs/green_attached_container/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'green_attached_container_viser.obj' took 126.82 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "green_cactus_vase",
+      "output": "static/gallery-object-thumbs/green_cactus_vase/thumb.png",
+      "returncode": 0,
+      "seconds": 2.286,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.741  render           | Saved: 'static/gallery-object-thumbs/green_cactus_vase/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'green_cactus_vase_viser.obj' took 99.52 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "green_soap_dispenser",
+      "output": "static/gallery-object-thumbs/green_soap_dispenser/thumb.png",
+      "returncode": 0,
+      "seconds": 2.453,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.917  render           | Saved: 'static/gallery-object-thumbs/green_soap_dispenser/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'green_soap_dispenser_viser.obj' took 284.18 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "grey_pot",
+      "output": "static/gallery-object-thumbs/grey_pot/thumb.png",
+      "returncode": 0,
+      "seconds": 2.118,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.580  render           | Saved: 'static/gallery-object-thumbs/grey_pot/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'grey_pot_viser.obj' took 63.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "hammer",
+      "output": "static/gallery-object-thumbs/hammer/thumb.png",
+      "returncode": 0,
+      "seconds": 2.228,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.733  render           | Saved: 'static/gallery-object-thumbs/hammer/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'hammer_viser.obj' took 73.63 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "icecream_scoop",
+      "output": "static/gallery-object-thumbs/icecream_scoop/thumb.png",
+      "returncode": 0,
+      "seconds": 2.186,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.672  render           | Saved: 'static/gallery-object-thumbs/icecream_scoop/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'icecream_scoop_viser.obj' took 63.48 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "instant_rice",
+      "output": "static/gallery-object-thumbs/instant_rice/thumb.png",
+      "returncode": 0,
+      "seconds": 2.123,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.606  render           | Saved: 'static/gallery-object-thumbs/instant_rice/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'instant_rice_viser.obj' took 43.49 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "jja_ramen",
+      "output": "static/gallery-object-thumbs/jja_ramen/thumb.png",
+      "returncode": 0,
+      "seconds": 2.185,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.650  render           | Saved: 'static/gallery-object-thumbs/jja_ramen/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'jja_ramen_viser.obj' took 30.14 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "knife_sharpener",
+      "output": "static/gallery-object-thumbs/knife_sharpener/thumb.png",
+      "returncode": 0,
+      "seconds": 2.326,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.795  render           | Saved: 'static/gallery-object-thumbs/knife_sharpener/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'knife_sharpener_viser.obj' took 85.53 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "large_peg",
+      "output": "static/gallery-object-thumbs/large_peg/thumb.png",
+      "returncode": 0,
+      "seconds": 2.428,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.917  render           | Saved: 'static/gallery-object-thumbs/large_peg/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'large_peg_viser.obj' took 328.32 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "lemon",
+      "output": "static/gallery-object-thumbs/lemon/thumb.png",
+      "returncode": 0,
+      "seconds": 2.27,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.739  render           | Saved: 'static/gallery-object-thumbs/lemon/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'lemon_viser.obj' took 104.34 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "lemon_squeezer",
+      "output": "static/gallery-object-thumbs/lemon_squeezer/thumb.png",
+      "returncode": 0,
+      "seconds": 2.266,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.757  render           | Saved: 'static/gallery-object-thumbs/lemon_squeezer/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'lemon_squeezer_viser.obj' took 174.45 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "light_green_basket",
+      "output": "static/gallery-object-thumbs/light_green_basket/thumb.png",
+      "returncode": 0,
+      "seconds": 2.284,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.762  render           | Saved: 'static/gallery-object-thumbs/light_green_basket/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'light_green_basket_viser.obj' took 106.69 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "lilac_food_container",
+      "output": "static/gallery-object-thumbs/lilac_food_container/thumb.png",
+      "returncode": 0,
+      "seconds": 2.299,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.794  render           | Saved: 'static/gallery-object-thumbs/lilac_food_container/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'lilac_food_container_viser.obj' took 126.28 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "lotion",
+      "output": "static/gallery-object-thumbs/lotion/thumb.png",
+      "returncode": 0,
+      "seconds": 2.132,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.603  render           | Saved: 'static/gallery-object-thumbs/lotion/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'lotion_viser.obj' took 45.81 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "meat_thermometer",
+      "output": "static/gallery-object-thumbs/meat_thermometer/thumb.png",
+      "returncode": 0,
+      "seconds": 2.248,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.706  render           | Saved: 'static/gallery-object-thumbs/meat_thermometer/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'meat_thermometer_viser.obj' took 71.34 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "metal_measuring_flask",
+      "output": "static/gallery-object-thumbs/metal_measuring_flask/thumb.png",
+      "returncode": 0,
+      "seconds": 1.982,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.466  render           | Saved: 'static/gallery-object-thumbs/metal_measuring_flask/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'metal_measuring_flask_viser.obj' took 68.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "metal_scoop_big",
+      "output": "static/gallery-object-thumbs/metal_scoop_big/thumb.png",
+      "returncode": 0,
+      "seconds": 2.071,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.553  render           | Saved: 'static/gallery-object-thumbs/metal_scoop_big/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'metal_scoop_big_viser.obj' took 101.60 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "metal_scoop_small",
+      "output": "static/gallery-object-thumbs/metal_scoop_small/thumb.png",
+      "returncode": 0,
+      "seconds": 2.009,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.488  render           | Saved: 'static/gallery-object-thumbs/metal_scoop_small/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'metal_scoop_small_viser.obj' took 68.34 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "mug_holder",
+      "output": "static/gallery-object-thumbs/mug_holder/thumb.png",
+      "returncode": 0,
+      "seconds": 2.175,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.613  render           | Saved: 'static/gallery-object-thumbs/mug_holder/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'mug_holder_viser.obj' took 80.05 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "orange",
+      "output": "static/gallery-object-thumbs/orange/thumb.png",
+      "returncode": 0,
+      "seconds": 2.377,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.817  render           | Saved: 'static/gallery-object-thumbs/orange/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'orange_viser.obj' took 60.85 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "organizer_beige",
+      "output": "static/gallery-object-thumbs/organizer_beige/thumb.png",
+      "returncode": 0,
+      "seconds": 2.141,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.630  render           | Saved: 'static/gallery-object-thumbs/organizer_beige/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'organizer_beige_viser.obj' took 192.07 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pastel_blue_cup",
+      "output": "static/gallery-object-thumbs/pastel_blue_cup/thumb.png",
+      "returncode": 0,
+      "seconds": 2.072,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.537  render           | Saved: 'static/gallery-object-thumbs/pastel_blue_cup/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pastel_blue_cup_viser.obj' took 92.02 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pastel_light_green_bowl",
+      "output": "static/gallery-object-thumbs/pastel_light_green_bowl/thumb.png",
+      "returncode": 0,
+      "seconds": 1.986,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.483  render           | Saved: 'static/gallery-object-thumbs/pastel_light_green_bowl/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pastel_light_green_bowl_viser.obj' took 54.50 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pepper_tuna",
+      "output": "static/gallery-object-thumbs/pepper_tuna/thumb.png",
+      "returncode": 0,
+      "seconds": 1.982,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.446  render           | Saved: 'static/gallery-object-thumbs/pepper_tuna/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pepper_tuna_viser.obj' took 50.57 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pingpong",
+      "output": "static/gallery-object-thumbs/pingpong/thumb.png",
+      "returncode": 0,
+      "seconds": 2.266,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.727  render           | Saved: 'static/gallery-object-thumbs/pingpong/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pingpong_viser.obj' took 83.36 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pink_clock",
+      "output": "static/gallery-object-thumbs/pink_clock/thumb.png",
+      "returncode": 0,
+      "seconds": 2.08,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.553  render           | Saved: 'static/gallery-object-thumbs/pink_clock/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pink_clock_viser.obj' took 113.25 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "plant_pot",
+      "output": "static/gallery-object-thumbs/plant_pot/thumb.png",
+      "returncode": 0,
+      "seconds": 2.177,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.635  render           | Saved: 'static/gallery-object-thumbs/plant_pot/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'plant_pot_viser.obj' took 137.40 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "plastic_elephant_jug",
+      "output": "static/gallery-object-thumbs/plastic_elephant_jug/thumb.png",
+      "returncode": 0,
+      "seconds": 2.286,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.776  render           | Saved: 'static/gallery-object-thumbs/plastic_elephant_jug/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'plastic_elephant_jug_viser.obj' took 90.19 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "potato_masher",
+      "output": "static/gallery-object-thumbs/potato_masher/thumb.png",
+      "returncode": 0,
+      "seconds": 2.044,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.551  render           | Saved: 'static/gallery-object-thumbs/potato_masher/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'potato_masher_viser.obj' took 76.49 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "pringles_small",
+      "output": "static/gallery-object-thumbs/pringles_small/thumb.png",
+      "returncode": 0,
+      "seconds": 2.053,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.491  render           | Saved: 'static/gallery-object-thumbs/pringles_small/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'pringles_small_viser.obj' took 31.29 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "rectangular_frying_pan",
+      "output": "static/gallery-object-thumbs/rectangular_frying_pan/thumb.png",
+      "returncode": 0,
+      "seconds": 2.063,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.558  render           | Saved: 'static/gallery-object-thumbs/rectangular_frying_pan/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'rectangular_frying_pan_viser.obj' took 78.90 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "redcar",
+      "output": "static/gallery-object-thumbs/redcar/thumb.png",
+      "returncode": 0,
+      "seconds": 2.292,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.753  render           | Saved: 'static/gallery-object-thumbs/redcar/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'redcar_viser.obj' took 122.48 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "saucepan",
+      "output": "static/gallery-object-thumbs/saucepan/thumb.png",
+      "returncode": 0,
+      "seconds": 2.282,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.757  render           | Saved: 'static/gallery-object-thumbs/saucepan/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'saucepan_viser.obj' took 60.39 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "scotch_tape",
+      "output": "static/gallery-object-thumbs/scotch_tape/thumb.png",
+      "returncode": 0,
+      "seconds": 2.435,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.858  render           | Saved: 'static/gallery-object-thumbs/scotch_tape/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'scotch_tape_viser.obj' took 42.51 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "screwdriver",
+      "output": "static/gallery-object-thumbs/screwdriver/thumb.png",
+      "returncode": 0,
+      "seconds": 2.376,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.836  render           | Saved: 'static/gallery-object-thumbs/screwdriver/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'screwdriver_viser.obj' took 92.94 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "servingbowl_small",
+      "output": "static/gallery-object-thumbs/servingbowl_small/thumb.png",
+      "returncode": 0,
+      "seconds": 2.388,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.831  render           | Saved: 'static/gallery-object-thumbs/servingbowl_small/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'servingbowl_small_viser.obj' took 132.88 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "smallbowl",
+      "output": "static/gallery-object-thumbs/smallbowl/thumb.png",
+      "returncode": 0,
+      "seconds": 2.342,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.776  render           | Saved: 'static/gallery-object-thumbs/smallbowl/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'smallbowl_viser.obj' took 52.14 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "soaptray",
+      "output": "static/gallery-object-thumbs/soaptray/thumb.png",
+      "returncode": 0,
+      "seconds": 2.241,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.711  render           | Saved: 'static/gallery-object-thumbs/soaptray/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'soaptray_viser.obj' took 91.91 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "spam_can",
+      "output": "static/gallery-object-thumbs/spam_can/thumb.png",
+      "returncode": 0,
+      "seconds": 2.374,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.808  render           | Saved: 'static/gallery-object-thumbs/spam_can/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'spam_can_viser.obj' took 86.05 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "spicemill",
+      "output": "static/gallery-object-thumbs/spicemill/thumb.png",
+      "returncode": 0,
+      "seconds": 2.233,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.693  render           | Saved: 'static/gallery-object-thumbs/spicemill/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'spicemill_viser.obj' took 104.41 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "spray_bottle",
+      "output": "static/gallery-object-thumbs/spray_bottle/thumb.png",
+      "returncode": 0,
+      "seconds": 2.064,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.545  render           | Saved: 'static/gallery-object-thumbs/spray_bottle/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'spray_bottle_viser.obj' took 60.43 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "standing_frame",
+      "output": "static/gallery-object-thumbs/standing_frame/thumb.png",
+      "returncode": 0,
+      "seconds": 2.11,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.582  render           | Saved: 'static/gallery-object-thumbs/standing_frame/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'standing_frame_viser.obj' took 133.88 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "tea_case",
+      "output": "static/gallery-object-thumbs/tea_case/thumb.png",
+      "returncode": 0,
+      "seconds": 2.155,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.617  render           | Saved: 'static/gallery-object-thumbs/tea_case/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'tea_case_viser.obj' took 42.35 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "tennis_ball",
+      "output": "static/gallery-object-thumbs/tennis_ball/thumb.png",
+      "returncode": 0,
+      "seconds": 2.093,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.559  render           | Saved: 'static/gallery-object-thumbs/tennis_ball/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'tennis_ball_viser.obj' took 72.32 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "thermo_clock",
+      "output": "static/gallery-object-thumbs/thermo_clock/thumb.png",
+      "returncode": 0,
+      "seconds": 2.112,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.596  render           | Saved: 'static/gallery-object-thumbs/thermo_clock/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'thermo_clock_viser.obj' took 142.65 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "toothbrush_holder",
+      "output": "static/gallery-object-thumbs/toothbrush_holder/thumb.png",
+      "returncode": 0,
+      "seconds": 2.096,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.581  render           | Saved: 'static/gallery-object-thumbs/toothbrush_holder/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'toothbrush_holder_viser.obj' took 117.35 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "washing_brush",
+      "output": "static/gallery-object-thumbs/washing_brush/thumb.png",
+      "returncode": 0,
+      "seconds": 2.079,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.581  render           | Saved: 'static/gallery-object-thumbs/washing_brush/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'washing_brush_viser.obj' took 130.33 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "washing_brush2",
+      "output": "static/gallery-object-thumbs/washing_brush2/thumb.png",
+      "returncode": 0,
+      "seconds": 2.114,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.621  render           | Saved: 'static/gallery-object-thumbs/washing_brush2/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'washing_brush2_viser.obj' took 141.10 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "wateringcan",
+      "output": "static/gallery-object-thumbs/wateringcan/thumb.png",
+      "returncode": 0,
+      "seconds": 2.129,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.619  render           | Saved: 'static/gallery-object-thumbs/wateringcan/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'wateringcan_viser.obj' took 77.88 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "white_candle_holder",
+      "output": "static/gallery-object-thumbs/white_candle_holder/thumb.png",
+      "returncode": 0,
+      "seconds": 2.138,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.624  render           | Saved: 'static/gallery-object-thumbs/white_candle_holder/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'white_candle_holder_viser.obj' took 85.47 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "white_hand_shower",
+      "output": "static/gallery-object-thumbs/white_hand_shower/thumb.png",
+      "returncode": 0,
+      "seconds": 2.245,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.734  render           | Saved: 'static/gallery-object-thumbs/white_hand_shower/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'white_hand_shower_viser.obj' took 54.37 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "white_pen_cup",
+      "output": "static/gallery-object-thumbs/white_pen_cup/thumb.png",
+      "returncode": 0,
+      "seconds": 2.307,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.767  render           | Saved: 'static/gallery-object-thumbs/white_pen_cup/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'white_pen_cup_viser.obj' took 84.49 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "white_soap_dish",
+      "output": "static/gallery-object-thumbs/white_soap_dish/thumb.png",
+      "returncode": 0,
+      "seconds": 2.318,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.781  render           | Saved: 'static/gallery-object-thumbs/white_soap_dish/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'white_soap_dish_viser.obj' took 106.22 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "white_wood_handle_watering_can",
+      "output": "static/gallery-object-thumbs/white_wood_handle_watering_can/thumb.png",
+      "returncode": 0,
+      "seconds": 2.295,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.781  render           | Saved: 'static/gallery-object-thumbs/white_wood_handle_watering_can/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'white_wood_handle_watering_can_viser.obj' took 77.10 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "wipe",
+      "output": "static/gallery-object-thumbs/wipe/thumb.png",
+      "returncode": 0,
+      "seconds": 2.129,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.628  render           | Saved: 'static/gallery-object-thumbs/wipe/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'wipe_viser.obj' took 34.36 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "wood_dish_rack",
+      "output": "static/gallery-object-thumbs/wood_dish_rack/thumb.png",
+      "returncode": 0,
+      "seconds": 1.998,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.482  render           | Saved: 'static/gallery-object-thumbs/wood_dish_rack/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'wood_dish_rack_viser.obj' took 45.44 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "wood_organizer",
+      "output": "static/gallery-object-thumbs/wood_organizer/thumb.png",
+      "returncode": 0,
+      "seconds": 2.025,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.509  render           | Saved: 'static/gallery-object-thumbs/wood_organizer/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'wood_organizer_viser.obj' took 62.08 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "work_lamp",
+      "output": "static/gallery-object-thumbs/work_lamp/thumb.png",
+      "returncode": 0,
+      "seconds": 2.436,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.898  render           | Saved: 'static/gallery-object-thumbs/work_lamp/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'work_lamp_viser.obj' took 140.72 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "yellow_funnel",
+      "output": "static/gallery-object-thumbs/yellow_funnel/thumb.png",
+      "returncode": 0,
+      "seconds": 2.259,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.756  render           | Saved: 'static/gallery-object-thumbs/yellow_funnel/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'yellow_funnel_viser.obj' took 50.18 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "yellow_plastic_glass",
+      "output": "static/gallery-object-thumbs/yellow_plastic_glass/thumb.png",
+      "returncode": 0,
+      "seconds": 2.3,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.769  render           | Saved: 'static/gallery-object-thumbs/yellow_plastic_glass/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'yellow_plastic_glass_viser.obj' took 105.61 ms",
+        "",
+        "Blender quit"
+      ]
+    },
+    {
+      "object": "yellow_wash_tub",
+      "output": "static/gallery-object-thumbs/yellow_wash_tub/thumb.png",
+      "returncode": 0,
+      "seconds": 2.451,
+      "log_tail": [
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:90: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0",
+        "  material.use_nodes = True",
+        "/home/capture15/HRDexDB/scripts/render_object_thumbnail.py:175: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0",
+        "  world.use_nodes = True",
+        "00:01.922  render           | Saved: 'static/gallery-object-thumbs/yellow_wash_tub/thumb.png'",
+        "Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 02:18:37)",
+        "OBJ import of 'yellow_wash_tub_viser.obj' took 150.94 ms",
+        "",
+        "Blender quit"
+      ]
+    }
+  ],
+  "skipped_existing": [],
+  "missing_mesh": [],
+  "failed": []
+}

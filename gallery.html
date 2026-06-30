@@ -14,12 +14,12 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface-2: #1c222b;
-      --border: #30363d;
+      --bg: #161b22;
+      --surface: #21262d;
+      --surface-2: #2b313a;
+      --border: #3d444d;
       --text: #e6edf3;
-      --text-muted: #8b949e;
+      --text-muted: #b1bac4;
       --accent: #58a6ff;
       --accent-hover: #79c0ff;
       --green: #3fb950;
@@ -501,7 +501,7 @@
       position: relative;
       height: min(68vh, 720px);
       min-height: 474px;
-      background: #0f141b;
+      background: #1b222b;
     }
 
     #viewer canvas {
@@ -524,7 +524,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: #0f141b;
+      background: #1b222b;
     }
 
     .viewer-preview.active {
@@ -540,7 +540,7 @@
     .viewer-preview > img,
     .viewer-video-shell video {
       object-fit: contain;
-      background: #0f141b;
+      background: #1b222b;
     }
 
     .viewer-video-shell {
@@ -687,6 +687,7 @@
     const PREVIEW_VIDEO_CACHE_LIMIT = 24;
     const PREVIEW_WARM_COUNT = 6;
     const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
+    const THUMB_FALLBACK_BASE = "static/gallery-object-thumbs";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
@@ -919,7 +920,7 @@
         return `
           <button class="grid-item" type="button" data-object="${object.id}">
             <div class="thumb-slot">
-              <img src="${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">
+              ${objectThumbHtml(object)}
             </div>
             <div class="label">${object.name}</div>
             <div class="hands-info">${hands}</div>
@@ -1172,8 +1173,27 @@
     }
 
     function objectMenuThumbHtml(object) {
-      const thumbSrc = `${THUMB_BASE}/${encodeURIComponent(object.id)}/thumb.png`;
-      return `<img src="${thumbSrc}" alt="${object.name}" loading="lazy" onerror="this.parentElement.classList.add('thumb-missing')">`;
+      return objectThumbHtml(object);
+    }
+
+    function objectThumbUrl(objectId, base = THUMB_BASE) {
+      return `${base}/${encodeURIComponent(objectId)}/thumb.png`;
+    }
+
+    function objectThumbHtml(object) {
+      const thumbSrc = objectThumbUrl(object.id);
+      const fallbackSrc = objectThumbUrl(object.id, THUMB_FALLBACK_BASE);
+      return `<img src="${thumbSrc}" data-fallback-src="${fallbackSrc}" alt="${object.name}" loading="lazy" onerror="handleObjectThumbError(this)">`;
+    }
+
+    function handleObjectThumbError(img) {
+      const fallbackSrc = img.dataset.fallbackSrc;
+      if (fallbackSrc) {
+        img.dataset.fallbackSrc = "";
+        img.src = fallbackSrc;
+        return;
+      }
+      img.parentElement.classList.add("thumb-missing");
     }
 
     function ensurePreviewLayer() {
@@ -1416,7 +1436,7 @@
       if (viewerReady) return;
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0f141b);
+      scene.background = new THREE.Color(0x1b222b);
       clock = new THREE.Clock();
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
