@@ -43,10 +43,18 @@
     }
 
     .nav-logo {
-      color: var(--text);
-      font-size: 1.2em;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
       white-space: nowrap;
+    }
+
+    .nav-logo img {
+      display: block;
+      width: auto;
+      height: 30px;
+      max-width: min(42vw, 184px);
+      object-fit: contain;
     }
 
     .nav-link {
@@ -57,6 +65,35 @@
     .nav-link:hover,
     .nav-link.active {
       color: var(--text);
+    }
+
+    .dataset-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 8px 14px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.95em;
+      font-weight: 700;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .dataset-link:hover {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .hf-logo {
+      display: block;
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
     }
 
     .landing {
@@ -158,7 +195,9 @@
 </head>
 <body>
   <nav class="nav">
-    <a class="nav-logo" href="gallery-index.html">HRDexDB</a>
+    <a class="nav-logo" href="gallery-index.html" aria-label="HRDexDB home">
+      <img src="static/image/hrdexdb_logo.png" alt="HRDexDB">
+    </a>
     <a class="nav-link" href="gallery.html">Objects</a>
   </nav>
 
@@ -167,6 +206,10 @@
       <img class="landing-logo" src="static/image/hrdexdb_logo.png" alt="HRDexDB">
     </h1>
     <p>Paired human and robot dexterous grasping sequences across diverse everyday objects.</p>
+    <a class="dataset-link" href="https://huggingface.co/datasets/HRDexDB/HRDexDB" target="_blank" rel="noreferrer">
+      <img class="hf-logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" aria-hidden="true">
+      <span>View Dataset on Hugging Face</span>
+    </a>
     <div class="landing-cards">
       <a class="landing-card" href="gallery.html">
         <div class="card-count">98</div>
