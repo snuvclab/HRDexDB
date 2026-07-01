@@ -24,6 +24,10 @@ authors:
   - name: Subin Jeon
     affiliation: [1]
     homepage: https://sites.google.com/yonsei.ac.kr/subinjeon/home
+  - name: Kanghyeon Cho
+    affiliation: [1]
+  - name: Seongho Cha
+    affiliation: [1]
   - name: Hanbyul Joo
     affiliation: [1, 2]
     corresponding_author: true
@@ -195,7 +199,7 @@ Send any comments or questions to [Jongbin Lim](https://jongbinlim.github.io/): 
 ```
 @misc{lim2026hrdexdb,
       title={HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping}, 
-      author={Jongbin Lim and Taeyun Ha and Mingi Choi and Jisoo Kim and Byungjun Kim and Subin Jeon and Hanbyul Joo},
+      author={Jongbin Lim and Taeyun Ha and Mingi Choi and Jisoo Kim and Byungjun Kim and Subin Jeon and Kanghyeon Cho and Seongho Cha and Hanbyul Joo},
       year={2026},
       eprint={2604.14944},
       archivePrefix={arXiv},
