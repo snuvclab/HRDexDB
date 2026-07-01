@@ -1008,8 +1008,10 @@
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
+    const INTERACTIVE_3D_VISIBILITY_URL = "static/gallery-interactive-3d-visibility.json";
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
+    const INTERACTIVE_3D_VISIBILITY = {};
     const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
     const OBJECT_DEFAULT_BEIGE_COLOR = 0xd9c7aa;
     const CAMERA_PRESETS = {
@@ -1046,6 +1048,7 @@
     let objectMenuRenderKey = "";
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
+    let interactive3DVisibility = INTERACTIVE_3D_VISIBILITY;
     let currentObject = null;
     let currentEmbodiment = null;
     let currentEpisode = null;
@@ -1118,15 +1121,17 @@
 
     async function init() {
       try {
-        const [response, animationTrimManifest, graspResultManifest] = await Promise.all([
+        const [response, animationTrimManifest, graspResultManifest, interactive3DVisibilityManifest] = await Promise.all([
           fetch(CATALOG_URL),
           loadAnimationTrimManifest(),
-          loadGraspResultManifest()
+          loadGraspResultManifest(),
+          loadInteractive3DVisibilityManifest()
         ]);
         if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
         catalog = await response.json();
         applyAnimationTrimManifest(animationTrimManifest);
         applyGraspResultManifest(graspResultManifest);
+        applyInteractive3DVisibilityManifest(interactive3DVisibilityManifest);
         objects = buildObjects(catalog);
         applyGalleryFilters();
         currentObject = objects[0]?.id || null;
@@ -1165,12 +1170,27 @@
       }
     }
 
+    async function loadInteractive3DVisibilityManifest() {
+      try {
+        const response = await fetch(INTERACTIVE_3D_VISIBILITY_URL, { cache: "no-cache" });
+        if (!response.ok) return null;
+        return response.json();
+      } catch (error) {
+        console.warn(error);
+        return null;
+      }
+    }
+
     function applyAnimationTrimManifest(manifest) {
       animationTrims = { ...ANIMATION_TRIMS, ...(manifest?.trims || {}) };
     }
 
     function applyGraspResultManifest(manifest) {
       graspResults = { ...GRASP_RESULTS, ...(manifest?.results || {}) };
+    }
+
+    function applyInteractive3DVisibilityManifest(manifest) {
+      interactive3DVisibility = { ...INTERACTIVE_3D_VISIBILITY, ...(manifest?.interactive3D || {}) };
     }
 
     function buildObjects(source) {
@@ -1464,6 +1484,14 @@
       return graspResults[`${embodiment}/${objectId}/${episode}`] || null;
     }
 
+    function sequenceKeyFor(embodiment, objectId, episode) {
+      return `${embodiment}/${objectId}/${episode}`;
+    }
+
+    function showInteractive3DFor(embodiment, objectId, episode) {
+      return interactive3DVisibility[sequenceKeyFor(embodiment, objectId, episode)] !== false;
+    }
+
     function episodeDisplayLabel(embodiment, objectId, episode, index = 0) {
       const result = graspResultFor(embodiment, objectId, episode);
       const displayEpisode = robotEmbodiments.has(embodiment) && result?.humanPairedEpisode != null
@@ -1660,6 +1688,7 @@
 
     function showInstantPreview(embodiment, objectId, episode, options = {}) {
       const restart = options.restart !== false;
+      const showActions = options.showActions !== false;
       const layer = ensurePreviewLayer();
       const preview = previewFor(embodiment, objectId, episode);
       const shell = previewShellFor(preview);
@@ -1688,7 +1717,8 @@
       if ((video?.readyState || 0) >= 2) {
         schedulePreviewWarmup(embodiment, objectId, episode);
       }
-      el.viewerStatus.textContent = "Preview playing";
+      el.viewerStatus.hidden = !showActions;
+      el.viewerStatus.textContent = showActions ? "Preview playing" : "";
     }
 
     function pausePreviewVideo() {
@@ -1715,6 +1745,19 @@
     }
 
     function setLoadGlbButtonState(state) {
+      if (state === "hidden") {
+        el.viewerStatus.hidden = true;
+        el.viewerStatus.textContent = "";
+        el.loadGlbButton.hidden = true;
+        el.loadGlbButton.disabled = true;
+        el.loadGlbButton.dataset.action = "hidden";
+        el.resetViewButton.hidden = true;
+        return;
+      }
+
+      el.viewerStatus.hidden = false;
+      el.loadGlbButton.hidden = false;
+
       if (state === "ready") {
         el.loadGlbButton.disabled = false;
         el.loadGlbButton.textContent = "Open interactive 3D";
@@ -1744,8 +1787,9 @@
       el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
       resetViewerZoomAuto();
       if (viewerReady) clearModel();
-      showInstantPreview(embodiment, objectId, episode);
-      setLoadGlbButtonState("ready");
+      const showActions = showInteractive3DFor(embodiment, objectId, episode);
+      showInstantPreview(embodiment, objectId, episode, { showActions });
+      setLoadGlbButtonState(showActions ? "ready" : "hidden");
     }
 
     async function ensureThreeRuntime() {
@@ -2186,6 +2230,11 @@
     }
 
     async function loadViewer(embodiment, objectId, episode) {
+      if (!showInteractive3DFor(embodiment, objectId, episode)) {
+        showPreviewOnly(embodiment, objectId, episode);
+        return;
+      }
+
       const token = ++loadToken;
       const object = objectData(objectId);
       el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
