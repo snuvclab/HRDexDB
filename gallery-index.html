@@ -8,14 +8,14 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #161b22;
-      --surface: #21262d;
-      --surface-2: #2b313a;
-      --border: #3d444d;
-      --text: #e6edf3;
-      --text-muted: #b1bac4;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-2: #f1ece5;
+      --border: #ece7e0;
+      --text: #2b2722;
+      --text-muted: #8a8178;
+      --accent: #e2603b;
+      --accent-hover: #b94728;
       --radius: 8px;
     }
 
@@ -83,6 +83,14 @@
       transition: border-color 0.2s, transform 0.15s;
     }
 
+    .action-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
     .dataset-link:hover {
       border-color: var(--accent);
       color: var(--accent-hover);
@@ -119,7 +127,38 @@
       max-width: 680px;
       margin-bottom: 18px;
       color: var(--text-muted);
-      font-size: 1.05em;
+      font-size: 1.28em;
+      line-height: 1.55;
+    }
+
+    .landing-authors {
+      max-width: 940px;
+      color: var(--text);
+      font-size: 1.18em;
+      line-height: 1.75;
+    }
+
+    .landing-authors a {
+      color: var(--accent);
+    }
+
+    .landing-authors a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    .landing-affiliations {
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 0.95em;
+      line-height: 1.7;
+    }
+
+    .landing-note {
+      margin-top: -10px;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+      font-size: 0.9em;
     }
 
     .landing-cards {
@@ -187,6 +226,14 @@
         padding-top: 64px;
       }
 
+      .landing > p {
+        font-size: 1.08em;
+      }
+
+      .landing-authors {
+        font-size: 1.02em;
+      }
+
       .landing-cards {
         grid-template-columns: 1fr;
       }
@@ -198,6 +245,7 @@
     <a class="nav-logo" href="gallery-index.html" aria-label="HRDexDB home">
       <img src="static/image/hrdexdb_logo.png" alt="HRDexDB">
     </a>
+    <a class="nav-link" href="./">Project Page</a>
     <a class="nav-link" href="gallery.html">Objects</a>
   </nav>
 
@@ -206,10 +254,31 @@
       <img class="landing-logo" src="static/image/hrdexdb_logo.png" alt="HRDexDB">
     </h1>
     <p>Paired human and robot dexterous grasping sequences across diverse everyday objects.</p>
-    <a class="dataset-link" href="https://huggingface.co/datasets/HRDexDB/HRDexDB" target="_blank" rel="noreferrer">
-      <img class="hf-logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" aria-hidden="true">
-      <span>View Dataset on Hugging Face</span>
-    </a>
+    <div class="landing-authors" aria-label="Authors">
+      <a href="https://jongbinlim.github.io/" target="_blank" rel="noreferrer">Jongbin Lim</a><sup>1</sup>*,
+      <a href="https://hahahataeyun.github.io/" target="_blank" rel="noreferrer">Taeyun Ha</a><sup>1</sup>*,
+      <a href="https://willi19.github.io/" target="_blank" rel="noreferrer">Mingi Choi</a><sup>1</sup>,
+      <a href="https://jlogkim.github.io/" target="_blank" rel="noreferrer">Jisoo Kim</a><sup>1</sup>,
+      <a href="https://bjkim95.github.io" target="_blank" rel="noreferrer">Byungjun Kim</a><sup>1</sup>,
+      <a href="https://sites.google.com/yonsei.ac.kr/subinjeon/home" target="_blank" rel="noreferrer">Subin Jeon</a><sup>1</sup>,
+      Kanghyeon Cho<sup>1</sup>,
+      Seongho Cha<sup>1</sup>,
+      <a href="https://jhugestar.github.io/" target="_blank" rel="noreferrer">Hanbyul Joo</a><sup>1,2</sup>&dagger;
+    </div>
+    <div class="landing-affiliations" aria-label="Affiliations">
+      <span><sup>1</sup>Seoul National University</span>,
+      <span><sup>2</sup>RLWRLD</span>
+    </div>
+    <div class="landing-note">* Equal contribution &nbsp; &dagger; Corresponding author</div>
+    <div class="action-links">
+      <a class="dataset-link" href="./">
+        <span>Project Page</span>
+      </a>
+      <a class="dataset-link" href="https://huggingface.co/datasets/HRDexDB/HRDexDB" target="_blank" rel="noreferrer">
+        <img class="hf-logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" aria-hidden="true">
+        <span>View Dataset on Hugging Face</span>
+      </a>
+    </div>
     <div class="landing-cards">
       <a class="landing-card" href="gallery.html">
         <div class="card-count">98</div>

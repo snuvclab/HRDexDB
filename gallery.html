@@ -14,15 +14,15 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #161b22;
-      --surface: #21262d;
-      --surface-2: #2b313a;
-      --object-panel: #d7e6e1;
-      --border: #3d444d;
-      --text: #e6edf3;
-      --text-muted: #b1bac4;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-2: #f1ece5;
+      --object-panel: #faf8f5;
+      --border: #ece7e0;
+      --text: #2b2722;
+      --text-muted: #8a8178;
+      --accent: #e2603b;
+      --accent-hover: #b94728;
       --green: #3fb950;
       --red: #f85149;
       --radius: 8px;
@@ -213,7 +213,7 @@
     .episode-num {
       position: relative;
       z-index: 1;
-      color: rgba(230, 237, 243, 0.88);
+      color: rgba(43, 39, 34, 0.82);
       font-weight: 800;
       letter-spacing: 0;
     }
@@ -233,6 +233,7 @@
       padding: 8px 10px 0;
       overflow: hidden;
       font-size: 0.9em;
+      font-weight: 700;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -703,8 +704,9 @@
     const PREVIEW_CAMERA_ID = "23263780";
     const PREVIEW_VIDEO_CACHE_LIMIT = 24;
     const PREVIEW_WARM_COUNT = 6;
-    const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
+    const THUMB_BASE = "https://willi19.github.io/object_processing/objects";
     const THUMB_FALLBACK_BASE = "static/gallery-object-thumbs";
+    const THUMB_CACHE_VERSION = "24";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
@@ -1194,7 +1196,8 @@
     }
 
     function objectThumbUrl(objectId, base = THUMB_BASE) {
-      return `${base}/${encodeURIComponent(objectId)}/thumb.png`;
+      const cacheSuffix = base === THUMB_BASE ? `?v=${THUMB_CACHE_VERSION}` : "";
+      return `${base}/${encodeURIComponent(objectId)}/thumb.png${cacheSuffix}`;
     }
 
     function objectThumbHtml(object) {
