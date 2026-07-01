@@ -14,26 +14,30 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #161b22;
-      --surface: #21262d;
-      --surface-2: #2b313a;
-      --object-panel: #d7e6e1;
-      --border: #3d444d;
-      --text: #e6edf3;
-      --text-muted: #b1bac4;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
-      --green: #3fb950;
-      --red: #f85149;
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-2: #f1ece5;
+      --object-panel: #faf8f5;
+      --viewer-bg: #f4efe8;
+      --border: #ece7e0;
+      --text: #2b2722;
+      --text-muted: #8a8178;
+      --accent: #e2603b;
+      --accent-hover: #c94f30;
+      --green: #6fae58;
+      --red: #d9584a;
       --radius: 8px;
+      --shadow-soft: 0 1px 2px rgba(40, 30, 20, 0.04);
+      --shadow-lift: 0 14px 30px rgba(40, 30, 20, 0.10);
     }
 
     body {
       min-height: 100vh;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -50,7 +54,8 @@
       gap: 24px;
       min-height: 53px;
       padding: 12px 24px;
-      background: var(--surface);
+      background: rgba(250, 248, 245, 0.88);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
 
@@ -88,8 +93,70 @@
       padding: 24px;
     }
 
+    #gallery-view {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     .view { display: none; }
     .view.active { display: block; }
+
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 12px 0 26px;
+    }
+
+    .gallery-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .gallery-brand h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .count {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #fdeee9;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .gallery-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap .kbd {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      padding: 1px 6px;
+      transform: translateY(-50%);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.4;
+      pointer-events: none;
+    }
 
     .search-bar {
       width: 100%;
@@ -101,11 +168,39 @@
       background: var(--surface);
       color: var(--text);
       font-size: 1em;
+      box-shadow: var(--shadow-soft);
     }
 
     .search-bar { margin-bottom: 16px; }
-    .search-bar:focus { border-color: var(--accent); }
+    .gallery-header .search-bar {
+      width: 270px;
+      margin-bottom: 0;
+      padding-right: 40px;
+      border-radius: 999px;
+    }
+    .search-bar:focus {
+      border-color: var(--accent);
+      box-shadow: 0 2px 10px rgba(226, 96, 59, 0.16);
+    }
     .search-bar::placeholder { color: var(--text-muted); }
+
+    .sort-select {
+      min-height: 42px;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow-soft);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sort-select:focus {
+      border-color: var(--accent);
+    }
 
     .stats-bar {
       display: flex;
@@ -122,6 +217,12 @@
       gap: 16px;
     }
 
+    #gallery-view .grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 22px;
+      padding: 8px 0 72px;
+    }
+
     .grid-item,
     .episode-card,
     .viewer-panel {
@@ -129,6 +230,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--surface);
+      box-shadow: var(--shadow-soft);
     }
 
     .grid-item,
@@ -136,7 +238,12 @@
       width: 100%;
       color: var(--text);
       text-align: left;
-      transition: border-color 0.2s, transform 0.15s;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.22s ease;
+    }
+
+    .grid-item {
+      cursor: pointer;
+      border-radius: 18px;
     }
 
     .grid-item:hover,
@@ -144,6 +251,11 @@
     .episode-card.active {
       border-color: var(--accent);
       transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    #gallery-view .grid-item:hover {
+      transform: translateY(-4px);
     }
 
     .thumb-slot,
@@ -160,10 +272,14 @@
       background: var(--object-panel);
     }
 
+    #gallery-view .thumb-slot {
+      border-bottom: 0;
+    }
+
     .episode-thumb {
       background:
-        linear-gradient(135deg, rgba(88, 166, 255, 0.16), rgba(63, 185, 80, 0.08)),
-        radial-gradient(circle at 30% 20%, rgba(121, 192, 255, 0.18), transparent 34%),
+        linear-gradient(135deg, rgba(226, 96, 59, 0.12), rgba(253, 238, 233, 0.82)),
+        radial-gradient(circle at 30% 20%, rgba(226, 96, 59, 0.14), transparent 34%),
         var(--surface-2);
     }
 
@@ -192,7 +308,7 @@
       content: "";
       opacity: 0.55;
       background-image:
-        linear-gradient(135deg, rgba(230, 237, 243, 0.05) 25%, transparent 25%, transparent 50%, rgba(230, 237, 243, 0.05) 50%, rgba(230, 237, 243, 0.05) 75%, transparent 75%, transparent);
+        linear-gradient(135deg, rgba(43, 39, 34, 0.04) 25%, transparent 25%, transparent 50%, rgba(43, 39, 34, 0.04) 50%, rgba(43, 39, 34, 0.04) 75%, transparent 75%, transparent);
       background-size: 18px 18px;
     }
 
@@ -213,7 +329,7 @@
     .episode-num {
       position: relative;
       z-index: 1;
-      color: rgba(230, 237, 243, 0.88);
+      color: rgba(43, 39, 34, 0.78);
       font-weight: 800;
       letter-spacing: 0;
     }
@@ -230,18 +346,20 @@
     }
 
     .grid-item .label {
-      padding: 8px 10px 0;
+      padding: 13px 16px 0;
       overflow: hidden;
-      font-size: 0.9em;
+      font-size: 15px;
+      font-weight: 600;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .hands-info {
-      padding: 0 10px 8px;
+      padding: 0 16px 16px;
       overflow: hidden;
       color: var(--text-muted);
-      font-size: 0.75em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -271,6 +389,7 @@
       background: var(--surface);
       color: var(--text);
       font-size: 0.85em;
+      box-shadow: var(--shadow-soft);
     }
 
     .object-menu-search:focus {
@@ -304,7 +423,7 @@
       background: var(--surface);
       color: var(--text);
       text-align: left;
-      transition: border-color 0.2s, transform 0.15s;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.22s ease;
     }
 
     .object-menu-card:hover,
@@ -314,6 +433,7 @@
 
     .object-menu-card:hover {
       transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
     }
 
     .object-menu-card .thumb-slot {
@@ -431,11 +551,11 @@
 
     .badge-rank {
       background: var(--accent);
-      color: var(--bg);
+      color: #ffffff;
     }
 
     .badge-result {
-      color: var(--bg);
+      color: #ffffff;
       text-transform: lowercase;
     }
 
@@ -505,6 +625,7 @@
     .load-glb-button:hover:not(:disabled) {
       border-color: var(--accent);
       color: var(--accent-hover);
+      background: #fdeee9;
     }
 
     .load-glb-button:disabled {
@@ -516,7 +637,7 @@
       position: relative;
       height: min(68vh, 720px);
       min-height: 474px;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     #viewer canvas {
@@ -539,7 +660,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     .viewer-preview.active {
@@ -555,7 +676,7 @@
     .viewer-preview > img,
     .viewer-video-shell video {
       object-fit: contain;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     .viewer-video-shell {
@@ -643,8 +764,22 @@
 
   <main class="container">
     <section class="view active" id="gallery-view">
-      <input type="search" class="search-bar" id="search" placeholder="Search objects" autocomplete="off">
-      <div class="stats-bar" id="stats">Loading catalog...</div>
+      <header class="gallery-header">
+        <div class="gallery-brand">
+          <h1>Object Library</h1>
+          <span class="count" id="stats">Loading...</span>
+        </div>
+        <div class="gallery-controls">
+          <div class="search-wrap">
+            <input type="search" class="search-bar" id="search" placeholder="Search objects…" autocomplete="off">
+            <span class="kbd">/</span>
+          </div>
+          <select class="sort-select" id="sort">
+            <option value="az">Name A → Z</option>
+            <option value="za">Name Z → A</option>
+          </select>
+        </div>
+      </header>
       <div class="grid" id="grid"></div>
     </section>
 
@@ -703,8 +838,9 @@
     const PREVIEW_CAMERA_ID = "23263780";
     const PREVIEW_VIDEO_CACHE_LIMIT = 24;
     const PREVIEW_WARM_COUNT = 6;
-    const THUMB_BASE = "https://willi19.github.io/autodex-gallery/objects";
-    const THUMB_FALLBACK_BASE = "static/gallery-object-thumbs";
+    const THUMB_BASE = "static/gallery-object-thumbs";
+    const THUMB_FALLBACK_BASE = "https://willi19.github.io/object_processing/objects";
+    const THUMB_VERSION = "object-processing-24";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
@@ -787,6 +923,7 @@
       detailView: document.getElementById("detail-view"),
       galleryNav: document.getElementById("gallery-nav"),
       search: document.getElementById("search"),
+      sort: document.getElementById("sort"),
       stats: document.getElementById("stats"),
       grid: document.getElementById("grid"),
       objectTitle: document.getElementById("object-title"),
@@ -816,7 +953,7 @@
         applyAnimationTrimManifest(animationTrimManifest);
         applyGraspResultManifest(graspResultManifest);
         objects = buildObjects(catalog);
-        filteredObjects = objects;
+        applyGalleryFilters();
         currentObject = objects[0]?.id || null;
         renderGallery();
         loadHashState();
@@ -913,12 +1050,16 @@
     }
 
     function updateStats(items) {
-      const parts = [`${items.length} objects`];
-      for (const embodiment of orderedEmbodiments(Object.keys(catalog))) {
-        const count = items.filter(object => object.embodiments[embodiment]).length;
-        parts.push(`${count} with ${labels[embodiment] || titleize(embodiment)}`);
-      }
-      el.stats.textContent = parts.join(" | ");
+      const query = el.search.value.trim();
+      el.stats.textContent = query ? `${items.length} / ${objects.length}` : `${objects.length} objects`;
+    }
+
+    function applyGalleryFilters() {
+      const query = el.search.value.trim().toLowerCase();
+      const direction = el.sort.value === "za" ? -1 : 1;
+      filteredObjects = objects
+        .filter(object => !query || `${object.id} ${object.name}`.toLowerCase().includes(query))
+        .sort((a, b) => direction * a.name.localeCompare(b.name));
     }
 
     function renderGallery() {
@@ -930,17 +1071,13 @@
       }
 
       el.grid.innerHTML = filteredObjects.map(object => {
-        const hands = orderedEmbodiments(Object.keys(object.embodiments))
-          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
-          .join(", ");
-
         return `
           <button class="grid-item" type="button" data-object="${object.id}">
             <div class="thumb-slot">
               ${objectThumbHtml(object)}
             </div>
             <div class="label">${object.name}</div>
-            <div class="hands-info">${hands}</div>
+            <div class="hands-info">${object.id}</div>
           </button>`;
       }).join("");
 
@@ -1194,7 +1331,7 @@
     }
 
     function objectThumbUrl(objectId, base = THUMB_BASE) {
-      return `${base}/${encodeURIComponent(objectId)}/thumb.png`;
+      return `${base}/${encodeURIComponent(objectId)}/thumb.png?v=${THUMB_VERSION}`;
     }
 
     function objectThumbHtml(object) {
@@ -1453,7 +1590,7 @@
       if (viewerReady) return;
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x1b222b);
+      scene.background = new THREE.Color(0xf4efe8);
       clock = new THREE.Clock();
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -1944,10 +2081,24 @@
       }
     };
 
-    el.search.addEventListener("input", event => {
-      const query = event.target.value.trim().toLowerCase();
-      filteredObjects = objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query));
+    el.search.addEventListener("input", () => {
+      applyGalleryFilters();
       renderGallery();
+    });
+    el.sort.addEventListener("change", () => {
+      applyGalleryFilters();
+      renderGallery();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "/" && document.activeElement !== el.search && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement?.tagName)) {
+        event.preventDefault();
+        el.search.focus();
+      } else if (event.key === "Escape" && document.activeElement === el.search) {
+        el.search.value = "";
+        applyGalleryFilters();
+        renderGallery();
+        el.search.blur();
+      }
     });
     el.objectMenuSearch.addEventListener("input", event => {
       detailObjectQuery = event.target.value;

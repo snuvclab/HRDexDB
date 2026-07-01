@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--margin", type=float, default=1.75, help="Camera framing multiplier.")
     parser.add_argument(
         "--background-color",
-        default="0.04,0.05,0.07",
+        default="0.980,0.973,0.961",
         help="Comma-separated RGB values in 0..1 used to flatten the transparent render.",
     )
     parser.add_argument("--exposure", type=float, default=-1.35, help="Render exposure for bright/white meshes.")
@@ -171,11 +171,11 @@ def frame_camera(camera: bpy.types.Object, meshes: list[bpy.types.Object], margi
 def setup_lighting(size: float) -> None:
     world = bpy.context.scene.world or bpy.data.worlds.new("World")
     bpy.context.scene.world = world
-    world.color = (0.04, 0.05, 0.07)
+    world.color = (0.98, 0.973, 0.961)
     world.use_nodes = True
     background = world.node_tree.nodes.get("Background")
     if background:
-        background.inputs["Color"].default_value = (0.04, 0.05, 0.07, 1.0)
+        background.inputs["Color"].default_value = (0.98, 0.973, 0.961, 1.0)
         background.inputs["Strength"].default_value = 0.8
 
     key_data = bpy.data.lights.new("key_area", type="AREA")
