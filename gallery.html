@@ -279,7 +279,8 @@
     }
 
     .grid-item:hover,
-    .episode-card:hover {
+    .episode-card:hover,
+    .episode-card.active {
       border-color: var(--accent);
       box-shadow: var(--shadow-lift);
     }
@@ -290,18 +291,6 @@
 
     .episode-card.active {
       position: relative;
-      border-color: transparent;
-      box-shadow: none;
-    }
-
-    .episode-card.active::after {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      border: 2px solid var(--accent);
-      border-radius: inherit;
-      content: "";
-      pointer-events: none;
     }
 
     #gallery-view .grid-item:hover {
