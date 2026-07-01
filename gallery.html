@@ -146,6 +146,14 @@
       line-height: 1.2;
     }
 
+    .gallery-hint {
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
     .count {
       padding: 5px 12px;
       border-radius: 999px;
@@ -271,16 +279,29 @@
     }
 
     .grid-item:hover,
-    .episode-card:hover,
-    .episode-card.active {
+    .episode-card:hover {
       border-color: var(--accent);
-      transform: translateY(-2px);
       box-shadow: var(--shadow-lift);
+    }
+
+    .grid-item:hover {
+      transform: translateY(-2px);
     }
 
     .episode-card.active {
       position: relative;
-      box-shadow: inset 0 0 0 1px var(--accent), var(--shadow-lift);
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .episode-card.active::after {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border: 2px solid var(--accent);
+      border-radius: inherit;
+      content: "";
+      pointer-events: none;
     }
 
     #gallery-view .grid-item:hover {
@@ -675,13 +696,22 @@
     }
 
     .badge-rank {
-      background: var(--accent);
-      color: #ffffff;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
     }
 
     .badge-result {
+      justify-content: center;
+      min-width: 64px;
       color: #ffffff;
       text-transform: lowercase;
+    }
+
+    .badge-placeholder {
+      visibility: hidden;
     }
 
     .badge-success {
@@ -704,7 +734,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 46px;
+      height: 51px;
       padding: 10px 12px;
       border-bottom: 1px solid var(--border);
     }
@@ -928,8 +958,9 @@
     <section class="view active" id="gallery-view">
       <header class="gallery-header">
         <div class="gallery-brand">
-          <h1>Object Library</h1>
+          <h1>Object Gallery</h1>
           <span class="count" id="stats">Loading...</span>
+          <span class="gallery-hint">click for visualization</span>
         </div>
         <div class="gallery-controls">
           <div class="search-wrap">
@@ -1508,9 +1539,10 @@
     }
 
     function episodeResultBadgeHtml(embodiment, objectId, episode) {
-      if (!robotEmbodiments.has(embodiment)) return "";
+      const placeholder = `<span class="badge badge-result badge-success badge-placeholder" aria-hidden="true">success</span>`;
+      if (!robotEmbodiments.has(embodiment)) return placeholder;
       const result = graspResultFor(embodiment, objectId, episode);
-      if (!result || typeof result.graspSuccess !== "boolean") return "";
+      if (!result || typeof result.graspSuccess !== "boolean") return placeholder;
       const state = result.graspSuccess ? "success" : "fail";
       return `<span class="badge badge-result badge-${state}">${state}</span>`;
     }
