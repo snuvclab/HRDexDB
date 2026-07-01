@@ -18,22 +18,26 @@
       --surface: #ffffff;
       --surface-2: #f1ece5;
       --object-panel: #faf8f5;
+      --viewer-bg: #f4efe8;
       --border: #ece7e0;
       --text: #2b2722;
       --text-muted: #8a8178;
       --accent: #e2603b;
-      --accent-hover: #b94728;
-      --green: #3fb950;
-      --red: #f85149;
+      --accent-hover: #c94f30;
+      --green: #6fae58;
+      --red: #d9584a;
       --radius: 8px;
+      --shadow-soft: 0 1px 2px rgba(40, 30, 20, 0.04);
+      --shadow-lift: 0 14px 30px rgba(40, 30, 20, 0.10);
     }
 
     body {
       min-height: 100vh;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -69,17 +73,42 @@
       object-fit: contain;
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-left: auto;
+    }
+
     .nav-link {
-      padding: 0;
+      padding: 8px 13px;
       border: 0;
-      background: none;
+      border-radius: 999px;
+      background: transparent;
       color: var(--text-muted);
-      font-size: 0.95em;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      text-decoration: none;
     }
 
     .nav-link:hover,
     .nav-link.active {
       color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .nav-link.cta {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 1px 2px rgba(226, 96, 59, 0.25);
+    }
+
+    .nav-link.cta:hover,
+    .nav-link.cta.active {
+      background: var(--accent-hover);
+      color: #ffffff;
     }
 
     .container {
@@ -88,8 +117,78 @@
       padding: 24px;
     }
 
+    #gallery-view {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     .view { display: none; }
     .view.active { display: block; }
+
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 12px 0 26px;
+    }
+
+    .gallery-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .gallery-brand h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .gallery-hint {
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .count {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #fdeee9;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .gallery-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap .kbd {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      padding: 1px 6px;
+      transform: translateY(-50%);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.4;
+      pointer-events: none;
+    }
 
     .search-bar {
       width: 100%;
@@ -101,11 +200,39 @@
       background: var(--surface);
       color: var(--text);
       font-size: 1em;
+      box-shadow: var(--shadow-soft);
     }
 
     .search-bar { margin-bottom: 16px; }
-    .search-bar:focus { border-color: var(--accent); }
+    .gallery-header .search-bar {
+      width: 270px;
+      margin-bottom: 0;
+      padding-right: 40px;
+      border-radius: 999px;
+    }
+    .search-bar:focus {
+      border-color: var(--accent);
+      box-shadow: 0 2px 10px rgba(226, 96, 59, 0.16);
+    }
     .search-bar::placeholder { color: var(--text-muted); }
+
+    .sort-select {
+      min-height: 42px;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow-soft);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .sort-select:focus {
+      border-color: var(--accent);
+    }
 
     .stats-bar {
       display: flex;
@@ -122,6 +249,12 @@
       gap: 16px;
     }
 
+    #gallery-view .grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 22px;
+      padding: 8px 0 72px;
+    }
+
     .grid-item,
     .episode-card,
     .viewer-panel {
@@ -129,6 +262,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--surface);
+      box-shadow: var(--shadow-soft);
     }
 
     .grid-item,
@@ -136,14 +270,31 @@
       width: 100%;
       color: var(--text);
       text-align: left;
-      transition: border-color 0.2s, transform 0.15s;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.22s ease;
+    }
+
+    .grid-item {
+      cursor: pointer;
+      border-radius: 18px;
     }
 
     .grid-item:hover,
     .episode-card:hover,
     .episode-card.active {
       border-color: var(--accent);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .grid-item:hover {
       transform: translateY(-2px);
+    }
+
+    .episode-card.active {
+      position: relative;
+    }
+
+    #gallery-view .grid-item:hover {
+      transform: translateY(-4px);
     }
 
     .thumb-slot,
@@ -160,10 +311,14 @@
       background: var(--object-panel);
     }
 
+    #gallery-view .thumb-slot {
+      border-bottom: 0;
+    }
+
     .episode-thumb {
       background:
-        linear-gradient(135deg, rgba(88, 166, 255, 0.16), rgba(63, 185, 80, 0.08)),
-        radial-gradient(circle at 30% 20%, rgba(121, 192, 255, 0.18), transparent 34%),
+        linear-gradient(135deg, rgba(226, 96, 59, 0.12), rgba(253, 238, 233, 0.82)),
+        radial-gradient(circle at 30% 20%, rgba(226, 96, 59, 0.14), transparent 34%),
         var(--surface-2);
     }
 
@@ -192,7 +347,7 @@
       content: "";
       opacity: 0.55;
       background-image:
-        linear-gradient(135deg, rgba(230, 237, 243, 0.05) 25%, transparent 25%, transparent 50%, rgba(230, 237, 243, 0.05) 50%, rgba(230, 237, 243, 0.05) 75%, transparent 75%, transparent);
+        linear-gradient(135deg, rgba(43, 39, 34, 0.04) 25%, transparent 25%, transparent 50%, rgba(43, 39, 34, 0.04) 50%, rgba(43, 39, 34, 0.04) 75%, transparent 75%, transparent);
       background-size: 18px 18px;
     }
 
@@ -213,7 +368,7 @@
     .episode-num {
       position: relative;
       z-index: 1;
-      color: rgba(43, 39, 34, 0.82);
+      color: rgba(43, 39, 34, 0.78);
       font-weight: 800;
       letter-spacing: 0;
     }
@@ -230,19 +385,20 @@
     }
 
     .grid-item .label {
-      padding: 8px 10px 0;
+      padding: 13px 16px 0;
       overflow: hidden;
-      font-size: 0.9em;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 600;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .hands-info {
-      padding: 0 10px 8px;
+      padding: 0 16px 16px;
       overflow: hidden;
       color: var(--text-muted);
-      font-size: 0.75em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
@@ -263,15 +419,16 @@
 
     .object-menu-search {
       width: 100%;
-      min-height: 38px;
-      margin-bottom: 10px;
-      padding: 8px 10px;
+      min-height: 42px;
+      margin-bottom: 12px;
+      padding: 10px 16px;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 999px;
       outline: none;
       background: var(--surface);
       color: var(--text);
-      font-size: 0.85em;
+      font-size: 0.9em;
+      box-shadow: var(--shadow-soft);
     }
 
     .object-menu-search:focus {
@@ -285,6 +442,8 @@
     .object-menu {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: max-content;
+      align-content: start;
       gap: 8px;
       max-height: calc(100vh - 144px);
       overflow-y: auto;
@@ -301,11 +460,11 @@
       width: 100%;
       overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 18px;
       background: var(--surface);
       color: var(--text);
       text-align: left;
-      transition: border-color 0.2s, transform 0.15s;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.22s ease;
     }
 
     .object-menu-card:hover,
@@ -314,28 +473,31 @@
     }
 
     .object-menu-card:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
     }
 
     .object-menu-card .thumb-slot {
       aspect-ratio: 1;
+      border-bottom: 0;
     }
 
     .object-menu-label {
-      padding: 6px 7px 0;
+      padding: 8px 10px 0;
       overflow: hidden;
-      font-size: 0.68em;
-      font-weight: 700;
+      font-size: 0.78em;
+      font-weight: 600;
       line-height: 1.25;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .object-menu-hands {
-      padding: 0 7px 6px;
+      padding: 0 10px 10px;
       overflow: hidden;
       color: var(--text-muted);
-      font-size: 0.56em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.62em;
       line-height: 1.3;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -366,10 +528,16 @@
 
     .tabs {
       display: flex;
+      flex-wrap: wrap;
       gap: 0;
       margin-bottom: 20px;
-      overflow-x: auto;
+      overflow: visible;
       border-bottom: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
     }
 
     .tab {
@@ -380,6 +548,7 @@
       background: none;
       color: var(--text-muted);
       font-size: 0.95em;
+      font-weight: 700;
       transition: color 0.2s, border-color 0.2s;
     }
 
@@ -390,7 +559,7 @@
     }
 
     .sequence-toolbar {
-      display: flex;
+      display: none;
       justify-content: flex-end;
       margin-bottom: 16px;
     }
@@ -411,7 +580,92 @@
     .episode-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: max-content;
       gap: 12px;
+    }
+
+    @media (min-width: 901px) {
+      #detail-view.active {
+        height: calc(100vh - 104px);
+        overflow: hidden;
+      }
+
+      #detail-view.active .detail-shell {
+        align-items: stretch;
+        height: 100%;
+      }
+
+      #detail-view.active .object-sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: none;
+      }
+
+      #detail-view.active .object-menu {
+        flex: 1 1 auto;
+        min-height: 0;
+        max-height: none;
+      }
+
+      #detail-view.active .detail-main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      #detail-view.active .detail-layout {
+        flex: 1 1 auto;
+        align-items: stretch;
+        min-height: 0;
+      }
+
+      #detail-view.active .episode-grid {
+        height: 100%;
+        min-height: 0;
+        max-height: none;
+        overflow-y: auto;
+        align-content: start;
+        padding-right: 4px;
+        scrollbar-color: var(--border) transparent;
+      }
+
+      #detail-view.active .viewer-panel {
+        position: relative;
+        top: auto;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+      }
+
+      #detail-view.active #viewer {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 0;
+      }
+
+      #detail-view.active .viewer-panel.preview-mode {
+        align-self: stretch;
+        height: 100%;
+      }
+
+      #detail-view.active .viewer-panel.preview-mode .viewer-preview {
+        inset: 0 0 14px;
+        background: var(--viewer-bg);
+      }
+
+      #detail-view.active .viewer-panel.preview-mode .viewer-video-shell.active {
+        display: block;
+      }
+
+      #detail-view.active .viewer-panel.preview-mode .viewer-video-shell video {
+        object-fit: contain;
+        background: #000000;
+      }
     }
 
     .episode-footer {
@@ -431,13 +685,22 @@
     }
 
     .badge-rank {
-      background: var(--accent);
-      color: var(--bg);
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--text);
+      font-weight: 800;
     }
 
     .badge-result {
-      color: var(--bg);
+      justify-content: center;
+      min-width: 64px;
+      color: #ffffff;
       text-transform: lowercase;
+    }
+
+    .badge-placeholder {
+      visibility: hidden;
     }
 
     .badge-success {
@@ -460,7 +723,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 46px;
+      height: 51px;
       padding: 10px 12px;
       border-bottom: 1px solid var(--border);
     }
@@ -493,6 +756,7 @@
 
     .load-glb-button {
       flex: 0 0 auto;
+      width: 148px;
       min-height: 30px;
       padding: 5px 10px;
       border: 1px solid var(--border);
@@ -506,6 +770,7 @@
     .load-glb-button:hover:not(:disabled) {
       border-color: var(--accent);
       color: var(--accent-hover);
+      background: #fdeee9;
     }
 
     .load-glb-button:disabled {
@@ -515,9 +780,10 @@
 
     #viewer {
       position: relative;
+      overflow: hidden;
       height: min(68vh, 720px);
       min-height: 474px;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     #viewer canvas {
@@ -533,6 +799,34 @@
       visibility: hidden;
     }
 
+    .reset-view-button {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 3;
+      min-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid rgba(236, 231, 224, 0.92);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--text);
+      font-size: 0.78em;
+      font-weight: 700;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+    }
+
+    .reset-view-button:hover {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+      background: #fdeee9;
+    }
+
+    .reset-view-button[hidden],
+    #viewer.preview-active .reset-view-button {
+      display: none;
+    }
+
     .viewer-preview {
       position: absolute;
       inset: 0;
@@ -540,7 +834,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     .viewer-preview.active {
@@ -556,7 +850,7 @@
     .viewer-preview > img,
     .viewer-video-shell video {
       object-fit: contain;
-      background: #1b222b;
+      background: var(--viewer-bg);
     }
 
     .viewer-video-shell {
@@ -639,13 +933,35 @@
     <a class="nav-logo" href="gallery-index.html" aria-label="HRDexDB home">
       <img src="static/image/hrdexdb_logo.png" alt="HRDexDB">
     </a>
-    <button class="nav-link active" id="gallery-nav" type="button">Objects</button>
+    <div class="nav-links">
+      <a class="nav-link" href="gallery-index.html">Overview</a>
+      <a class="nav-link" href="https://snuvclab.github.io/HRDexDB/">Project</a>
+      <a class="nav-link" href="./static/pdf/hrdexdb.pdf" target="_blank" rel="noreferrer">Paper</a>
+      <a class="nav-link" href="https://github.com/snuvclab/HRDexDB" target="_blank" rel="noreferrer">Code</a>
+      <a class="nav-link" href="https://huggingface.co/datasets/HRDexDB/HRDexDB" target="_blank" rel="noreferrer">Data</a>
+      <button class="nav-link cta" id="gallery-nav" type="button">Gallery</button>
+    </div>
   </nav>
 
   <main class="container">
     <section class="view active" id="gallery-view">
-      <input type="search" class="search-bar" id="search" placeholder="Search objects" autocomplete="off">
-      <div class="stats-bar" id="stats">Loading catalog...</div>
+      <header class="gallery-header">
+        <div class="gallery-brand">
+          <h1>Object Gallery</h1>
+          <span class="count" id="stats">Loading...</span>
+          <span class="gallery-hint">click for visualization</span>
+        </div>
+        <div class="gallery-controls">
+          <div class="search-wrap">
+            <input type="search" class="search-bar" id="search" placeholder="Search objects…" autocomplete="off">
+            <span class="kbd">/</span>
+          </div>
+          <select class="sort-select" id="sort">
+            <option value="az">Name A → Z</option>
+            <option value="za">Name Z → A</option>
+          </select>
+        </div>
+      </header>
       <div class="grid" id="grid"></div>
     </section>
 
@@ -680,7 +996,9 @@
                   <button class="load-glb-button" id="load-glb-button" type="button" disabled>Open interactive 3D</button>
                 </div>
               </div>
-              <div id="viewer"></div>
+              <div id="viewer">
+                <button class="reset-view-button" id="reset-view-button" type="button" hidden>Reset view</button>
+              </div>
             </aside>
           </div>
         </div>
@@ -704,36 +1022,44 @@
     const PREVIEW_CAMERA_ID = "23263780";
     const PREVIEW_VIDEO_CACHE_LIMIT = 24;
     const PREVIEW_WARM_COUNT = 6;
-    const THUMB_BASE = "https://willi19.github.io/object_processing/objects";
-    const THUMB_FALLBACK_BASE = "static/gallery-object-thumbs";
-    const THUMB_CACHE_VERSION = "24";
+    const THUMB_BASE = "static/gallery-object-thumbs";
+    const THUMB_FALLBACK_BASE = "https://willi19.github.io/object_processing/objects";
+    const THUMB_VERSION = "object-processing-24";
     const GLB_CACHE_NAME = "hrdexdb-original-glb-v1";
     const ANIMATION_TRIMS_URL = "static/gallery-animation-trims.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
+    const INTERACTIVE_3D_VISIBILITY_URL = "static/gallery-interactive-3d-visibility.json";
     const ANIMATION_TRIMS = {};
     const GRASP_RESULTS = {};
+    const INTERACTIVE_3D_VISIBILITY = {};
     const ROBOT_SPACE_GRAY_COLOR = 0xa8adb4;
     const OBJECT_DEFAULT_BEIGE_COLOR = 0xd9c7aa;
     const CAMERA_PRESETS = {
       default: {
         focus: [-0.07, -0.10, -0.02],
-        viewDirection: [-0.95, 0.36, -1.04]
+        viewDirection: [0, 0.36, -1.04]
       },
       human: {
         focus: [0, 0.08, -0.17],
-        viewDirection: [0.19, 0.52, -1.51]
+        viewDirection: [0, 0.52, -1.51]
       },
       allegro_v5: {
         focus: [0.04, -0.15, -0.01],
-        viewDirection: [-0.03, 0.56, -1.37]
+        viewDirection: [0, 0.56, -1.37]
       },
       inspire_f1: {
         focus: [0.05, -0.14, -0.07],
-        viewDirection: [0.13, 0.36, -0.8]
+        viewDirection: [0, 0.36, -0.8]
       }
     };
     const CAMERA_DISTANCE_SCALE = 0.3;
     const CAMERA_FOV = 45;
+    const VIEW_ZOOM_MIN_SCALE = 1.5;
+    const VIEW_ZOOM_MAX_SCALE = 3;
+    const VIEW_ZOOM_APPLE_CENTER_Y = 0.041751;
+    const VIEW_ZOOM_GREEN_CACTUS_VASE_CENTER_Y = 0.131355;
+    const VIEW_ZOOM_GREEN_CACTUS_VASE_SCALE = 2;
+    const DEFAULT_VIEW_ZOOM_SCALE = VIEW_ZOOM_MIN_SCALE;
 
     let catalog = {};
     let objects = [];
@@ -742,9 +1068,13 @@
     let objectMenuRenderKey = "";
     let animationTrims = ANIMATION_TRIMS;
     let graspResults = GRASP_RESULTS;
+    let interactive3DVisibility = INTERACTIVE_3D_VISIBILITY;
     let currentObject = null;
     let currentEmbodiment = null;
     let currentEpisode = null;
+    let viewerZoomScale = DEFAULT_VIEW_ZOOM_SCALE;
+    let viewerAutoZoomScale = DEFAULT_VIEW_ZOOM_SCALE;
+    let viewerObjectCenterY = null;
 
     let THREE;
     let OrbitControls;
@@ -789,6 +1119,7 @@
       detailView: document.getElementById("detail-view"),
       galleryNav: document.getElementById("gallery-nav"),
       search: document.getElementById("search"),
+      sort: document.getElementById("sort"),
       stats: document.getElementById("stats"),
       grid: document.getElementById("grid"),
       objectTitle: document.getElementById("object-title"),
@@ -798,9 +1129,11 @@
       objectMenu: document.getElementById("object-menu"),
       episodeCount: document.getElementById("episode-count"),
       episodeGrid: document.getElementById("episode-grid"),
+      viewerPanel: document.querySelector(".viewer-panel"),
       viewer: document.getElementById("viewer"),
       viewerTitle: document.getElementById("viewer-title"),
       viewerStatus: document.getElementById("viewer-status"),
+      resetViewButton: document.getElementById("reset-view-button"),
       loadGlbButton: document.getElementById("load-glb-button")
     };
 
@@ -808,17 +1141,19 @@
 
     async function init() {
       try {
-        const [response, animationTrimManifest, graspResultManifest] = await Promise.all([
+        const [response, animationTrimManifest, graspResultManifest, interactive3DVisibilityManifest] = await Promise.all([
           fetch(CATALOG_URL),
           loadAnimationTrimManifest(),
-          loadGraspResultManifest()
+          loadGraspResultManifest(),
+          loadInteractive3DVisibilityManifest()
         ]);
         if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
         catalog = await response.json();
         applyAnimationTrimManifest(animationTrimManifest);
         applyGraspResultManifest(graspResultManifest);
+        applyInteractive3DVisibilityManifest(interactive3DVisibilityManifest);
         objects = buildObjects(catalog);
-        filteredObjects = objects;
+        applyGalleryFilters();
         currentObject = objects[0]?.id || null;
         renderGallery();
         loadHashState();
@@ -855,12 +1190,27 @@
       }
     }
 
+    async function loadInteractive3DVisibilityManifest() {
+      try {
+        const response = await fetch(INTERACTIVE_3D_VISIBILITY_URL, { cache: "no-cache" });
+        if (!response.ok) return null;
+        return response.json();
+      } catch (error) {
+        console.warn(error);
+        return null;
+      }
+    }
+
     function applyAnimationTrimManifest(manifest) {
       animationTrims = { ...ANIMATION_TRIMS, ...(manifest?.trims || {}) };
     }
 
     function applyGraspResultManifest(manifest) {
       graspResults = { ...GRASP_RESULTS, ...(manifest?.results || {}) };
+    }
+
+    function applyInteractive3DVisibilityManifest(manifest) {
+      interactive3DVisibility = { ...INTERACTIVE_3D_VISIBILITY, ...(manifest?.interactive3D || {}) };
     }
 
     function buildObjects(source) {
@@ -915,12 +1265,16 @@
     }
 
     function updateStats(items) {
-      const parts = [`${items.length} objects`];
-      for (const embodiment of orderedEmbodiments(Object.keys(catalog))) {
-        const count = items.filter(object => object.embodiments[embodiment]).length;
-        parts.push(`${count} with ${labels[embodiment] || titleize(embodiment)}`);
-      }
-      el.stats.textContent = parts.join(" | ");
+      const query = el.search.value.trim();
+      el.stats.textContent = query ? `${items.length} / ${objects.length}` : `${objects.length} objects`;
+    }
+
+    function applyGalleryFilters() {
+      const query = el.search.value.trim().toLowerCase();
+      const direction = el.sort.value === "za" ? -1 : 1;
+      filteredObjects = objects
+        .filter(object => !query || `${object.id} ${object.name}`.toLowerCase().includes(query))
+        .sort((a, b) => direction * a.name.localeCompare(b.name));
     }
 
     function renderGallery() {
@@ -932,17 +1286,13 @@
       }
 
       el.grid.innerHTML = filteredObjects.map(object => {
-        const hands = orderedEmbodiments(Object.keys(object.embodiments))
-          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
-          .join(", ");
-
         return `
           <button class="grid-item" type="button" data-object="${object.id}">
             <div class="thumb-slot">
               ${objectThumbHtml(object)}
             </div>
             <div class="label">${object.name}</div>
-            <div class="hands-info">${hands}</div>
+            <div class="hands-info">${object.id}</div>
           </button>`;
       }).join("");
 
@@ -973,20 +1323,15 @@
         return;
       }
 
-      el.objectMenu.innerHTML = menuObjects.map(object => {
-        const hands = orderedEmbodiments(Object.keys(object.embodiments))
-          .map(embodiment => cardLabels[embodiment] || titleize(embodiment).toLowerCase())
-          .join(", ");
-
-        return `
+      el.objectMenu.innerHTML = menuObjects.map(object => `
           <button class="object-menu-card ${object.id === currentObject ? "active" : ""}" type="button" data-object="${object.id}">
             <div class="thumb-slot">
               ${objectMenuThumbHtml(object)}
             </div>
             <div class="object-menu-label">${object.name}</div>
-            <div class="object-menu-hands">${hands}</div>
-          </button>`;
-      }).join("");
+            <div class="object-menu-hands">${object.id}</div>
+          </button>
+      `).join("");
 
       el.objectMenu.querySelectorAll(".object-menu-card").forEach(card => {
         card.addEventListener("click", () => openDetail(card.dataset.object, currentEmbodiment));
@@ -1159,6 +1504,14 @@
       return graspResults[`${embodiment}/${objectId}/${episode}`] || null;
     }
 
+    function sequenceKeyFor(embodiment, objectId, episode) {
+      return `${embodiment}/${objectId}/${episode}`;
+    }
+
+    function showInteractive3DFor(embodiment, objectId, episode) {
+      return interactive3DVisibility[sequenceKeyFor(embodiment, objectId, episode)] !== false;
+    }
+
     function episodeDisplayLabel(embodiment, objectId, episode, index = 0) {
       const result = graspResultFor(embodiment, objectId, episode);
       const displayEpisode = robotEmbodiments.has(embodiment) && result?.humanPairedEpisode != null
@@ -1175,9 +1528,10 @@
     }
 
     function episodeResultBadgeHtml(embodiment, objectId, episode) {
-      if (!robotEmbodiments.has(embodiment)) return "";
+      const placeholder = `<span class="badge badge-result badge-success badge-placeholder" aria-hidden="true">success</span>`;
+      if (!robotEmbodiments.has(embodiment)) return placeholder;
       const result = graspResultFor(embodiment, objectId, episode);
-      if (!result || typeof result.graspSuccess !== "boolean") return "";
+      if (!result || typeof result.graspSuccess !== "boolean") return placeholder;
       const state = result.graspSuccess ? "success" : "fail";
       return `<span class="badge badge-result badge-${state}">${state}</span>`;
     }
@@ -1196,8 +1550,7 @@
     }
 
     function objectThumbUrl(objectId, base = THUMB_BASE) {
-      const cacheSuffix = base === THUMB_BASE ? `?v=${THUMB_CACHE_VERSION}` : "";
-      return `${base}/${encodeURIComponent(objectId)}/thumb.png${cacheSuffix}`;
+      return `${base}/${encodeURIComponent(objectId)}/thumb.png?v=${THUMB_VERSION}`;
     }
 
     function objectThumbHtml(object) {
@@ -1356,6 +1709,7 @@
 
     function showInstantPreview(embodiment, objectId, episode, options = {}) {
       const restart = options.restart !== false;
+      const showActions = options.showActions !== false;
       const layer = ensurePreviewLayer();
       const preview = previewFor(embodiment, objectId, episode);
       const shell = previewShellFor(preview);
@@ -1370,6 +1724,7 @@
       shell.classList.add("active");
       layer.classList.add("active");
       el.viewer.classList.add("preview-active");
+      el.viewerPanel.classList.add("preview-mode");
       if (restart && Number.isFinite(video?.duration)) {
         try {
           video.currentTime = 0;
@@ -1383,7 +1738,8 @@
       if ((video?.readyState || 0) >= 2) {
         schedulePreviewWarmup(embodiment, objectId, episode);
       }
-      el.viewerStatus.textContent = "Preview playing";
+      el.viewerStatus.hidden = !showActions;
+      el.viewerStatus.textContent = showActions ? "Preview playing" : "";
     }
 
     function pausePreviewVideo() {
@@ -1395,6 +1751,7 @@
       pausePreviewVideo();
       previewLayer.classList.remove("active");
       el.viewer.classList.remove("preview-active");
+      el.viewerPanel.classList.remove("preview-mode");
     }
 
     function currentPreviewAnimationOffset() {
@@ -1409,18 +1766,39 @@
     }
 
     function setLoadGlbButtonState(state) {
+      if (state === "hidden") {
+        el.viewerStatus.hidden = true;
+        el.viewerStatus.textContent = "";
+        el.loadGlbButton.hidden = true;
+        el.loadGlbButton.disabled = true;
+        el.loadGlbButton.dataset.action = "hidden";
+        el.resetViewButton.hidden = true;
+        return;
+      }
+
+      el.viewerStatus.hidden = false;
+      el.loadGlbButton.hidden = false;
+
       if (state === "ready") {
         el.loadGlbButton.disabled = false;
         el.loadGlbButton.textContent = "Open interactive 3D";
+        el.loadGlbButton.dataset.action = "open";
+        el.resetViewButton.hidden = true;
       } else if (state === "loading") {
         el.loadGlbButton.disabled = true;
         el.loadGlbButton.textContent = "Loading";
+        el.loadGlbButton.dataset.action = "loading";
+        el.resetViewButton.hidden = true;
       } else if (state === "loaded") {
-        el.loadGlbButton.disabled = true;
-        el.loadGlbButton.textContent = "Interactive 3D";
+        el.loadGlbButton.disabled = false;
+        el.loadGlbButton.textContent = "Play preview";
+        el.loadGlbButton.dataset.action = "preview";
+        el.resetViewButton.hidden = false;
       } else {
         el.loadGlbButton.disabled = true;
         el.loadGlbButton.textContent = "Open interactive 3D";
+        el.loadGlbButton.dataset.action = "idle";
+        el.resetViewButton.hidden = true;
       }
     }
 
@@ -1428,9 +1806,11 @@
       loadToken += 1;
       const object = objectData(objectId);
       el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
+      resetViewerZoomAuto();
       if (viewerReady) clearModel();
-      showInstantPreview(embodiment, objectId, episode);
-      setLoadGlbButtonState("ready");
+      const showActions = showInteractive3DFor(embodiment, objectId, episode);
+      showInstantPreview(embodiment, objectId, episode, { showActions });
+      setLoadGlbButtonState(showActions ? "ready" : "hidden");
     }
 
     async function ensureThreeRuntime() {
@@ -1456,7 +1836,7 @@
       if (viewerReady) return;
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x1b222b);
+      scene.background = new THREE.Color(0xf4efe8);
       clock = new THREE.Clock();
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -1493,12 +1873,6 @@
         ONE: THREE.TOUCH.ROTATE,
         TWO: THREE.TOUCH.DOLLY_PAN
       };
-      controls.addEventListener("start", () => {
-        el.viewerStatus.textContent = "Interacting";
-      });
-      controls.addEventListener("end", () => {
-        el.viewerStatus.textContent = "Ready";
-      });
 
       scene.add(new THREE.HemisphereLight(0xffffff, 0x7b8492, 2.4));
       const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -1606,29 +1980,101 @@
       return CAMERA_PRESETS[embodiment] || CAMERA_PRESETS.default;
     }
 
-    function frameObject(object, embodiment) {
+    function isObjectMeshNode(node) {
+      if (!node?.isMesh) return false;
+      let current = node;
+      while (current) {
+        const nodeName = (current.name || "").toLowerCase();
+        if (nodeName.startsWith("object_") || nodeName.includes("object")) return true;
+        current = current.parent;
+      }
+      return false;
+    }
+
+    function objectMeshMeanCenter(object) {
+      const center = new THREE.Vector3();
+      const vertex = new THREE.Vector3();
+      let count = 0;
+
+      object.updateMatrixWorld(true);
+      object.traverse(node => {
+        if (!isObjectMeshNode(node) || !node.geometry) return;
+        const position = node.geometry.getAttribute("position");
+        if (!position) return;
+
+        for (let i = 0; i < position.count; i += 1) {
+          vertex.fromBufferAttribute(position, i);
+          if (node.isSkinnedMesh && typeof node.boneTransform === "function") {
+            node.boneTransform(i, vertex);
+          }
+          vertex.applyMatrix4(node.matrixWorld);
+          center.add(vertex);
+          count += 1;
+        }
+      });
+
+      return count ? center.multiplyScalar(1 / count) : null;
+    }
+
+    function clampNumber(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function zoomScaleForObjectCenterY(centerY) {
+      if (!Number.isFinite(centerY)) return DEFAULT_VIEW_ZOOM_SCALE;
+      const referenceSpan = VIEW_ZOOM_GREEN_CACTUS_VASE_CENTER_Y - VIEW_ZOOM_APPLE_CENTER_Y;
+      const zoomSpan = VIEW_ZOOM_GREEN_CACTUS_VASE_SCALE - VIEW_ZOOM_MIN_SCALE;
+      const scale = VIEW_ZOOM_MIN_SCALE + ((centerY - VIEW_ZOOM_APPLE_CENTER_Y) / referenceSpan) * zoomSpan;
+      return clampNumber(scale, VIEW_ZOOM_MIN_SCALE, VIEW_ZOOM_MAX_SCALE);
+    }
+
+    function setAutoZoomFromObjectCenter(objectCenter) {
+      viewerObjectCenterY = Number.isFinite(objectCenter?.y) ? objectCenter.y : null;
+      viewerAutoZoomScale = zoomScaleForObjectCenterY(viewerObjectCenterY);
+      viewerZoomScale = viewerAutoZoomScale;
+    }
+
+    function resetViewerZoomAuto() {
+      viewerObjectCenterY = null;
+      viewerAutoZoomScale = DEFAULT_VIEW_ZOOM_SCALE;
+      viewerZoomScale = DEFAULT_VIEW_ZOOM_SCALE;
+    }
+
+    function frameObject(object, embodiment, options = {}) {
       const box = new THREE.Box3().setFromObject(object);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
+      const objectCenter = objectMeshMeanCenter(object);
+      if (options.updateAutoZoom) {
+        setAutoZoomFromObjectCenter(objectCenter);
+      }
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
       const preset = cameraPresetFor(embodiment);
       camera.fov = CAMERA_FOV;
       const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
       const viewDirection = new THREE.Vector3(...preset.viewDirection).normalize();
-      const focus = new THREE.Vector3(
+      const presetFocus = new THREE.Vector3(
         maxDim * preset.focus[0],
         maxDim * preset.focus[1],
         maxDim * preset.focus[2]
       );
+      const focus = objectCenter ? objectCenter.clone().sub(center) : presetFocus;
 
       object.position.sub(center);
+      camera.up.set(0, 1, 0);
       controls.target.copy(focus);
       camera.near = Math.max(maxDim / 1000, 0.001);
       camera.far = Math.max(maxDim * 100, 100);
-      camera.position.copy(focus).addScaledVector(viewDirection, distance * CAMERA_DISTANCE_SCALE);
+      camera.position.copy(focus).addScaledVector(viewDirection, distance * CAMERA_DISTANCE_SCALE * viewerZoomScale);
       camera.updateProjectionMatrix();
       controls.update();
       resizeViewer();
+    }
+
+    function resetViewerView() {
+      if (!model || !controls || !camera) return;
+      frameObject(model, currentEmbodiment);
+      renderer?.render(scene, camera);
     }
 
     function normalizeAnimationTrim(trim, clipDuration) {
@@ -1683,6 +2129,12 @@
       }
     }
 
+    function setAnimationSourceFrame(loadedModel, time) {
+      if (!mixer || !animationClipDuration) return;
+      mixer.setTime(Math.max(0, Math.min(time, animationClipDuration)));
+      loadedModel.updateMatrixWorld(true);
+    }
+
     function playAnimations(gltf, loadedModel, trim = null) {
       const clips = gltf.animations || [];
       animationTrackData = clips.flatMap(clip => clip.tracks.map(track => ({
@@ -1695,7 +2147,6 @@
         values: Array.from(track.values)
       })));
       if (!clips.length) {
-        el.viewerStatus.textContent = "Ready";
         animationDuration = 0;
         animationClipDuration = 0;
         animationTrim = null;
@@ -1712,8 +2163,7 @@
         action.setLoop(THREE.LoopRepeat, Infinity);
         action.play();
       }
-      mixer.setTime(sourceAnimationTime(0));
-      el.viewerStatus.textContent = `${clips.length} animation${clips.length === 1 ? "" : "s"}`;
+      setAnimationSourceFrame(loadedModel, sourceAnimationTime(0));
     }
 
     function syncAnimationToPreview() {
@@ -1780,7 +2230,7 @@
         if (!node.isMesh) return;
         const nodeName = (node.name || "").toLowerCase();
         const isRobotMesh = nodeName.includes("robot");
-        const isObjectMesh = nodeName.startsWith("object_") || nodeName.includes("object");
+        const isObjectMesh = isObjectMeshNode(node);
 
         materialList(node).forEach(material => {
           if (isRobotMesh && material?.color) {
@@ -1801,9 +2251,15 @@
     }
 
     async function loadViewer(embodiment, objectId, episode) {
+      if (!showInteractive3DFor(embodiment, objectId, episode)) {
+        showPreviewOnly(embodiment, objectId, episode);
+        return;
+      }
+
       const token = ++loadToken;
       const object = objectData(objectId);
       el.viewerTitle.textContent = `${labels[embodiment] || titleize(embodiment)} / ${object?.name || objectId} / sequence ${episodeTitleLabel(embodiment, objectId, episode)}`;
+      resetViewerZoomAuto();
       showInstantPreview(embodiment, objectId, episode, { restart: false });
       setLoadGlbButtonState("loading");
 
@@ -1846,13 +2302,16 @@
         loadedModel.updateMatrixWorld(true);
         scene.add(loadedModel);
         model = loadedModel;
-        frameObject(loadedModel, embodiment);
         playAnimations(gltf, loadedModel, animationTrimFor(embodiment, objectId, episode));
+        setAnimationSourceFrame(loadedModel, 0);
+        frameObject(loadedModel, embodiment, { updateAutoZoom: true });
+        setAnimationSourceFrame(loadedModel, sourceAnimationTime(0));
         syncAnimationToPreview();
         renderer.render(scene, camera);
         requestAnimationFrame(() => {
           if (token === loadToken) hideInstantPreview();
         });
+        el.viewerStatus.textContent = "Interactive 3D";
         setLoadGlbButtonState("loaded");
       } catch (error) {
         if (token === loadToken) {
@@ -1887,7 +2346,10 @@
           clipDuration: animationClipDuration,
           time: mixer?.time || 0,
           trim: animationTrim,
-          viewerReady
+          viewerReady,
+          viewerObjectCenterY,
+          viewerAutoZoomScale,
+          viewerZoomScale
         };
       },
       viewerBox() {
@@ -1901,10 +2363,24 @@
       }
     };
 
-    el.search.addEventListener("input", event => {
-      const query = event.target.value.trim().toLowerCase();
-      filteredObjects = objects.filter(object => `${object.id} ${object.name}`.toLowerCase().includes(query));
+    el.search.addEventListener("input", () => {
+      applyGalleryFilters();
       renderGallery();
+    });
+    el.sort.addEventListener("change", () => {
+      applyGalleryFilters();
+      renderGallery();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "/" && document.activeElement !== el.search && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement?.tagName)) {
+        event.preventDefault();
+        el.search.focus();
+      } else if (event.key === "Escape" && document.activeElement === el.search) {
+        el.search.value = "";
+        applyGalleryFilters();
+        renderGallery();
+        el.search.blur();
+      }
     });
     el.objectMenuSearch.addEventListener("input", event => {
       detailObjectQuery = event.target.value;
@@ -1914,14 +2390,25 @@
     el.galleryNav.addEventListener("click", openGallery);
     el.loadGlbButton.addEventListener("click", () => {
       if (!currentObject || !currentEmbodiment || !currentEpisode) return;
-      loadViewer(currentEmbodiment, currentObject, currentEpisode);
+      if (el.loadGlbButton.dataset.action === "preview") {
+        showPreviewOnly(currentEmbodiment, currentObject, currentEpisode);
+      } else {
+        loadViewer(currentEmbodiment, currentObject, currentEpisode);
+      }
     });
+    el.resetViewButton.addEventListener("click", resetViewerView);
+
+    function markViewerGlobalError(error) {
+      if (el.loadGlbButton.dataset.action !== "loading") return;
+      el.viewerStatus.textContent = "Viewer error";
+      if (error) console.warn(error);
+    }
 
     window.addEventListener("error", event => {
-      if (viewerReady) el.viewerStatus.textContent = event.message ? "Viewer error" : "Viewer error";
+      markViewerGlobalError(event.error || event.message);
     });
-    window.addEventListener("unhandledrejection", () => {
-      if (viewerReady) el.viewerStatus.textContent = "Viewer error";
+    window.addEventListener("unhandledrejection", event => {
+      markViewerGlobalError(event.reason);
     });
   </script>
 </body>
