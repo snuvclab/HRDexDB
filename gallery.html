@@ -1141,15 +1141,15 @@
   <script>
     const CATALOG_URL = "https://huggingface.co/spaces/HRDexDB/HRDexDB-Visualizer/raw/main/assets/glb_catalog.json";
     const GLB_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-glb/resolve/main";
-    const GLB_TREE_API_BASE = "https://huggingface.co/api/datasets/HRDexDB/HRDexDB-glb/tree/main";
     const DATASET_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB/resolve/main";
     const PREVIEW_VIDEO_BASE = "https://huggingface.co/datasets/HRDexDB/HRDexDB-preview-video/resolve/main";
     const PREVIEW_CAMERA_ID = "23263780";
-    const HUMAN_FLOOR = {
-      position: [0, 0, 0.718],
-      rotationDegXYZ: [-14.4, -10.7, -8.1]
+    // Pepper Tuna's legacy GLBs use the original human capture rig, but its
+    // camera metadata is absent from the current dataset repository. This
+    // reference is from that same rig and supplies the missing calibration.
+    const LEGACY_CAMERA_METADATA_FALLBACKS = {
+      "human/pepper_tuna": { hand: "human", objId: "white_soap_dish", episode: 2 }
     };
-    const HUMAN_FLOOR_SAMPLE_COUNT = 5;
     const THUMB_BASE = "static/gallery-object-thumbs";
     const THUMB_FALLBACK_BASE = "https://willi19.github.io/object_processing/objects";
     const THUMB_VERSION = "object-processing-24";
@@ -1161,19 +1161,11 @@
     const GLTF_LOADER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
     const MESHOPT_DECODER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/libs/meshopt_decoder.module.js";
     const VISER_CITY_ENVIRONMENT_URL = "https://raw.githubusercontent.com/nerfstudio-project/viser/main/src/viser/client/src/assets/potsdamer_platz_1k.jpg";
-    const ADDITIONAL_GLB_CATALOG_TREES = [
-      {
-        embodiment: "inspire_dftp",
-        url: `${GLB_TREE_API_BASE}/inspire_dftp?recursive=true&expand=false`
-      }
-    ];
-
     const CAMERA_PRESETS = {
       default: { focus: [-0.07, -0.10, -0.02], viewDirection: [0, 0.36, -1.04] },
       human: { focus: [0, 0.08, -0.17], viewDirection: [0, 0.52, -1.51] },
       allegro_v5: { focus: [0.04, -0.15, -0.01], viewDirection: [0, 0.56, -1.37] },
-      inspire_f1: { focus: [0.05, -0.14, -0.07], viewDirection: [0, 0.36, -0.8] },
-      inspire_dftp: { focus: [0.05, -0.14, -0.07], viewDirection: [0, 0.36, -0.8] }
+      inspire_f1: { focus: [0.05, -0.14, -0.07], viewDirection: [0, 0.36, -0.8] }
     };
     const CAMERA_DISTANCE_SCALE = 0.3;
     const CAMERA_FOV = 45;
@@ -1187,18 +1179,18 @@
     const labels = {
       human: "Human",
       allegro_v5: "Allegro V5",
-      inspire_f1: "Inspire F1",
-      inspire_dftp: "Inspire DFTP"
+      inspire_f1: "Inspire F1"
     };
     const shortLabels = {
       human: "Human",
       allegro_v5: "Allegro",
-      inspire_f1: "Inspire",
-      inspire_dftp: "DFTP"
+      inspire_f1: "Inspire F1",
+      inspire_dftp: "Inspire DFTP"
     };
+    const DATASET_EMBODIMENTS = new Set(["human", "allegro_v5", "inspire_f1", "inspire_dftp"]);
     const embodimentOrder = ["human", "allegro_v5", "inspire_f1", "inspire_dftp"];
     const robotEmbodiments = new Set(["allegro_v5", "inspire_f1", "inspire_dftp"]);
-    const HIDDEN_OBJECT_IDS = new Set(["apple"]);
+    const HIDDEN_OBJECT_IDS = new Set(["apple", "metal_measuring_flask"]);
 
     const state = {
       catalog: {},
@@ -1220,7 +1212,7 @@
       downloadMenuOpen: false,
       versionMenuOpen: false,
       downloadMode: "full",
-      openSelector: null,
+      openSelectors: { object: false, pose: false },
       autoScrollRail: null,
       autoScrollFrame: null,
       autoScrollVelocity: 0
@@ -1247,6 +1239,7 @@
       currentSrc: "",
       currentHand: "",
       loadToken: 0,
+      fetchAbortController: null,
       frame: null,
       resizeObserver: null,
       syncEventsBound: false,
@@ -1254,8 +1247,7 @@
       cameraCalibration: null,
       zoomScale: DEFAULT_VIEW_ZOOM_SCALE,
       autoZoomScale: DEFAULT_VIEW_ZOOM_SCALE,
-      objectCenterY: null,
-      humanFloorZ: null
+      objectCenterY: null
     };
 
     const els = {};
@@ -1307,18 +1299,27 @@
 
     Promise.all([
       optionalJson(CATALOG_URL, null),
-      loadAdditionalGlbCatalogs(),
       optionalJson(EPISODE_THUMBNAILS_URL, { thumbnails: {} }),
       optionalJson(GRASP_RESULT_MANIFEST_URL, { results: {} }),
       optionalJson(INTERACTIVE_3D_VISIBILITY_URL, { interactive3D: {} })
-    ]).then(([catalog, additionalCatalogs, thumbnailManifest, resultManifest, visibilityManifest]) => {
+    ]).then(([catalog, thumbnailManifest, resultManifest, visibilityManifest]) => {
       state.episodeThumbnails = thumbnailManifest?.thumbnails || {};
       state.graspResults = resultManifest?.results || {};
       state.interactive3DVisibility = visibilityManifest?.interactive3D || {};
-      state.catalog = hasCatalogData(catalog)
-        ? catalog
-        : catalogFromManifestKeys(state.episodeThumbnails, state.graspResults, state.interactive3DVisibility);
-      mergeCatalogs(state.catalog, additionalCatalogs);
+      const fallbackCatalog = catalogFromManifestKeys(
+        state.episodeThumbnails,
+        state.graspResults,
+        state.interactive3DVisibility
+      );
+      const rawCatalog = hasCatalogData(catalog)
+        ? {
+          ...catalog,
+          // The remote catalog predates Inspire DFTP. Merge its episodes from
+          // the local result manifest without altering the other catalog rows.
+          inspire_dftp: mergeEmbodimentCatalogs(catalog.inspire_dftp, fallbackCatalog.inspire_dftp)
+        }
+        : fallbackCatalog;
+      state.catalog = datasetCatalogOnly(rawCatalog);
       state.episodes = flattenEpisodes();
       fillFilters();
       renderSummary();
@@ -1344,47 +1345,24 @@
       }
     }
 
-    async function loadAdditionalGlbCatalogs() {
-      const catalogPromises = ADDITIONAL_GLB_CATALOG_TREES.map(async source => {
-        try {
-          const response = await fetch(source.url, { cache: "no-cache" });
-          if (!response.ok) throw new Error(`Catalog tree request failed (${response.status})`);
-          return catalogFromTree(source.embodiment, await response.json());
-        } catch (error) {
-          console.warn(`Could not load ${source.embodiment} catalog tree`, error);
-          return null;
-        }
-      });
-      return Promise.all(catalogPromises);
+    function datasetCatalogOnly(catalog) {
+      return Object.fromEntries(Object.entries(catalog || {})
+        .filter(([hand]) => DATASET_EMBODIMENTS.has(hand)));
     }
 
-    function catalogFromTree(embodiment, treeItems) {
-      const catalog = {};
-      (Array.isArray(treeItems) ? treeItems : []).forEach(item => {
-        if (item?.type !== "file" || typeof item.path !== "string") return;
-        const parts = item.path.split("/");
-        if (parts.length !== 3 || parts[0] !== embodiment || !parts[2].endsWith(".glb")) return;
-        const objectId = parts[1];
-        const episode = parts[2].replace(/\.glb$/i, "");
-        addCatalogKey(catalog, sequenceKey(embodiment, objectId, episode));
-      });
-      return catalog;
-    }
-
-    function mergeCatalogs(target, catalogsToMerge) {
-      (catalogsToMerge || []).forEach(source => {
-        if (!source || typeof source !== "object") return;
-        Object.entries(source).forEach(([hand, objects]) => {
-          target[hand] ||= {};
-          Object.entries(objects || {}).forEach(([objectId, episodes]) => {
-            target[hand][objectId] ||= [];
-            target[hand][objectId] = [...new Set([
-              ...target[hand][objectId].map(String),
-              ...(Array.isArray(episodes) ? episodes : Object.keys(episodes || {})).map(String)
-            ])].sort(compareEpisodeIds);
-          });
+    function mergeEmbodimentCatalogs(...catalogs) {
+      const merged = {};
+      catalogs.forEach(catalog => {
+        Object.entries(catalog || {}).forEach(([objId, sequences]) => {
+          const values = Array.isArray(sequences) ? sequences : Object.keys(sequences || {});
+          merged[objId] ||= [];
+          merged[objId].push(...values.map(String));
         });
       });
+      Object.keys(merged).forEach(objId => {
+        merged[objId] = [...new Set(merged[objId])].sort(compareEpisodeIds);
+      });
+      return merged;
     }
 
     function compareEpisodeIds(a, b) {
@@ -1459,37 +1437,13 @@
       });
 
       ["object", "pose"].forEach(name => {
-        const row = els[`${name}-selector`];
         const rail = els[`${name}-strip`];
         const header = els[`${name}-header`];
         attachRailAutoScroll(rail);
 
         header.addEventListener("click", () => {
-          state.openSelector = state.openSelector === name ? null : name;
+          state.openSelectors[name] = !state.openSelectors[name];
           updateSelectorOpenState();
-        });
-        row.addEventListener("pointerenter", () => {
-          state.openSelector = name;
-          updateSelectorOpenState();
-        });
-        row.addEventListener("pointerleave", () => {
-          stopRailAutoScroll();
-          state.openSelector = null;
-          updateSelectorOpenState();
-        });
-        row.addEventListener("focusin", () => {
-          state.openSelector = name;
-          updateSelectorOpenState();
-        });
-        row.addEventListener("focusout", () => {
-          requestAnimationFrame(() => {
-            if (row.matches(":hover") || row.contains(document.activeElement)) return;
-            stopRailAutoScroll();
-            if (state.openSelector === name) {
-              state.openSelector = null;
-              updateSelectorOpenState();
-            }
-          });
         });
       });
     }
@@ -1601,6 +1555,10 @@
           sequences.forEach(rawEpisode => {
             const episode = String(rawEpisode);
             const result = graspResultFor(hand, objId, episode);
+            if (hand !== "human" && (
+              typeof result?.graspSuccess !== "boolean" ||
+              !hasHumanEpisode(objId)
+            )) return;
             const outcome = outcomeFor(hand, result);
             episodes.push({
               key: sequenceKey(hand, objId, episode, "|"),
@@ -1637,7 +1595,7 @@
       }
 
       const open = (params.get("selector") || params.get("open") || "").toLowerCase();
-      if (["object", "pose", "view"].includes(open)) state.openSelector = open;
+      if (["object", "pose"].includes(open)) state.openSelectors[open] = true;
 
       const requestedObject = params.get("object");
       const requestedHand = params.get("hand") || params.get("embodiment");
@@ -1683,11 +1641,12 @@
     }
 
     function renderSummary() {
-      const objects = new Set(state.episodes.map(ep => ep.objId)).size;
-      const humans = state.episodes.filter(ep => ep.hand === "human").length;
-      const robots = state.episodes.filter(ep => robotEmbodiments.has(ep.hand)).length;
+      const episodes = filteredEpisodes();
+      const objects = new Set(episodes.map(ep => ep.objId)).size;
+      const humans = episodes.filter(ep => ep.hand === "human").length;
+      const robots = episodes.filter(ep => robotEmbodiments.has(ep.hand)).length;
       els["summary-pills"].innerHTML = [
-        `<span class="chip accent">${state.episodes.length.toLocaleString()} sequences</span>`,
+        `<span class="chip accent">${episodes.length.toLocaleString()} sequences</span>`,
         `<span class="chip">${objects} objects</span>`,
         `<span class="chip info">${humans} human</span>`,
         `<span class="chip">${robots} robot</span>`
@@ -1704,6 +1663,7 @@
 
     function renderAll() {
       ensureCurrentEpisodeSelection();
+      renderSummary();
       renderMainPanel();
       renderSelectorRows();
       writeStateUrl();
@@ -1740,6 +1700,7 @@
       const current = visible.find(ep => ep.key === state.currentKey);
       if (!current) {
         const next = defaultEpisodeFrom(visible);
+        resetViewForSequenceChange(next);
         state.currentKey = next.key;
         state.currentCamera = next.cameras[0] || null;
         state.mediaRequested = Boolean(state.currentCamera);
@@ -1750,6 +1711,12 @@
         state.currentCamera = current.cameras[0] || null;
       }
       state.mediaRequested = Boolean(state.currentCamera);
+    }
+
+    function resetViewForSequenceChange(next) {
+      if (!next || state.currentKey === next.key) return;
+      state.currentViewCamera = PREVIEW_CAMERA_ID;
+      state.requestedViewCamera = null;
     }
 
     function defaultEpisodeFrom(episodes) {
@@ -1855,21 +1822,42 @@
     async function loadDatasetCameraViews(ep) {
       const cacheKey = ep.pathKey;
       if (state.datasetCameraLoads[cacheKey]) return state.datasetCameraLoads[cacheKey];
+      const fallback = LEGACY_CAMERA_METADATA_FALLBACKS[`${ep.hand}/${ep.objId}`] || null;
 
       const loadJson = (url, label) => fetch(url).then(response => {
         if (!response.ok) throw new Error(`${label} request failed (${response.status})`);
         return response.json();
       });
+      const withFallback = (loadPrimary, loadReference, label) => loadPrimary().catch(error => {
+        if (!fallback) throw error;
+        console.warn(`${label} is unavailable for ${cacheKey}; using legacy rig calibration.`, error);
+        return loadReference();
+      });
+      const extrinsics = withFallback(
+        () => loadJson(datasetExtrinsicsUrl(ep), "Camera extrinsics"),
+        () => loadJson(datasetExtrinsicsUrl(fallback), "Legacy camera extrinsics"),
+        "Camera extrinsics"
+      );
+      const intrinsics = withFallback(
+        () => loadJson(datasetIntrinsicsUrl(ep), "Camera intrinsics"),
+        () => loadJson(datasetIntrinsicsUrl(fallback), "Legacy camera intrinsics"),
+        "Camera intrinsics"
+      ).catch(error => {
+        console.warn("Could not load dataset camera intrinsics", error);
+        return null;
+      });
+      const c2r = withFallback(
+        () => fetchNpyMatrix(datasetC2RUrl(ep), "C2R"),
+        () => fetchNpyMatrix(datasetC2RUrl(fallback), "Legacy C2R"),
+        "C2R"
+      ).catch(error => {
+        console.warn("Could not load C2R", error);
+        return null;
+      });
       state.datasetCameraLoads[cacheKey] = Promise.all([
-        loadJson(datasetExtrinsicsUrl(ep), "Camera extrinsics"),
-        loadJson(datasetIntrinsicsUrl(ep), "Camera intrinsics").catch(error => {
-          console.warn("Could not load dataset camera intrinsics", error);
-          return null;
-        }),
-        fetchNpyMatrix(datasetC2RUrl(ep), "C2R").catch(error => {
-          console.warn("Could not load C2R", error);
-          return null;
-        })
+        extrinsics,
+        intrinsics,
+        c2r
       ])
         .then(([extrinsics, intrinsics, c2r]) => {
           state.datasetCameraExtrinsics[cacheKey] = extrinsics && typeof extrinsics === "object" ? extrinsics : null;
@@ -1903,7 +1891,7 @@
 
     function updateSelectorOpenState() {
       ["object", "pose"].forEach(name => {
-        const open = state.openSelector === name;
+        const open = state.openSelectors[name];
         els[`${name}-selector`].classList.toggle("open", open);
         els[`${name}-header`].setAttribute("aria-expanded", String(open));
       });
@@ -1958,6 +1946,7 @@
           const next = matchingObjectEpisode(btn.dataset.object) ||
             state.episodes.find(ep => ep.objId === btn.dataset.object);
           if (!next) return;
+          resetViewForSequenceChange(next);
           state.currentKey = next.key;
           state.currentCamera = next.cameras[0] || null;
           state.mediaRequested = true;
@@ -1999,8 +1988,10 @@
 
       els["pose-strip"].querySelectorAll(".pose-tile").forEach(btn => {
         bindTileActivation(btn, () => {
-          state.currentKey = btn.dataset.key;
-          const next = currentEpisode();
+          const next = state.episodes.find(ep => ep.key === btn.dataset.key);
+          if (!next) return;
+          resetViewForSequenceChange(next);
+          state.currentKey = next.key;
           state.currentCamera = next?.cameras?.[0] || null;
           state.mediaRequested = true;
           renderAll();
@@ -2065,6 +2056,12 @@
     }
 
     async function showInteractive3D(src, ep) {
+      // Reuse the in-flight request when rendering the same selected target.
+      if (viewer3d.currentSrc === src && viewer3d.fetchAbortController) return;
+      if (viewer3d.fetchAbortController && viewer3d.currentSrc !== src) {
+        viewer3d.fetchAbortController?.abort();
+        viewer3d.fetchAbortController = null;
+      }
       const token = ++viewer3d.loadToken;
       els["interactive-3d-viewer"].style.display = "block";
       els["camera-view-menu"].hidden = true;
@@ -2081,7 +2078,11 @@
     }
 
     function hideInteractive3D({ clear = false } = {}) {
-      if (clear) viewer3d.loadToken += 1;
+      if (clear) {
+        viewer3d.loadToken += 1;
+        viewer3d.fetchAbortController?.abort();
+        viewer3d.fetchAbortController = null;
+      }
       els["interactive-3d-viewer"].style.display = "none";
       viewer3d.playing = false;
       updateInteractivePlayButton();
@@ -2131,8 +2132,7 @@
         viewer3d.renderer.outputColorSpace = viewer3d.THREE.SRGBColorSpace;
         viewer3d.renderer.toneMapping = viewer3d.THREE.ACESFilmicToneMapping;
         viewer3d.renderer.toneMappingExposure = 0.95;
-        viewer3d.renderer.shadowMap.enabled = true;
-        viewer3d.renderer.shadowMap.type = viewer3d.THREE.PCFSoftShadowMap;
+        viewer3d.renderer.shadowMap.enabled = false;
         els["interactive-3d-canvas"].appendChild(viewer3d.renderer.domElement);
 
         viewer3d.controls = new viewer3d.OrbitControls(viewer3d.camera, viewer3d.renderer.domElement);
@@ -2145,16 +2145,15 @@
 
         const keyLight = new viewer3d.THREE.DirectionalLight(0xffffff, 3);
         keyLight.position.set(-0.2, 1, -0.2);
-        keyLight.castShadow = true;
-        keyLight.shadow.mapSize.set(1024, 1024);
-        keyLight.shadow.bias = -0.00001;
-        keyLight.shadow.camera.near = 0.0001;
-        keyLight.shadow.camera.far = 2000;
+        keyLight.castShadow = false;
         viewer3d.scene.add(keyLight);
         viewer3d.scene.add(keyLight.target);
         const fillLight = new viewer3d.THREE.DirectionalLight(0xffffff, 0.4);
         fillLight.position.set(0, -1, 0);
         viewer3d.scene.add(fillLight);
+        // Match the Viser animation viewer's uniform ambient fill. This is
+        // direction-independent, so textured vertical surfaces stay visible.
+        viewer3d.scene.add(new viewer3d.THREE.AmbientLight(0xffffff, 0.5));
         viewer3d.grid = new viewer3d.THREE.GridHelper(2, 20, 0x7a8795, 0xb2bac2);
         viewer3d.grid.material.transparent = true;
         viewer3d.grid.material.opacity = 0.58;
@@ -2250,9 +2249,19 @@
       loader.setCrossOrigin("anonymous");
       if (viewer3d.MeshoptDecoder) loader.setMeshoptDecoder(viewer3d.MeshoptDecoder);
 
-      const glbBuffer = await fetchArrayBufferWithProgress(src, progress => {
-        setInteractive3DStatus("Loading animated GLB...", `${progress.toFixed(0)}%`);
-      });
+      const fetchAbortController = new AbortController();
+      viewer3d.fetchAbortController = fetchAbortController;
+      let glbBuffer;
+      try {
+        glbBuffer = await fetchArrayBufferWithProgress(src, progress => {
+          if (token !== viewer3d.loadToken) return;
+          setInteractive3DStatus("Loading animated GLB...", `${progress.toFixed(0)}%`);
+        }, fetchAbortController.signal);
+      } finally {
+        if (viewer3d.fetchAbortController === fetchAbortController) {
+          viewer3d.fetchAbortController = null;
+        }
+      }
       const gltf = await new Promise((resolve, reject) => {
         loader.parse(glbBuffer, src.replace(/[^/]*$/, ""), resolve, reject);
       });
@@ -2263,10 +2272,12 @@
       }
 
       const loadedModel = gltf.scene;
+      // Every published GLB carries its own floor_grid. Keep that embedded
+      // floor as the single floor source and exclude it from framing bounds.
       loadedModel.traverse(node => {
         if (!node.isMesh) return;
-        node.castShadow = true;
-        node.receiveShadow = true;
+        node.castShadow = false;
+        node.receiveShadow = false;
       });
       loadedModel.rotation.set(-Math.PI / 2, 0, 0);
       loadedModel.updateMatrixWorld(true);
@@ -2274,9 +2285,6 @@
       viewer3d.assetRoot.add(viewer3d.model);
       playAnimations(gltf, ep);
       setInteractive3DTime(0, { render: false });
-      viewer3d.humanFloorZ = ep.hand === "human"
-        ? sampleHumanFloorZ(loadedModel)
-        : null;
       frameInteractiveModel(loadedModel, ep.hand, { updateAutoZoom: true });
       applyDatasetCameraView(ep, state.currentViewCamera);
       syncInteractive3DToVideo({ force: true, render: false });
@@ -2285,8 +2293,8 @@
       updateCameraViewSelect(ep);
     }
 
-    async function fetchArrayBufferWithProgress(url, onProgress) {
-      const response = await fetch(url);
+    async function fetchArrayBufferWithProgress(url, onProgress, signal) {
+      const response = await fetch(url, { signal });
       if (!response.ok) throw new Error(`GLB request failed (${response.status})`);
 
       const total = Number(response.headers.get("content-length")) || 0;
@@ -2336,7 +2344,6 @@
       viewer3d.duration = 0;
       viewer3d.clipDuration = 0;
       viewer3d.currentSrc = "";
-      viewer3d.humanFloorZ = null;
       els["camera-view-menu"].hidden = true;
       els["interactive-3d-scrub"].value = "0";
       els["interactive-3d-readout"].textContent = "0.00s";
@@ -2386,7 +2393,7 @@
 
     function frameInteractiveModel(object, embodiment, options = {}) {
       const THREE = viewer3d.THREE;
-      const box = new THREE.Box3().setFromObject(object);
+      const box = boundsExcludingFloorGrid(object);
       const size = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
       const objectCenter = objectMeshMeanCenter(object);
@@ -2418,6 +2425,20 @@
       resizeInteractive3D();
     }
 
+    function boundsExcludingFloorGrid(object) {
+      const THREE = viewer3d.THREE;
+      const bounds = new THREE.Box3();
+      const meshBounds = new THREE.Box3();
+      object.updateMatrixWorld(true);
+      object.traverse(node => {
+        if (!node.isMesh || (node.name || "").toLowerCase() === "floor_grid" || !node.geometry) return;
+        if (!node.geometry.boundingBox) node.geometry.computeBoundingBox();
+        meshBounds.copy(node.geometry.boundingBox).applyMatrix4(node.matrixWorld);
+        bounds.union(meshBounds);
+      });
+      return bounds.isEmpty() ? new THREE.Box3().setFromObject(object) : bounds;
+    }
+
     function applyDatasetCameraView(ep, cameraId) {
       const THREE = viewer3d.THREE;
       const rows = ep && cameraId ? state.datasetCameraExtrinsics[ep.pathKey]?.[cameraId] : null;
@@ -2432,11 +2453,15 @@
       const cvToThreeCamera = new THREE.Matrix4().makeRotationX(Math.PI);
       viewer3d.model.updateMatrixWorld(true);
       const coordinateFix = findDatasetCoordinateRoot(viewer3d.model);
-      const c2r = robotEmbodiments.has(ep.hand)
+      // v2 human GLBs already contain the C2R conversion. Applying it again
+      // would shift every non-legacy human camera view. Legacy human GLBs do
+      // not have a coordinate_fix_* root, so only they need inverse(C2R).
+      // Robot GLBs retain the original camera conversion path.
+      const needsC2R = robotEmbodiments.has(ep.hand) || !coordinateFix;
+      const c2r = needsC2R
         ? matrixFromValues(state.datasetCameraC2R[ep.pathKey])
         : new THREE.Matrix4();
-      // C2R maps robot coordinates into the dataset/world frame. Convert the
-      // dataset camera pose back into robot coordinates before placing it in GLB space.
+      // Convert only coordinate frames which are not already baked into the GLB.
       const cameraWorld = (coordinateFix?.matrixWorld || viewer3d.model.matrixWorld).clone()
         .multiply(c2r.invert())
         .multiply(cameraToWorld)
@@ -2481,31 +2506,10 @@
 
     function updateDatasetFloorGrid(model) {
       const grid = viewer3d.grid;
-      const THREE = viewer3d.THREE;
-      if (!grid || !THREE || !model) return;
-      model.updateMatrixWorld(true);
-      const coordinateFix = findDatasetCoordinateRoot(model);
-      const ep = currentEpisode();
-      const humanFloorZ = Number.isFinite(viewer3d.humanFloorZ)
-        ? viewer3d.humanFloorZ
-        : HUMAN_FLOOR.position[2];
-      const humanFloorTransform = ep?.hand === "human"
-        ? new THREE.Matrix4().compose(
-          new THREE.Vector3(HUMAN_FLOOR.position[0], HUMAN_FLOOR.position[1], humanFloorZ),
-          new THREE.Quaternion().setFromEuler(new THREE.Euler(
-            ...HUMAN_FLOOR.rotationDegXYZ.map(THREE.MathUtils.degToRad),
-            "XYZ"
-          )),
-          new THREE.Vector3(1, 1, 1)
-        )
-        : new THREE.Matrix4();
-      const floorWorld = (coordinateFix?.matrixWorld || model.matrixWorld).clone()
-        .multiply(humanFloorTransform)
-        .multiply(new THREE.Matrix4().makeRotationX(Math.PI / 2));
-      const gridScale = new THREE.Vector3();
-      floorWorld.decompose(grid.position, grid.quaternion, gridScale);
-      grid.scale.copy(gridScale).multiplyScalar(1.5);
-      grid.visible = true;
+      if (!grid || !model) return;
+      // The dataset floor is serialized in the GLB; never render a second
+      // Three.js GridHelper floor on top of it.
+      grid.visible = false;
     }
 
     async function fetchNpyMatrix(url, label) {
@@ -2589,51 +2593,6 @@
       });
 
       return count ? center.multiplyScalar(1 / count) : null;
-    }
-
-    function sampleHumanFloorZ(object) {
-      const THREE = viewer3d.THREE;
-      if (!THREE || !object) return null;
-
-      const initialTime = currentAnimationTime();
-      const sampleDuration = Math.min(viewer3d.duration || 0, 4 / 30);
-      const sampleTimes = Array.from({ length: HUMAN_FLOOR_SAMPLE_COUNT }, (_, index) =>
-        HUMAN_FLOOR_SAMPLE_COUNT === 1 ? 0 : sampleDuration * index / (HUMAN_FLOOR_SAMPLE_COUNT - 1)
-      );
-      const floorRotation = new THREE.Quaternion().setFromEuler(new THREE.Euler(
-        ...HUMAN_FLOOR.rotationDegXYZ.map(THREE.MathUtils.degToRad),
-        "XYZ"
-      ));
-      // The Human GLB's floor-control z axis is opposite the mesh's z axis.
-      const floorNormal = new THREE.Vector3(0, 0, -1).applyQuaternion(floorRotation);
-      let minimumFloorProjection = Infinity;
-
-      sampleTimes.forEach(time => {
-        viewer3d.mixer?.setTime(time);
-        object.updateMatrixWorld(true);
-        const coordinateRoot = findDatasetCoordinateRoot(object);
-        const worldToCoordinate = (coordinateRoot?.matrixWorld || object.matrixWorld).clone().invert();
-        const vertex = new THREE.Vector3();
-
-        object.traverse(node => {
-          if (!isObjectMeshNode(node) || !node.geometry) return;
-          const position = node.geometry.getAttribute("position");
-          if (!position) return;
-
-          for (let index = 0; index < position.count; index += 1) {
-            vertex.fromBufferAttribute(position, index);
-            if (node.isSkinnedMesh && typeof node.boneTransform === "function") node.boneTransform(index, vertex);
-            vertex.applyMatrix4(node.matrixWorld).applyMatrix4(worldToCoordinate);
-            minimumFloorProjection = Math.min(minimumFloorProjection, floorNormal.dot(vertex));
-          }
-        });
-      });
-
-      viewer3d.mixer?.setTime(initialTime);
-      object.updateMatrixWorld(true);
-      if (!Number.isFinite(minimumFloorProjection) || Math.abs(floorNormal.z) < 1e-6) return null;
-      return (minimumFloorProjection - floorNormal.x * HUMAN_FLOOR.position[0] -
-        floorNormal.y * HUMAN_FLOOR.position[1]) / floorNormal.z;
     }
 
     function setAutoZoomFromObjectCenter(objectCenter) {
@@ -2981,6 +2940,12 @@
 
     function graspResultFor(hand, objId, episode) {
       return state.graspResults[sequenceKey(hand, objId, episode)] || null;
+    }
+
+    function hasHumanEpisode(objId) {
+      const sequences = state.catalog.human?.[objId];
+      const values = Array.isArray(sequences) ? sequences : Object.keys(sequences || {});
+      return values.length > 0;
     }
 
     function poseLabel(hand, objId, episode) {

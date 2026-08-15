@@ -668,7 +668,7 @@
     "human/lilac_food_container/2": true,
     "human/lilac_food_container/3": true,
     "human/lilac_food_container/4": true,
-    "human/lotion/0": true,
+    "human/lotion/0": false,
     "human/lotion/1": true,
     "human/lotion/2": true,
     "human/lotion/3": true,
