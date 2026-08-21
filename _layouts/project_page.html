@@ -50,6 +50,7 @@
       <a class="site-nav-link" href="#abstract">Abstract</a>
       <a class="site-nav-link" href="#dataset">Overview</a>
       <a class="site-nav-link" href="#full-video">Video</a>
+      <a class="site-nav-link" href="{{ '/gallery-index.html' | relative_url }}">Gallery</a>
       <a class="site-nav-link" href="#contact">Contact</a>
       <a class="site-nav-link" href="#bibtex">BibTeX</a>
       {% if page.paper %}
@@ -156,7 +157,7 @@
               <!-- Dataset Visualizer Link. -->
               {% if page.dataset_visualizer %}
               <span class="link-block">
-                <a href="{{ page.dataset_visualizer }}"
+                <a href="{{ page.dataset_visualizer | relative_url }}"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-images"></i>
