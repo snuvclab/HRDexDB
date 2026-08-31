@@ -1149,8 +1149,8 @@
         </div>
 
         <div class="selector-stack" aria-label="Pose selector">
-          <section class="selector-row" id="pose-selector" data-selector="pose">
-            <button class="selector-row-header" id="pose-header" type="button" aria-expanded="false" aria-controls="pose-strip">
+          <section class="selector-row open" id="pose-selector" data-selector="pose">
+            <button class="selector-row-header" id="pose-header" type="button" aria-expanded="true" aria-controls="pose-strip">
               <span class="selector-row-label">Pose</span>
               <span class="selector-row-value" id="pose-value">-</span>
               <span class="selector-row-count" id="pose-count"></span>
@@ -1289,7 +1289,7 @@
       downloadMenuOpen: false,
       versionMenuOpen: false,
       downloadMode: "full",
-      openSelectors: { pose: false },
+      openSelectors: { pose: true },
       autoScrollRail: null,
       autoScrollFrame: null,
       autoScrollVelocity: 0
