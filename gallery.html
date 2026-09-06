@@ -879,6 +879,65 @@
       padding-bottom: 12px;
     }
 
+    .selector-row.open .pose-strip {
+      min-height: 0;
+      overflow: visible;
+      grid-auto-flow: row;
+      grid-auto-columns: auto;
+      gap: 14px;
+      padding-top: 10px;
+    }
+
+    .pose-embodiment-row {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .pose-embodiment-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 0 2px;
+    }
+
+    .pose-embodiment-name {
+      color: var(--text);
+      font-size: .78em;
+      font-weight: 850;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .pose-embodiment-count {
+      color: var(--text-muted);
+      font-size: .73em;
+      font-weight: 750;
+    }
+
+    .pose-embodiment-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(136px, 164px);
+      gap: 8px;
+      min-width: 0;
+      overflow-x: auto;
+      padding: 2px 2px 8px;
+      scrollbar-width: thin;
+    }
+
+    .pose-embodiment-rail .tile-body {
+      padding: 6px 8px 7px;
+    }
+
+    .pose-embodiment-rail .tile-title {
+      font-size: .78em;
+    }
+
+    .pose-embodiment-rail .chip {
+      font-size: .65em;
+    }
+
     .object-tile,
     .pose-tile,
     .view-tile {
@@ -1040,6 +1099,7 @@
 
       .selector-row-count { display: none; }
       .selector-rail { grid-auto-columns: minmax(164px, 78vw); padding-left: 12px; padding-right: 12px; }
+      .pose-embodiment-rail { grid-auto-columns: minmax(132px, 58vw); }
       .object-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-auto-rows: 150px;
@@ -1256,7 +1316,8 @@
     const labels = {
       human: "Human",
       allegro_v5: "Allegro V5",
-      inspire_f1: "Inspire F1"
+      inspire_f1: "Inspire F1",
+      inspire_dftp: "Inspire DFTP"
     };
     const shortLabels = {
       human: "Human",
@@ -1512,9 +1573,7 @@
       });
 
       ["pose"].forEach(name => {
-        const rail = els[`${name}-strip`];
         const header = els[`${name}-header`];
-        attachRailAutoScroll(rail);
 
         header.addEventListener("click", () => {
           state.openSelectors[name] = !state.openSelectors[name];
@@ -2043,22 +2102,40 @@
         return;
       }
 
-      const poseItems = filteredEpisodes()
+      const poseGroups = new Map();
+      filteredEpisodes()
         .filter(item => item.objId === ep.objId)
-        .slice(0, 72);
+        .forEach(item => {
+          const items = poseGroups.get(item.hand) || [];
+          items.push(item);
+          poseGroups.set(item.hand, items);
+        });
 
-      els["pose-count"].textContent = `${poseItems.length} pose candidates`;
-      els["pose-strip"].innerHTML = poseItems.map(item => {
-        const active = item.key === state.currentKey;
-        return `<button class="pose-tile ${active ? "active" : ""}" data-key="${escapeHtml(item.key)}">
-          <video src="${previewThumbnailUrl(item)}" muted loop playsinline preload="metadata"></video>
-          <div class="tile-body">
-            <div class="pose-title-row">
-              <div class="tile-title">${escapeHtml(item.rankLabel)}</div>
-              <span class="chip ${item.outcome === "success" ? "ok" : item.outcome === "fail" ? "warn" : "info"}">${escapeHtml(item.outcomeLabel)}</span>
-            </div>
+      const hands = orderedEmbodiments([...poseGroups.keys()]);
+      const poseCount = hands.reduce((count, hand) => count + poseGroups.get(hand).length, 0);
+      const embodimentCount = hands.length;
+      els["pose-count"].textContent = `${poseCount} pose candidates · ${embodimentCount} ${embodimentCount === 1 ? "embodiment" : "embodiments"}`;
+      els["pose-strip"].innerHTML = hands.map(hand => {
+        const items = poseGroups.get(hand);
+        const handLabel = labels[hand] || shortLabels[hand] || labelForHand(hand);
+        return `<section class="pose-embodiment-row" aria-label="${escapeHtml(handLabel)} pose candidates">
+          <div class="pose-embodiment-heading">
+            <span class="pose-embodiment-name">${escapeHtml(handLabel)}</span>
+            <span class="pose-embodiment-count">${items.length} ${items.length === 1 ? "candidate" : "candidates"}</span>
           </div>
-        </button>`;
+          <div class="pose-embodiment-rail">${items.map(item => {
+            const active = item.key === state.currentKey;
+            return `<button class="pose-tile ${active ? "active" : ""}" data-key="${escapeHtml(item.key)}">
+              <video src="${previewThumbnailUrl(item)}" muted loop playsinline preload="metadata"></video>
+              <div class="tile-body">
+                <div class="pose-title-row">
+                  <div class="tile-title">${escapeHtml(item.rankLabel)}</div>
+                  <span class="chip ${item.outcome === "success" ? "ok" : item.outcome === "fail" ? "warn" : "info"}">${escapeHtml(item.outcomeLabel)}</span>
+                </div>
+              </div>
+            </button>`;
+          }).join("")}</div>
+        </section>`;
       }).join("") || '<div class="empty-inline">No matching pose candidates.</div>';
 
       els["pose-strip"].querySelectorAll(".pose-tile").forEach(btn => {
@@ -2079,6 +2156,7 @@
           seekPoseThumbnailVideo(item, vid);
         });
       });
+      els["pose-strip"].querySelectorAll(".pose-embodiment-rail").forEach(attachRailAutoScroll);
       bindPoseThumbnailTimes();
     }
 
