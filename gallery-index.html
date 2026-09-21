@@ -322,18 +322,24 @@
 
       <div class="landing-cards" aria-label="HRDexDB dataset statistics">
         <div class="landing-card">
-          <div class="card-count" id="object-count" aria-live="polite">98</div>
+          <div class="card-count" id="object-count" aria-live="polite">102</div>
           <h2>Objects</h2>
         </div>
         <div class="landing-card">
-          <div class="card-count" id="sequence-count" aria-live="polite">2,088</div>
+          <div class="card-count" id="sequence-count" aria-live="polite">2,648</div>
           <h2>Sequences</h2>
         </div>
       </div>
     </div>
   </header>
   <script>
+    const CATALOG_URL = "https://huggingface.co/spaces/HRDexDB/HRDexDB-Visualizer/raw/main/assets/glb_catalog.json";
     const EPISODE_THUMBNAILS_URL = "static/gallery-episode-thumbnails.json";
+    const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
+    const INTERACTIVE_3D_VISIBILITY_URL = "static/gallery-interactive-3d-visibility.json";
+    const LOCAL_GLB_CATALOG_URL = "static/gallery-glb-catalog.json";
+    const DATASET_EMBODIMENTS = new Set(["human", "allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"]);
+    const HIDDEN_OBJECT_IDS = new Set(["apple", "metal_measuring_flask"]);
 
     initSequenceCount();
 
@@ -343,24 +349,112 @@
       if (!objectCount || !sequenceCount) return;
 
       try {
-        const response = await fetch(EPISODE_THUMBNAILS_URL, { cache: "no-cache" });
-        if (!response.ok) throw new Error(`Thumbnail manifest request failed: ${response.status}`);
-        const manifest = await response.json();
-        const keys = Object.keys(manifest?.thumbnails || {});
-        objectCount.textContent = countObjects(keys).toLocaleString("en-US");
-        sequenceCount.textContent = keys.length.toLocaleString("en-US");
+        const [catalog, thumbnailManifest, resultManifest, visibilityManifest, localGlbCatalog] = await Promise.all([
+          optionalJson(CATALOG_URL, null),
+          optionalJson(EPISODE_THUMBNAILS_URL, { thumbnails: {} }),
+          optionalJson(GRASP_RESULT_MANIFEST_URL, { results: {} }),
+          optionalJson(INTERACTIVE_3D_VISIBILITY_URL, { interactive3D: {} }),
+          optionalJson(LOCAL_GLB_CATALOG_URL, {})
+        ]);
+        const graspResults = resultManifest?.results || {};
+        const fallbackCatalog = catalogFromManifestKeys(
+          thumbnailManifest?.thumbnails,
+          graspResults,
+          visibilityManifest?.interactive3D
+        );
+        const catalogBase = hasCatalogData(catalog) ? catalog : fallbackCatalog;
+        const mergedCatalog = datasetCatalogOnly({
+          ...catalogBase,
+          inspire_dftp: mergeEmbodimentCatalogs(
+            catalog?.inspire_dftp,
+            fallbackCatalog.inspire_dftp
+          ),
+          robotiq_2f85: mergeEmbodimentCatalogs(
+            catalog?.robotiq_2f85,
+            localGlbCatalog?.robotiq_2f85,
+            fallbackCatalog.robotiq_2f85
+          )
+        });
+        const counts = galleryCounts(mergedCatalog, graspResults);
+        objectCount.textContent = counts.objects.toLocaleString("en-US");
+        sequenceCount.textContent = counts.sequences.toLocaleString("en-US");
       } catch (error) {
         console.warn("Could not update gallery stats.", error);
       }
     }
 
-    function countObjects(keys) {
-      const objects = new Set();
-      for (const key of keys) {
-        const [, objectId] = String(key).split("/");
-        if (objectId) objects.add(objectId);
+    async function optionalJson(url, fallback) {
+      try {
+        const response = await fetch(url, { cache: "no-cache" });
+        return response.ok ? response.json() : fallback;
+      } catch (error) {
+        console.warn(error);
+        return fallback;
       }
-      return objects.size;
+    }
+
+    function hasCatalogData(catalog) {
+      return Boolean(catalog && typeof catalog === "object" && Object.keys(catalog).length);
+    }
+
+    function datasetCatalogOnly(catalog) {
+      return Object.fromEntries(Object.entries(catalog || {})
+        .filter(([hand]) => DATASET_EMBODIMENTS.has(hand)));
+    }
+
+    function mergeEmbodimentCatalogs(...catalogs) {
+      const merged = {};
+      catalogs.forEach(catalog => {
+        Object.entries(catalog || {}).forEach(([objectId, episodes]) => {
+          const values = Array.isArray(episodes) ? episodes : Object.keys(episodes || {});
+          merged[objectId] ||= [];
+          merged[objectId].push(...values.map(String));
+        });
+      });
+      Object.keys(merged).forEach(objectId => {
+        merged[objectId] = [...new Set(merged[objectId])];
+      });
+      return merged;
+    }
+
+    function catalogFromManifestKeys(...sources) {
+      const catalog = {};
+      sources.forEach(source => {
+        Object.keys(source || {}).forEach(key => {
+          const [hand, objectId, episode] = String(key).split("/");
+          if (!hand || !objectId || episode == null || episode === "") return;
+          catalog[hand] ||= {};
+          catalog[hand][objectId] ||= [];
+          catalog[hand][objectId].push(String(episode));
+        });
+      });
+      Object.values(catalog).forEach(objects => {
+        Object.keys(objects).forEach(objectId => {
+          objects[objectId] = [...new Set(objects[objectId])];
+        });
+      });
+      return catalog;
+    }
+
+    function galleryCounts(catalog, graspResults) {
+      const visibleObjects = new Set();
+      let sequences = 0;
+      Object.entries(catalog).forEach(([hand, objects]) => {
+        Object.entries(objects || {}).forEach(([objectId, episodes]) => {
+          if (HIDDEN_OBJECT_IDS.has(objectId)) return;
+          const values = Array.isArray(episodes) ? episodes : Object.keys(episodes || {});
+          values.forEach(rawEpisode => {
+            const episode = String(rawEpisode);
+            if (hand !== "human") {
+              const result = graspResults[`${hand}/${objectId}/${episode}`];
+              if (typeof result?.graspSuccess !== "boolean") return;
+            }
+            visibleObjects.add(objectId);
+            sequences += 1;
+          });
+        });
+      });
+      return { objects: visibleObjects.size, sequences };
     }
   </script>
 </body>

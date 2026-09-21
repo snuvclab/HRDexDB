@@ -1,10 +1,10 @@
 {
   "version": 1,
   "source": "HRDexDB/HRDexDB",
-  "generatedAt": "2026-07-05T11:27:20.688Z",
+  "generatedAt": "2026-09-21T06:53:12.300204Z",
   "startedAt": "2026-06-25T13:18:06.528Z",
-  "totalTargets": 1803,
-  "resultCount": 1798,
+  "totalTargets": 2272,
+  "resultCount": 2267,
   "missing": [
     {
       "key": "inspire_f1/baseball/2",
@@ -7217,6 +7217,1882 @@
       "humanPairedEpisode": null
     },
     "inspire_dftp/yellow_wash_tub/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/apple/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/apple/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/apple/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/apple/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/apple/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baby_beaker/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baby_beaker/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baby_beaker/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baby_beaker/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baby_beaker/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/balloon_whisk/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/balloon_whisk/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/balloon_whisk/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/balloon_whisk/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/balloon_whisk/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_basket/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/bamboo_box/9": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/banana/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/banana/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/banana/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/banana/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/banana/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baseball/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baseball/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baseball/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baseball/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/baseball/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/beige_brush/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/beige_brush/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/beige_brush/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/beige_brush/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/beige_brush/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_holder_with_handle/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_holder_with_handle/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_holder_with_handle/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_holder_with_handle/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_holder_with_handle/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_kitchen_roll_holder/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_kitchen_roll_holder/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_kitchen_roll_holder/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_kitchen_roll_holder/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/black_kitchen_roll_holder/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/blue_vase/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/blue_vase/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/blue_vase/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/blue_vase/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/blue_vase/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/book/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/book/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/book/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/book/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/book/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/box_pink/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/box_pink/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/box_pink/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/box_pink/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/box_pink/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brass_pot/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brass_pot/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brass_pot/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brass_pot/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brass_pot/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brown_ramen/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/brown_ramen/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus2/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus2/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus2/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus2/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus2/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus3/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/cactus3/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/ceramic_elephant_jug/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/circular_frying_pan/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/circular_frying_pan/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/circular_frying_pan/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/circular_frying_pan/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/circular_frying_pan/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clock/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clothes_hanger/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clothes_hanger/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clothes_hanger/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clothes_hanger/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/clothes_hanger/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/coffee_tin/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/coffee_tin/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/coffee_tin/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/coffee_tin/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/coffee_tin/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/9": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/colander_green/10": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/container_pink/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/container_pink/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/container_pink/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/container_pink/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/container_pink/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_oak/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_oak/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_oak/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_oak/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_oak/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_red/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_red/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_red/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_red/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frame_red/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/french_mustard/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/french_mustard/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/french_mustard/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/french_mustard/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/french_mustard/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_bowl/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_bowl/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_bowl/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_bowl/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_bowl/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/frog_cup/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_base/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_green/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_green/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_green/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_green/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/fruit_cutter_green/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_attached_container/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_attached_container/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_attached_container/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_attached_container/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_attached_container/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_cactus_vase/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_cactus_vase/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_cactus_vase/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_cactus_vase/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_cactus_vase/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_glass/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_glass/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_glass/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_glass/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_glass/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_soap_dispenser/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_soap_dispenser/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_soap_dispenser/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_soap_dispenser/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/green_soap_dispenser/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grey_pot/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grey_pot/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grey_pot/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grey_pot/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grey_pot/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grid_desktop_organizer/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grid_desktop_organizer/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grid_desktop_organizer/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grid_desktop_organizer/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/grid_desktop_organizer/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/hammer/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/hammer/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/hammer/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/hammer/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/hammer/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/icecream_scoop/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/icecream_scoop/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/icecream_scoop/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/icecream_scoop/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/icecream_scoop/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/jja_ramen/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/jja_ramen/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/jja_ramen/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/knife_sharpener/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/knife_sharpener/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/knife_sharpener/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/knife_sharpener/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/knife_sharpener/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/large_peg/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/large_peg/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/large_peg/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/large_peg/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/large_peg/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lemon_squeezer/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/light_green_basket/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/9": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/11": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/13": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/14": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lilac_food_container/15": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lotion/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lotion/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lotion/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lotion/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/lotion/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/meat_thermometer/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/meat_thermometer/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/meat_thermometer/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/meat_thermometer/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/meat_thermometer/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_measuring_flask/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_measuring_flask/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_measuring_flask/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_measuring_flask/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_measuring_flask/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_scoop_small/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_scoop_small/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_scoop_small/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_scoop_small/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/metal_scoop_small/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/mug_holder/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/mug_holder/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/mug_holder/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/mug_holder/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/mug_holder/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/orange/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/orange/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/orange/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/orange/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/orange/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/organizer_beige/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/organizer_beige/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/organizer_beige/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/organizer_beige/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_blue_cup/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_blue_cup/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_blue_cup/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_blue_cup/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_blue_cup/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_light_green_bowl/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_light_green_bowl/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_light_green_bowl/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_light_green_bowl/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pastel_light_green_bowl/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pepper_tuna/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pepper_tuna/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pepper_tuna/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pepper_tuna/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pepper_tuna/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pingpong/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pingpong/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pingpong/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pingpong/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pingpong/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pink_clock/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plant_pot/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plant_pot/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plant_pot/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plant_pot/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plant_pot/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plastic_elephant_jug/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plastic_elephant_jug/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plastic_elephant_jug/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plastic_elephant_jug/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/plastic_elephant_jug/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/potato_masher/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/potato_masher/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/potato_masher/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/potato_masher/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/potato_masher/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles_small/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles_small/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles_small/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles_small/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/pringles_small/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/rectangular_frying_pan/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/rectangular_frying_pan/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/rectangular_frying_pan/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/rectangular_frying_pan/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/rectangular_frying_pan/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/redcar/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/redcar/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/redcar/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/redcar/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/redcar/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/saucepan/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/saucepan/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/saucepan/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/saucepan/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/saucepan/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/scotch_tape/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/scotch_tape/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/scotch_tape/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/scotch_tape/9": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/scotch_tape/10": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/screwdriver/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/screwdriver/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/screwdriver/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/screwdriver/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/screwdriver/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/servingbowl_small/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/servingbowl_small/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/servingbowl_small/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/servingbowl_small/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/servingbowl_small/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/smallbowl/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/smallbowl/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/smallbowl/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/smallbowl/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/smallbowl/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spam_can/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spam_can/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spam_can/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spam_can/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spam_can/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spicemill/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spicemill/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spicemill/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spicemill/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spicemill/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/spray_bottle/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/standing_frame/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/standing_frame/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/standing_frame/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/standing_frame/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/standing_frame/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tea_case/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tea_case/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tea_case/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tea_case/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tea_case/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tennis_ball/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tennis_ball/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tennis_ball/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tennis_ball/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/tennis_ball/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/toothbrush_holder/10": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/washing_brush/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/washing_brush/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/washing_brush/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/washing_brush/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/washing_brush/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wateringcan/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wateringcan/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wateringcan/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wateringcan/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wateringcan/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_candle_holder/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_candle_holder/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_candle_holder/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_candle_holder/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_candle_holder/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_hand_shower/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_hand_shower/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_hand_shower/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_hand_shower/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_hand_shower/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_wood_handle_watering_can/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_wood_handle_watering_can/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_wood_handle_watering_can/13": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_wood_handle_watering_can/16": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/white_wood_handle_watering_can/22": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wipe/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wipe/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wipe/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wipe/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wipe/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_dish_rack/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_dish_rack/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_dish_rack/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_dish_rack/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_dish_rack/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_organizer/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_organizer/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_organizer/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_organizer/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/wood_organizer/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/7": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/8": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/10": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/work_lamp/11": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_funnel/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_funnel/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_funnel/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_funnel/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_funnel/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/0": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/1": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_plastic_glass/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/2": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/3": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/4": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/5": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/6": {
+      "graspSuccess": true,
+      "humanPairedEpisode": null
+    },
+    "robotiq_2f85/yellow_wash_tub/7": {
       "graspSuccess": true,
       "humanPairedEpisode": null
     }

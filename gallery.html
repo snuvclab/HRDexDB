@@ -1338,9 +1338,6 @@
     const DATASET_EMBODIMENTS = new Set(["human", "allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"]);
     const embodimentOrder = ["human", "allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"];
     const robotEmbodiments = new Set(["allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"]);
-    // Robotiq currently publishes GLBs and preview videos, but not the full
-    // raw episode tree used by the download and calibrated-camera controls.
-    const NO_RAW_DATASET_EMBODIMENTS = new Set(["robotiq_2f85"]);
     const HIDDEN_OBJECT_IDS = new Set(["apple", "metal_measuring_flask"]);
 
     const state = {
@@ -1707,10 +1704,7 @@
           sequences.forEach(rawEpisode => {
             const episode = String(rawEpisode);
             const result = graspResultFor(hand, objId, episode);
-            if (hand !== "human" && (
-              (!NO_RAW_DATASET_EMBODIMENTS.has(hand) && typeof result?.graspSuccess !== "boolean") ||
-              !hasHumanEpisode(objId)
-            )) return;
+            if (hand !== "human" && typeof result?.graspSuccess !== "boolean") return;
             const outcome = outcomeFor(hand, result);
             episodes.push({
               key: sequenceKey(hand, objId, episode, "|"),
@@ -1919,12 +1913,6 @@
         select.innerHTML = "";
         return;
       }
-      if (NO_RAW_DATASET_EMBODIMENTS.has(ep.hand)) {
-        select.disabled = true;
-        select.innerHTML = "";
-        return;
-      }
-
       const cacheKey = ep.pathKey;
       if (!Object.prototype.hasOwnProperty.call(state.datasetCameraExtrinsics, cacheKey)) {
         select.disabled = true;
@@ -2961,7 +2949,7 @@
       const button = els["copy-download-command"];
       const description = els["download-description"];
       if (!menu || !trigger || !input || !button || !description) return;
-      const downloadable = Boolean(ep && !NO_RAW_DATASET_EMBODIMENTS.has(ep.hand));
+      const downloadable = Boolean(ep);
       const command = downloadable ? episodeDownloadCommand(ep) : "";
       input.value = command;
       menu.setAttribute("aria-disabled", downloadable ? "false" : "true");
@@ -2983,7 +2971,7 @@
 
     function toggleDownloadMenu() {
       const ep = currentEpisode();
-      if (!ep || NO_RAW_DATASET_EMBODIMENTS.has(ep.hand)) return;
+      if (!ep) return;
       setVersionMenuOpen(false);
       setDownloadMenuOpen(!state.downloadMenuOpen);
     }
@@ -3132,12 +3120,6 @@
 
     function graspResultFor(hand, objId, episode) {
       return state.graspResults[sequenceKey(hand, objId, episode)] || null;
-    }
-
-    function hasHumanEpisode(objId) {
-      const sequences = state.catalog.human?.[objId];
-      const values = Array.isArray(sequences) ? sequences : Object.keys(sequences || {});
-      return values.length > 0;
     }
 
     function poseLabel(hand, objId, episode) {
