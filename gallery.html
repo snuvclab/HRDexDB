@@ -971,6 +971,7 @@
 
     .object-tile img,
     .object-preview,
+    .pose-preview-image,
     .pose-tile video,
     .view-tile video,
     .view-preview {
@@ -984,6 +985,11 @@
     }
 
     .object-tile img {
+      background: var(--bg);
+      object-fit: contain;
+    }
+
+    .pose-preview-image {
       background: var(--bg);
       object-fit: contain;
     }
@@ -1293,6 +1299,7 @@
     const EPISODE_THUMBNAILS_URL = "static/gallery-episode-thumbnails.json";
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
     const INTERACTIVE_3D_VISIBILITY_URL = "static/gallery-interactive-3d-visibility.json";
+    const LOCAL_GLB_CATALOG_URL = "static/gallery-glb-catalog.json";
     const THREE_MODULE_URL = "https://unpkg.com/three@0.160.0/build/three.module.js";
     const ORBIT_CONTROLS_URL = "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
     const GLTF_LOADER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
@@ -1302,7 +1309,8 @@
       default: { focus: [-0.07, -0.10, -0.02], viewDirection: [0, 0.36, -1.04] },
       human: { focus: [0, 0.08, -0.17], viewDirection: [0, 0.52, -1.51] },
       allegro_v5: { focus: [0.04, -0.15, -0.01], viewDirection: [0, 0.56, -1.37] },
-      inspire_f1: { focus: [0.05, -0.14, -0.07], viewDirection: [0, 0.36, -0.8] }
+      inspire_f1: { focus: [0.05, -0.14, -0.07], viewDirection: [0, 0.36, -0.8] },
+      robotiq_2f85: { focus: [-0.07, -0.10, -0.02], viewDirection: [0, 0.36, -1.04] }
     };
     const CAMERA_DISTANCE_SCALE = 0.3;
     const CAMERA_FOV = 45;
@@ -1317,17 +1325,22 @@
       human: "Human",
       allegro_v5: "Allegro V5",
       inspire_f1: "Inspire F1",
-      inspire_dftp: "Inspire DFTP"
+      inspire_dftp: "Inspire DFTP",
+      robotiq_2f85: "Robotiq 2F-85"
     };
     const shortLabels = {
       human: "Human",
       allegro_v5: "Allegro",
       inspire_f1: "Inspire F1",
-      inspire_dftp: "Inspire DFTP"
+      inspire_dftp: "Inspire DFTP",
+      robotiq_2f85: "Robotiq 2F-85"
     };
-    const DATASET_EMBODIMENTS = new Set(["human", "allegro_v5", "inspire_f1", "inspire_dftp"]);
-    const embodimentOrder = ["human", "allegro_v5", "inspire_f1", "inspire_dftp"];
-    const robotEmbodiments = new Set(["allegro_v5", "inspire_f1", "inspire_dftp"]);
+    const DATASET_EMBODIMENTS = new Set(["human", "allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"]);
+    const embodimentOrder = ["human", "allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"];
+    const robotEmbodiments = new Set(["allegro_v5", "inspire_f1", "inspire_dftp", "robotiq_2f85"]);
+    // Robotiq currently publishes GLBs and preview videos, but not the full
+    // raw episode tree used by the download and calibrated-camera controls.
+    const NO_RAW_DATASET_EMBODIMENTS = new Set(["robotiq_2f85"]);
     const HIDDEN_OBJECT_IDS = new Set(["apple", "metal_measuring_flask"]);
 
     const state = {
@@ -1437,8 +1450,9 @@
       optionalJson(CATALOG_URL, null),
       optionalJson(EPISODE_THUMBNAILS_URL, { thumbnails: {} }),
       optionalJson(GRASP_RESULT_MANIFEST_URL, { results: {} }),
-      optionalJson(INTERACTIVE_3D_VISIBILITY_URL, { interactive3D: {} })
-    ]).then(([catalog, thumbnailManifest, resultManifest, visibilityManifest]) => {
+      optionalJson(INTERACTIVE_3D_VISIBILITY_URL, { interactive3D: {} }),
+      optionalJson(LOCAL_GLB_CATALOG_URL, {})
+    ]).then(([catalog, thumbnailManifest, resultManifest, visibilityManifest, localGlbCatalog]) => {
       state.episodeThumbnails = thumbnailManifest?.thumbnails || {};
       state.graspResults = resultManifest?.results || {};
       state.interactive3DVisibility = visibilityManifest?.interactive3D || {};
@@ -1447,14 +1461,18 @@
         state.graspResults,
         state.interactive3DVisibility
       );
-      const rawCatalog = hasCatalogData(catalog)
-        ? {
-          ...catalog,
-          // The remote catalog predates Inspire DFTP. Merge its episodes from
-          // the local result manifest without altering the other catalog rows.
-          inspire_dftp: mergeEmbodimentCatalogs(catalog.inspire_dftp, fallbackCatalog.inspire_dftp)
-        }
-        : fallbackCatalog;
+      const catalogBase = hasCatalogData(catalog) ? catalog : fallbackCatalog;
+      const rawCatalog = {
+        ...catalogBase,
+        // Keep locally indexed embodiments available when the remote catalog
+        // has not been regenerated yet.
+        inspire_dftp: mergeEmbodimentCatalogs(catalog?.inspire_dftp, fallbackCatalog.inspire_dftp),
+        robotiq_2f85: mergeEmbodimentCatalogs(
+          catalog?.robotiq_2f85,
+          localGlbCatalog?.robotiq_2f85,
+          fallbackCatalog.robotiq_2f85
+        )
+      };
       state.catalog = datasetCatalogOnly(rawCatalog);
       state.episodes = flattenEpisodes();
       fillFilters();
@@ -1690,7 +1708,7 @@
             const episode = String(rawEpisode);
             const result = graspResultFor(hand, objId, episode);
             if (hand !== "human" && (
-              typeof result?.graspSuccess !== "boolean" ||
+              (!NO_RAW_DATASET_EMBODIMENTS.has(hand) && typeof result?.graspSuccess !== "boolean") ||
               !hasHumanEpisode(objId)
             )) return;
             const outcome = outcomeFor(hand, result);
@@ -1880,7 +1898,11 @@
       updateCameraViewSelect(ep);
 
       if (state.mediaRequested && state.currentCamera) {
-        showVideo(videoUrl(ep, state.currentCamera));
+        if (hasPreviewVideo(ep)) {
+          showVideo(videoUrl(ep, state.currentCamera));
+        } else {
+          showVideoPending("Preview video unavailable", "Use the interactive 3D viewer for this embodiment.");
+        }
       } else {
         showVideoPending("Video pending", "");
       }
@@ -1893,6 +1915,11 @@
       const menu = els["camera-view-menu"];
       menu.hidden = true;
       if (!ep) {
+        select.disabled = true;
+        select.innerHTML = "";
+        return;
+      }
+      if (NO_RAW_DATASET_EMBODIMENTS.has(ep.hand)) {
         select.disabled = true;
         select.innerHTML = "";
         return;
@@ -2125,8 +2152,11 @@
           </div>
           <div class="pose-embodiment-rail">${items.map(item => {
             const active = item.key === state.currentKey;
+            const preview = hasPreviewVideo(item)
+              ? `<video src="${previewThumbnailUrl(item)}" muted loop playsinline preload="metadata"></video>`
+              : `<img class="pose-preview-image" src="${objectThumbUrl(item.objId)}" alt="${escapeHtml(item.objName)}" loading="lazy">`;
             return `<button class="pose-tile ${active ? "active" : ""}" data-key="${escapeHtml(item.key)}">
-              <video src="${previewThumbnailUrl(item)}" muted loop playsinline preload="metadata"></video>
+              ${preview}
               <div class="tile-body">
                 <div class="pose-title-row">
                   <div class="tile-title">${escapeHtml(item.rankLabel)}</div>
@@ -2149,6 +2179,7 @@
           renderAll();
         });
         const vid = btn.querySelector("video");
+        if (!vid) return;
         btn.addEventListener("mouseenter", () => vid.play().catch(() => {}));
         btn.addEventListener("mouseleave", () => {
           vid.pause();
@@ -2930,25 +2961,29 @@
       const button = els["copy-download-command"];
       const description = els["download-description"];
       if (!menu || !trigger || !input || !button || !description) return;
-      const command = episodeDownloadCommand(ep);
+      const downloadable = Boolean(ep && !NO_RAW_DATASET_EMBODIMENTS.has(ep.hand));
+      const command = downloadable ? episodeDownloadCommand(ep) : "";
       input.value = command;
-      menu.setAttribute("aria-disabled", ep ? "false" : "true");
-      trigger.disabled = !ep;
-      input.title = ep ? command : "No sequence selected";
-      button.disabled = !ep;
-      description.textContent = state.downloadMode === "without-video"
-        ? "All files for this episode, without RGB videos"
-        : "All files for this episode";
+      menu.setAttribute("aria-disabled", downloadable ? "false" : "true");
+      trigger.disabled = !downloadable;
+      input.title = downloadable ? command : (ep ? "3D preview only" : "No sequence selected");
+      button.disabled = !downloadable;
+      description.textContent = !downloadable && ep
+        ? "Only the interactive 3D preview is currently available for this embodiment"
+        : state.downloadMode === "without-video"
+          ? "All files for this episode, without RGB videos"
+          : "All files for this episode";
       ["full", "without-video"].forEach(mode => {
         const tab = els[`download-tab-${mode === "full" ? "full" : "without-video"}`];
         tab.setAttribute("aria-pressed", String(mode === state.downloadMode));
       });
       button.textContent = "Copy";
-      if (!ep) setDownloadMenuOpen(false);
+      if (!downloadable) setDownloadMenuOpen(false);
     }
 
     function toggleDownloadMenu() {
-      if (!currentEpisode()) return;
+      const ep = currentEpisode();
+      if (!ep || NO_RAW_DATASET_EMBODIMENTS.has(ep.hand)) return;
       setVersionMenuOpen(false);
       setDownloadMenuOpen(!state.downloadMenuOpen);
     }
@@ -3005,6 +3040,10 @@
         .map(part => encodeURIComponent(part))
         .join("/");
       return `${PREVIEW_VIDEO_BASE}/${path}`;
+    }
+
+    function hasPreviewVideo(ep) {
+      return Boolean(ep);
     }
 
     function videoUrl(ep, camera = PREVIEW_CAMERA_ID) {
