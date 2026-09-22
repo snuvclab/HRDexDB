@@ -1,0 +1,513 @@
+{
+  "version": 1,
+  "glbBase": "https://huggingface.co/datasets/HRDexDB/HRDexDB-glb/resolve/main/objects",
+  "articulatedGlbBase": "https://huggingface.co/datasets/HRDexDB/HRDexDB-glb/resolve/main/object-articulated",
+  "objects": [
+    {
+      "id": "attached_container",
+      "triangles": 7581,
+      "bytes": 917600
+    },
+    {
+      "id": "baby_beaker",
+      "triangles": 13450,
+      "bytes": 1568124
+    },
+    {
+      "id": "balloon_whisk",
+      "triangles": 2939,
+      "bytes": 440732
+    },
+    {
+      "id": "bamboo_basket",
+      "triangles": 9999,
+      "bytes": 18897936,
+      "doubleSided": true
+    },
+    {
+      "id": "bamboo_box",
+      "triangles": 2210,
+      "bytes": 625220
+    },
+    {
+      "id": "banana",
+      "triangles": 226096,
+      "bytes": 4523156
+    },
+    {
+      "id": "baseball",
+      "triangles": 110370,
+      "bytes": 4618940
+    },
+    {
+      "id": "beige_brush",
+      "triangles": 39048,
+      "bytes": 4458096
+    },
+    {
+      "id": "black_holder_with_handle",
+      "triangles": 758,
+      "bytes": 83656
+    },
+    {
+      "id": "black_kitchen_roll_holder",
+      "triangles": 4454,
+      "bytes": 540192
+    },
+    {
+      "id": "blue_alarm",
+      "triangles": 13837,
+      "bytes": 1685384
+    },
+    {
+      "id": "blue_plastic_box",
+      "triangles": 326188,
+      "bytes": 8794808,
+      "doubleSided": true,
+      "articulation": {
+        "label": "Articulation",
+        "bytes": 8857480,
+        "node": "lid_pivot",
+        "axis": [0.1602546464844158, -0.9422634287886419, -0.29403754700314527],
+        "rangeRad": [0.0, 4.537856055185257]
+      }
+    },
+    {
+      "id": "blue_vase",
+      "triangles": 1064,
+      "bytes": 119968
+    },
+    {
+      "id": "book",
+      "triangles": 12,
+      "bytes": 2460
+    },
+    {
+      "id": "box_pink",
+      "triangles": 6171,
+      "bytes": 842792
+    },
+    {
+      "id": "brass_pot",
+      "triangles": 1880,
+      "bytes": 50616
+    },
+    {
+      "id": "brown_ramen",
+      "triangles": 49832,
+      "bytes": 14770708
+    },
+    {
+      "id": "cactus",
+      "triangles": 34500,
+      "bytes": 1577316
+    },
+    {
+      "id": "cactus2",
+      "triangles": 7288,
+      "bytes": 425120
+    },
+    {
+      "id": "cactus3",
+      "triangles": 12926,
+      "bytes": 851624
+    },
+    {
+      "id": "ceramic_elephant_jug",
+      "triangles": 4940,
+      "bytes": 124836,
+      "doubleSided": true
+    },
+    {
+      "id": "circular_frying_pan",
+      "triangles": 11900,
+      "bytes": 295056
+    },
+    {
+      "id": "clock",
+      "triangles": 445087,
+      "bytes": 11575572
+    },
+    {
+      "id": "clothes_hanger",
+      "triangles": 24919,
+      "bytes": 651472
+    },
+    {
+      "id": "coffee_tin",
+      "triangles": 1942,
+      "bytes": 65468
+    },
+    {
+      "id": "colander_green",
+      "triangles": 46098,
+      "bytes": 5148288
+    },
+    {
+      "id": "container_pink",
+      "triangles": 3430,
+      "bytes": 375484
+    },
+    {
+      "id": "donut",
+      "triangles": 15000,
+      "bytes": 391428
+    },
+    {
+      "id": "frame_oak",
+      "triangles": 3732,
+      "bytes": 823312
+    },
+    {
+      "id": "frame_red",
+      "triangles": 1894,
+      "bytes": 489316
+    },
+    {
+      "id": "french_mustard",
+      "triangles": 15728,
+      "bytes": 7422576
+    },
+    {
+      "id": "frog_bowl",
+      "triangles": 5230,
+      "bytes": 167360
+    },
+    {
+      "id": "frog_cup",
+      "triangles": 8155,
+      "bytes": 290220
+    },
+    {
+      "id": "fruit_cutter_base",
+      "triangles": 8850,
+      "bytes": 274628
+    },
+    {
+      "id": "fruit_cutter_green",
+      "triangles": 1559,
+      "bytes": 83332
+    },
+    {
+      "id": "green_attached_container",
+      "triangles": 10954,
+      "bytes": 1348240
+    },
+    {
+      "id": "green_cactus_vase",
+      "triangles": 7229,
+      "bytes": 206920
+    },
+    {
+      "id": "green_glass",
+      "triangles": 4330,
+      "bytes": 493792
+    },
+    {
+      "id": "green_soap_dispenser",
+      "triangles": 25335,
+      "bytes": 3136872
+    },
+    {
+      "id": "grey_pot",
+      "triangles": 5909,
+      "bytes": 223456
+    },
+    {
+      "id": "grid_desktop_organizer",
+      "triangles": 11895,
+      "bytes": 286584
+    },
+    {
+      "id": "hammer",
+      "triangles": 24888,
+      "bytes": 644956
+    },
+    {
+      "id": "icecream_scoop",
+      "triangles": 7019,
+      "bytes": 230184
+    },
+    {
+      "id": "instant_rice",
+      "triangles": 84648,
+      "bytes": 10401984
+    },
+    {
+      "id": "jja_ramen",
+      "triangles": 140716,
+      "bytes": 4869088
+    },
+    {
+      "id": "knife_sharpener",
+      "triangles": 17818,
+      "bytes": 586080
+    },
+    {
+      "id": "large_peg",
+      "triangles": 9768,
+      "bytes": 1117092
+    },
+    {
+      "id": "lemon",
+      "triangles": 6955,
+      "bytes": 1122656
+    },
+    {
+      "id": "lemon_squeezer",
+      "triangles": 23293,
+      "bytes": 2816732
+    },
+    {
+      "id": "light_green_basket",
+      "triangles": 30718,
+      "bytes": 1315684
+    },
+    {
+      "id": "lilac_food_container",
+      "triangles": 6182,
+      "bytes": 673868
+    },
+    {
+      "id": "lotion",
+      "triangles": 20000,
+      "bytes": 481280
+    },
+    {
+      "id": "meat_thermometer",
+      "triangles": 3696,
+      "bytes": 276668
+    },
+    {
+      "id": "metal_scoop_big",
+      "triangles": 978,
+      "bytes": 27424
+    },
+    {
+      "id": "metal_scoop_small",
+      "triangles": 822,
+      "bytes": 91648
+    },
+    {
+      "id": "mug_holder",
+      "triangles": 6664,
+      "bytes": 248004
+    },
+    {
+      "id": "orange",
+      "triangles": 9132,
+      "bytes": 211716
+    },
+    {
+      "id": "organizer_beige",
+      "triangles": 21952,
+      "bytes": 2374336
+    },
+    {
+      "id": "pastel_blue_cup",
+      "triangles": 7694,
+      "bytes": 443248
+    },
+    {
+      "id": "pastel_light_green_bowl",
+      "triangles": 916,
+      "bytes": 39492
+    },
+    {
+      "id": "pepper_tuna",
+      "triangles": 132928,
+      "bytes": 4531156
+    },
+    {
+      "id": "pingpong",
+      "triangles": 26964,
+      "bytes": 1803528
+    },
+    {
+      "id": "pink_clock",
+      "triangles": 18122,
+      "bytes": 785576
+    },
+    {
+      "id": "plant_pot",
+      "triangles": 33268,
+      "bytes": 1470856
+    },
+    {
+      "id": "plastic_elephant_jug",
+      "triangles": 1682,
+      "bytes": 206624
+    },
+    {
+      "id": "potato_masher",
+      "triangles": 4780,
+      "bytes": 620464
+    },
+    {
+      "id": "pringles",
+      "triangles": 430625,
+      "bytes": 11200744
+    },
+    {
+      "id": "pringles_small",
+      "triangles": 94,
+      "bytes": 7888
+    },
+    {
+      "id": "rectangular_frying_pan",
+      "triangles": 88520,
+      "bytes": 11211092
+    },
+    {
+      "id": "redcar",
+      "triangles": 68219,
+      "bytes": 5049456
+    },
+    {
+      "id": "saucepan",
+      "triangles": 19828,
+      "bytes": 477616
+    },
+    {
+      "id": "scotch_tape",
+      "triangles": 157808,
+      "bytes": 4969120
+    },
+    {
+      "id": "screwdriver",
+      "triangles": 14658,
+      "bytes": 431036
+    },
+    {
+      "id": "servingbowl_small",
+      "triangles": 9600,
+      "bytes": 1327276
+    },
+    {
+      "id": "smallbowl",
+      "triangles": 3282,
+      "bytes": 96820
+    },
+    {
+      "id": "soaptray",
+      "triangles": 512,
+      "bytes": 372240
+    },
+    {
+      "id": "spam_can",
+      "triangles": 1728,
+      "bytes": 388424
+    },
+    {
+      "id": "spicemill",
+      "triangles": 6276,
+      "bytes": 1202272
+    },
+    {
+      "id": "spray_bottle",
+      "triangles": 5674,
+      "bytes": 311504
+    },
+    {
+      "id": "standing_frame",
+      "triangles": 4956,
+      "bytes": 549212
+    },
+    {
+      "id": "tea_case",
+      "triangles": 234414,
+      "bytes": 6837084
+    },
+    {
+      "id": "tennis_ball",
+      "triangles": 161722,
+      "bytes": 5214500
+    },
+    {
+      "id": "thermo_clock",
+      "triangles": 12933,
+      "bytes": 1542700
+    },
+    {
+      "id": "toothbrush_holder",
+      "triangles": 16337,
+      "bytes": 1828564
+    },
+    {
+      "id": "washing_brush",
+      "triangles": 19083,
+      "bytes": 2116476
+    },
+    {
+      "id": "washing_brush2",
+      "triangles": 20447,
+      "bytes": 2246764
+    },
+    {
+      "id": "wateringcan",
+      "triangles": 12260,
+      "bytes": 463364
+    },
+    {
+      "id": "white_candle_holder",
+      "triangles": 4110,
+      "bytes": 118288
+    },
+    {
+      "id": "white_hand_shower",
+      "triangles": 20140,
+      "bytes": 373432
+    },
+    {
+      "id": "white_pen_cup",
+      "triangles": 2894,
+      "bytes": 344864
+    },
+    {
+      "id": "white_soap_dish",
+      "triangles": 53798,
+      "bytes": 6961392
+    },
+    {
+      "id": "white_wood_handle_watering_can",
+      "triangles": 50798,
+      "bytes": 6656624,
+      "doubleSided": true
+    },
+    {
+      "id": "wipe",
+      "triangles": 3828,
+      "bytes": 164896
+    },
+    {
+      "id": "wood_dish_rack",
+      "triangles": 19955,
+      "bytes": 481844
+    },
+    {
+      "id": "wood_organizer",
+      "triangles": 1084,
+      "bytes": 614292
+    },
+    {
+      "id": "work_lamp",
+      "triangles": 12262,
+      "bytes": 1486148
+    },
+    {
+      "id": "yellow_funnel",
+      "triangles": 3936,
+      "bytes": 143992
+    },
+    {
+      "id": "yellow_plastic_glass",
+      "triangles": 4330,
+      "bytes": 493820
+    },
+    {
+      "id": "yellow_wash_tub",
+      "triangles": 16495,
+      "bytes": 482248
+    }
+  ]
+}

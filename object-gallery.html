@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRDexDB Object Gallery</title>
+  <link rel="icon" type="image/png" href="static/image/hrdexdb_logo_square.png">
+  <link rel="apple-touch-icon" href="static/image/hrdexdb_logo_square.png">
+  <link rel="preconnect" href="https://huggingface.co" crossorigin>
+  <link rel="preconnect" href="https://cdn-lfs.huggingface.co" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-2: #f1ece5;
+      --line: #ece7e0;
+      --line-strong: #d9d0c5;
+      --text: #2b2722;
+      --text-muted: #8a8178;
+      --accent: #e2603b;
+      --accent-hover: #c94f30;
+      --accent-soft: #fdeee9;
+      --radius: 8px;
+      --shadow-soft: 0 1px 2px rgba(40, 30, 20, .04);
+      --shadow-lift: 0 14px 30px rgba(40, 30, 20, .10);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    button { font: inherit; cursor: pointer; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      min-height: 53px;
+      align-items: center;
+      gap: 24px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo { display: inline-flex; align-items: center; flex: 0 0 auto; }
+    .nav-logo img {
+      display: block;
+      width: auto;
+      height: 30px;
+      max-width: min(42vw, 184px);
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .nav-link:hover,
+    .nav-link.active { color: var(--text); background: var(--surface-2); }
+
+    .nav-link.cta {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 1px 2px rgba(226, 96, 59, .25);
+    }
+
+    .nav-link.cta:hover { background: var(--accent-hover); color: #fff; }
+
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 18px 24px 72px;
+    }
+
+    .gallery-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .gallery-kicker {
+      color: var(--accent-hover);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .gallery-title {
+      margin-top: 4px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1;
+    }
+
+    .gallery-summary {
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-hover);
+      font-size: .82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .gallery-shell {
+      display: block;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .gallery-shell.has-selection {
+      display: grid;
+      max-width: none;
+      grid-template-columns: minmax(500px, 580px) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .object-panel,
+    .viewer-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .object-panel-header,
+    .viewer-header {
+      display: flex;
+      min-height: 60px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .panel-subtitle,
+    .viewer-meta {
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .object-count {
+      color: var(--text-muted);
+      font-size: .78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .object-search-wrap {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: #faf8f5;
+    }
+
+    .object-search {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 11px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: .82rem;
+      transition: border-color .16s, box-shadow .16s;
+    }
+
+    .object-search::placeholder { color: var(--text-muted); }
+
+    .object-search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(226, 96, 59, .13);
+    }
+
+    .object-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      align-content: start;
+      padding: 12px;
+    }
+
+    .has-selection .object-panel {
+      position: sticky;
+      top: 66px;
+      display: flex;
+      height: min(840px, calc(100vh - 84px));
+      min-height: 620px;
+      flex-direction: column;
+    }
+
+    .has-selection .object-grid {
+      flex: 1 1 0;
+      grid-auto-rows: max-content;
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    .object-card {
+      display: flex;
+      align-self: start;
+      min-width: 0;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      text-align: left;
+      box-shadow: var(--shadow-soft);
+      transition: border-color .16s, box-shadow .16s, transform .16s;
+    }
+
+    .object-card:hover,
+    .object-card.active {
+      border-color: rgba(226, 96, 59, .65);
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-1px);
+    }
+
+    .object-card.active { outline: 2px solid rgba(226, 96, 59, .18); }
+    .object-card[hidden] { display: none; }
+
+    .search-empty {
+      grid-column: 1 / -1;
+      padding: 36px 12px;
+      color: var(--text-muted);
+      font-size: .84rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .search-empty[hidden] { display: none; }
+
+    .object-card img {
+      display: block;
+      flex: 0 0 auto;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+      background: var(--bg);
+    }
+
+    .object-card-label {
+      min-width: 0;
+      overflow: hidden;
+      padding: 9px 10px 10px;
+      font-size: .84rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .has-selection .object-grid { gap: 7px; padding: 9px; }
+    .has-selection .object-card-label { padding: 6px 7px 7px; font-size: .72rem; }
+
+    .viewer-panel { display: none; min-height: 620px; }
+    .has-selection .viewer-panel { display: block; }
+
+    .viewer-title {
+      min-width: 0;
+      font-size: 1.08rem;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-actions { display: flex; flex: 0 0 auto; gap: 7px; }
+
+    .viewer-button {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 11px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .viewer-button:hover { border-color: var(--accent); color: var(--accent-hover); }
+
+    .viewer-stage {
+      position: relative;
+      height: min(72vh, 760px);
+      min-height: 540px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.9), rgba(241,236,229,.82) 58%, rgba(217,208,197,.82)),
+        var(--surface-2);
+    }
+
+    .viewer-stage canvas { display: block; width: 100%; height: 100%; }
+
+    .viewer-status {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      background: rgba(250, 248, 245, .82);
+      color: var(--text-muted);
+      text-align: center;
+      font-size: .9rem;
+      font-weight: 800;
+      backdrop-filter: blur(3px);
+    }
+
+    .viewer-status[hidden] { display: none; }
+
+    .viewer-hint {
+      padding: 9px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--text-muted);
+      font-size: .76rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .articulation-control {
+      display: grid;
+      grid-template-columns: minmax(100px, auto) minmax(140px, 1fr) 44px;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      background: #faf8f5;
+    }
+
+    .articulation-control[hidden] { display: none; }
+
+    .articulation-label {
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .articulation-slider {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .articulation-value {
+      color: var(--muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .load-error { color: #b34035; }
+    .load-error strong { display: block; margin-bottom: 5px; color: var(--text); }
+
+    @media (max-width: 1120px) {
+      .gallery-shell.has-selection {
+        grid-template-columns: minmax(420px, 500px) minmax(0, 1fr);
+      }
+      .viewer-stage { min-height: 500px; }
+    }
+
+    @media (max-width: 900px) {
+      .gallery-head { align-items: flex-start; flex-direction: column; }
+      .gallery-shell.has-selection { grid-template-columns: 1fr; }
+      .has-selection .object-panel {
+        position: static;
+        height: 440px;
+        min-height: 0;
+      }
+      .viewer-panel { min-height: 0; }
+      .viewer-stage { height: 64vh; min-height: 440px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { gap: 14px; padding: 12px 16px; }
+      .nav-link:not(.cta):not(.active) { display: none; }
+      .nav-link { padding: 8px 9px; font-size: 13px; }
+      .container { padding: 16px 12px 56px; }
+      .object-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .has-selection .object-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .has-selection .object-card-label { font-size: .65rem; }
+      .viewer-header { align-items: stretch; flex-direction: column; }
+      .viewer-actions { width: 100%; }
+      .viewer-button { flex: 1 1 auto; }
+      .viewer-stage { min-height: 390px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="gallery-index.html" aria-label="HRDexDB home">
+      <img src="static/image/hrdexdb_logo.png" alt="HRDexDB">
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="gallery-index.html">Overview</a>
+      <a class="nav-link" href="https://snuvclab.github.io/HRDexDB/">Project</a>
+      <a class="nav-link" href="./static/pdf/hrdexdb.pdf" target="_blank" rel="noreferrer">Paper</a>
+      <a class="nav-link" href="https://github.com/snuvclab/HRDexDB" target="_blank" rel="noreferrer">Code</a>
+      <a class="nav-link active" href="object-gallery.html">Object Gallery</a>
+      <a class="nav-link cta" href="gallery.html">Sequence Gallery</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="gallery-head">
+      <div>
+        <div class="gallery-kicker">Dataset Gallery</div>
+        <h1 class="gallery-title">Object Gallery</h1>
+      </div>
+      <div class="gallery-summary" id="gallery-summary">Loading objects…</div>
+    </header>
+
+    <section class="gallery-shell" id="gallery-shell">
+      <aside class="object-panel" aria-label="Object selector">
+        <div class="object-panel-header">
+          <div>
+            <div class="panel-title">Objects</div>
+            <div class="panel-subtitle" id="object-panel-subtitle">Select an object to inspect its 3D model.</div>
+          </div>
+          <span class="object-count" id="object-count"></span>
+        </div>
+        <div class="object-search-wrap">
+          <input class="object-search" id="object-search" type="search" placeholder="Search objects" aria-label="Search objects" aria-controls="object-grid" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="object-grid" id="object-grid"></div>
+      </aside>
+
+      <section class="viewer-panel" aria-label="Selected object 3D viewer">
+        <div class="viewer-header">
+          <div>
+            <h2 class="viewer-title" id="viewer-title">Object</h2>
+            <div class="viewer-meta" id="viewer-meta"></div>
+          </div>
+          <div class="viewer-actions">
+            <button class="viewer-button" id="show-all" type="button">All objects</button>
+            <button class="viewer-button" id="fit-view" type="button">Fit view</button>
+          </div>
+        </div>
+        <div class="viewer-stage" id="viewer-stage">
+          <div class="viewer-status" id="viewer-status">Choose an object to load its GLB.</div>
+        </div>
+        <label class="articulation-control" id="articulation-control" hidden>
+          <span class="articulation-label" id="articulation-label">Articulation</span>
+          <input class="articulation-slider" id="articulation-slider" type="range" min="0" max="100" value="0" step="1">
+          <output class="articulation-value" id="articulation-value" for="articulation-slider">0%</output>
+        </label>
+        <div class="viewer-hint">Drag to rotate · scroll to zoom · right-drag to pan · ← → change object</div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+    import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+    const MANIFEST_URL = "static/object-gallery-manifest.json";
+    const THUMB_BASE = "static/gallery-object-thumbs";
+    const THUMB_VERSION = "object-gallery-1";
+
+    const shell = document.getElementById("gallery-shell");
+    const grid = document.getElementById("object-grid");
+    const count = document.getElementById("object-count");
+    const searchInput = document.getElementById("object-search");
+    const summary = document.getElementById("gallery-summary");
+    const subtitle = document.getElementById("object-panel-subtitle");
+    const viewerTitle = document.getElementById("viewer-title");
+    const viewerMeta = document.getElementById("viewer-meta");
+    const viewerStage = document.getElementById("viewer-stage");
+    const viewerStatus = document.getElementById("viewer-status");
+    const articulationControl = document.getElementById("articulation-control");
+    const articulationLabel = document.getElementById("articulation-label");
+    const articulationSlider = document.getElementById("articulation-slider");
+    const articulationValue = document.getElementById("articulation-value");
+
+    let manifest = null;
+    let selectedIndex = -1;
+    let renderer = null;
+    let scene = null;
+    let camera = null;
+    let controls = null;
+    let loader = null;
+    let currentRoot = null;
+    let currentSphere = null;
+    let currentArticulation = null;
+    let loadToken = 0;
+    let resizeObserver = null;
+    let searchEmpty = null;
+
+    init();
+
+    async function init() {
+      try {
+        const response = await fetch(MANIFEST_URL, { cache: "no-cache" });
+        if (!response.ok) throw new Error(`Manifest request failed: ${response.status}`);
+        manifest = await response.json();
+        if (!Array.isArray(manifest.objects) || !manifest.objects.length) {
+          throw new Error("Object manifest is empty.");
+        }
+        renderObjects();
+        count.textContent = `${manifest.objects.length} objects`;
+        summary.textContent = `${manifest.objects.length} object models`;
+
+        const requested = new URLSearchParams(location.search).get("object");
+        const requestedIndex = manifest.objects.findIndex(item => item.id === requested);
+        if (requestedIndex >= 0) selectObject(requestedIndex, false);
+      } catch (error) {
+        console.error(error);
+        summary.textContent = "Objects unavailable";
+        grid.innerHTML = '<div class="viewer-status load-error"><strong>Object list failed to load.</strong>Please refresh and try again.</div>';
+      }
+    }
+
+    function renderObjects() {
+      const fragment = document.createDocumentFragment();
+      manifest.objects.forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "object-card";
+        button.type = "button";
+        button.dataset.index = String(index);
+        button.dataset.search = `${item.id} ${displayName(item.id)}`.toLocaleLowerCase();
+        button.setAttribute("aria-label", `View ${displayName(item.id)}`);
+
+        const image = document.createElement("img");
+        image.src = `${THUMB_BASE}/${encodeURIComponent(item.id)}/thumb.png?v=${THUMB_VERSION}`;
+        image.alt = displayName(item.id);
+        image.loading = index < 16 ? "eager" : "lazy";
+
+        const label = document.createElement("div");
+        label.className = "object-card-label";
+        label.textContent = displayName(item.id);
+        label.title = displayName(item.id);
+
+        button.append(image, label);
+        button.addEventListener("click", () => selectObject(index, true));
+        fragment.append(button);
+      });
+      searchEmpty = document.createElement("div");
+      searchEmpty.className = "search-empty";
+      searchEmpty.textContent = "No matching objects.";
+      searchEmpty.hidden = true;
+      fragment.append(searchEmpty);
+      grid.replaceChildren(fragment);
+    }
+
+    function filterObjects() {
+      if (!manifest) return;
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      let visible = 0;
+      grid.querySelectorAll(".object-card").forEach(card => {
+        const matches = !query || card.dataset.search.includes(query);
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      });
+      count.textContent = query ? `${visible} of ${manifest.objects.length} objects` : `${manifest.objects.length} objects`;
+      if (searchEmpty) searchEmpty.hidden = visible !== 0;
+    }
+
+    function selectObject(index, updateHistory) {
+      if (!manifest?.objects[index]) return;
+      selectedIndex = index;
+      const item = manifest.objects[index];
+
+      shell.classList.add("has-selection");
+      subtitle.textContent = displayName(item.id);
+      viewerTitle.textContent = displayName(item.id);
+      viewerMeta.textContent = `${item.triangles.toLocaleString()} triangles`;
+      grid.querySelectorAll(".object-card").forEach((card, cardIndex) => {
+        const active = cardIndex === index;
+        card.classList.toggle("active", active);
+        card.setAttribute("aria-pressed", String(active));
+      });
+
+      const activeCard = grid.querySelector(`.object-card[data-index="${index}"]`);
+      activeCard?.scrollIntoView({ block: "nearest" });
+
+      if (updateHistory) {
+        const url = new URL(location.href);
+        url.searchParams.set("object", item.id);
+        history.replaceState(null, "", url);
+      }
+
+      ensureViewer();
+      loadObject(item);
+    }
+
+    function ensureViewer() {
+      if (renderer) return;
+
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+      viewerStage.prepend(renderer.domElement);
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf1ece5);
+
+      camera = new THREE.PerspectiveCamera(38, 1, 0.001, 100);
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      const environment = new RoomEnvironment(renderer);
+      scene.environment = pmrem.fromScene(environment, 0.04).texture;
+      environment.dispose();
+      pmrem.dispose();
+
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x776f67, 1.7));
+      const key = new THREE.DirectionalLight(0xfff4e6, 2.4);
+      key.position.set(3, 5, 4);
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xbfd8ff, 1.1);
+      fill.position.set(-4, 2, -3);
+      scene.add(fill);
+
+      loader = new GLTFLoader();
+      resizeObserver = new ResizeObserver(resizeViewer);
+      resizeObserver.observe(viewerStage);
+      resizeViewer();
+      renderer.setAnimationLoop(() => {
+        controls.update();
+        renderer.render(scene, camera);
+      });
+    }
+
+    function loadObject(item) {
+      const token = ++loadToken;
+      setStatus(`Loading ${displayName(item.id)}…`);
+      disposeCurrent();
+
+      const base = String(manifest.glbBase || "").replace(/\/$/, "");
+      const articulatedBase = String(manifest.articulatedGlbBase || "").replace(/\/$/, "");
+      const modelBase = item.articulation && articulatedBase ? articulatedBase : base;
+      const modelBytes = item.articulation?.bytes || item.bytes;
+      const url = `${modelBase}/${encodeURIComponent(item.id)}.glb?v=${modelBytes}`;
+      loader.load(
+        url,
+        gltf => {
+          if (token !== loadToken) {
+            disposeTree(gltf.scene);
+            return;
+          }
+          currentRoot = gltf.scene;
+          configureMaterials(item);
+          scene.add(currentRoot);
+          configureArticulation(item);
+          fitView();
+          setStatus("", true);
+        },
+        event => {
+          if (token !== loadToken || !event.total) return;
+          const percent = Math.min(100, Math.round(event.loaded / event.total * 100));
+          setStatus(`Loading ${displayName(item.id)}… ${percent}%`);
+        },
+        error => {
+          if (token !== loadToken) return;
+          console.error(error);
+          viewerStatus.hidden = false;
+          viewerStatus.innerHTML = '<div class="load-error"><strong>Object GLB is not available yet.</strong>The gallery is ready and will load this model after the object files are uploaded to Hugging Face.</div>';
+        }
+      );
+    }
+
+    function configureMaterials(item) {
+      if (!item.doubleSided) return;
+      currentRoot.traverse(node => {
+        if (!node.isMesh) return;
+        const materials = Array.isArray(node.material) ? node.material : [node.material];
+        materials.filter(Boolean).forEach(material => {
+          material.side = THREE.DoubleSide;
+          material.needsUpdate = true;
+        });
+      });
+    }
+
+    function configureArticulation(item) {
+      currentArticulation = null;
+      articulationControl.hidden = true;
+      articulationSlider.value = "0";
+      articulationValue.value = "0%";
+      articulationValue.textContent = "0%";
+      if (!item.articulation) return;
+
+      const pivot = currentRoot.getObjectByName(item.articulation.node);
+      const axis = new THREE.Vector3(...item.articulation.axis).normalize();
+      const range = item.articulation.rangeRad;
+      if (!pivot || axis.lengthSq() === 0 || !Array.isArray(range) || range.length !== 2) {
+        console.warn("Invalid articulation metadata", item.id, item.articulation);
+        return;
+      }
+
+      currentArticulation = { pivot, axis, lower: range[0], upper: range[1] };
+      articulationLabel.textContent = item.articulation.label || "Articulation";
+      articulationControl.hidden = false;
+      setArticulation(0);
+    }
+
+    function setArticulation(percent) {
+      if (!currentArticulation) return;
+      const normalized = THREE.MathUtils.clamp(percent / 100, 0, 1);
+      const angle = THREE.MathUtils.lerp(currentArticulation.lower, currentArticulation.upper, normalized);
+      currentArticulation.pivot.quaternion.setFromAxisAngle(currentArticulation.axis, angle);
+      currentArticulation.pivot.updateMatrixWorld(true);
+      articulationValue.value = `${Math.round(percent)}%`;
+      articulationValue.textContent = articulationValue.value;
+    }
+
+    function fitView() {
+      if (!currentRoot) return;
+      const bounds = new THREE.Box3().setFromObject(currentRoot);
+      currentSphere = bounds.getBoundingSphere(new THREE.Sphere());
+      const radius = Math.max(currentSphere.radius, 1e-5);
+      const halfFov = THREE.MathUtils.degToRad(camera.fov * .5);
+      const distance = radius / Math.sin(halfFov) * 1.18;
+      const direction = new THREE.Vector3(1, .68, 1).normalize();
+
+      camera.position.copy(currentSphere.center).addScaledVector(direction, distance);
+      camera.near = Math.max(distance / 1000, .00001);
+      camera.far = Math.max(distance * 100, 10);
+      camera.updateProjectionMatrix();
+
+      controls.target.copy(currentSphere.center);
+      controls.minDistance = radius * .12;
+      controls.maxDistance = radius * 18;
+      controls.update();
+    }
+
+    function disposeCurrent() {
+      if (!currentRoot) return;
+      disposeTree(currentRoot);
+      scene.remove(currentRoot);
+      currentRoot = null;
+      currentSphere = null;
+      currentArticulation = null;
+      articulationControl.hidden = true;
+    }
+
+    function disposeTree(root) {
+      root.traverse(node => {
+        if (!node.isMesh) return;
+        node.geometry?.dispose();
+        const materials = Array.isArray(node.material) ? node.material : [node.material];
+        materials.filter(Boolean).forEach(material => {
+          Object.values(material).forEach(value => {
+            if (value?.isTexture) value.dispose();
+          });
+          material.dispose();
+        });
+      });
+    }
+
+    function resizeViewer() {
+      if (!renderer) return;
+      const width = Math.max(1, viewerStage.clientWidth);
+      const height = Math.max(1, viewerStage.clientHeight);
+      renderer.setSize(width, height, false);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }
+
+    function setStatus(message, hidden = false) {
+      viewerStatus.textContent = message;
+      viewerStatus.hidden = hidden;
+    }
+
+    function showAllObjects() {
+      shell.classList.remove("has-selection");
+      grid.querySelectorAll(".object-card").forEach(card => {
+        card.classList.remove("active");
+        card.setAttribute("aria-pressed", "false");
+      });
+      selectedIndex = -1;
+      disposeCurrent();
+      const url = new URL(location.href);
+      url.searchParams.delete("object");
+      history.replaceState(null, "", url);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function displayName(id) {
+      return String(id).split("_").map(word => word ? word[0].toUpperCase() + word.slice(1) : "").join(" ");
+    }
+
+    document.getElementById("show-all").addEventListener("click", showAllObjects);
+    document.getElementById("fit-view").addEventListener("click", fitView);
+    articulationSlider.addEventListener("input", event => setArticulation(Number(event.target.value)));
+    searchInput.addEventListener("input", filterObjects);
+    searchInput.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+      event.stopPropagation();
+      searchInput.value = "";
+      filterObjects();
+    });
+
+    window.addEventListener("keydown", event => {
+      if (!manifest || selectedIndex < 0) return;
+      if (event.target instanceof HTMLInputElement) return;
+      if (event.key === "Escape") {
+        showAllObjects();
+        return;
+      }
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const direction = event.key === "ArrowRight" ? 1 : -1;
+      const next = (selectedIndex + direction + manifest.objects.length) % manifest.objects.length;
+      selectObject(next, true);
+    });
+  </script>
+</body>
+</html>

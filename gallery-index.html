@@ -230,6 +230,23 @@
     box-shadow: 0 1px 2px rgba(40, 30, 20, 0.04);
   }
 
+  .landing-card-link {
+    text-decoration: none;
+    transition: transform .15s, border-color .15s, box-shadow .2s;
+  }
+
+  .landing-card-link:hover {
+    border-color: rgba(226, 96, 59, .55);
+    color: var(--ink);
+    box-shadow: 0 14px 30px rgba(40, 30, 20, .10);
+    transform: translateY(-2px);
+  }
+
+  .landing-card-link:focus-visible {
+    outline: 3px solid rgba(226, 96, 59, .28);
+    outline-offset: 3px;
+  }
+
   .card-count {
     margin-bottom: 6px;
     color: var(--accent);
@@ -265,6 +282,7 @@
         <a href="./static/pdf/hrdexdb.pdf" target="_blank" rel="noreferrer">Paper</a>
         <a href="https://github.com/snuvclab/HRDexDB" target="_blank" rel="noreferrer">Code</a>
         <a href="https://huggingface.co/datasets/HRDexDB/HRDexDB" target="_blank" rel="noreferrer">Data</a>
+        <a href="object-gallery.html">Objects</a>
         <a class="cta" href="gallery.html">Gallery</a>
       </div>
     </div>
@@ -314,6 +332,10 @@
           <img class="btn-icon" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" aria-hidden="true">
           Data
         </a>
+        <a class="btn" href="object-gallery.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 8 4.5v9L12 20l-8-4.5v-9L12 2Z"/><path d="m4.4 6.7 7.6 4.2 7.6-4.2M12 11v9"/></svg>
+          Object Gallery
+        </a>
         <a class="btn primary" href="gallery.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           Browse Gallery
@@ -321,10 +343,10 @@
       </div>
 
       <div class="landing-cards" aria-label="HRDexDB dataset statistics">
-        <div class="landing-card">
+        <a class="landing-card landing-card-link" href="object-gallery.html" aria-label="Browse the HRDexDB object gallery">
           <div class="card-count" id="object-count" aria-live="polite">102</div>
           <h2>Objects</h2>
-        </div>
+        </a>
         <div class="landing-card">
           <div class="card-count" id="sequence-count" aria-live="polite">2,648</div>
           <h2>Sequences</h2>
