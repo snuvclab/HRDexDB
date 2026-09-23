@@ -517,8 +517,9 @@
     import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
     const MANIFEST_URL = "static/object-gallery-manifest.json";
+    const POSES_URL = "static/object-gallery-poses.json";
     const THUMB_BASE = "static/gallery-object-thumbs";
-    const THUMB_VERSION = "object-gallery-1";
+    const THUMB_VERSION = "pose-matched-2";
 
     const shell = document.getElementById("gallery-shell");
     const grid = document.getElementById("object-grid");
@@ -536,6 +537,7 @@
     const articulationValue = document.getElementById("articulation-value");
 
     let manifest = null;
+    let savedPoses = {};
     let selectedIndex = -1;
     let renderer = null;
     let scene = null;
@@ -553,9 +555,14 @@
 
     async function init() {
       try {
-        const response = await fetch(MANIFEST_URL, { cache: "no-cache" });
-        if (!response.ok) throw new Error(`Manifest request failed: ${response.status}`);
-        manifest = await response.json();
+        const [manifestResponse, posesResponse] = await Promise.all([
+          fetch(MANIFEST_URL, { cache: "no-cache" }),
+          fetch(POSES_URL, { cache: "no-cache" })
+        ]);
+        if (!manifestResponse.ok) throw new Error(`Manifest request failed: ${manifestResponse.status}`);
+        if (!posesResponse.ok) throw new Error(`Pose request failed: ${posesResponse.status}`);
+        manifest = await manifestResponse.json();
+        savedPoses = (await posesResponse.json()).poses || {};
         if (!Array.isArray(manifest.objects) || !manifest.objects.length) {
           throw new Error("Object manifest is empty.");
         }
@@ -670,11 +677,11 @@
       environment.dispose();
       pmrem.dispose();
 
-      scene.add(new THREE.HemisphereLight(0xffffff, 0x776f67, 1.7));
-      const key = new THREE.DirectionalLight(0xfff4e6, 2.4);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x776f67, 0.40));
+      const key = new THREE.DirectionalLight(0xfff4e6, 0.85);
       key.position.set(3, 5, 4);
       scene.add(key);
-      const fill = new THREE.DirectionalLight(0xbfd8ff, 1.1);
+      const fill = new THREE.DirectionalLight(0xbfd8ff, 0.10);
       fill.position.set(-4, 2, -3);
       scene.add(fill);
 
@@ -709,7 +716,7 @@
           configureMaterials(item);
           scene.add(currentRoot);
           configureArticulation(item);
-          fitView();
+          fitView(item);
           setStatus("", true);
         },
         event => {
@@ -727,13 +734,15 @@
     }
 
     function configureMaterials(item) {
-      if (!item.doubleSided) return;
       currentRoot.traverse(node => {
         if (!node.isMesh) return;
         const materials = Array.isArray(node.material) ? node.material : [node.material];
         materials.filter(Boolean).forEach(material => {
-          material.side = THREE.DoubleSide;
-          material.needsUpdate = true;
+          material.envMapIntensity = 0.55;
+          if (item.doubleSided) {
+            material.side = THREE.DoubleSide;
+            material.needsUpdate = true;
+          }
         });
       });
     }
@@ -770,7 +779,7 @@
       articulationValue.textContent = articulationValue.value;
     }
 
-    function fitView() {
+    function fitView(item = manifest?.objects[selectedIndex]) {
       if (!currentRoot) return;
       const bounds = new THREE.Box3().setFromObject(currentRoot);
       currentSphere = bounds.getBoundingSphere(new THREE.Sphere());
@@ -779,15 +788,30 @@
       const distance = radius / Math.sin(halfFov) * 1.18;
       const direction = new THREE.Vector3(1, .68, 1).normalize();
 
-      camera.position.copy(currentSphere.center).addScaledVector(direction, distance);
+      const pose = item && savedPoses[item.id]?.camera;
+      if (pose) {
+        camera.position.fromArray(pose.position);
+        camera.up.fromArray(pose.up);
+        camera.fov = pose.fov;
+        // The work viewer's 1:1 guide was 1050 px in a 1136 px stage.
+        camera.zoom = pose.zoom * (1136 / 1050);
+        controls.target.fromArray(pose.target);
+      } else {
+        camera.position.copy(currentSphere.center).addScaledVector(direction, distance);
+        camera.up.set(0, 1, 0);
+        camera.fov = 38;
+        camera.zoom = 1;
+        controls.target.copy(currentSphere.center);
+      }
       camera.near = Math.max(distance / 1000, .00001);
       camera.far = Math.max(distance * 100, 10);
       camera.updateProjectionMatrix();
 
-      controls.target.copy(currentSphere.center);
       controls.minDistance = radius * .12;
       controls.maxDistance = radius * 18;
+      controls.enableDamping = false;
       controls.update();
+      controls.enableDamping = true;
     }
 
     function disposeCurrent() {
@@ -847,7 +871,7 @@
     }
 
     document.getElementById("show-all").addEventListener("click", showAllObjects);
-    document.getElementById("fit-view").addEventListener("click", fitView);
+    document.getElementById("fit-view").addEventListener("click", () => fitView());
     articulationSlider.addEventListener("input", event => setArticulation(Number(event.target.value)));
     searchInput.addEventListener("input", filterObjects);
     searchInput.addEventListener("keydown", event => {
