@@ -232,6 +232,20 @@
       padding: 12px;
     }
 
+    .future-divider {
+      grid-column: 1 / -1;
+      margin-top: 16px;
+      padding: 15px 4px 7px;
+      border-top: 1px solid var(--line);
+      color: var(--text-muted);
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .future-divider[hidden] { display: none; }
+
     .has-selection .object-panel {
       position: sticky;
       top: 66px;
@@ -387,7 +401,7 @@
       background: #faf8f5;
     }
 
-    .articulation-control[hidden] { display: none; }
+    .articulation-controls[hidden] { display: none; }
 
     .articulation-label {
       color: var(--ink);
@@ -500,11 +514,7 @@
         <div class="viewer-stage" id="viewer-stage">
           <div class="viewer-status" id="viewer-status">Choose an object to load its GLB.</div>
         </div>
-        <label class="articulation-control" id="articulation-control" hidden>
-          <span class="articulation-label" id="articulation-label">Articulation</span>
-          <input class="articulation-slider" id="articulation-slider" type="range" min="0" max="100" value="0" step="1">
-          <output class="articulation-value" id="articulation-value" for="articulation-slider">0%</output>
-        </label>
+        <div class="articulation-controls" id="articulation-controls" hidden></div>
         <div class="viewer-hint">Drag to rotate · scroll to zoom · right-drag to pan · ← → change object</div>
       </section>
     </section>
@@ -512,14 +522,14 @@
 
   <script type="module">
     import * as THREE from "three";
-    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { TrackballControls } from "three/addons/controls/TrackballControls.js";
     import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
     const MANIFEST_URL = "static/object-gallery-manifest.json";
     const POSES_URL = "static/object-gallery-poses.json";
     const THUMB_BASE = "static/gallery-object-thumbs";
-    const THUMB_VERSION = "pose-matched-2";
+    const THUMB_VERSION = "daiso-front-085-1";
 
     const shell = document.getElementById("gallery-shell");
     const grid = document.getElementById("object-grid");
@@ -531,22 +541,21 @@
     const viewerMeta = document.getElementById("viewer-meta");
     const viewerStage = document.getElementById("viewer-stage");
     const viewerStatus = document.getElementById("viewer-status");
-    const articulationControl = document.getElementById("articulation-control");
-    const articulationLabel = document.getElementById("articulation-label");
-    const articulationSlider = document.getElementById("articulation-slider");
-    const articulationValue = document.getElementById("articulation-value");
+    const articulationControls = document.getElementById("articulation-controls");
 
     let manifest = null;
+    let galleryObjects = [];
     let savedPoses = {};
     let selectedIndex = -1;
     let renderer = null;
     let scene = null;
     let camera = null;
     let controls = null;
+    let axisLights = [];
     let loader = null;
     let currentRoot = null;
     let currentSphere = null;
-    let currentArticulation = null;
+    let currentArticulations = [];
     let loadToken = 0;
     let resizeObserver = null;
     let searchEmpty = null;
@@ -566,12 +575,19 @@
         if (!Array.isArray(manifest.objects) || !manifest.objects.length) {
           throw new Error("Object manifest is empty.");
         }
+        const extras = manifest.extraObjects || [];
+        const notYetObjects = extras.filter(item => item.section !== "tbd");
+        const tbdObjects = extras.filter(item => item.section === "tbd");
+        galleryObjects = [...manifest.objects, ...notYetObjects, ...tbdObjects];
+        if (new Set(galleryObjects.map(item => item.id)).size !== galleryObjects.length) {
+          throw new Error("Object manifest contains duplicate IDs.");
+        }
         renderObjects();
         count.textContent = `${manifest.objects.length} objects`;
         summary.textContent = `${manifest.objects.length} object models`;
 
         const requested = new URLSearchParams(location.search).get("object");
-        const requestedIndex = manifest.objects.findIndex(item => item.id === requested);
+        const requestedIndex = galleryObjects.findIndex(item => item.id === requested);
         if (requestedIndex >= 0) selectObject(requestedIndex, false);
       } catch (error) {
         console.error(error);
@@ -582,12 +598,14 @@
 
     function renderObjects() {
       const fragment = document.createDocumentFragment();
-      manifest.objects.forEach((item, index) => {
+      const addCards = (items, startIndex) => items.forEach((item, offset) => {
+        const index = startIndex + offset;
         const button = document.createElement("button");
         button.className = "object-card";
         button.type = "button";
         button.dataset.index = String(index);
         button.dataset.search = `${item.id} ${displayName(item.id)}`.toLocaleLowerCase();
+        button.dataset.section = item.section === "tbd" ? "tbd" : index >= manifest.objects.length ? "not-yet" : "current";
         button.setAttribute("aria-label", `View ${displayName(item.id)}`);
 
         const image = document.createElement("img");
@@ -604,6 +622,26 @@
         button.addEventListener("click", () => selectObject(index, true));
         fragment.append(button);
       });
+      addCards(manifest.objects, 0);
+      const extras = manifest.extraObjects || [];
+      const notYetObjects = extras.filter(item => item.section !== "tbd");
+      const tbdObjects = extras.filter(item => item.section === "tbd");
+      if (notYetObjects.length) {
+        const heading = document.createElement("div");
+        heading.className = "future-divider";
+        heading.id = "not-yet-divider";
+        heading.textContent = "Not Yet in Episodes";
+        fragment.append(heading);
+        addCards(notYetObjects, manifest.objects.length);
+      }
+      if (tbdObjects.length) {
+        const heading = document.createElement("div");
+        heading.className = "future-divider";
+        heading.id = "tbd-divider";
+        heading.textContent = "TBD";
+        fragment.append(heading);
+        addCards(tbdObjects, manifest.objects.length + notYetObjects.length);
+      }
       searchEmpty = document.createElement("div");
       searchEmpty.className = "search-empty";
       searchEmpty.textContent = "No matching objects.";
@@ -616,19 +654,29 @@
       if (!manifest) return;
       const query = searchInput.value.trim().toLocaleLowerCase();
       let visible = 0;
+      let notYetVisible = 0;
+      let tbdVisible = 0;
       grid.querySelectorAll(".object-card").forEach(card => {
         const matches = !query || card.dataset.search.includes(query);
         card.hidden = !matches;
-        if (matches) visible += 1;
+        if (matches) {
+          visible += 1;
+          if (card.dataset.section === "not-yet") notYetVisible += 1;
+          if (card.dataset.section === "tbd") tbdVisible += 1;
+        }
       });
-      count.textContent = query ? `${visible} of ${manifest.objects.length} objects` : `${manifest.objects.length} objects`;
+      count.textContent = query ? `${visible} results · ${manifest.objects.length} objects` : `${manifest.objects.length} objects`;
+      const notYetDivider = document.getElementById("not-yet-divider");
+      if (notYetDivider) notYetDivider.hidden = notYetVisible === 0;
+      const tbdDivider = document.getElementById("tbd-divider");
+      if (tbdDivider) tbdDivider.hidden = tbdVisible === 0;
       if (searchEmpty) searchEmpty.hidden = visible !== 0;
     }
 
     function selectObject(index, updateHistory) {
-      if (!manifest?.objects[index]) return;
+      if (!galleryObjects[index]) return;
       selectedIndex = index;
-      const item = manifest.objects[index];
+      const item = galleryObjects[index];
 
       shell.classList.add("has-selection");
       subtitle.textContent = displayName(item.id);
@@ -667,9 +715,9 @@
       scene.background = new THREE.Color(0xf1ece5);
 
       camera = new THREE.PerspectiveCamera(38, 1, 0.001, 100);
-      controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.08;
+      controls = new TrackballControls(camera, renderer.domElement);
+      controls.staticMoving = true;
+      controls.rotateSpeed = 1.2;
 
       const pmrem = new THREE.PMREMGenerator(renderer);
       const environment = new RoomEnvironment(renderer);
@@ -677,13 +725,16 @@
       environment.dispose();
       pmrem.dispose();
 
-      scene.add(new THREE.HemisphereLight(0xffffff, 0x776f67, 0.40));
-      const key = new THREE.DirectionalLight(0xfff4e6, 0.85);
-      key.position.set(3, 5, 4);
-      scene.add(key);
-      const fill = new THREE.DirectionalLight(0xbfd8ff, 0.10);
-      fill.position.set(-4, 2, -3);
-      scene.add(fill);
+      const axes = [
+        new THREE.Vector3(1, 0, 0), new THREE.Vector3(-1, 0, 0),
+        new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, -1, 0),
+        new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, -1)
+      ];
+      axisLights = axes.map(axis => {
+        const light = new THREE.DirectionalLight(0xffffff, 0.35);
+        scene.add(light, light.target);
+        return { axis, light };
+      });
 
       loader = new GLTFLoader();
       resizeObserver = new ResizeObserver(resizeViewer);
@@ -691,19 +742,32 @@
       resizeViewer();
       renderer.setAnimationLoop(() => {
         controls.update();
+        camera.updateMatrixWorld(true);
+        const center = controls.target;
+        const lightDistance = Math.max((currentSphere?.radius || 0) * 3, 1);
+        for (const { axis, light } of axisLights) {
+          light.position.copy(center).addScaledVector(axis.clone().applyQuaternion(camera.quaternion), lightDistance);
+          light.target.position.copy(center);
+          light.target.updateMatrixWorld(true);
+        }
         renderer.render(scene, camera);
       });
     }
 
     function loadObject(item) {
       const token = ++loadToken;
+      const isDaiso = manifest.extraObjects?.some(extra => extra.id === item.id && extra.section !== "tbd");
+      for (const { axis, light } of axisLights) {
+        light.intensity = isDaiso ? (axis.z === 1 ? 0.85 : 0.50) : 0.35;
+      }
       setStatus(`Loading ${displayName(item.id)}…`);
       disposeCurrent();
 
       const base = String(manifest.glbBase || "").replace(/\/$/, "");
       const articulatedBase = String(manifest.articulatedGlbBase || "").replace(/\/$/, "");
-      const modelBase = item.articulation && articulatedBase ? articulatedBase : base;
-      const modelBytes = item.articulation?.bytes || item.bytes;
+      const articulated = Boolean(item.articulation || item.articulations?.length);
+      const modelBase = articulated && articulatedBase ? articulatedBase : base;
+      const modelBytes = item.articulatedBytes || item.articulation?.bytes || item.bytes;
       const url = `${modelBase}/${encodeURIComponent(item.id)}.glb?v=${modelBytes}`;
       loader.load(
         url,
@@ -748,38 +812,65 @@
     }
 
     function configureArticulation(item) {
-      currentArticulation = null;
-      articulationControl.hidden = true;
-      articulationSlider.value = "0";
-      articulationValue.value = "0%";
-      articulationValue.textContent = "0%";
-      if (!item.articulation) return;
-
-      const pivot = currentRoot.getObjectByName(item.articulation.node);
-      const axis = new THREE.Vector3(...item.articulation.axis).normalize();
-      const range = item.articulation.rangeRad;
-      if (!pivot || axis.lengthSq() === 0 || !Array.isArray(range) || range.length !== 2) {
-        console.warn("Invalid articulation metadata", item.id, item.articulation);
-        return;
+      currentArticulations = [];
+      articulationControls.replaceChildren();
+      articulationControls.hidden = true;
+      const definitions = item.articulations || (item.articulation ? [{ ...item.articulation, type: "revolute", legacy: true }] : []);
+      for (const [index, definition] of definitions.entries()) {
+        const node = currentRoot.getObjectByName(definition.node);
+        const axis = new THREE.Vector3(...definition.axis).normalize();
+        const range = definition.type === "prismatic" ? definition.rangeM : definition.rangeRad;
+        if (!node || axis.lengthSq() === 0 || !Array.isArray(range) || range.length !== 2 || range[0] >= range[1]) {
+          console.warn("Invalid articulation metadata", item.id, definition);
+          continue;
+        }
+        const row = document.createElement("label");
+        row.className = "articulation-control";
+        const caption = document.createElement("span");
+        caption.className = "articulation-label";
+        caption.textContent = definition.label || "Articulation";
+        const slider = document.createElement("input");
+        slider.className = "articulation-slider";
+        slider.type = "range";
+        slider.min = "0";
+        slider.max = "100";
+        slider.step = "1";
+        slider.setAttribute("aria-label", definition.label || `Articulation ${index + 1}`);
+        const output = document.createElement("output");
+        output.className = "articulation-value";
+        row.append(caption, slider, output);
+        articulationControls.append(row);
+        const joint = {
+          node, axis, lower: range[0], upper: range[1],
+          type: definition.type, legacy: Boolean(definition.legacy),
+          restPosition: node.position.clone(), restQuaternion: node.quaternion.clone(), output
+        };
+        currentArticulations.push(joint);
+        const initialPercent = THREE.MathUtils.clamp(-range[0] / (range[1] - range[0]) * 100, 0, 100);
+        slider.value = String(initialPercent);
+        slider.addEventListener("input", () => setArticulation(joint, Number(slider.value)));
+        setArticulation(joint, initialPercent);
       }
-
-      currentArticulation = { pivot, axis, lower: range[0], upper: range[1] };
-      articulationLabel.textContent = item.articulation.label || "Articulation";
-      articulationControl.hidden = false;
-      setArticulation(0);
+      articulationControls.hidden = currentArticulations.length === 0;
     }
 
-    function setArticulation(percent) {
-      if (!currentArticulation) return;
+    function setArticulation(joint, percent) {
       const normalized = THREE.MathUtils.clamp(percent / 100, 0, 1);
-      const angle = THREE.MathUtils.lerp(currentArticulation.lower, currentArticulation.upper, normalized);
-      currentArticulation.pivot.quaternion.setFromAxisAngle(currentArticulation.axis, angle);
-      currentArticulation.pivot.updateMatrixWorld(true);
-      articulationValue.value = `${Math.round(percent)}%`;
-      articulationValue.textContent = articulationValue.value;
+      const value = THREE.MathUtils.lerp(joint.lower, joint.upper, normalized);
+      if (joint.type === "prismatic") {
+        joint.node.position.copy(joint.restPosition).addScaledVector(joint.axis, value);
+      } else {
+        joint.node.quaternion.copy(joint.restQuaternion).multiply(new THREE.Quaternion().setFromAxisAngle(joint.axis, value));
+      }
+      joint.node.updateMatrixWorld(true);
+      const display = joint.legacy ? `${Math.round(percent)}%`
+        : joint.type === "prismatic" ? `${Math.round(value * 1000)} mm`
+        : `${Math.round(THREE.MathUtils.radToDeg(value))}°`;
+      joint.output.value = display;
+      joint.output.textContent = display;
     }
 
-    function fitView(item = manifest?.objects[selectedIndex]) {
+    function fitView(item = galleryObjects[selectedIndex], useSavedPose = true) {
       if (!currentRoot) return;
       const bounds = new THREE.Box3().setFromObject(currentRoot);
       currentSphere = bounds.getBoundingSphere(new THREE.Sphere());
@@ -788,7 +879,7 @@
       const distance = radius / Math.sin(halfFov) * 1.18;
       const direction = new THREE.Vector3(1, .68, 1).normalize();
 
-      const pose = item && savedPoses[item.id]?.camera;
+      const pose = useSavedPose && item && savedPoses[item.id]?.camera;
       if (pose) {
         camera.position.fromArray(pose.position);
         camera.up.fromArray(pose.up);
@@ -809,9 +900,7 @@
 
       controls.minDistance = radius * .12;
       controls.maxDistance = radius * 18;
-      controls.enableDamping = false;
       controls.update();
-      controls.enableDamping = true;
     }
 
     function disposeCurrent() {
@@ -820,8 +909,9 @@
       scene.remove(currentRoot);
       currentRoot = null;
       currentSphere = null;
-      currentArticulation = null;
-      articulationControl.hidden = true;
+      currentArticulations = [];
+      articulationControls.replaceChildren();
+      articulationControls.hidden = true;
     }
 
     function disposeTree(root) {
@@ -845,6 +935,7 @@
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+      controls.handleResize();
     }
 
     function setStatus(message, hidden = false) {
@@ -872,7 +963,6 @@
 
     document.getElementById("show-all").addEventListener("click", showAllObjects);
     document.getElementById("fit-view").addEventListener("click", () => fitView());
-    articulationSlider.addEventListener("input", event => setArticulation(Number(event.target.value)));
     searchInput.addEventListener("input", filterObjects);
     searchInput.addEventListener("keydown", event => {
       if (event.key !== "Escape") return;
@@ -882,7 +972,7 @@
     });
 
     window.addEventListener("keydown", event => {
-      if (!manifest || selectedIndex < 0) return;
+      if (!galleryObjects.length || selectedIndex < 0) return;
       if (event.target instanceof HTMLInputElement) return;
       if (event.key === "Escape") {
         showAllObjects();
@@ -890,7 +980,7 @@
       }
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       const direction = event.key === "ArrowRight" ? 1 : -1;
-      const next = (selectedIndex + direction + manifest.objects.length) % manifest.objects.length;
+      const next = (selectedIndex + direction + galleryObjects.length) % galleryObjects.length;
       selectObject(next, true);
     });
   </script>

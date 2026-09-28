@@ -62,14 +62,21 @@
     {
       "id": "blue_plastic_box",
       "triangles": 326188,
-      "bytes": 8794808,
+      "bytes": 8794792,
       "doubleSided": true,
       "articulation": {
         "label": "Articulation",
-        "bytes": 8857480,
+        "bytes": 8857464,
         "node": "lid_pivot",
-        "axis": [0.1602546464844158, -0.9422634287886419, -0.29403754700314527],
-        "rangeRad": [0.0, 4.537856055185257]
+        "axis": [
+          0.1602546464844158,
+          -0.9422634287886419,
+          -0.29403754700314527
+        ],
+        "rangeRad": [
+          0.0,
+          4.537856055185257
+        ]
       }
     },
     {
@@ -231,12 +238,12 @@
     {
       "id": "instant_rice",
       "triangles": 84648,
-      "bytes": 10401984
+      "bytes": 10401968
     },
     {
       "id": "jja_ramen",
       "triangles": 140716,
-      "bytes": 4869088
+      "bytes": 4869072
     },
     {
       "id": "knife_sharpener",
@@ -316,12 +323,12 @@
     {
       "id": "pepper_tuna",
       "triangles": 132928,
-      "bytes": 4531156
+      "bytes": 4531140
     },
     {
       "id": "pingpong",
       "triangles": 26964,
-      "bytes": 1803528
+      "bytes": 1803512
     },
     {
       "id": "pink_clock",
@@ -356,7 +363,7 @@
     {
       "id": "rectangular_frying_pan",
       "triangles": 88520,
-      "bytes": 11211092
+      "bytes": 11211076
     },
     {
       "id": "redcar",
@@ -371,7 +378,7 @@
     {
       "id": "scotch_tape",
       "triangles": 157808,
-      "bytes": 4969120
+      "bytes": 4969104
     },
     {
       "id": "screwdriver",
@@ -416,12 +423,12 @@
     {
       "id": "tea_case",
       "triangles": 234414,
-      "bytes": 6837084
+      "bytes": 6837068
     },
     {
       "id": "tennis_ball",
       "triangles": 161722,
-      "bytes": 5214500
+      "bytes": 5214484
     },
     {
       "id": "thermo_clock",
@@ -466,12 +473,12 @@
     {
       "id": "white_soap_dish",
       "triangles": 53798,
-      "bytes": 6961392
+      "bytes": 6961376
     },
     {
       "id": "white_wood_handle_watering_can",
       "triangles": 50798,
-      "bytes": 6656624,
+      "bytes": 6656608,
       "doubleSided": true
     },
     {
@@ -508,6 +515,525 @@
       "id": "yellow_wash_tub",
       "triangles": 16495,
       "bytes": 482248
+    }
+  ],
+  "extraObjects": [
+    {
+      "id": "acrylic_paint_sky_blue",
+      "triangles": 85854,
+      "bytes": 3214772
+    },
+    {
+      "id": "air_conditioner_deodorizer",
+      "triangles": 46272,
+      "bytes": 2532852
+    },
+    {
+      "id": "all_in_one_fluid",
+      "triangles": 80728,
+      "bytes": 2918020
+    },
+    {
+      "id": "auto_lock_measuring_tape",
+      "triangles": 101858,
+      "bytes": 3712292
+    },
+    {
+      "id": "best_pole_bedding_clips",
+      "triangles": 469993,
+      "bytes": 8453856
+    },
+    {
+      "id": "buldak_ramen",
+      "triangles": 367776,
+      "bytes": 9518264
+    },
+    {
+      "id": "call_bell",
+      "triangles": 1219940,
+      "bytes": 28551796
+    },
+    {
+      "id": "chair_foot_cover",
+      "triangles": 40416,
+      "bytes": 2018068
+    },
+    {
+      "id": "crunky_ball",
+      "triangles": 69562,
+      "bytes": 3011000
+    },
+    {
+      "id": "cube_puzzle_play",
+      "triangles": 100076,
+      "bytes": 3309852
+    },
+    {
+      "id": "daily_moisture_lotion",
+      "triangles": 34882,
+      "bytes": 2384208
+    },
+    {
+      "id": "damage_clinic_cream_essence",
+      "triangles": 70398,
+      "bytes": 3173796
+    },
+    {
+      "id": "desk_vacuum_cleaner",
+      "triangles": 446338,
+      "bytes": 11202280
+    },
+    {
+      "id": "digital_desk_clock",
+      "triangles": 117388,
+      "bytes": 3576296
+    },
+    {
+      "id": "doraemon_square_pouch",
+      "triangles": 1101598,
+      "bytes": 26079956
+    },
+    {
+      "id": "duplex_outlet",
+      "triangles": 400050,
+      "bytes": 10595156
+    },
+    {
+      "id": "fake_peach",
+      "triangles": 55588,
+      "bytes": 2694052
+    },
+    {
+      "id": "foot_file",
+      "triangles": 207272,
+      "bytes": 6176164
+    },
+    {
+      "id": "glue",
+      "triangles": 97414,
+      "bytes": 3446644
+    },
+    {
+      "id": "home_keeper",
+      "triangles": 469608,
+      "bytes": 11697316
+    },
+    {
+      "id": "ice_neck_coling",
+      "triangles": 119450,
+      "bytes": 3745612
+    },
+    {
+      "id": "kitchen_foil",
+      "triangles": 188454,
+      "bytes": 5715200
+    },
+    {
+      "id": "kitchen_towel_holder",
+      "triangles": 407156,
+      "bytes": 10417336
+    },
+    {
+      "id": "leatherback_sea_turtle",
+      "triangles": 151092,
+      "bytes": 5123348
+    },
+    {
+      "id": "long_hair_curl",
+      "triangles": 398150,
+      "bytes": 10548308
+    },
+    {
+      "id": "low_irritant_ph_balanced_deep_clean",
+      "triangles": 67888,
+      "bytes": 2999176
+    },
+    {
+      "id": "magnet_pinch_clip",
+      "triangles": 46494,
+      "bytes": 2080860
+    },
+    {
+      "id": "magnifying_glass",
+      "triangles": 160952,
+      "bytes": 5300672
+    },
+    {
+      "id": "magnoliatulip_candle",
+      "triangles": 44092,
+      "bytes": 2241452
+    },
+    {
+      "id": "makgeolli_bowl",
+      "triangles": 77852,
+      "bytes": 3017200
+    },
+    {
+      "id": "manta_ray",
+      "triangles": 56202,
+      "bytes": 2820916
+    },
+    {
+      "id": "mesh_pocket",
+      "triangles": 174262,
+      "bytes": 5054300
+    },
+    {
+      "id": "mini_measuring_tape",
+      "triangles": 39920,
+      "bytes": 2218664
+    },
+    {
+      "id": "mosquito_net_repair_tape",
+      "triangles": 264842,
+      "bytes": 7161840
+    },
+    {
+      "id": "multipurpose_adhesive",
+      "triangles": 55506,
+      "bytes": 2696056
+    },
+    {
+      "id": "nivea_men_shaving_foam",
+      "triangles": 93472,
+      "bytes": 3596084
+    },
+    {
+      "id": "paint_brush",
+      "triangles": 186724,
+      "bytes": 5726752
+    },
+    {
+      "id": "permanent_marker",
+      "triangles": 37228,
+      "bytes": 2264240
+    },
+    {
+      "id": "pet_melamine_dinnerware_brown",
+      "triangles": 546840,
+      "bytes": 13319000
+    },
+    {
+      "id": "powder_brush",
+      "triangles": 108644,
+      "bytes": 3910912
+    },
+    {
+      "id": "praise_stamp",
+      "triangles": 35586,
+      "bytes": 2102992
+    },
+    {
+      "id": "pump_dedicated_to_pump_type_compression_packs",
+      "triangles": 121760,
+      "bytes": 3934216,
+      "articulatedBytes": 3936632,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "plunger_joint",
+          "type": "prismatic",
+          "axis": [
+            -0.303521,
+            0.728672,
+            0.613931
+          ],
+          "rangeM": [
+            0.0,
+            0.17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refrigerator_deodorizer",
+      "triangles": 167988,
+      "bytes": 5423472
+    },
+    {
+      "id": "rod_stain_towel",
+      "triangles": 408970,
+      "bytes": 11242240
+    },
+    {
+      "id": "rubber_hammer",
+      "triangles": 215332,
+      "bytes": 6710672
+    },
+    {
+      "id": "rubber_tree_phone_stand",
+      "triangles": 44894,
+      "bytes": 2154012
+    },
+    {
+      "id": "rubberwood_washboard",
+      "triangles": 150778,
+      "bytes": 4704888
+    },
+    {
+      "id": "sea_turtle",
+      "triangles": 110190,
+      "bytes": 4029900
+    },
+    {
+      "id": "silicone_scoop",
+      "triangles": 321503,
+      "bytes": 9330016
+    },
+    {
+      "id": "silicone_spatula",
+      "triangles": 73086,
+      "bytes": 3078008
+    },
+    {
+      "id": "single_switch",
+      "triangles": 236068,
+      "bytes": 6493288
+    },
+    {
+      "id": "skin_body_wash",
+      "triangles": 95232,
+      "bytes": 3503152
+    },
+    {
+      "id": "slide_lock",
+      "triangles": 65294,
+      "bytes": 2557056
+    },
+    {
+      "id": "soap_dish",
+      "triangles": 87424,
+      "bytes": 3322832
+    },
+    {
+      "id": "source_bottle",
+      "triangles": 417302,
+      "bytes": 10515428
+    },
+    {
+      "id": "sponge_scrubber",
+      "triangles": 384194,
+      "bytes": 10351344
+    },
+    {
+      "id": "square_sponge",
+      "triangles": 538886,
+      "bytes": 13958728
+    },
+    {
+      "id": "stainless_airtight_container",
+      "triangles": 1667128,
+      "bytes": 45740352
+    },
+    {
+      "id": "stainless_bowl",
+      "triangles": 116422,
+      "bytes": 3877552
+    },
+    {
+      "id": "swing_trash_can",
+      "triangles": 108602,
+      "bytes": 3664524
+    },
+    {
+      "id": "tea_candle",
+      "triangles": 23006,
+      "bytes": 1079316
+    },
+    {
+      "id": "toasted_sesame_oil",
+      "triangles": 215298,
+      "bytes": 6171232
+    },
+    {
+      "id": "vaseline_jelly",
+      "triangles": 139482,
+      "bytes": 4559324
+    },
+    {
+      "id": "vaseline_lip_balm",
+      "triangles": 13649,
+      "bytes": 1570208
+    },
+    {
+      "id": "wd_40",
+      "triangles": 50220,
+      "bytes": 2896600
+    },
+    {
+      "id": "white_board_eraser",
+      "triangles": 77594,
+      "bytes": 2695092
+    },
+    {
+      "id": "white_lost_ball",
+      "triangles": 43802,
+      "bytes": 2085084
+    },
+    {
+      "id": "wide_silicone_brush",
+      "triangles": 177690,
+      "bytes": 5414068
+    },
+    {
+      "id": "window_handle",
+      "triangles": 52506,
+      "bytes": 2342828
+    },
+    {
+      "id": "wireless_mouse",
+      "triangles": 103652,
+      "bytes": 2932044
+    },
+    {
+      "id": "wooden_bowl",
+      "triangles": 271638,
+      "bytes": 6985988
+    },
+    {
+      "id": "wooden_mortar_base",
+      "triangles": 341318,
+      "bytes": 8777568
+    },
+    {
+      "id": "wooden_mortar_handle",
+      "triangles": 162164,
+      "bytes": 4861760
+    },
+    {
+      "id": "wooden_spatula",
+      "triangles": 57544,
+      "bytes": 2610664
+    },
+    {
+      "id": "ziploc_bag",
+      "triangles": 111680,
+      "bytes": 4057576
+    },
+    {
+      "id": "apple",
+      "triangles": 73678,
+      "bytes": 1473220,
+      "section": "tbd"
+    },
+    {
+      "id": "clamp",
+      "triangles": 74264,
+      "bytes": 9506532,
+      "articulatedBytes": 6834040,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "screw_joint",
+          "type": "prismatic",
+          "axis": [
+            0.704836,
+            -0.575995,
+            -0.414049
+          ],
+          "rangeM": [
+            -0.03657,
+            0.02192
+          ]
+        }
+      ],
+      "section": "tbd"
+    },
+    {
+      "id": "drawer",
+      "triangles": 226831,
+      "bytes": 27008836,
+      "articulatedBytes": 23908168,
+      "articulations": [
+        {
+          "label": "Drawer 1",
+          "node": "slide_0_joint",
+          "type": "prismatic",
+          "axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rangeM": [
+            0.0,
+            0.2079
+          ]
+        },
+        {
+          "label": "Drawer 2",
+          "node": "slide_1_joint",
+          "type": "prismatic",
+          "axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rangeM": [
+            0.0,
+            0.2079
+          ]
+        }
+      ],
+      "section": "tbd"
+    },
+    {
+      "id": "metal_measuring_flask",
+      "triangles": 250786,
+      "bytes": 28883972,
+      "section": "tbd"
+    },
+    {
+      "id": "potato",
+      "triangles": 96310,
+      "bytes": 3395520,
+      "section": "tbd"
+    },
+    {
+      "id": "red_bowl",
+      "triangles": 68756,
+      "bytes": 8910808,
+      "articulatedBytes": 6437268,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "bail_joint",
+          "type": "revolute",
+          "axis": [
+            0.75458,
+            -0.268342,
+            -0.598834
+          ],
+          "rangeRad": [
+            -2.4574235868080163,
+            2.3352505391684133
+          ]
+        }
+      ],
+      "doubleSided": true,
+      "section": "tbd"
+    },
+    {
+      "id": "scissors",
+      "triangles": 90971,
+      "bytes": 3218436,
+      "articulatedBytes": 3241840,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "pivot_joint",
+          "type": "revolute",
+          "axis": [
+            -0.108981,
+            0.475901,
+            -0.872721
+          ],
+          "rangeRad": [
+            0.0,
+            2.139774
+          ]
+        }
+      ],
+      "section": "tbd"
     }
   ]
 }
