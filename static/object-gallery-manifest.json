@@ -74,7 +74,7 @@
           -0.29403754700314527
         ],
         "rangeRad": [
-          0.0,
+          0,
           4.537856055185257
         ]
       }
@@ -524,6 +524,12 @@
       "bytes": 3214772
     },
     {
+      "id": "aikkeutae",
+      "triangles": 109860,
+      "bytes": 4049996,
+      "environmentIntensity": 1
+    },
+    {
       "id": "air_conditioner_deodorizer",
       "triangles": 46272,
       "bytes": 2532852
@@ -539,9 +545,33 @@
       "bytes": 3712292
     },
     {
+      "id": "baby_powder",
+      "triangles": 216363,
+      "bytes": 6306484,
+      "environmentIntensity": 1
+    },
+    {
       "id": "best_pole_bedding_clips",
       "triangles": 469993,
       "bytes": 8453856
+    },
+    {
+      "id": "brightening_peeling_mist",
+      "triangles": 256962,
+      "bytes": 7754264,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "broomdustpan",
+      "triangles": 209022,
+      "bytes": 6237120,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "brush_washer",
+      "triangles": 390650,
+      "bytes": 10244884,
+      "environmentIntensity": 1
     },
     {
       "id": "buldak_ramen",
@@ -554,9 +584,27 @@
       "bytes": 28551796
     },
     {
+      "id": "camping_griddle",
+      "triangles": 252129,
+      "bytes": 7702120,
+      "environmentIntensity": 1
+    },
+    {
       "id": "chair_foot_cover",
       "triangles": 40416,
       "bytes": 2018068
+    },
+    {
+      "id": "cool_mensol_shampoo",
+      "triangles": 109374,
+      "bytes": 4083360,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "cotton_foot_foot_shampoo",
+      "triangles": 234216,
+      "bytes": 7207336,
+      "environmentIntensity": 1
     },
     {
       "id": "crunky_ball",
@@ -579,6 +627,12 @@
       "bytes": 3173796
     },
     {
+      "id": "deep_clean_laundry_detergent",
+      "triangles": 206992,
+      "bytes": 6352016,
+      "environmentIntensity": 1
+    },
+    {
       "id": "desk_vacuum_cleaner",
       "triangles": 446338,
       "bytes": 11202280
@@ -587,6 +641,12 @@
       "id": "digital_desk_clock",
       "triangles": 117388,
       "bytes": 3576296
+    },
+    {
+      "id": "door_stoper",
+      "triangles": 79160,
+      "bytes": 3081724,
+      "environmentIntensity": 1
     },
     {
       "id": "doraemon_square_pouch",
@@ -599,9 +659,27 @@
       "bytes": 10595156
     },
     {
+      "id": "fabric_refresher",
+      "triangles": 185045,
+      "bytes": 5824140,
+      "environmentIntensity": 1
+    },
+    {
       "id": "fake_peach",
       "triangles": 55588,
       "bytes": 2694052
+    },
+    {
+      "id": "fancy_piggy_bank",
+      "triangles": 101160,
+      "bytes": 3684536,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "floor_cleaning_brush",
+      "triangles": 230332,
+      "bytes": 7007964,
+      "environmentIntensity": 1
     },
     {
       "id": "foot_file",
@@ -614,9 +692,21 @@
       "bytes": 3446644
     },
     {
+      "id": "handle_thermos",
+      "triangles": 1050244,
+      "bytes": 18876488,
+      "environmentIntensity": 1
+    },
+    {
       "id": "home_keeper",
       "triangles": 469608,
       "bytes": 11697316
+    },
+    {
+      "id": "hose_nozzle",
+      "triangles": 299928,
+      "bytes": 8273796,
+      "environmentIntensity": 1
     },
     {
       "id": "ice_neck_coling",
@@ -634,6 +724,12 @@
       "bytes": 10417336
     },
     {
+      "id": "land_turtle",
+      "triangles": 96988,
+      "bytes": 3699112,
+      "environmentIntensity": 1
+    },
+    {
       "id": "leatherback_sea_turtle",
       "triangles": 151092,
       "bytes": 5123348
@@ -642,6 +738,12 @@
       "id": "long_hair_curl",
       "triangles": 398150,
       "bytes": 10548308
+    },
+    {
+      "id": "long_nose_pliers",
+      "triangles": 65100,
+      "bytes": 2964080,
+      "environmentIntensity": 1
     },
     {
       "id": "low_irritant_ph_balanced_deep_clean",
@@ -674,6 +776,12 @@
       "bytes": 2820916
     },
     {
+      "id": "massage_ball",
+      "triangles": 277770,
+      "bytes": 8250764,
+      "environmentIntensity": 1
+    },
+    {
       "id": "mesh_pocket",
       "triangles": 174262,
       "bytes": 5054300
@@ -684,6 +792,12 @@
       "bytes": 2218664
     },
     {
+      "id": "modular_multi_purpose_hook",
+      "triangles": 303802,
+      "bytes": 8313168,
+      "environmentIntensity": 1
+    },
+    {
       "id": "mosquito_net_repair_tape",
       "triangles": 264842,
       "bytes": 7161840
@@ -692,6 +806,12 @@
       "id": "multipurpose_adhesive",
       "triangles": 55506,
       "bytes": 2696056
+    },
+    {
+      "id": "nipper",
+      "triangles": 88982,
+      "bytes": 3569280,
+      "environmentIntensity": 1
     },
     {
       "id": "nivea_men_shaving_foam",
@@ -712,6 +832,12 @@
       "id": "pet_melamine_dinnerware_brown",
       "triangles": 546840,
       "bytes": 13319000
+    },
+    {
+      "id": "petite_flower_pot",
+      "triangles": 623175,
+      "bytes": 17432988,
+      "environmentIntensity": 1
     },
     {
       "id": "powder_brush",
@@ -739,7 +865,7 @@
             0.613931
           ],
           "rangeM": [
-            0.0,
+            0,
             0.17
           ]
         }
@@ -756,6 +882,24 @@
       "bytes": 11242240
     },
     {
+      "id": "roll_cleaner",
+      "triangles": 218892,
+      "bytes": 6599904,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "rotating_pen_holder",
+      "triangles": 243990,
+      "bytes": 7016436,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "rotating_s_ring",
+      "triangles": 94028,
+      "bytes": 3632108,
+      "environmentIntensity": 1
+    },
+    {
       "id": "rubber_hammer",
       "triangles": 215332,
       "bytes": 6710672
@@ -766,14 +910,38 @@
       "bytes": 2154012
     },
     {
+      "id": "rubber_tree_remote_control_holder",
+      "triangles": 203370,
+      "bytes": 6415104,
+      "environmentIntensity": 1
+    },
+    {
       "id": "rubberwood_washboard",
       "triangles": 150778,
       "bytes": 4704888
     },
     {
+      "id": "scrub_brush",
+      "triangles": 532512,
+      "bytes": 14491908,
+      "environmentIntensity": 1
+    },
+    {
       "id": "sea_turtle",
       "triangles": 110190,
       "bytes": 4029900
+    },
+    {
+      "id": "shower_head",
+      "triangles": 154807,
+      "bytes": 5256340,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "shower_head_holder",
+      "triangles": 153904,
+      "bytes": 4890260,
+      "environmentIntensity": 1
     },
     {
       "id": "silicone_scoop",
@@ -784,6 +952,12 @@
       "id": "silicone_spatula",
       "triangles": 73086,
       "bytes": 3078008
+    },
+    {
+      "id": "single_hole_punch",
+      "triangles": 131896,
+      "bytes": 4810472,
+      "environmentIntensity": 1
     },
     {
       "id": "single_switch",
@@ -799,6 +973,12 @@
       "id": "slide_lock",
       "triangles": 65294,
       "bytes": 2557056
+    },
+    {
+      "id": "small_watering_can",
+      "triangles": 178370,
+      "bytes": 5732716,
+      "environmentIntensity": 1
     },
     {
       "id": "soap_dish",
@@ -831,14 +1011,44 @@
       "bytes": 3877552
     },
     {
+      "id": "stanley_monkeywrench",
+      "triangles": 93056,
+      "bytes": 3662328,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "stapler",
+      "triangles": 114272,
+      "bytes": 4025336,
+      "environmentIntensity": 1
+    },
+    {
       "id": "swing_trash_can",
       "triangles": 108602,
       "bytes": 3664524
     },
     {
+      "id": "tayo_play_big",
+      "triangles": 151901,
+      "bytes": 4929336,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "tayo_play_lolly",
+      "triangles": 92926,
+      "bytes": 3582228,
+      "environmentIntensity": 1
+    },
+    {
       "id": "tea_candle",
       "triangles": 23006,
       "bytes": 1079316
+    },
+    {
+      "id": "terracotta_flower_pot",
+      "triangles": 121976,
+      "bytes": 4262408,
+      "environmentIntensity": 1
     },
     {
       "id": "toasted_sesame_oil",
@@ -856,9 +1066,21 @@
       "bytes": 1570208
     },
     {
+      "id": "water_gun",
+      "triangles": 321572,
+      "bytes": 8668960,
+      "environmentIntensity": 1
+    },
+    {
       "id": "wd_40",
       "triangles": 50220,
       "bytes": 2896600
+    },
+    {
+      "id": "wheel_tire_cleaner",
+      "triangles": 201802,
+      "bytes": 6409396,
+      "environmentIntensity": 1
     },
     {
       "id": "white_board_eraser",
@@ -889,6 +1111,12 @@
       "id": "wooden_bowl",
       "triangles": 271638,
       "bytes": 6985988
+    },
+    {
+      "id": "wooden_massage_roller",
+      "triangles": 59104,
+      "bytes": 2779936,
+      "environmentIntensity": 1
     },
     {
       "id": "wooden_mortar_base",
@@ -950,12 +1178,12 @@
           "node": "slide_0_joint",
           "type": "prismatic",
           "axis": [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ],
           "rangeM": [
-            0.0,
+            0,
             0.2079
           ]
         },
@@ -964,12 +1192,12 @@
           "node": "slide_1_joint",
           "type": "prismatic",
           "axis": [
-            0.0,
-            0.0,
-            1.0
+            0,
+            0,
+            1
           ],
           "rangeM": [
-            0.0,
+            0,
             0.2079
           ]
         }
@@ -1028,7 +1256,7 @@
             -0.872721
           ],
           "rangeRad": [
-            0.0,
+            0,
             2.139774
           ]
         }

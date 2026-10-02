@@ -264,6 +264,7 @@
     }
 
     .object-card {
+      position: relative;
       display: flex;
       align-self: start;
       min-width: 0;
@@ -287,6 +288,38 @@
 
     .object-card.active { outline: 2px solid rgba(226, 96, 59, .18); }
     .object-card[hidden] { display: none; }
+
+    .articulated-badge {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 3px 7px;
+      border: 1px solid #b8cec2;
+      border-radius: 5px;
+      background: #edf6f0;
+      color: #37654d;
+      font-size: .65rem;
+      font-weight: 800;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .object-card .articulated-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      max-width: calc(100% - 12px);
+      pointer-events: none;
+    }
+
+    .viewer-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .articulated-badge[hidden] { display: none; }
 
     .search-empty {
       grid-column: 1 / -1;
@@ -503,7 +536,10 @@
       <section class="viewer-panel" aria-label="Selected object 3D viewer">
         <div class="viewer-header">
           <div>
-            <h2 class="viewer-title" id="viewer-title">Object</h2>
+            <div class="viewer-title-row">
+              <h2 class="viewer-title" id="viewer-title">Object</h2>
+              <span class="articulated-badge" id="viewer-articulated-badge" title="Use the Articulation slider below the model to move its parts." hidden>Articulated</span>
+            </div>
             <div class="viewer-meta" id="viewer-meta"></div>
           </div>
           <div class="viewer-actions">
@@ -529,7 +565,7 @@
     const MANIFEST_URL = "static/object-gallery-manifest.json";
     const POSES_URL = "static/object-gallery-poses.json";
     const THUMB_BASE = "static/gallery-object-thumbs";
-    const THUMB_VERSION = "daiso-front-085-1";
+    const THUMB_VERSION = "daiso-oct02-saved-1";
 
     const shell = document.getElementById("gallery-shell");
     const grid = document.getElementById("object-grid");
@@ -538,6 +574,7 @@
     const summary = document.getElementById("gallery-summary");
     const subtitle = document.getElementById("object-panel-subtitle");
     const viewerTitle = document.getElementById("viewer-title");
+    const viewerArticulatedBadge = document.getElementById("viewer-articulated-badge");
     const viewerMeta = document.getElementById("viewer-meta");
     const viewerStage = document.getElementById("viewer-stage");
     const viewerStatus = document.getElementById("viewer-status");
@@ -604,9 +641,10 @@
         button.className = "object-card";
         button.type = "button";
         button.dataset.index = String(index);
-        button.dataset.search = `${item.id} ${displayName(item.id)}`.toLocaleLowerCase();
+        const articulated = Boolean(item.articulation || item.articulations?.length);
+        button.dataset.search = `${item.id} ${displayName(item.id)} ${articulated ? "articulated" : ""}`.toLocaleLowerCase();
         button.dataset.section = item.section === "tbd" ? "tbd" : index >= manifest.objects.length ? "not-yet" : "current";
-        button.setAttribute("aria-label", `View ${displayName(item.id)}`);
+        button.setAttribute("aria-label", `View ${displayName(item.id)}${articulated ? " — articulated" : ""}`);
 
         const image = document.createElement("img");
         image.src = `${THUMB_BASE}/${encodeURIComponent(item.id)}/thumb.png?v=${THUMB_VERSION}`;
@@ -619,6 +657,13 @@
         label.title = displayName(item.id);
 
         button.append(image, label);
+        if (articulated) {
+          const badge = document.createElement("span");
+          badge.className = "articulated-badge";
+          badge.textContent = "Articulated";
+          button.title = "Move this object's parts with the Articulation slider.";
+          button.append(badge);
+        }
         button.addEventListener("click", () => selectObject(index, true));
         fragment.append(button);
       });
@@ -681,6 +726,7 @@
       shell.classList.add("has-selection");
       subtitle.textContent = displayName(item.id);
       viewerTitle.textContent = displayName(item.id);
+      viewerArticulatedBadge.hidden = true;
       viewerMeta.textContent = `${item.triangles.toLocaleString()} triangles`;
       grid.querySelectorAll(".object-card").forEach((card, cardIndex) => {
         const active = cardIndex === index;
@@ -802,7 +848,7 @@
         if (!node.isMesh) return;
         const materials = Array.isArray(node.material) ? node.material : [node.material];
         materials.filter(Boolean).forEach(material => {
-          material.envMapIntensity = 0.55;
+          material.envMapIntensity = item.environmentIntensity ?? 0.55;
           if (item.doubleSided) {
             material.side = THREE.DoubleSide;
             material.needsUpdate = true;
@@ -852,6 +898,7 @@
         setArticulation(joint, initialPercent);
       }
       articulationControls.hidden = currentArticulations.length === 0;
+      viewerArticulatedBadge.hidden = currentArticulations.length === 0;
     }
 
     function setArticulation(joint, percent) {
@@ -884,8 +931,9 @@
         camera.position.fromArray(pose.position);
         camera.up.fromArray(pose.up);
         camera.fov = pose.fov;
-        // The work viewer's 1:1 guide was 1050 px in a 1136 px stage.
-        camera.zoom = pose.zoom * (1136 / 1050);
+        // Legacy review used a square guide inside a taller stage; new review
+        // uses an actual square viewport and records its framing scale.
+        camera.zoom = pose.zoom * (pose.thumbnailFrameScale ?? (1136 / 1050));
         controls.target.fromArray(pose.target);
       } else {
         camera.position.copy(currentSphere.center).addScaledVector(direction, distance);
