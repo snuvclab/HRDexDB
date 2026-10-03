@@ -1139,6 +1139,24 @@
       "bytes": 4057576
     },
     {
+      "id": "ice_tray",
+      "triangles": 948810,
+      "bytes": 23309400,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "square_baking_pan",
+      "triangles": 833129,
+      "bytes": 20742792,
+      "environmentIntensity": 1
+    },
+    {
+      "id": "water_dipper",
+      "triangles": 312392,
+      "bytes": 8986040,
+      "environmentIntensity": 1
+    },
+    {
       "id": "apple",
       "triangles": 73678,
       "bytes": 1473220,

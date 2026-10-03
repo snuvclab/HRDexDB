@@ -233,6 +233,10 @@
     }
 
     .future-divider {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       grid-column: 1 / -1;
       margin-top: 16px;
       padding: 15px 4px 7px;
@@ -245,6 +249,11 @@
     }
 
     .future-divider[hidden] { display: none; }
+
+    .future-divider .object-count {
+      letter-spacing: normal;
+      text-transform: none;
+    }
 
     .has-selection .object-panel {
       position: sticky;
@@ -565,7 +574,7 @@
     const MANIFEST_URL = "static/object-gallery-manifest.json";
     const POSES_URL = "static/object-gallery-poses.json";
     const THUMB_BASE = "static/gallery-object-thumbs";
-    const THUMB_VERSION = "daiso-oct02-saved-1";
+    const THUMB_VERSION = "daiso-oct03-final-three-1";
 
     const shell = document.getElementById("gallery-shell");
     const grid = document.getElementById("object-grid");
@@ -676,6 +685,10 @@
         heading.className = "future-divider";
         heading.id = "not-yet-divider";
         heading.textContent = "Not Yet in Episodes";
+        const sectionCount = document.createElement("span");
+        sectionCount.className = "object-count";
+        sectionCount.textContent = `${notYetObjects.length.toLocaleString()} objects`;
+        heading.append(sectionCount);
         fragment.append(heading);
         addCards(notYetObjects, manifest.objects.length);
       }
@@ -684,6 +697,10 @@
         heading.className = "future-divider";
         heading.id = "tbd-divider";
         heading.textContent = "TBD";
+        const sectionCount = document.createElement("span");
+        sectionCount.className = "object-count";
+        sectionCount.textContent = `${tbdObjects.length.toLocaleString()} objects`;
+        heading.append(sectionCount);
         fragment.append(heading);
         addCards(tbdObjects, manifest.objects.length + notYetObjects.length);
       }
