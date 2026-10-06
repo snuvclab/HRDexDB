@@ -744,7 +744,7 @@
       subtitle.textContent = displayName(item.id);
       viewerTitle.textContent = displayName(item.id);
       viewerArticulatedBadge.hidden = true;
-      viewerMeta.textContent = `${item.triangles.toLocaleString()} triangles`;
+      viewerMeta.textContent = `${(item.articulatedTriangles ?? item.triangles).toLocaleString()} triangles`;
       grid.querySelectorAll(".object-card").forEach((card, cardIndex) => {
         const active = cardIndex === index;
         card.classList.toggle("active", active);

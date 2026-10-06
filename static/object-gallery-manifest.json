@@ -609,12 +609,64 @@
     {
       "id": "crunky_ball",
       "triangles": 69562,
-      "bytes": 3011000
+      "bytes": 3011000,
+      "articulatedBytes": 19809312,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "joint_1",
+          "type": "revolute",
+          "axis": [
+            -0.4777175013613877,
+            -0.8784410297314352,
+            0.011284776356152364
+          ],
+          "rangeRad": [
+            0.0,
+            3.0543261909900767
+          ]
+        }
+      ],
+      "doubleSided": true,
+      "articulatedTriangles": 193562
     },
     {
       "id": "cube_puzzle_play",
       "triangles": 100076,
-      "bytes": 3309852
+      "bytes": 3309852,
+      "doubleSided": true,
+      "articulatedBytes": 5066428,
+      "articulations": [
+        {
+          "label": "Lower layer",
+          "node": "joint_1",
+          "type": "revolute",
+          "axis": [
+            -0.0018593109436268935,
+            0.0024008641941938753,
+            0.9999953893963393
+          ],
+          "rangeRad": [
+            0,
+            6.283185307179586
+          ]
+        },
+        {
+          "label": "Upper layer",
+          "node": "joint_2",
+          "type": "revolute",
+          "axis": [
+            -0.0018593109436268935,
+            0.0024008641941938753,
+            0.9999953893963393
+          ],
+          "rangeRad": [
+            0,
+            6.283185307179586
+          ]
+        }
+      ],
+      "articulatedTriangles": 108719
     },
     {
       "id": "daily_moisture_lotion",
@@ -714,6 +766,12 @@
       "bytes": 3745612
     },
     {
+      "id": "ice_tray",
+      "triangles": 948810,
+      "bytes": 23309400,
+      "environmentIntensity": 1
+    },
+    {
       "id": "kitchen_foil",
       "triangles": 188454,
       "bytes": 5715200
@@ -811,7 +869,26 @@
       "id": "nipper",
       "triangles": 88982,
       "bytes": 3569280,
-      "environmentIntensity": 1
+      "environmentIntensity": 1,
+      "articulatedBytes": 5121856,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "joint_1",
+          "type": "revolute",
+          "axis": [
+            -0.009164515148788535,
+            0.0021517611007538305,
+            0.9999556898114301
+          ],
+          "rangeRad": [
+            0.0,
+            0.9599310885968813
+          ]
+        }
+      ],
+      "doubleSided": true,
+      "articulatedTriangles": 91600
     },
     {
       "id": "nivea_men_shaving_foam",
@@ -869,7 +946,8 @@
             0.17
           ]
         }
-      ]
+      ],
+      "doubleSided": true
     },
     {
       "id": "refrigerator_deodorizer",
@@ -962,7 +1040,26 @@
     {
       "id": "single_switch",
       "triangles": 236068,
-      "bytes": 6493288
+      "bytes": 6493288,
+      "articulatedBytes": 7997960,
+      "articulations": [
+        {
+          "label": "Articulation",
+          "node": "joint_1",
+          "type": "revolute",
+          "axis": [
+            0.0024260958955391845,
+            0.999995000017759,
+            -0.0020282993339696543
+          ],
+          "rangeRad": [
+            0,
+            0.19158286013357018
+          ]
+        }
+      ],
+      "doubleSided": true,
+      "articulatedTriangles": 236737
     },
     {
       "id": "skin_body_wash",
@@ -994,6 +1091,12 @@
       "id": "sponge_scrubber",
       "triangles": 384194,
       "bytes": 10351344
+    },
+    {
+      "id": "square_baking_pan",
+      "triangles": 833129,
+      "bytes": 20742792,
+      "environmentIntensity": 1
     },
     {
       "id": "square_sponge",
@@ -1064,6 +1167,12 @@
       "id": "vaseline_lip_balm",
       "triangles": 13649,
       "bytes": 1570208
+    },
+    {
+      "id": "water_dipper",
+      "triangles": 312392,
+      "bytes": 8986040,
+      "environmentIntensity": 1
     },
     {
       "id": "water_gun",
@@ -1139,24 +1248,6 @@
       "bytes": 4057576
     },
     {
-      "id": "ice_tray",
-      "triangles": 948810,
-      "bytes": 23309400,
-      "environmentIntensity": 1
-    },
-    {
-      "id": "square_baking_pan",
-      "triangles": 833129,
-      "bytes": 20742792,
-      "environmentIntensity": 1
-    },
-    {
-      "id": "water_dipper",
-      "triangles": 312392,
-      "bytes": 8986040,
-      "environmentIntensity": 1
-    },
-    {
       "id": "apple",
       "triangles": 73678,
       "bytes": 1473220,
@@ -1183,7 +1274,8 @@
           ]
         }
       ],
-      "section": "tbd"
+      "section": "tbd",
+      "doubleSided": true
     },
     {
       "id": "drawer",
@@ -1220,7 +1312,8 @@
           ]
         }
       ],
-      "section": "tbd"
+      "section": "tbd",
+      "doubleSided": true
     },
     {
       "id": "metal_measuring_flask",
@@ -1279,7 +1372,8 @@
           ]
         }
       ],
-      "section": "tbd"
+      "section": "tbd",
+      "doubleSided": true
     }
   ]
 }

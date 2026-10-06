@@ -2753,8 +2753,8 @@
         "zoom": 0.9242957746478874,
         "viewportAspect": 0.9401408450704225
       },
-      "modelPath": "objects/cube_puzzle_play.glb",
-      "modelBytes": 3309852,
+      "modelPath": "object-articulated/cube_puzzle_play.glb",
+      "modelBytes": 5066428,
       "savedAt": "2026-09-23T08:01:44.612353+00:00"
     },
     "desk_vacuum_cleaner": {
@@ -3078,8 +3078,8 @@
         "zoom": 0.9242957746478874,
         "viewportAspect": 0.9401408450704225
       },
-      "modelPath": "objects/single_switch.glb",
-      "modelBytes": 6493288,
+      "modelPath": "object-articulated/single_switch.glb",
+      "modelBytes": 7997960,
       "savedAt": "2026-09-23T08:05:04.784494+00:00"
     },
     "stainless_airtight_container": {
@@ -3453,8 +3453,8 @@
         "zoom": 0.9242957746478874,
         "viewportAspect": 0.9401408450704225
       },
-      "modelPath": "objects/crunky_ball.glb",
-      "modelBytes": 3011000,
+      "modelPath": "object-articulated/crunky_ball.glb",
+      "modelBytes": 19809312,
       "savedAt": "2026-09-28T05:28:54.855678+00:00"
     },
     "daily_moisture_lotion": {
@@ -5048,8 +5048,8 @@
         "viewportAspect": 1,
         "thumbnailFrameScale": 1
       },
-      "modelPath": "objects/nipper.glb",
-      "modelBytes": 3569280,
+      "modelPath": "object-articulated/nipper.glb",
+      "modelBytes": 5121856,
       "savedAt": "2026-10-02T08:13:37.092739+00:00"
     },
     "petite_flower_pot": {
