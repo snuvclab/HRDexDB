@@ -535,6 +535,13 @@
       "bytes": 2532852
     },
     {
+      "id": "alien_party_glasses",
+      "triangles": 126448,
+      "bytes": 4554696,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "all_in_one_fluid",
       "triangles": 80728,
       "bytes": 2918020
@@ -543,6 +550,13 @@
       "id": "auto_lock_measuring_tape",
       "triangles": 101858,
       "bytes": 3712292
+    },
+    {
+      "id": "baby_penguin",
+      "triangles": 116124,
+      "bytes": 4190116,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "baby_powder",
@@ -588,6 +602,13 @@
       "triangles": 252129,
       "bytes": 7702120,
       "environmentIntensity": 1
+    },
+    {
+      "id": "car_detail_brush",
+      "triangles": 124248,
+      "bytes": 4656236,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "chair_foot_cover",
@@ -695,6 +716,13 @@
       "bytes": 3576296
     },
     {
+      "id": "dolphin",
+      "triangles": 91362,
+      "bytes": 3531396,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "door_stoper",
       "triangles": 79160,
       "bytes": 3081724,
@@ -715,6 +743,13 @@
       "triangles": 185045,
       "bytes": 5824140,
       "environmentIntensity": 1
+    },
+    {
+      "id": "fake_paprika",
+      "triangles": 74120,
+      "bytes": 3102924,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "fake_peach",
@@ -739,15 +774,43 @@
       "bytes": 6176164
     },
     {
+      "id": "fur_seal",
+      "triangles": 189000,
+      "bytes": 5753948,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "glue",
       "triangles": 97414,
       "bytes": 3446644
+    },
+    {
+      "id": "gripper",
+      "triangles": 236214,
+      "bytes": 6919016,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "hair_clip",
+      "triangles": 196698,
+      "bytes": 6009808,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "handle_thermos",
       "triangles": 1050244,
       "bytes": 18876488,
       "environmentIntensity": 1
+    },
+    {
+      "id": "heart_brush",
+      "triangles": 188030,
+      "bytes": 5743084,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "home_keeper",
@@ -772,6 +835,20 @@
       "environmentIntensity": 1
     },
     {
+      "id": "jar_shaped_tin_case",
+      "triangles": 86094,
+      "bytes": 3572624,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "killer_whale",
+      "triangles": 237443,
+      "bytes": 7013604,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "kitchen_foil",
       "triangles": 188454,
       "bytes": 5715200
@@ -791,6 +868,13 @@
       "id": "leatherback_sea_turtle",
       "triangles": 151092,
       "bytes": 5123348
+    },
+    {
+      "id": "lobster",
+      "triangles": 49436,
+      "bytes": 2792904,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "long_hair_curl",
@@ -829,6 +913,13 @@
       "bytes": 3017200
     },
     {
+      "id": "mako_shark",
+      "triangles": 128756,
+      "bytes": 4569264,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "manta_ray",
       "triangles": 56202,
       "bytes": 2820916
@@ -838,6 +929,13 @@
       "triangles": 277770,
       "bytes": 8250764,
       "environmentIntensity": 1
+    },
+    {
+      "id": "melamine_cup",
+      "triangles": 74410,
+      "bytes": 3037640,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "mesh_pocket",
@@ -896,9 +994,23 @@
       "bytes": 3596084
     },
     {
+      "id": "octopus",
+      "triangles": 244264,
+      "bytes": 7036964,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "paint_brush",
       "triangles": 186724,
       "bytes": 5726752
+    },
+    {
+      "id": "penguin",
+      "triangles": 278726,
+      "bytes": 8001876,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "permanent_marker",
@@ -947,6 +1059,13 @@
           ]
         }
       ],
+      "doubleSided": true
+    },
+    {
+      "id": "quick_dry_shower_shoes",
+      "triangles": 1471066,
+      "bytes": 35240240,
+      "environmentIntensity": 1,
       "doubleSided": true
     },
     {
@@ -1005,9 +1124,23 @@
       "environmentIntensity": 1
     },
     {
+      "id": "sea_lion",
+      "triangles": 152730,
+      "bytes": 4956412,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "sea_turtle",
       "triangles": 110190,
       "bytes": 4029900
+    },
+    {
+      "id": "shark",
+      "triangles": 120892,
+      "bytes": 4377024,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "shower_head",
@@ -1020,6 +1153,13 @@
       "triangles": 153904,
       "bytes": 4890260,
       "environmentIntensity": 1
+    },
+    {
+      "id": "silicone_flipper",
+      "triangles": 358884,
+      "bytes": 9725584,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "silicone_scoop",
@@ -1083,6 +1223,13 @@
       "bytes": 3322832
     },
     {
+      "id": "solid_litter_scoop",
+      "triangles": 260758,
+      "bytes": 7427300,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "source_bottle",
       "triangles": 417302,
       "bytes": 10515428
@@ -1091,6 +1238,13 @@
       "id": "sponge_scrubber",
       "triangles": 384194,
       "bytes": 10351344
+    },
+    {
+      "id": "spotted_shark",
+      "triangles": 124734,
+      "bytes": 4252244,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "square_baking_pan",
@@ -1112,6 +1266,20 @@
       "id": "stainless_bowl",
       "triangles": 116422,
       "bytes": 3877552
+    },
+    {
+      "id": "stainless_cup",
+      "triangles": 78484,
+      "bytes": 3575476,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "stainless_steel_cutlery_holder",
+      "triangles": 912604,
+      "bytes": 26047648,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "stanley_monkeywrench",
@@ -1154,9 +1322,30 @@
       "environmentIntensity": 1
     },
     {
+      "id": "tiger_shark",
+      "triangles": 140684,
+      "bytes": 4701848,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "tire_brush",
+      "triangles": 664076,
+      "bytes": 17667152,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "toasted_sesame_oil",
       "triangles": 215298,
       "bytes": 6171232
+    },
+    {
+      "id": "tweezers",
+      "triangles": 27922,
+      "bytes": 1724996,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "vaseline_jelly",
@@ -1167,6 +1356,20 @@
       "id": "vaseline_lip_balm",
       "triangles": 13649,
       "bytes": 1570208
+    },
+    {
+      "id": "vegetable_peeler",
+      "triangles": 101750,
+      "bytes": 3714252,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "walrus",
+      "triangles": 204370,
+      "bytes": 6046808,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "water_dipper",
@@ -1241,6 +1444,13 @@
       "id": "wooden_spatula",
       "triangles": 57544,
       "bytes": 2610664
+    },
+    {
+      "id": "woven_basket",
+      "triangles": 1972542,
+      "bytes": 50746360,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "ziploc_bag",
