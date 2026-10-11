@@ -12,22 +12,22 @@ authors:
     affiliation: [1]
     equal_contributor: true
     homepage: https://hahahataeyun.github.io/
+  - name: Seongho Cha
+    affiliation: [1]
+  - name: Kanghyeon Cho
+    affiliation: [1]
   - name: Mingi Choi
     affiliation: [1]
     homepage: https://willi19.github.io/
+  - name: Subin Jeon
+    affiliation: [1]
+    homepage: https://sites.google.com/yonsei.ac.kr/subinjeon/home
   - name: Jisoo Kim
     affiliation: [1]
     homepage: https://jlogkim.github.io/
   - name: Byungjun Kim
     affiliation: [1]
     homepage: https://bjkim95.github.io
-  - name: Subin Jeon
-    affiliation: [1]
-    homepage: https://sites.google.com/yonsei.ac.kr/subinjeon/home
-  - name: Kanghyeon Cho
-    affiliation: [1]
-  - name: Seongho Cha
-    affiliation: [1]
   - name: Hanbyul Joo
     affiliation: [1, 2]
     corresponding_author: true
@@ -42,6 +42,15 @@ data: https://huggingface.co/datasets/HRDexDB/HRDexDB
 dataset_visualizer: /gallery-index.html
 ---
 
+<div class="columns is-centered">
+    <div class="column is-full">
+        <video class="teaser-image" autoplay muted loop playsinline controls preload="metadata" poster="static/videos/grasp_gallery_poster.jpg" width="2560" height="854" aria-label="Diverse human and robotic hand grasps across HRDexDB objects">
+            <source src="static/videos/grasp_gallery.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
 <section class="hero teaser">
     <div class="container is-max-desktop">
         <h2 class="subtitle has-text-centered">
@@ -53,7 +62,7 @@ dataset_visualizer: /gallery-index.html
 
 <div class="columns is-centered">
     <div class="column is-full">
-        <img class="teaser-image" src="static/image/teaser_corl.png" alt="HRDexDB teaser image">
+        <img class="teaser-image" src="static/image/teaser_icra.png" alt="HRDexDB teaser image">
     </div>
 </div>
 
@@ -62,7 +71,7 @@ dataset_visualizer: /gallery-index.html
     <div class="column is-full">
         <h2 id="abstract">Abstract</h2>
         <div class="content has-text-justified">
-We present <b>HRDexDB</b>, a paired cross-embodiment dexterous grasping dataset of high-fidelity dexterous grasping sequences featuring both human and diverse robotic hands. Unlike existing datasets, HRDexDB provides a comprehensive collection of grasping trajectories across human hands and multiple robot hand embodiments, spanning 100 diverse objects. Leveraging state-of-the-art vision methods and a dedicated multi-camera system, HRDexDB offers high-precision spatiotemporal 3D ground-truth motion for both the agent and the manipulated object. The dataset comprises 2.1K grasping trials, each enriched with synchronized visual and kinematic modalities, with contact-force signals available for tactile-enabled robotic hands. By providing closely aligned captures of human dexterity and robotic execution on the same target objects under comparable grasping motions, HRDexDB serves as a foundational benchmark for cross-embodiment dexterous manipulation.
+We present <b>HRDexDB</b>, a real-world 4D dexterous grasping dataset capturing 3D hand-object interaction trajectories over time across five embodiments. The dataset comprises 3.2K trials over 100 diverse objects. Using a synchronized multi-camera system and an integrated reconstruction pipeline, HRDexDB provides multi-view and egocentric RGB observations, 3D hand geometry, robot states, and object 6D pose trajectories, together with success/failure annotations. Human and robotic hands interact with shared objects, enabling the study of embodiment-dependent grasp strategies and contact patterns. We demonstrate the dataset’s utility through human-to-robot contact map transfer, visual robot-object contact estimation, and retrieval-assisted grasping. Together, these results establish HRDexDB as a resource for studying and learning dexterous interactions across human and robotic embodiments.
         </div>
     </div>
 </div>
@@ -73,17 +82,17 @@ We present <b>HRDexDB</b>, a paired cross-embodiment dexterous grasping dataset 
 ## Dataset Overview
 {: #dataset}
 
-**HRDexDB** is the first large-scale dataset featuring paired human and dexterous robotic hand manipulation.
-It provides over **2.1K** sequences across **100** diverse objects and **5** distinct embodiments, all captured by a fully synchronized 23-camera system.
+**HRDexDB** is a real-world 4D dexterous grasping dataset capturing human and robotic hand-object interactions.
+It provides **3.2K** trials across **100** diverse objects and **5** distinct embodiments (one human hand and four robotic hands), all captured by a fully synchronized 23-camera system.
 We provide detailed 3D annotations for every sequence. You can see a sample visualization of our dataset below.
 
 <div class="dataset-stats" aria-label="HRDexDB dataset statistics">
     <div class="dataset-stat">
-        <div class="dataset-stat-number">2.1K</div>
-        <div class="dataset-stat-label">sequences</div>
+        <div class="dataset-stat-number">3.2K</div>
+        <div class="dataset-stat-label">trials</div>
     </div>
     <div class="dataset-stat">
-        <div class="dataset-stat-number">100+</div>
+        <div class="dataset-stat-number">100</div>
         <div class="dataset-stat-label">objects</div>
     </div>
     <div class="dataset-stat">
@@ -151,17 +160,6 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
     </section>
 </div>
 
-<section class="dataset-media-block">
-    <h3 class="dataset-media-title">Tactile Signals</h3>
-    <p class="dataset-media-description">Unlike other existing robot datasets, HRDexDB provides rich <strong>tactile signals</strong> for the Inspire & Allegro robotic hand series.</p>
-    <video class="dataset-video" controls autoplay muted loop playsinline preload="auto">
-        <source src="./static/videos/hrdex_realdex.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="dataset-video-caption">
-        <p>Tactile sensing stream synchronized with the grasping sequence.</p>
-    </div>
-</section>
 
 
 
@@ -172,20 +170,6 @@ We provide detailed 3D annotations for every sequence. You can see a sample visu
 </figure>
 
 To construct HRDexDB, we developed a unified multi-modal capture platform. It features a dense rig of 23 synchronized cameras, integrated with real-time robot proprioception. This setup is specifically engineered to overcome severe occlusions during interaction with objects.
-
-
-## Full Video
-{: #full-video}
-
-<figure class="dataset-media-block">
-    <video class="dataset-video" controls playsinline preload="metadata" poster="./static/videos/HRDexDB_poster.jpg">
-        <source src="./static/videos/HRDexDB_video_CoRL_reduced_h264.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <figcaption class="dataset-video-caption">
-        <p>Full HRDexDB overview video.</p>
-    </figcaption>
-</figure>
 
 
 ## Contact
@@ -199,7 +183,7 @@ Send any comments or questions to [Jongbin Lim](https://jongbinlim.github.io/): 
 ```
 @misc{lim2026hrdexdb,
       title={HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping}, 
-      author={Jongbin Lim and Taeyun Ha and Mingi Choi and Jisoo Kim and Byungjun Kim and Subin Jeon and Kanghyeon Cho and Seongho Cha and Hanbyul Joo},
+      author={Jongbin Lim and Taeyun Ha and Seongho Cha and Kanghyeon Cho and Mingi Choi and Subin Jeon and Jisoo Kim and Byungjun Kim and Hanbyul Joo},
       year={2026},
       eprint={2604.14944},
       archivePrefix={arXiv},
