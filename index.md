@@ -2,7 +2,7 @@
 layout: project_page
 permalink: /
 
-title: "🤖 HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping"
+title: "🤖 HRDexDB: A 4D Dexterous Grasping Dataset Across Human and Multiple Robot Embodiments"
 authors:
   - name: Jongbin Lim
     affiliation: [1]
@@ -55,7 +55,7 @@ dataset_visualizer: /gallery-index.html
     <div class="container is-max-desktop">
         <h2 class="subtitle has-text-centered">
             <span class="tldr-label">TL;DR:</span>
-            <span class="tldr-text">A paired cross-embodiment dataset of high-fidelity <br>dexterous grasping sequences featuring both human and robotic hands</span>
+            <span class="tldr-text">A real-world 4D dexterous grasping dataset capturing hand-object interactions across human and multiple robot embodiments</span>
         </h2>
     </div>
 </section>
@@ -182,7 +182,7 @@ Send any comments or questions to [Jongbin Lim](https://jongbinlim.github.io/): 
 {: #bibtex}
 ```
 @misc{lim2026hrdexdb,
-      title={HRDexDB: A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping}, 
+      title={HRDexDB: A 4D Dexterous Grasping Dataset Across Human and Multiple Robot Embodiments},
       author={Jongbin Lim and Taeyun Ha and Seongho Cha and Kanghyeon Cho and Mingi Choi and Subin Jeon and Jisoo Kim and Byungjun Kim and Hanbyul Joo},
       year={2026},
       eprint={2604.14944},
