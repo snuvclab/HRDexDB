@@ -57,6 +57,72 @@ pip install -r requirements.txt
 
 All commands below assume they are run from the repository root.
 
+## Dataset Download
+
+The full dataset is about 1.6 TB and is available from two sources:
+
+- [Hugging Face](https://huggingface.co/datasets/HRDexDB/HRDexDB) stores individual files. Use it to download specific objects, scenes, or file types.
+- [Google Drive](https://drive.google.com/drive/folders/1MgaQ8oxE97T30W0x4lte1EM0U7fl3bzl?usp=sharing) stores each hand's data as one `.tar.gz` archive per object. Use it to download whole subsets.
+
+| Subset | Size | Files on Hugging Face | Archives on Google Drive |
+| --- | --- | --- | --- |
+| `human` | 108 GB | 239,003 | 94 |
+| `allegro_v5` | 254 GB | 16,761 | 91 |
+| `inspire_f1` | 352 GB | 23,646 | 92 |
+| `inspire_dftp` | 548 GB | 27,192 | 84 |
+| `robotiq_2f85` | 305 GB | 26,517 | 91 |
+
+### Whole subsets from Google Drive
+
+Downloading a folder through the Google Drive website requires preparing a ZIP first, which is slow for folders this large. Use [rclone](https://rclone.org/drive/) instead. Create a Google Drive remote named `hrdexdb_drive` with `rclone config`, using [your own client ID](https://rclone.org/drive/#making-your-own-client-id), then choose the folders to download:
+
+```bash
+ROOT=1MgaQ8oxE97T30W0x4lte1EM0U7fl3bzl
+FILTERS=(
+  --include "/allegro_v5/**"
+  --include "/inspire_f1/**"
+  --include "/inspire_dftp/**"
+  --include "/assets/**"
+  --include "/metadata/**"
+  --include "/object_6d_pose_v2/**"
+)
+
+rclone copy hrdexdb_drive: ./hrdexdb_drive --drive-root-folder-id "$ROOT" "${FILTERS[@]}" --transfers 4 -P
+```
+
+rclone verifies each file after transfer and skips completed files when re-run, so you can repeat the same command after an interruption. A partially downloaded file restarts from the beginning. To check everything against the MD5 checksums stored by Google Drive:
+
+```bash
+rclone check hrdexdb_drive: ./hrdexdb_drive --drive-root-folder-id "$ROOT" "${FILTERS[@]}" --one-way
+```
+
+Then extract the archives into `v0`. The `inspire_dftp` archives contain no subset folder, so they are extracted one level deeper:
+
+```bash
+mkdir -p v0/inspire_dftp
+for f in hrdexdb_drive/inspire_dftp/*.tar.gz; do tar -xzf "$f" -C v0/inspire_dftp; done
+
+for s in human allegro_v5 inspire_f1 robotiq_2f85; do
+  [ -d "hrdexdb_drive/$s" ] || continue
+  for f in "hrdexdb_drive/$s"/*.tar.gz; do tar -xzf "$f" -C v0; done
+done
+
+cp -r hrdexdb_drive/assets hrdexdb_drive/metadata hrdexdb_drive/object_6d_pose_v2 v0/
+```
+
+### Selected files from Hugging Face
+
+Use `--include` to limit a download. Re-running the command skips files that are already complete:
+
+```bash
+hf download HRDexDB/HRDexDB --repo-type dataset --local-dir v0 \
+  --include "inspire_f1/banana/*" \
+  --include "assets/*" \
+  --include "metadata/*"
+```
+
+Downloading many files at once can trigger Hugging Face rate limits (HTTP 429). If this happens, log in with `hf auth login` and lower `--max-workers`.
+
 ## Dataset Placement
 
 Place the released dataset folder `v0` directly under the repository root:
