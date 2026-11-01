@@ -121,6 +121,14 @@ hf download HRDexDB/HRDexDB --repo-type dataset --local-dir v0 \
   --include "metadata/*"
 ```
 
+If you don't need the videos, add `--exclude "*.mp4"`. Without videos, the five subsets total about 20 GB:
+
+```bash
+hf download HRDexDB/HRDexDB --repo-type dataset --local-dir v0 \
+  --include "inspire_f1/*" \
+  --exclude "*.mp4"
+```
+
 Downloading many files at once can trigger Hugging Face rate limits (HTTP 429). If this happens, log in with `hf auth login` and lower `--max-workers`.
 
 ## Dataset Placement
