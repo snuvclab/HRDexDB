@@ -4,7 +4,7 @@
 
 ### A Paired Human-Robot Dataset for Cross-Embodiment Dexterous Grasping
 
-Jongbin Lim<sup>1,*</sup> · Taeyun Ha<sup>1,*</sup> · Seongho Cha<sup>1</sup> · Kanghyeon Cho<sup>1</sup> · Mingi Choi<sup>1</sup> · Subin Jeon<sup>1</sup> · Jisoo Kim<sup>1</sup> · Byungjun Kim<sup>1</sup> · Hanbyul Joo<sup>1,2,†</sup>
+Jongbin Lim<sup>1,&ast;</sup> · Taeyun Ha<sup>1,&ast;</sup> · Seongho Cha<sup>1</sup> · Kanghyeon Cho<sup>1</sup> · Mingi Choi<sup>1</sup> · Subin Jeon<sup>1</sup> · Jisoo Kim<sup>1</sup> · Byungjun Kim<sup>1</sup> · Hanbyul Joo<sup>1,2,†</sup>
 
 <sup>1</sup> Seoul National University · <sup>2</sup> RLWRLD
 
