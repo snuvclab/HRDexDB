@@ -519,6 +519,13 @@
   ],
   "extraObjects": [
     {
+      "id": "1l_measuring_cup",
+      "triangles": 33112,
+      "bytes": 2416496,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "acrylic_paint_sky_blue",
       "triangles": 85854,
       "bytes": 3214772
@@ -547,6 +554,13 @@
       "bytes": 2918020
     },
     {
+      "id": "animal_shaped_rice_ball_mold_a",
+      "triangles": 144044,
+      "bytes": 4613916,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "auto_lock_measuring_tape",
       "triangles": 101858,
       "bytes": 3712292
@@ -565,6 +579,20 @@
       "environmentIntensity": 1
     },
     {
+      "id": "bath_monster_tooth_brushing_cup",
+      "triangles": 125220,
+      "bytes": 4396892,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "bennys_retractable_leash",
+      "triangles": 232100,
+      "bytes": 7000288,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "best_pole_bedding_clips",
       "triangles": 469993,
       "bytes": 8453856
@@ -574,6 +602,13 @@
       "triangles": 256962,
       "bytes": 7754264,
       "environmentIntensity": 1
+    },
+    {
+      "id": "broom_and_dustpan_set",
+      "triangles": 675943,
+      "bytes": 17219548,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "broomdustpan",
@@ -614,6 +649,13 @@
       "id": "chair_foot_cover",
       "triangles": 40416,
       "bytes": 2018068
+    },
+    {
+      "id": "clip_pants_hanger",
+      "triangles": 124312,
+      "bytes": 4546088,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "cool_mensol_shampoo",
@@ -700,6 +742,13 @@
       "bytes": 3173796
     },
     {
+      "id": "damp_trap",
+      "triangles": 334472,
+      "bytes": 9233548,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "deep_clean_laundry_detergent",
       "triangles": 206992,
       "bytes": 6352016,
@@ -732,6 +781,13 @@
       "id": "doraemon_square_pouch",
       "triangles": 1101598,
       "bytes": 26079956
+    },
+    {
+      "id": "double_action_hand_pump",
+      "triangles": 282586,
+      "bytes": 8148664,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "duplex_outlet",
@@ -781,6 +837,20 @@
       "doubleSided": true
     },
     {
+      "id": "garden_trowel",
+      "triangles": 215156,
+      "bytes": 6778396,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "garlic_slicer",
+      "triangles": 270081,
+      "bytes": 7556292,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "glue",
       "triangles": 97414,
       "bytes": 3446644
@@ -818,6 +888,13 @@
       "bytes": 11697316
     },
     {
+      "id": "homi",
+      "triangles": 129768,
+      "bytes": 4747096,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "hose_nozzle",
       "triangles": 299928,
       "bytes": 8273796,
@@ -835,9 +912,30 @@
       "environmentIntensity": 1
     },
     {
+      "id": "indoor_shoes",
+      "triangles": 1018457,
+      "bytes": 24758560,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "industrial_funnel",
+      "triangles": 37164,
+      "bytes": 2581592,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "jar_shaped_tin_case",
       "triangles": 86094,
       "bytes": 3572624,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "kids_animal_hat",
+      "triangles": 243957,
+      "bytes": 8458460,
       "environmentIntensity": 1,
       "doubleSided": true
     },
@@ -859,6 +957,13 @@
       "bytes": 10417336
     },
     {
+      "id": "knit_pattern_basket",
+      "triangles": 132834,
+      "bytes": 4961836,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "land_turtle",
       "triangles": 96988,
       "bytes": 3699112,
@@ -868,6 +973,13 @@
       "id": "leatherback_sea_turtle",
       "triangles": 151092,
       "bytes": 5123348
+    },
+    {
+      "id": "lemon_squeezer_new",
+      "triangles": 226534,
+      "bytes": 6473804,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "lobster",
@@ -943,6 +1055,13 @@
       "bytes": 5054300
     },
     {
+      "id": "mesh_upper_bathroom_slippers",
+      "triangles": 1446082,
+      "bytes": 34177744,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "mini_measuring_tape",
       "triangles": 39920,
       "bytes": 2218664
@@ -992,6 +1111,13 @@
       "id": "nivea_men_shaving_foam",
       "triangles": 93472,
       "bytes": 3596084
+    },
+    {
+      "id": "nose_hair_trimmer",
+      "triangles": 95230,
+      "bytes": 3841012,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "octopus",
@@ -1065,6 +1191,13 @@
       "id": "quick_dry_shower_shoes",
       "triangles": 1471066,
       "bytes": 35240240,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "razor",
+      "triangles": 92074,
+      "bytes": 3453956,
       "environmentIntensity": 1,
       "doubleSided": true
     },
@@ -1202,6 +1335,13 @@
       "articulatedTriangles": 236737
     },
     {
+      "id": "six_cup_muffin_pan",
+      "triangles": 58956,
+      "bytes": 3435868,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "skin_body_wash",
       "triangles": 95232,
       "bytes": 3503152
@@ -1216,6 +1356,13 @@
       "triangles": 178370,
       "bytes": 5732716,
       "environmentIntensity": 1
+    },
+    {
+      "id": "smart_phone_stand",
+      "triangles": 117017,
+      "bytes": 4030348,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "soap_dish",
@@ -1258,6 +1405,13 @@
       "bytes": 13958728
     },
     {
+      "id": "stackable_pen_holder",
+      "triangles": 135996,
+      "bytes": 4430968,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "stainless_airtight_container",
       "triangles": 1667128,
       "bytes": 45740352
@@ -1268,9 +1422,23 @@
       "bytes": 3877552
     },
     {
+      "id": "stainless_colander",
+      "triangles": 260539,
+      "bytes": 10194932,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "stainless_cup",
       "triangles": 78484,
       "bytes": 3575476,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "stainless_funnel",
+      "triangles": 64958,
+      "bytes": 3486060,
       "environmentIntensity": 1,
       "doubleSided": true
     },
@@ -1286,6 +1454,13 @@
       "triangles": 93056,
       "bytes": 3662328,
       "environmentIntensity": 1
+    },
+    {
+      "id": "staple_gun",
+      "triangles": 190314,
+      "bytes": 6113524,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "stapler",
@@ -1322,6 +1497,13 @@
       "environmentIntensity": 1
     },
     {
+      "id": "three_piece_dusting_tool_set_a",
+      "triangles": 17380,
+      "bytes": 2023272,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "tiger_shark",
       "triangles": 140684,
       "bytes": 4701848,
@@ -1341,6 +1523,13 @@
       "bytes": 6171232
     },
     {
+      "id": "toilet_shoes",
+      "triangles": 820140,
+      "bytes": 20032716,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "tweezers",
       "triangles": 27922,
       "bytes": 1724996,
@@ -1356,6 +1545,13 @@
       "id": "vaseline_lip_balm",
       "triangles": 13649,
       "bytes": 1570208
+    },
+    {
+      "id": "vegetable_chopper",
+      "triangles": 228396,
+      "bytes": 6730372,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "vegetable_peeler",
@@ -1420,6 +1616,13 @@
       "bytes": 2932044
     },
     {
+      "id": "wood_tip_brush",
+      "triangles": 31394,
+      "bytes": 2521220,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "wooden_bowl",
       "triangles": 271638,
       "bytes": 6985988
@@ -1439,6 +1642,13 @@
       "id": "wooden_mortar_handle",
       "triangles": 162164,
       "bytes": 4861760
+    },
+    {
+      "id": "wooden_roll_brush",
+      "triangles": 80570,
+      "bytes": 4229540,
+      "environmentIntensity": 1,
+      "doubleSided": true
     },
     {
       "id": "wooden_spatula",
