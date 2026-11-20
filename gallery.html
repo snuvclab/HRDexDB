@@ -1305,7 +1305,6 @@
     const ORBIT_CONTROLS_URL = "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
     const GLTF_LOADER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
     const MESHOPT_DECODER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/libs/meshopt_decoder.module.js";
-    const VISER_CITY_ENVIRONMENT_URL = "https://raw.githubusercontent.com/nerfstudio-project/viser/main/src/viser/client/src/assets/potsdamer_platz_1k.jpg";
     const CAMERA_PRESETS = {
       default: { focus: [-0.07, -0.10, -0.02], viewDirection: [0, 0.36, -1.04] },
       human: { focus: [0, 0.08, -0.17], viewDirection: [0, 0.52, -1.51] },
@@ -1394,6 +1393,7 @@
       syncEventsBound: false,
       grid: null,
       cameraCalibration: null,
+      initialFrame: null,
       zoomScale: DEFAULT_VIEW_ZOOM_SCALE,
       autoZoomScale: DEFAULT_VIEW_ZOOM_SCALE,
       objectCenterY: null
@@ -2300,7 +2300,7 @@
         viewer3d.assetRoot = new viewer3d.THREE.Group();
         viewer3d.scene.add(viewer3d.assetRoot);
 
-        viewer3d.renderer = new viewer3d.THREE.WebGLRenderer({ antialias: true, alpha: false });
+        viewer3d.renderer = new viewer3d.THREE.WebGLRenderer({ antialias: true, alpha: true });
         viewer3d.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
         viewer3d.renderer.outputColorSpace = viewer3d.THREE.SRGBColorSpace;
         viewer3d.renderer.toneMapping = viewer3d.THREE.ACESFilmicToneMapping;
@@ -2308,31 +2308,39 @@
         viewer3d.renderer.shadowMap.enabled = false;
         els["interactive-3d-canvas"].appendChild(viewer3d.renderer.domElement);
 
-        viewer3d.controls = new viewer3d.OrbitControls(viewer3d.camera, viewer3d.renderer.domElement);
-        viewer3d.controls.enableDamping = true;
-        viewer3d.controls.dampingFactor = 0.08;
-        viewer3d.controls.enablePan = true;
-        viewer3d.controls.enableRotate = true;
-        viewer3d.controls.enableZoom = true;
-        viewer3d.controls.screenSpacePanning = true;
+        setInteractiveOrbitFrame(new viewer3d.THREE.Vector3(), viewer3d.camera.up);
 
         const keyLight = new viewer3d.THREE.DirectionalLight(0xffffff, 3);
+        keyLight.name = "viewer-key";
         keyLight.position.set(-0.2, 1, -0.2);
         keyLight.castShadow = false;
         viewer3d.scene.add(keyLight);
         viewer3d.scene.add(keyLight.target);
         const fillLight = new viewer3d.THREE.DirectionalLight(0xffffff, 0.4);
+        fillLight.name = "viewer-fill";
         fillLight.position.set(0, -1, 0);
         viewer3d.scene.add(fillLight);
+        const backLight = new viewer3d.THREE.DirectionalLight(0xffffff, 0);
+        backLight.name = "viewer-back-fill";
+        viewer3d.scene.add(backLight, backLight.target);
+        viewer3d.scene.add(fillLight.target);
+        viewer3d.tableLights = [keyLight, fillLight, backLight];
+        for (let i = 0; i < 2; i++) {
+          const sideLight = new viewer3d.THREE.DirectionalLight(0xffffff, 0);
+          sideLight.name = `viewer-side-fill-${i + 1}`;
+          viewer3d.scene.add(sideLight, sideLight.target);
+          viewer3d.tableLights.push(sideLight);
+        }
         // Match the Viser animation viewer's uniform ambient fill. This is
         // direction-independent, so textured vertical surfaces stay visible.
-        viewer3d.scene.add(new viewer3d.THREE.AmbientLight(0xffffff, 0.5));
+        const ambientLight = new viewer3d.THREE.AmbientLight(0xffffff, 0.5);
+        ambientLight.name = "viewer-ambient";
+        viewer3d.scene.add(ambientLight);
         viewer3d.grid = new viewer3d.THREE.GridHelper(2, 20, 0x7a8795, 0xb2bac2);
         viewer3d.grid.material.transparent = true;
         viewer3d.grid.material.opacity = 0.58;
         viewer3d.grid.visible = false;
         viewer3d.scene.add(viewer3d.grid);
-        loadViserDefaultEnvironment();
 
         bindSynchronizedPlaybackEvents();
         els["interactive-3d-play"].addEventListener("click", toggleSynchronizedPlayback);
@@ -2387,17 +2395,88 @@
       camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert();
     }
 
-    function loadViserDefaultEnvironment() {
+    function applyTableLighting() {
       const THREE = viewer3d.THREE;
-      const textureLoader = new THREE.TextureLoader();
-      textureLoader.setCrossOrigin("anonymous");
-      textureLoader.load(VISER_CITY_ENVIRONMENT_URL, texture => {
-        texture.colorSpace = THREE.SRGBColorSpace;
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        viewer3d.scene.environment = texture;
-        viewer3d.scene.environmentIntensity = 1;
-      }, undefined, error => {
-        console.warn("Could not load viser default environment", error);
+      if (!THREE || !viewer3d.renderer || !viewer3d.model) return;
+      const key = viewer3d.scene.getObjectByName("viewer-key");
+      const fill = viewer3d.scene.getObjectByName("viewer-fill");
+      const ambient = viewer3d.scene.getObjectByName("viewer-ambient");
+      viewer3d.scene.background = null;
+      viewer3d.renderer.setClearColor(0x000000, 0);
+      els["interactive-3d-viewer"].style.backgroundColor = "#f7f8f4";
+      viewer3d.renderer.toneMappingExposure = 0.95;
+      viewer3d.renderer.shadowMap.enabled = true;
+      viewer3d.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      viewer3d.tableLights.forEach((light, i) => {
+        light.intensity = [0.45, 0.7, 0.12, 0.25, 0.12][i];
+        light.castShadow = i < 2;
+      });
+      ambient.intensity = 0.07;
+      if (viewer3d.tableLightingModel !== viewer3d.model) {
+        viewer3d.model.updateMatrixWorld(true);
+        const table = viewer3d.model.getObjectByName("floor_grid") || viewer3d.model;
+        const orientation = table.getWorldQuaternion(new THREE.Quaternion());
+        const up = new THREE.Vector3(0, 0, 1).applyQuaternion(orientation);
+        const x = new THREE.Vector3(1, 0, 0).applyQuaternion(orientation);
+        const y = new THREE.Vector3(0, 1, 0).applyQuaternion(orientation);
+        const bounds = boundsExcludingFloorGrid(viewer3d.model);
+        const center = objectMeshMeanCenter(viewer3d.model) || bounds.getCenter(new THREE.Vector3());
+        const tableOrigin = table.getWorldPosition(new THREE.Vector3());
+        // Some exports reverse the floor normal; light the side containing the object.
+        if (center.clone().sub(tableOrigin).dot(up) < -1e-6) up.negate();
+        center.addScaledVector(up, -center.clone().sub(tableOrigin).dot(up));
+        const radius = Math.max(bounds.getSize(new THREE.Vector3()).length() * 0.75, 0.25);
+        const directions = [up, x, x.clone().negate(), y, y.clone().negate()];
+        const environment = new THREE.Scene();
+        environment.background = new THREE.Color().setScalar(0.05);
+        const panelGeometry = new THREE.PlaneGeometry(3, 3);
+        const panelMaterials = [];
+        const panelStrengths = [1.25, 1.6, 0.65, 1.0, 0.75];
+        // One overhead and four elevated sides; +X is the stronger left key in camera 23263780.
+        directions.forEach((direction, i) => {
+          const offset = direction.clone().multiplyScalar(4);
+          if (i > 0) offset.addScaledVector(up, 3.2);
+          const light = viewer3d.tableLights[i];
+          light.position.copy(center).addScaledVector(offset, radius);
+          light.target.position.copy(center);
+          light.target.updateMatrixWorld(true);
+          const panelMaterial = new THREE.MeshBasicMaterial({
+            color: new THREE.Color().setScalar(panelStrengths[i]), side: THREE.DoubleSide
+          });
+          panelMaterials.push(panelMaterial);
+          const panel = new THREE.Mesh(panelGeometry, panelMaterial);
+          if (i > 0) panel.scale.setScalar(1.12);
+          panel.position.copy(offset);
+          panel.lookAt(0, 0, 0);
+          environment.add(panel);
+        });
+        // Metallic GLB surfaces need the same surrounding fixtures in their reflection lighting.
+        const generator = new THREE.PMREMGenerator(viewer3d.renderer);
+        const environmentMap = generator.fromScene(environment, 0.04);
+        viewer3d.tableEnvironment?.dispose();
+        viewer3d.tableEnvironment = environmentMap;
+        generator.dispose();
+        panelGeometry.dispose();
+        panelMaterials.forEach(material => material.dispose());
+        viewer3d.tableLightingRadius = radius;
+        viewer3d.tableLightingModel = viewer3d.model;
+      }
+      viewer3d.scene.environment = viewer3d.tableEnvironment.texture;
+      const radius = viewer3d.tableLightingRadius;
+      [key, fill].forEach((light, i) => {
+        light.shadow.mapSize.set(i === 0 ? 2048 : 1024, i === 0 ? 2048 : 1024);
+        light.shadow.camera.left = light.shadow.camera.bottom = -radius;
+        light.shadow.camera.right = light.shadow.camera.top = radius;
+        light.shadow.camera.near = radius * 0.1;
+        light.shadow.camera.far = radius * 8;
+        light.shadow.camera.updateProjectionMatrix();
+        light.shadow.bias = -0.0001;
+        light.shadow.normalBias = radius * 0.001;
+      });
+      viewer3d.model.traverse(node => {
+        if (!node.isMesh || (node.name || "").toLowerCase() === "floor_grid") return;
+        node.castShadow = true;
+        node.receiveShadow = true;
       });
     }
 
@@ -2459,6 +2538,7 @@
       playAnimations(gltf, ep);
       setInteractive3DTime(0, { render: false });
       frameInteractiveModel(loadedModel, ep.hand, { updateAutoZoom: true });
+      applyTableLighting();
       applyDatasetCameraView(ep, state.currentViewCamera);
       syncInteractive3DToVideo({ force: true, render: false });
       viewer3d.renderer.render(viewer3d.scene, viewer3d.camera);
@@ -2513,6 +2593,7 @@
         });
       }
       viewer3d.model = null;
+      viewer3d.initialFrame = null;
       viewer3d.mixer = null;
       viewer3d.duration = 0;
       viewer3d.clipDuration = 0;
@@ -2564,37 +2645,68 @@
       viewer3d.renderer?.render(viewer3d.scene, viewer3d.camera);
     }
 
+    function setInteractiveOrbitFrame(target, up, viewQuaternion = null) {
+      viewer3d.controls?.dispose();
+      viewer3d.camera.up.copy(up);
+      // OrbitControls caches camera.up when constructed; rebuild for the table frame.
+      const controls = new viewer3d.OrbitControls(viewer3d.camera, viewer3d.renderer.domElement);
+      controls.target.copy(target);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.enablePan = true;
+      controls.enableRotate = true;
+      controls.enableZoom = true;
+      controls.screenSpacePanning = true;
+      controls.update();
+      if (viewQuaternion) {
+        // Keep the calibrated optical axis separate from the object's orbit pivot.
+        const viewOffset = viewer3d.camera.quaternion.clone().invert().multiply(viewQuaternion);
+        const updateOrbit = controls.update.bind(controls);
+        controls.update = (...args) => {
+          const changed = updateOrbit(...args);
+          viewer3d.camera.quaternion.multiply(viewOffset);
+          viewer3d.camera.updateMatrixWorld();
+          return changed;
+        };
+        controls.update();
+      }
+      viewer3d.controls = controls;
+    }
+
     function frameInteractiveModel(object, embodiment, options = {}) {
       const THREE = viewer3d.THREE;
-      const box = boundsExcludingFloorGrid(object);
-      const size = box.getSize(new THREE.Vector3());
-      const center = box.getCenter(new THREE.Vector3());
-      const objectCenter = objectMeshMeanCenter(object);
-      if (options.updateAutoZoom) setAutoZoomFromObjectCenter(objectCenter);
-
-      const maxDim = Math.max(size.x, size.y, size.z) || 1;
       const preset = CAMERA_PRESETS[embodiment] || CAMERA_PRESETS.default;
+      if (!viewer3d.initialFrame) {
+        const box = boundsExcludingFloorGrid(object);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const objectCenter = objectMeshMeanCenter(object);
+        if (options.updateAutoZoom) setAutoZoomFromObjectCenter(objectCenter);
+        const maxDim = Math.max(size.x, size.y, size.z) || 1;
+        const focus = objectCenter ? objectCenter.clone().sub(center)
+          : new THREE.Vector3(...preset.focus).multiplyScalar(maxDim);
+        object.position.sub(center);
+        object.updateMatrixWorld(true);
+        const table = object.getObjectByName("floor_grid");
+        const up = new THREE.Vector3(0, 1, 0);
+        if (table) {
+          up.set(0, 0, 1).applyQuaternion(table.getWorldQuaternion(new THREE.Quaternion()));
+          const tableOrigin = table.getWorldPosition(new THREE.Vector3());
+          if (focus.clone().sub(tableOrigin).dot(up) < -1e-6) up.negate();
+        }
+        viewer3d.initialFrame = { focus, up, maxDim };
+      }
+      const { focus, up, maxDim } = viewer3d.initialFrame;
       viewer3d.cameraCalibration = null;
       viewer3d.camera.fov = CAMERA_FOV;
       const distance = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(viewer3d.camera.fov) / 2));
       const viewDirection = new THREE.Vector3(...preset.viewDirection).normalize();
-      const presetFocus = new THREE.Vector3(
-        maxDim * preset.focus[0],
-        maxDim * preset.focus[1],
-        maxDim * preset.focus[2]
-      );
-      const focus = objectCenter ? objectCenter.clone().sub(center) : presetFocus;
-
-      object.position.sub(center);
-      object.updateMatrixWorld(true);
       updateDatasetFloorGrid(object);
-      viewer3d.camera.up.set(0, 1, 0);
-      viewer3d.controls.target.copy(focus);
       viewer3d.camera.near = Math.max(maxDim / 1000, 0.001);
       viewer3d.camera.far = Math.max(maxDim * 100, 100);
       viewer3d.camera.position.copy(focus).addScaledVector(viewDirection, distance * CAMERA_DISTANCE_SCALE * viewer3d.zoomScale);
       updateInteractiveCameraProjection();
-      viewer3d.controls.update();
+      setInteractiveOrbitFrame(focus, up);
       resizeInteractive3D();
     }
 
@@ -2643,11 +2755,10 @@
       cameraWorld.decompose(viewer3d.camera.position, viewer3d.camera.quaternion, cameraScale);
 
       setDatasetCameraCalibration(state.datasetCameraIntrinsics[ep.pathKey]?.[cameraId]);
-      const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(viewer3d.camera.quaternion);
-      viewer3d.camera.up.set(0, 1, 0).applyQuaternion(viewer3d.camera.quaternion).normalize();
-      viewer3d.controls.target.copy(viewer3d.camera.position).add(forward);
+      const { focus, up } = viewer3d.initialFrame;
       updateInteractiveCameraProjection();
-      viewer3d.controls.update();
+      setInteractiveOrbitFrame(focus, up, viewer3d.camera.quaternion.clone());
+      applyTableLighting();
       viewer3d.renderer?.render(viewer3d.scene, viewer3d.camera);
       return true;
     }
