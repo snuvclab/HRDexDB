@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": 1,
+  "referenceCamera": "23263780",
+  "profiles": {
+    "attached_container": {
+      "colorGain": [
+        0.56008,
+        0.587828,
+        0.658049
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:97236:40ed13cf"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 21.333,
+        "afterError": 0.333,
+        "beforePixelMAE": 32.481,
+        "afterPixelMAE": 14.616,
+        "maximumPixelMAE": 14.712
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "balloon_whisk": {
+      "colorGain": [
+        0.609587,
+        0.656943,
+        0.774879
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 1,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:149356:b974303c"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 24.667,
+        "afterError": 1.444,
+        "beforePixelMAE": 25.81,
+        "afterPixelMAE": 18.022,
+        "maximumPixelMAE": 18.447
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "bamboo_basket": {
+      "colorGain": [
+        8.097707,
+        8.749051,
+        9.807441
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:17819955:2a0c665f"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 51.778,
+        "afterError": 1.222,
+        "beforePixelMAE": 52.002,
+        "afterPixelMAE": 15.587,
+        "maximumPixelMAE": 15.871
+      },
+      "validatedEmbodiments": [
+        "inspire_f1",
+        "human",
+        "allegro_v5"
+      ],
+      "excludedEmbodiments": [
+        "inspire_dftp"
+      ],
+      "byEmbodiment": {
+        "inspire_dftp": {
+          "colorGain": [
+            10.118379,
+            11.30365,
+            11.972982
+          ],
+          "sourceMaterial": {
+            "color": [
+              1,
+              1,
+              1
+            ],
+            "metalness": 0,
+            "roughness": 0.9036020036098448,
+            "texture": true,
+            "vertexColors": false,
+            "textureKey": "image/png:17819955:2a0c665f"
+          },
+          "validatedEmbodiments": [
+            "inspire_dftp"
+          ],
+          "reference": {
+            "embodiment": "inspire_dftp",
+            "episode": "0",
+            "camera": "23263780"
+          },
+          "validation": {
+            "times": [
+              0,
+              1,
+              2
+            ],
+            "beforeError": 65.222,
+            "afterError": 1.444,
+            "beforePixelMAE": 63.246,
+            "afterPixelMAE": 19.165,
+            "maximumPixelMAE": 20.684
+          }
+        }
+      }
+    },
+    "bamboo_box": {
+      "colorGain": [
+        0.890583,
+        1.162509,
+        1.806935
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:384868:5bbf4a20"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 11.111,
+        "afterError": 0.778,
+        "beforePixelMAE": 15.464,
+        "afterPixelMAE": 11.132,
+        "maximumPixelMAE": 11.279
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "banana": {
+      "colorGain": [
+        1.777912,
+        1.315465,
+        0.3199
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 1,
+        "roughness": 1,
+        "texture": false,
+        "vertexColors": true,
+        "textureKey": "none"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 33.889,
+        "afterError": 0.889,
+        "beforePixelMAE": 33.935,
+        "afterPixelMAE": 17.857,
+        "maximumPixelMAE": 17.894
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ],
+      "excludedEmbodiments": [
+        "human"
+      ]
+    },
+    "beige_brush": {
+      "colorGain": [
+        0.325383,
+        0.343368,
+        0.32784
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:239216:cf36f826"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "2",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 72.889,
+        "afterError": 0.778,
+        "beforePixelMAE": 65.517,
+        "afterPixelMAE": 18.835,
+        "maximumPixelMAE": 18.941
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "book": {
+      "colorGain": [
+        3.035491,
+        3.035491,
+        2.849692
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:80:5f95ea9b"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 56.222,
+        "afterError": 0.778,
+        "beforePixelMAE": 52.247,
+        "afterPixelMAE": 24.118,
+        "maximumPixelMAE": 24.313
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "box_pink": {
+      "colorGain": [
+        0.78808,
+        0.772823,
+        0.665997
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:174736:d0b9ac31"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 20.222,
+        "afterError": 0.667,
+        "beforePixelMAE": 24.164,
+        "afterPixelMAE": 8.15,
+        "maximumPixelMAE": 8.275
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "cactus2": {
+      "colorGain": [
+        0.801329,
+        0.714118,
+        1.533056
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:199544:dada661a"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 8.444,
+        "afterError": 0.556,
+        "beforePixelMAE": 16.358,
+        "afterPixelMAE": 14.279,
+        "maximumPixelMAE": 14.564
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "colander_green": {
+      "colorGain": [
+        4.802636,
+        0.354595,
+        0.820206
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:168000:ded44a1d"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "2",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 30,
+        "afterError": 0.889,
+        "beforePixelMAE": 31.804,
+        "afterPixelMAE": 13.965,
+        "maximumPixelMAE": 14.044
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "container_pink": {
+      "colorGain": [
+        1.315522,
+        1.128376,
+        0.870996
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:3440:275743da"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "1",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 11.667,
+        "afterError": 0.556,
+        "beforePixelMAE": 16.485,
+        "afterPixelMAE": 9.353,
+        "maximumPixelMAE": 9.53
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "frog_cup": {
+      "colorGain": [
+        7.568356,
+        0.418038,
+        1.007032
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:60368:7cd1df16"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 27.889,
+        "afterError": 0.667,
+        "beforePixelMAE": 31.035,
+        "afterPixelMAE": 11.192,
+        "maximumPixelMAE": 11.329
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "fruit_cutter_base": {
+      "colorGain": [
+        0.863335,
+        0.752176,
+        0.652531
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:948:38992336"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 20.556,
+        "afterError": 0.778,
+        "beforePixelMAE": 25.003,
+        "afterPixelMAE": 13.099,
+        "maximumPixelMAE": 13.129
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "green_attached_container": {
+      "colorGain": [
+        0.154513,
+        0.154513,
+        0.15381
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:163480:ce0259aa"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 94.889,
+        "afterError": 0.444,
+        "beforePixelMAE": 69.386,
+        "afterPixelMAE": 14.744,
+        "maximumPixelMAE": 14.781
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "green_soap_dispenser": {
+      "colorGain": [
+        0.633566,
+        0.425939,
+        0.558234
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:480856:3e2ddcf"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 42.778,
+        "afterError": 0.444,
+        "beforePixelMAE": 40.719,
+        "afterPixelMAE": 11.145,
+        "maximumPixelMAE": 11.353
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "grey_pot": {
+      "colorGain": [
+        0.748482,
+        0.812031,
+        0.717764
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/jpeg:7124:89decaa6"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 12.667,
+        "afterError": 0.667,
+        "beforePixelMAE": 19.577,
+        "afterPixelMAE": 10.999,
+        "maximumPixelMAE": 11.047
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "jja_ramen": {
+      "colorGain": [
+        4.41298,
+        4.313892,
+        3.461343
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2113686475352412,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1610112:ef34c05"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 53.444,
+        "afterError": 0.778,
+        "beforePixelMAE": 46.24,
+        "afterPixelMAE": 21.995,
+        "maximumPixelMAE": 22.034
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "large_peg": {
+      "colorGain": [
+        0.620803,
+        0.504672,
+        0.477309
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:60512:45436a93"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 44.667,
+        "afterError": 0.667,
+        "beforePixelMAE": 46.205,
+        "afterPixelMAE": 11.993,
+        "maximumPixelMAE": 12.207
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "lemon_squeezer": {
+      "colorGain": [
+        0.688669,
+        0.545637,
+        0.926014
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:299480:16a76a30"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "11",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 25,
+        "afterError": 0.222,
+        "beforePixelMAE": 26.947,
+        "afterPixelMAE": 17.655,
+        "maximumPixelMAE": 17.679
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "lilac_food_container": {
+      "colorGain": [
+        0.74422,
+        0.888841,
+        0.562611
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:4500:79c03ffe"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 22.667,
+        "afterError": 1.111,
+        "beforePixelMAE": 31.002,
+        "afterPixelMAE": 22.828,
+        "maximumPixelMAE": 23.193
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "meat_thermometer": {
+      "colorGain": [
+        0.335311,
+        0.393853,
+        0.39352
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 1,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:122492:c967afcd"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 59.444,
+        "afterError": 1.889,
+        "beforePixelMAE": 48.335,
+        "afterPixelMAE": 23.141,
+        "maximumPixelMAE": 23.795
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "metal_scoop_small": {
+      "colorGain": [
+        0.286214,
+        0.319211,
+        0.296076
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 1,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1184:dc0c5c43"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 89.222,
+        "afterError": 0.889,
+        "beforePixelMAE": 79.066,
+        "afterPixelMAE": 23.184,
+        "maximumPixelMAE": 23.324
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "orange": {
+      "colorGain": [
+        8.788886,
+        1.897143,
+        0.204484
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:80:5f95ea9b"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 69.778,
+        "afterError": 0.556,
+        "beforePixelMAE": 72.367,
+        "afterPixelMAE": 19.896,
+        "maximumPixelMAE": 19.937
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "organizer_beige": {
+      "colorGain": [
+        0.950622,
+        0.853967,
+        0.781453
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1876:b60c3bc3"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 9.889,
+        "afterError": 0.667,
+        "beforePixelMAE": 19.615,
+        "afterPixelMAE": 15.404,
+        "maximumPixelMAE": 15.479
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "pastel_blue_cup": {
+      "colorGain": [
+        1.232075,
+        1.03153,
+        1.147142
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:188244:cb714360"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 8.333,
+        "afterError": 0.333,
+        "beforePixelMAE": 15.399,
+        "afterPixelMAE": 11.345,
+        "maximumPixelMAE": 11.754
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "pastel_light_green_bowl": {
+      "colorGain": [
+        0.909887,
+        0.753948,
+        0.736946
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:16860:dd03657"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 16.111,
+        "afterError": 0.889,
+        "beforePixelMAE": 23.649,
+        "afterPixelMAE": 19.878,
+        "maximumPixelMAE": 20.235
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "pingpong": {
+      "colorGain": [
+        7.840435,
+        3.918379,
+        3.421489
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2113686475352412,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1148756:cc549978"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 87.889,
+        "afterError": 0.444,
+        "beforePixelMAE": 85.797,
+        "afterPixelMAE": 17.272,
+        "maximumPixelMAE": 17.476
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "pink_clock": {
+      "colorGain": [
+        0.493683,
+        0.624623,
+        0.569451
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2984745896009823,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:9500:316720f8"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "1",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 35.333,
+        "afterError": 0.667,
+        "beforePixelMAE": 35.49,
+        "afterPixelMAE": 21.924,
+        "maximumPixelMAE": 22.015
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "smallbowl": {
+      "colorGain": [
+        2.412006,
+        1.623051,
+        0.937496
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:80:5f95ea9b"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 22.444,
+        "afterError": 1.111,
+        "beforePixelMAE": 33.293,
+        "afterPixelMAE": 20.174,
+        "maximumPixelMAE": 20.59
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "soaptray": {
+      "colorGain": [
+        0.441892,
+        0.545823,
+        0.900791
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:315324:f9ad8f5"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 33.667,
+        "afterError": 0.667,
+        "beforePixelMAE": 27.951,
+        "afterPixelMAE": 17.46,
+        "maximumPixelMAE": 17.504
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "standing_frame": {
+      "colorGain": [
+        0.646009,
+        0.600822,
+        0.565272
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:17176:479e44cd"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 32.889,
+        "afterError": 0.333,
+        "beforePixelMAE": 27.918,
+        "afterPixelMAE": 18.567,
+        "maximumPixelMAE": 18.612
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "tea_case": {
+      "colorGain": [
+        4.516156,
+        5.135856,
+        4.019058
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2113686475352412,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1388964:53e18850"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 23,
+        "afterError": 0.778,
+        "beforePixelMAE": 23.512,
+        "afterPixelMAE": 12.772,
+        "maximumPixelMAE": 12.84
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "tennis_ball": {
+      "colorGain": [
+        3.764972,
+        3.657519,
+        4.268231
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2113686475352412,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:1512112:44d1b810"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 73.444,
+        "afterError": 0.778,
+        "beforePixelMAE": 77.421,
+        "afterPixelMAE": 19.642,
+        "maximumPixelMAE": 19.811
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "washing_brush2": {
+      "colorGain": [
+        2.316979,
+        0.202972,
+        0.44776
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:36788:4a24eeb0"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 56.556,
+        "afterError": 0.556,
+        "beforePixelMAE": 52.121,
+        "afterPixelMAE": 10.812,
+        "maximumPixelMAE": 10.92
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "wateringcan": {
+      "colorGain": [
+        1.36336,
+        1.28794,
+        1.109038
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:118432:97de29de"
+      },
+      "reference": {
+        "embodiment": "inspire_dftp",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 14.889,
+        "afterError": 0.556,
+        "beforePixelMAE": 23.993,
+        "afterPixelMAE": 15.424,
+        "maximumPixelMAE": 15.495
+      },
+      "validatedEmbodiments": [
+        "inspire_dftp"
+      ]
+    },
+    "white_pen_cup": {
+      "colorGain": [
+        1.537022,
+        1.6118,
+        1.376393
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.9036020036098448,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:33316:15b889d0"
+      },
+      "reference": {
+        "embodiment": "inspire_dftp",
+        "episode": "1",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 27.889,
+        "afterError": 0.333,
+        "beforePixelMAE": 26.629,
+        "afterPixelMAE": 11.876,
+        "maximumPixelMAE": 11.966
+      },
+      "validatedEmbodiments": [
+        "inspire_dftp"
+      ]
+    },
+    "wood_organizer": {
+      "colorGain": [
+        0.492371,
+        0.635932,
+        1.03605
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 1,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:569912:7ac64262"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 25.667,
+        "afterError": 0.667,
+        "beforePixelMAE": 35.456,
+        "afterPixelMAE": 13.173,
+        "maximumPixelMAE": 13.234
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    },
+    "yellow_wash_tub": {
+      "colorGain": [
+        1.146873,
+        0.818037,
+        1.363762
+      ],
+      "sourceMaterial": {
+        "color": [
+          1,
+          1,
+          1
+        ],
+        "metalness": 0,
+        "roughness": 0.2984745896009823,
+        "texture": true,
+        "vertexColors": false,
+        "textureKey": "image/png:736:2e1dbe11"
+      },
+      "reference": {
+        "embodiment": "inspire_f1",
+        "episode": "0",
+        "camera": "23263780"
+      },
+      "validation": {
+        "times": [
+          0,
+          1,
+          2
+        ],
+        "beforeError": 10.333,
+        "afterError": 0.556,
+        "beforePixelMAE": 17.364,
+        "afterPixelMAE": 15.37,
+        "maximumPixelMAE": 15.52
+      },
+      "validatedEmbodiments": [
+        "inspire_f1"
+      ]
+    }
+  }
+}

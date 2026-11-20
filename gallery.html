@@ -1301,6 +1301,7 @@
     const GRASP_RESULT_MANIFEST_URL = "static/gallery-grasp-results/manifest.json";
     const INTERACTIVE_3D_VISIBILITY_URL = "static/gallery-interactive-3d-visibility.json";
     const LOCAL_GLB_CATALOG_URL = "static/gallery-glb-catalog.json";
+    const OBJECT_APPEARANCE_URL = "static/gallery-object-appearance.json";
     const THREE_MODULE_URL = "https://unpkg.com/three@0.160.0/build/three.module.js";
     const ORBIT_CONTROLS_URL = "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
     const GLTF_LOADER_URL = "https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
@@ -1345,6 +1346,7 @@
       episodeThumbnails: {},
       graspResults: {},
       interactive3DVisibility: {},
+      objectAppearance: {},
       episodes: [],
       currentKey: null,
       currentCamera: null,
@@ -1449,8 +1451,10 @@
       optionalJson(EPISODE_THUMBNAILS_URL, { thumbnails: {} }),
       optionalJson(GRASP_RESULT_MANIFEST_URL, { results: {} }),
       optionalJson(INTERACTIVE_3D_VISIBILITY_URL, { interactive3D: {} }),
-      optionalJson(LOCAL_GLB_CATALOG_URL, {})
-    ]).then(([catalog, thumbnailManifest, resultManifest, visibilityManifest, localGlbCatalog]) => {
+      optionalJson(LOCAL_GLB_CATALOG_URL, {}),
+      optionalJson(OBJECT_APPEARANCE_URL, { profiles: {} })
+    ]).then(([catalog, thumbnailManifest, resultManifest, visibilityManifest, localGlbCatalog, appearanceManifest]) => {
+      state.objectAppearance = appearanceManifest?.profiles || {};
       state.episodeThumbnails = thumbnailManifest?.thumbnails || {};
       state.graspResults = resultManifest?.results || {};
       state.interactive3DVisibility = visibilityManifest?.interactive3D || {};
@@ -2480,6 +2484,71 @@
       });
     }
 
+    async function prepareObjectAppearanceTextures(gltf) {
+      const textures = new Set();
+      gltf.scene.traverse(node => {
+        if (!isObjectMeshNode(node)) return;
+        const materials = Array.isArray(node.material) ? node.material : [node.material];
+        materials.forEach(material => { if (material?.map) textures.add(material.map); });
+      });
+      await Promise.all([...textures].map(async texture => {
+        try {
+          const index = gltf.parser.associations.get(texture)?.textures;
+          const definition = gltf.parser.json.textures?.[index];
+          const source = definition?.extensions?.KHR_texture_basisu?.source
+            ?? definition?.extensions?.EXT_texture_webp?.source ?? definition?.source;
+          const image = gltf.parser.json.images?.[source];
+          if (!Number.isInteger(image?.bufferView)) return;
+          const bytes = new Uint8Array(await gltf.parser.getDependency("bufferView", image.bufferView));
+          let hash = 2166136261;
+          for (const value of bytes) hash = Math.imul(hash ^ value, 16777619) >>> 0;
+          // Encoded bytes keep identity stable across browser image decoders.
+          texture.userData.appearanceTextureKey = `${image.mimeType}:${bytes.length}:${hash.toString(16)}`;
+        } catch {
+          // Unknown texture identity leaves the original appearance untouched.
+        }
+      }));
+    }
+
+    function objectTextureKey(texture) {
+      return texture ? texture.userData.appearanceTextureKey || null : "none";
+    }
+
+    function applyObjectAppearance(model, ep) {
+      const entry = state.objectAppearance[ep.objId];
+      const profile = entry?.byEmbodiment?.[ep.hand] || entry;
+      if (!Array.isArray(profile?.validatedEmbodiments) || !profile.validatedEmbodiments.includes(ep.hand)) return;
+      if (Array.isArray(profile?.excludedEmbodiments) && profile.excludedEmbodiments.includes(ep.hand)) return;
+      const gain = profile?.colorGain;
+      const source = profile?.sourceMaterial;
+      if (!Array.isArray(gain) || gain.length !== 3 || gain.some(value => !Number.isFinite(value) || value < 0.05 || value > 32)
+        || !Array.isArray(source?.color) || source.color.length !== 3 || source.color.some(value => !Number.isFinite(value))
+        || !Number.isFinite(source.metalness) || !Number.isFinite(source.roughness) || typeof source.textureKey !== "string") return;
+      const adjusted = new Map();
+      model.traverse(node => {
+        if (!isObjectMeshNode(node)) return;
+        const correctMaterial = material => {
+          if (!material?.color || material.userData?.objectAppearanceApplied) return material;
+          if (adjusted.has(material)) return adjusted.get(material);
+          if (!Number.isFinite(material.metalness) || !Number.isFinite(material.roughness)
+            || Math.abs(material.metalness - source.metalness) > 1e-6
+            || Math.abs(material.roughness - source.roughness) > 1e-6
+            || Boolean(material.map) !== source.texture
+            || (typeof source.vertexColors === "boolean" && Boolean(material.vertexColors) !== source.vertexColors)
+            || material.color.toArray().some((value, i) => !Number.isFinite(value) || Math.abs(value - source.color[i]) > 1e-6)
+            || objectTextureKey(material.map) !== source.textureKey) return material;
+          // Clone to isolate object albedo from any material shared with the robot.
+          const corrected = material.clone();
+          corrected.color.setRGB(corrected.color.r * gain[0], corrected.color.g * gain[1], corrected.color.b * gain[2]);
+          corrected.userData.objectAppearanceApplied = true;
+          adjusted.set(material, corrected);
+          return corrected;
+        };
+        node.material = Array.isArray(node.material)
+          ? node.material.map(correctMaterial) : correctMaterial(node.material);
+      });
+    }
+
     async function loadInteractive3DModel(src, ep, token) {
       if (viewer3d.currentSrc === src && viewer3d.model) {
         viewer3d.currentHand = ep.hand;
@@ -2517,6 +2586,7 @@
       const gltf = await new Promise((resolve, reject) => {
         loader.parse(glbBuffer, src.replace(/[^/]*$/, ""), resolve, reject);
       });
+      await prepareObjectAppearanceTextures(gltf);
 
       if (token !== viewer3d.loadToken || viewer3d.currentSrc !== src) {
         disposeObject3D(gltf.scene);
@@ -2524,6 +2594,7 @@
       }
 
       const loadedModel = gltf.scene;
+      applyObjectAppearance(loadedModel, ep);
       // Every published GLB carries its own floor_grid. Keep that embedded
       // floor as the single floor source and exclude it from framing bounds.
       loadedModel.traverse(node => {
