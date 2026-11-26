@@ -561,6 +561,13 @@
       "doubleSided": true
     },
     {
+      "id": "animal_shaped_rice_ball_mold_b",
+      "triangles": 128578,
+      "bytes": 4270872,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
       "id": "auto_lock_measuring_tape",
       "triangles": 101858,
       "bytes": 3712292
@@ -1500,6 +1507,20 @@
       "id": "three_piece_dusting_tool_set_a",
       "triangles": 17380,
       "bytes": 2023272,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "three_piece_dusting_tool_set_b",
+      "triangles": 122268,
+      "bytes": 5036252,
+      "environmentIntensity": 1,
+      "doubleSided": true
+    },
+    {
+      "id": "three_piece_dusting_tool_set_c",
+      "triangles": 49858,
+      "bytes": 2862652,
       "environmentIntensity": 1,
       "doubleSided": true
     },

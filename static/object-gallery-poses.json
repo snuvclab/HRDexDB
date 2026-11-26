@@ -6430,6 +6430,32 @@
       "modelBytes": 4613916,
       "savedAt": "2026-11-06T05:19:14.016392+00:00"
     },
+    "animal_shaped_rice_ball_mold_b": {
+      "camera": {
+        "position": [
+          0.05697906790229201,
+          0.00921598148734173,
+          0.3499006963588662
+        ],
+        "target": [
+          -0.007773667573928833,
+          -0.005436686798930168,
+          0.022567861306015402
+        ],
+        "up": [
+          0.048438024799288625,
+          -0.8802741191652645,
+          0.47198647531614724
+        ],
+        "fov": 38,
+        "zoom": 1,
+        "viewportAspect": 1,
+        "thumbnailFrameScale": 1
+      },
+      "modelPath": "objects/animal_shaped_rice_ball_mold_b.glb",
+      "modelBytes": 4270872,
+      "savedAt": "2026-11-26T07:44:31.007438+00:00"
+    },
     "bath_monster_tooth_brushing_cup": {
       "camera": {
         "position": [
@@ -7053,6 +7079,58 @@
       "modelPath": "objects/three_piece_dusting_tool_set_a.glb",
       "modelBytes": 2023272,
       "savedAt": "2026-11-06T05:24:17.659158+00:00"
+    },
+    "three_piece_dusting_tool_set_b": {
+      "camera": {
+        "position": [
+          0.20106917863530446,
+          -0.1908555437047534,
+          0.14385887625187307
+        ],
+        "target": [
+          -0.00022187549620866776,
+          0.01043551042675972,
+          0.006980959442444146
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "fov": 38,
+        "zoom": 1,
+        "viewportAspect": 1,
+        "thumbnailFrameScale": 1
+      },
+      "modelPath": "objects/three_piece_dusting_tool_set_b.glb",
+      "modelBytes": 5036252,
+      "savedAt": "2026-11-26T07:40:03.861143+00:00"
+    },
+    "three_piece_dusting_tool_set_c": {
+      "camera": {
+        "position": [
+          0.2459913315047369,
+          -0.13666479209647003,
+          0.18123556155168752
+        ],
+        "target": [
+          0.022477958351373672,
+          -0.015724800527095795,
+          0.028092359250877053
+        ],
+        "up": [
+          0.7533822027057275,
+          0.6170445770374536,
+          0.2273131025588644
+        ],
+        "fov": 38,
+        "zoom": 1,
+        "viewportAspect": 1,
+        "thumbnailFrameScale": 1
+      },
+      "modelPath": "objects/three_piece_dusting_tool_set_c.glb",
+      "modelBytes": 2862652,
+      "savedAt": "2026-11-26T07:39:57.307419+00:00"
     },
     "toilet_shoes": {
       "camera": {
